@@ -1,0 +1,45 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true,
+    "cypress/globals": true
+  },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:react/recommended",
+    "standard",
+    "eslint:recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "sonarjs", "jest-dom", "testing-library", "cypress"],
+  "overrides": [
+    // enable eslint-plugin-testing-library rules or preset only for matching files!
+    {
+      "files": ["**/__tests__/**/*.[jt]s?(x)"],
+      "extends": ["plugin:jest-dom/recommended", "plugin:testing-library/react"]
+    },
+    {
+      // enable eslint-plugin-testing-library rules or preset only for matching files!
+      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:jest-dom/recommended", "plugin:testing-library/react", "plugin:cypress/recommended"]
+    }
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "default-param-last": ["error"],
+    "no-console": ["warn", {"allow": ["warn", "error"]}]
+  },
+  "globals": {
+    "JSX": true
+  }
+}
