@@ -28,13 +28,13 @@ class ErrorBoundary extends React.Component<Props, State> {
   }
 
   // @ts-ignore
-  render(): ReactNode | {} {
+  render(): ReactNode {
     if (this.state.hasError) {
       // no we only use these boundaries on top level, we can return the 404
       return <h1>Something went wrong</h1>;
     }
 
-    return this.props.children;
+    return <>{this.props.children}</>;
   }
 }
 
