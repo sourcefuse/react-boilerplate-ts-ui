@@ -81,11 +81,11 @@ export const commonConfig = {
         },
       },
     },
-    MuiButton: {
-      defaultProps: {
-        variant: 'outlined',
-        color: 'secondary',
-      },
-    },
+    // MuiButton: {
+    //   defaultProps: {
+    //     variant: 'outlined',
+    //     color: 'secondary',
+    //   },
+    // },
   },
 };

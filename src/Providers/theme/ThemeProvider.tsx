@@ -1,8 +1,8 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import {createTheme, ThemeOptions, ThemeProvider as MuiThemeProvider} from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import React, {createContext, useMemo, useState} from 'react';
-import {paletteConfig} from './default';
+import {createContext, useMemo, useState} from 'react';
+import {commonConfig, paletteConfig} from './default';
 
 export const ThemeContext = createContext({
   toggleColorMode: () => {},
@@ -11,7 +11,7 @@ export const ThemeContext = createContext({
 // @ts-ignore
 const ThemeProvider = ({children}) => {
   // const [mode, setMode] = useMode('dark');
-  const [setMode] = useState('dark');
+  const [mode, setMode] = useState('light');
 
   const colorMode = useMemo(
     () => ({
@@ -24,14 +24,16 @@ const ThemeProvider = ({children}) => {
     [setMode],
   );
 
-  const options: ThemeOptions = {
-    palette: {
-      ...paletteConfig.light,
-    },
-  };
-
   // @ts-ignore
-  const theme = useMemo(() => createTheme(options), [options]);
+  const theme = useMemo(() => {
+    const options: ThemeOptions = {
+      palette: {
+        ...paletteConfig[mode],
+      },
+      ...commonConfig,
+    };
+    return createTheme(options);
+  }, [mode]);
 
   return (
     <ThemeContext.Provider value={colorMode}>
