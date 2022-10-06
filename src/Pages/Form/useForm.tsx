@@ -1,9 +1,9 @@
 import useMutation from 'CustomHooks/useMutation';
-import client from 'Helpers/axios';
-
+import axiosFactory from 'Helpers/axios';
+const axios = axiosFactory();
 export default function useForm() {
   const {mutateAsync, isLoading} = useMutation({
-    fn: (values) => client.post(`/posts`, values),
+    fn: (values) => axios.post(`/posts`, values),
     successMsg: 'Form submitted',
   });
 
