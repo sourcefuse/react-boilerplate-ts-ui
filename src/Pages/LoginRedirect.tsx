@@ -24,7 +24,7 @@ const LoginRedirect = () => {
         const url = 'auth/token';
         const data = {
           code,
-          clientId: appConfig.azure_client_id,
+          clientId: appConfig.client_id,
         };
         const response = await axios.post(url, data);
         const accessToken = response.data?.accessToken;

@@ -1,6 +1,7 @@
 {
-  "azure_client_id": "webapp",
-  "azure_client_secret": "saqw21!@",
-  "audit_api_base_url": "http://localhost:3004",
-  "auth_api_base_url": "http://localhost:3005"
+  "client_id": "",
+  "client_secret": "",
+  "app_api_base_url": "",
+  "auth_api_base_url": "",
+  "audit_api_base_url": ""
 }
