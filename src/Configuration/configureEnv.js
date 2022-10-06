@@ -1,7 +1,6 @@
 const dotenv = require('dotenv');
 const {writeFileSync} = require('fs');
-// import dotenv from 'dotenv';
-// import {writeFileSync} from 'fs';
+
 dotenv.config();
 
 const content = `{
