@@ -33,8 +33,9 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "config": "node ./src/Configuration/configureEnv.js",
+    "start": "npm run config && react-scripts start",
+    "build": "npm run config && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src/",

@@ -19,8 +19,8 @@ const formValidation = yup.object().shape({
   password: yup.string().required('Password is Required'),
 });
 const appConfig = getAppConfiguration();
-const clientId = appConfig.azure_client_id;
-const clientSecret = appConfig.azure_client_secret;
+const clientId = appConfig.client_id;
+const clientSecret = appConfig.client_secret;
 const Login = () => {
   const {doLogIn, loggedIn} = useAuth();
   const navigate = useNavigate();

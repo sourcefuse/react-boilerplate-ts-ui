@@ -2,17 +2,23 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import {styled, useTheme} from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
+import {MUIStyledCommonProps} from '@mui/system';
 import AppBar from 'Components/AppBar';
 import SideNav from 'Components/SideNav/SideNav';
+import NotFound from 'Pages/NotFound';
 import {Suspense, useCallback, useEffect, useState} from 'react';
-import {Navigate, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import mainLayoutRouteConfig from './mainLayoutRouteConfig';
 
 const drawerWidth = 270;
 
+interface IMainProps extends MUIStyledCommonProps {
+  open: boolean;
+  isPermanent: boolean;
+}
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'open' && prop !== 'isPermanent',
-})(({theme, open, isPermanent}) => ({
+})<IMainProps>(({theme, open, isPermanent}) => ({
   flexGrow: 1,
   padding: theme.spacing(3),
   transition: theme.transitions.create('margin', {
@@ -77,7 +83,7 @@ const Mainlayout = () => {
             {mainLayoutRouteConfig.map(({path, component: Component}, index) => (
               <Route path={path} element={<Component />} key={`main-${index}`} />
             ))}
-            <Route path="*" element={<Navigate to="/home" />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </Main>
