@@ -1,17 +1,14 @@
 import * as config from './config.json';
+import * as devConfig from './devConfig.json';
 
-export interface OidcConfiguration {
-  client_id: string;
-  redirect_uri: string;
-  response_type: string;
-  post_logout_redirect_uri: string;
-  scope: string;
-  authority: string;
-  silent_redirect_uri: string;
-  automaticSilentRenew: string;
-  loadUserInfo: string;
+export interface AppConfiguration {
+  azure_client_id: string;
+  azure_client_secret: string;
+  audit_api_base_url: string;
+  auth_api_base_url: string;
+  app_api_base_url?: string;
 }
 
-export const getOidcConfiguration = () => {
-  return config as OidcConfiguration;
+export const getAppConfiguration = () => {
+  return process.env.REACT_APP_ENVIRONMENT === 'dev' ? (devConfig as AppConfiguration) : (config as AppConfiguration);
 };

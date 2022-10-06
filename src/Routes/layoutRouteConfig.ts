@@ -1,17 +1,29 @@
-// import {lazy} from 'react';
-import Mainlayout from '../Layouts/MainLayout/Mainlayout';
-import HeaderLayout from '../Layouts/HeaderLayout/HeaderLayout';
-// const Mainlayout = lazy(() => import('Layouts/MainLayout/Mainlayout'));
-// const HeaderLayout = lazy(() => import('Layouts/HeaderLayout/HeaderLayout'));
+import {lazy} from 'react';
+// import HeaderLayout from '../Layouts/HeaderLayout/HeaderLayout';
+// import Mainlayout from '../Layouts/MainLayout/Mainlayout';
+const Login = lazy(() => import('../Pages/Login'));
+const LoginRedirect = lazy(() => import('../Pages/LoginRedirect'));
+const Mainlayout = lazy(() => import('Layouts/MainLayout/Mainlayout'));
+const HeaderLayout = lazy(() => import('Layouts/HeaderLayout/HeaderLayout'));
 
-export interface LayoutRouteConfig {
+export interface IRoute {
+  component?: any;
   path: string;
   redirect?: string;
-  component?: any;
   isPrivate?: boolean;
+  restricted?: boolean;
 }
 
-const layoutRouteConfig: LayoutRouteConfig[] = [
+const layoutRouteConfig: IRoute[] = [
+  {
+    path: '/login',
+    component: Login,
+  },
+  {
+    path: '/login_redirect',
+    component: LoginRedirect,
+  },
+
   {
     path: '/',
     redirect: '/home',

@@ -1,54 +1,44 @@
-import {OidcProvider} from '@axa-fr/react-oidc';
+import useLocalStorage from 'Hooks/useLocalStorage';
 import PropTypes from 'prop-types';
-import React from 'react';
-import {getOidcConfiguration} from '../Configuration/configuration';
-// import {useIdleTimer} from 'react-idle-timer';
+import {createContext, useCallback, useState} from 'react';
 
 // @ts-ignore
+const defaultAuthContextValue = {
+  authStateLoading: true,
+  loggedIn: false,
+  token: null,
+  refreshToken: null,
+  setAuth: (loggedIn: boolean, token: string | null, refreshToken: string | null) => {},
+  setToken: (value: string | null) => {},
+  setRefreshToken: (value: string | null) => {},
+  setAuthStateLoading: (value: boolean) => {},
+};
+export const AuthContext = createContext(defaultAuthContextValue);
 function AuthProvider({children}) {
-  // const Authentication = () => {
-  //   return (
-  //     <div>
-  //       <h1>Authenticating</h1>
-  //     </div>
-  //   );
-  // };
-  //
-  // const Unauthenticated = () => {
-  //   return (
-  //     <div>
-  //       <h1>Not Authenticated</h1>
-  //     </div>
-  //   );
-  // };
-  //
-  // const Forbidden = () => {
-  //   return (
-  //     <div>
-  //       <h1>Forbidden</h1>
-  //     </div>
-  //   );
-  // };
-  //
-  // const SessionLost = () => {
-  //   return (
-  //     <div>
-  //       <h1>SessionLost</h1>
-  //     </div>
-  //   );
-  // };
-
+  const [authStateLoading, setAuthStateLoading] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [refreshToken, setRefreshToken] = useLocalStorage('rbp_refresh_token', null);
+  const [token, setToken] = useLocalStorage('rbp_access_token', null);
+  const setAuth = useCallback((loggedIn: boolean, token: string | null, refreshToken: string | null) => {
+    setLoggedIn(loggedIn);
+    setToken(token);
+    setRefreshToken(refreshToken);
+  }, []);
   return (
-    <OidcProvider
-      configuration={getOidcConfiguration()}
-      // loggerLevel={oidcLog.DEBUG}
-      // authenticating={Authentication}
-      // notAuthenticated={Unauthenticated}
-      // notAuthorized={Forbidden}
-      // sessionLostComponent={SessionLost}
+    <AuthContext.Provider
+      value={{
+        authStateLoading,
+        loggedIn,
+        token,
+        refreshToken,
+        setAuth,
+        setToken,
+        setRefreshToken,
+        setAuthStateLoading,
+      }}
     >
       {children}
-    </OidcProvider>
+    </AuthContext.Provider>
   );
 }
 
