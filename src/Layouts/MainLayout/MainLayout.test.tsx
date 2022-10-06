@@ -2,7 +2,7 @@
 import {render, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {BrowserRouter} from 'react-router-dom';
-import MainLayout from './MainLayout';
+import MainLayout from './Mainlayout';
 const MockMainLayout = () => (
   <BrowserRouter>
     <MainLayout />

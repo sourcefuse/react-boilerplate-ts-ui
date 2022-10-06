@@ -2,14 +2,16 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from 'Components/AppBar';
-import {Suspense} from 'react';
+import {Suspense, useState} from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import headerLayoutRouteConfig from './headerLayoutRouteConfig';
 
 const Headerlayout = () => {
+  const [open, setOpen] = useState(true);
+  const toggleDrawer = () => setOpen((prev) => !prev);
   return (
     <>
-      <AppBar />
+      <AppBar open={open} toggleDrawer={toggleDrawer} data-testid="headernav" />
       <Box component="main" sx={{padding: 3}}>
         <Toolbar />
         <Suspense fallback={<LinearProgress />}>

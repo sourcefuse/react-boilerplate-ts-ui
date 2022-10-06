@@ -1,7 +1,7 @@
 import {lazy} from 'react';
 
 const Home = lazy(() => import('Pages/Home'));
-const WhoAmI = lazy(() => import('Pages/WhoAmI'));
+// const WhoAmI = lazy(() => import('Pages/WhoAmI'));
 const Form = lazy(() => import('Pages/Form/Form'));
 const InputPage = lazy(() => import('Pages/InputPage'));
 const DropdownPage = lazy(() => import('Pages/DropdownPage'));
@@ -25,10 +25,10 @@ const mainLayoutRouteConfig = [
     path: '/home',
     component: Home,
   },
-  {
-    path: '/who-am-i',
-    component: WhoAmI,
-  },
+  // {
+  //   path: '/who-am-i',
+  //   component: WhoAmI,
+  // },
   {
     path: '/components/input',
     component: InputPage,
