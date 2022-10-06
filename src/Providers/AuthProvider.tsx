@@ -17,8 +17,8 @@ export const AuthContext = createContext(defaultAuthContextValue);
 function AuthProvider({children}) {
   const [authStateLoading, setAuthStateLoading] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [refreshToken, setRefreshToken] = useLocalStorage('travelex_refresh_token', null);
-  const [token, setToken] = useLocalStorage('travelex_access_token', null);
+  const [refreshToken, setRefreshToken] = useLocalStorage('rbp_refresh_token', null);
+  const [token, setToken] = useLocalStorage('rbp_access_token', null);
   const setAuth = useCallback((loggedIn: boolean, token: string | null, refreshToken: string | null) => {
     setLoggedIn(loggedIn);
     setToken(token);
