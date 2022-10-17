@@ -3,5 +3,9 @@
   "client_secret": "",
   "app_api_base_url": "",
   "auth_api_base_url": "",
-  "audit_api_base_url": ""
+  "audit_api_base_url": "",
+  "enable_session_timeout": false,
+  "storage_session_time_key": "",
+  "expiry_time_in_minute": "",
+  "warning_alert_timeout_in_minute": ""
 }

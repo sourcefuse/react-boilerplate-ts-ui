@@ -100,7 +100,7 @@ const Login = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Box component="form" noValidate autoComplete="off">
+          <Box component="form" noValidate>
             <Input
               id="username"
               label="Email or Username"
