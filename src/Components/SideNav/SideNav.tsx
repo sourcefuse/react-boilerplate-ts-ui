@@ -15,7 +15,6 @@ interface Props {
 
 const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open}) => {
   const location = useLocation();
-
   return (
     <SwipeableDrawer
       sx={{

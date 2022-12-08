@@ -1,9 +1,8 @@
 import Slide from '@mui/material/Slide';
 import {SnackbarProvider} from 'notistack';
-import PropTypes from 'prop-types';
-import React from 'react';
+import {ReactNode} from 'react';
 
-const NotificationProvider = ({children}) => {
+const NotificationProvider = ({children}: {children: ReactNode}) => {
   return (
     <SnackbarProvider
       TransitionComponent={Slide}
@@ -16,10 +15,6 @@ const NotificationProvider = ({children}) => {
       {children}
     </SnackbarProvider>
   );
-};
-
-NotificationProvider.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default NotificationProvider;

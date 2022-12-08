@@ -41,7 +41,7 @@ const MuiCheckbox: React.FC<Props> = ({
 }) => {
   const isError = errorMessage && isTouched && !disabled;
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (singleSelect) {
       const val = value === e?.target?.name ? '' : e.target.name;
       if (returnValue) {

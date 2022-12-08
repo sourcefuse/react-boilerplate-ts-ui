@@ -11,7 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Button from 'Components/Button/Button';
 import PagePaper from 'Components/PagePaper';
-import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
 const tiers = [
@@ -35,7 +34,7 @@ const tiers = [
 
 function Subscription() {
   const navigate = useNavigate();
-  function handleCheckOut(amount) {
+  function handleCheckOut(amount: number) {
     navigate('/sourceloop/payment/checkout', {state: {amount, type: 'subscription'}});
   }
   return (

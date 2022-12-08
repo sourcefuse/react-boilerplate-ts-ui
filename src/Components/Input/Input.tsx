@@ -34,7 +34,7 @@ const getEndAdornment: React.FC<any> = ({copyEnabled, value, isError, endAdornme
     return (
       <Tooltip title="Copy to clipboard">
         <IconButton>
-          <CopyToClipboard sx={{cursor: 'pointer'}} text={value}>
+          <CopyToClipboard text={value}>
             <FileCopyIcon />
           </CopyToClipboard>
         </IconButton>

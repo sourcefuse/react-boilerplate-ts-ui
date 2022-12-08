@@ -6,12 +6,11 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Button from 'Components/Button/Button';
 import PagePaper from 'Components/PagePaper';
-import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
 const Order = () => {
   const navigate = useNavigate();
-  function handleCheckOut(amount) {
+  function handleCheckOut(amount: number) {
     navigate('/sourceloop/payment/checkout', {state: {amount, type: 'orders'}});
   }
 

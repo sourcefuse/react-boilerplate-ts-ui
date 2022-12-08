@@ -8,7 +8,6 @@ import PagePaper from 'Components/PagePaper';
 import RadioButton from 'Components/RadioButton/RadioButton';
 import ToggleButton from 'Components/Toggle/ToggleButton';
 import {useFormik} from 'formik';
-import React from 'react';
 import useForm from './useForm';
 import {initialValues, validationSchema} from './utils';
 
@@ -68,7 +67,7 @@ export default function Form() {
               value={values?.dob}
               onChange={handleChange}
               errorMessage={errors?.dob}
-              isTouched={touched?.dob}
+              isTouched={!!touched?.dob}
               label="D.O.B"
             />
           </Grid>

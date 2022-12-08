@@ -22,7 +22,7 @@ const appConfig = getAppConfiguration();
 const clientId = appConfig.client_id;
 const clientSecret = appConfig.client_secret;
 const Login = () => {
-  const {doLogIn, loggedIn} = useAuth();
+  const {doLogIn, isLoggedIn} = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const submitLogin = async (formValue) => {
@@ -36,7 +36,7 @@ const Login = () => {
       const config = {
         method: 'post',
         url: '/auth/login-token',
-        data: data,
+        data,
       };
       setFormCTALoading(true);
       const response = await axios(config);
@@ -44,7 +44,7 @@ const Login = () => {
       doLogIn(responseData.accessToken, responseData.refreshToken);
       navigate(from, {replace: true});
     } catch (err) {
-      console.log('error while login => ', err);
+      console.error('error while login => ', err);
       setFormCTALoading(false);
     }
   };
@@ -87,7 +87,7 @@ const Login = () => {
     }
   };
   useEffect(() => {
-    if (loggedIn) {
+    if (isLoggedIn) {
       navigate('/', {replace: true});
     }
   }, []);

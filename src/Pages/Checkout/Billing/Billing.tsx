@@ -5,10 +5,18 @@ import Checkbox from 'Components/Checkbox/Checkbox';
 import Dropdown from 'Components/Dropdown/Dropdown';
 import Input from 'Components/Input/Input';
 import {useFormik} from 'formik';
-import PropTypes from 'prop-types';
-import {initialValues, validationSchema} from './utils';
+import React from 'react';
+import {BillingType, initialValues, validationSchema} from './utils';
 
-const Billing = ({nextStep, billingData, setBillingData}) => {
+const Billing = ({
+  nextStep,
+  billingData,
+  setBillingData,
+}: {
+  nextStep: () => void;
+  billingData: BillingType;
+  setBillingData: React.Dispatch<React.SetStateAction<BillingType>>;
+}) => {
   const {errors, touched, values, handleSubmit, handleChange} = useFormik({
     initialValues: {...initialValues, ...billingData},
     validationSchema,
@@ -133,12 +141,6 @@ const Billing = ({nextStep, billingData, setBillingData}) => {
       </Grid>
     </form>
   );
-};
-
-Billing.propTypes = {
-  nextStep: PropTypes.func.isRequired,
-  billingData: PropTypes.object.isRequired,
-  setBillingData: PropTypes.func.isRequired,
 };
 
 export default Billing;

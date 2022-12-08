@@ -66,7 +66,7 @@ const HoverRating: React.FC<Props> = (props) => {
         <StyledRating
           value={value}
           {...{
-            getLabelText: (value) => `${value} Heart${value !== 1 ? 's' : ''}`,
+            getLabelText: (value: number) => `${value} Heart${value !== 1 ? 's' : ''}`,
             icon: <FavoriteIcon fontSize="inherit" />,
             emptyIcon: <FavoriteBorderIcon fontSize="inherit" />,
             ...rest,

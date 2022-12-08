@@ -1,9 +1,30 @@
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import PeopleIcon from '@mui/icons-material/People';
 import ToggleOffIcon from '@mui/icons-material/ToggleOff';
+import {ReactNode} from 'react';
 
-const sideNavConfig = [
+export type SideNavDividerType = {
+  type: 'divider';
+  visible: boolean;
+};
+
+export type SideNavTitleType = {
+  label: string;
+  type: 'title';
+  visible: boolean;
+};
+
+export type SideNavLinkTitle = {
+  label: string;
+  visible: boolean;
+  link: string;
+  icon?: ReactNode;
+  children?: (SideNavLinkTitle | SideNavTitleType)[];
+};
+
+export type SideNavConfig = SideNavLinkTitle | SideNavDividerType | SideNavTitleType;
+
+const sideNavConfig: SideNavConfig[] = [
   {
     label: 'Menu',
     type: 'title',
@@ -17,12 +38,6 @@ const sideNavConfig = [
     label: 'home',
     link: '/home',
     icon: <DashboardIcon />,
-    visible: true,
-  },
-  {
-    label: 'who am i',
-    link: '/who-am-i',
-    icon: <PeopleIcon />,
     visible: true,
   },
   {

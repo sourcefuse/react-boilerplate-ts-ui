@@ -18,7 +18,7 @@ type Props = {
   row?: boolean;
   singleSelect?: boolean;
   onChange: (value: any) => void;
-  options?: any;
+  options?: {label: string; value: string}[];
 };
 const Checkbox: React.FC<Props> = ({
   onChange,
@@ -36,7 +36,7 @@ const Checkbox: React.FC<Props> = ({
 }) => {
   const isError = errorMessage && isTouched && !disabled;
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (singleSelect) {
       const val = value === e?.target?.name ? '' : e.target.name;
       if (returnValue) {

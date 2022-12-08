@@ -6,26 +6,48 @@ import PropTypes from 'prop-types';
 import {useState} from 'react';
 import usePayment from './usePayment';
 
+export enum PaymentType {
+  RazorPay = 'razorpay',
+  Stripe = 'stripe',
+}
+
+export enum PlanType {
+  Orders = 'orders',
+  Subscription = 'subscription',
+}
+
 const options = [
-  {label: `Pay with Razorpay`, value: 'razorpay'},
-  {label: `Pay with Stripe`, value: 'stripe'},
+  {label: `Pay with Razorpay`, value: PaymentType.RazorPay},
+  {label: `Pay with Stripe`, value: PaymentType.Stripe},
 ];
 
-const Payment = ({prevStep, amount, type}) => {
-  const url = type === 'orders' ? process.env.REACT_APP_ORDERS_API_PATH : process.env.REACT_APP_SUBSCRIPTION_API_PATH;
+type Payload = {
+  totalAmount: number;
+  status: string;
+  paymentGatewayId: string;
+  paymentmethod: PaymentType;
+  currency: string;
+  planId?: string;
+  startDate?: string;
+  endDate?: string;
+};
+
+const Payment = ({prevStep, amount, type}: {prevStep: () => void; amount: number; type: string}) => {
+  const url =
+    type === PlanType.Orders ? process.env.REACT_APP_ORDERS_API_PATH : process.env.REACT_APP_SUBSCRIPTION_API_PATH;
 
   const {submitForm, isLoading} = usePayment(url);
-  const [paymentMethod, setPaymentMethod] = useState('razorpay');
+  const [paymentMethod, setPaymentMethod] = useState(PaymentType.RazorPay);
 
   const handlePayment = async () => {
-    let payload = {
+    let payload: Payload = {
       totalAmount: amount,
       status: 'draft',
       paymentGatewayId: '', // payment gateway id from database
       paymentmethod: paymentMethod,
       currency: 'INR',
     };
-    if (type === 'subscription') {
+    if (type === PlanType.Subscription) {
       payload = {
         ...payload,
         planId: '', // plan id from razorpay
@@ -43,7 +65,7 @@ const Payment = ({prevStep, amount, type}) => {
     <Grid container spacing={2}>
       <Grid item container xs={12} justifyContent="space-between" sx={{marginBottom: 2}}>
         <Typography sx={{fontWeight: 'bold'}}>
-          {type === 'orders' ? 'Payable amount :' : 'Monthly subscription payment :'}
+          {type === PlanType.Orders ? 'Payable amount :' : 'Monthly subscription payment :'}
         </Typography>
         <Typography sx={{fontWeight: 'bold'}}>₹ {amount?.toFixed(2)}</Typography>
       </Grid>

@@ -1,5 +1,5 @@
-import useMutation from 'CustomHooks/useMutation';
 import client from 'Helpers/axios';
+import useMutation from 'Hooks/useMutation';
 
 export default function usePayment(url) {
   const {mutateAsync: submitForm, isLoading} = useMutation({

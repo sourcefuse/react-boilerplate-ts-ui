@@ -1,39 +1,35 @@
+import {PaletteMode} from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
-import {createTheme, ThemeOptions, ThemeProvider as MuiThemeProvider} from '@mui/material/styles';
-import PropTypes from 'prop-types';
-import {createContext, useMemo, useState} from 'react';
+import {createTheme, ThemeProvider as MuiThemeProvider} from '@mui/material/styles';
+import useLocalStorage from 'Hooks/useLocalStorage';
+import {createContext, ReactNode, useMemo} from 'react';
 import {commonConfig, paletteConfig} from './default';
 
-export const ThemeContext = createContext({
-  toggleColorMode: () => {},
-});
+export const ThemeContext = createContext({toggleColorMode: () => {}});
 
-// @ts-ignore
-const ThemeProvider = ({children}) => {
-  // const [mode, setMode] = useMode('dark');
-  const [mode, setMode] = useState('light');
+const ThemeProvider = ({children}: {children: ReactNode}) => {
+  const [mode, setMode] = useLocalStorage<PaletteMode>('mode', 'dark');
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        // @ts-ignore
-
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
     [setMode],
   );
 
-  // @ts-ignore
-  const theme = useMemo(() => {
-    const options: ThemeOptions = {
-      palette: {
-        ...paletteConfig[mode],
-      },
-      ...commonConfig,
-    };
-    return createTheme(options);
-  }, [mode]);
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+          ...paletteConfig[mode],
+        },
+        ...commonConfig,
+      }),
+    [mode],
+  );
 
   return (
     <ThemeContext.Provider value={colorMode}>
@@ -43,10 +39,6 @@ const ThemeProvider = ({children}) => {
       </MuiThemeProvider>
     </ThemeContext.Provider>
   );
-};
-
-ThemeProvider.propTypes = {
-  children: PropTypes.node,
 };
 
 export default ThemeProvider;

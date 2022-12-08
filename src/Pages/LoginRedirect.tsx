@@ -9,11 +9,10 @@ const LoginRedirect = () => {
   const [searchParam] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
   const [success, setSuccess] = useState(false);
-  const {doLogIn, loggedIn} = useAuth();
+  const {doLogIn, isLoggedIn} = useAuth();
   const location = useLocation();
   const locationState = location.state as {from: {pathname: string | null} | null};
   const from = locationState?.from?.pathname ?? '/';
-  console.log('redirect login from => ', from);
 
   useEffect(() => {
     const code = searchParam.get('code');
@@ -34,17 +33,17 @@ const LoginRedirect = () => {
         }
         setSuccess(!!accessToken);
       } catch (err) {
-        console.log('error while fetching token => ', err);
+        console.error('error while fetching token => ', err);
         setSuccess(false);
       } finally {
         setIsLoading(false);
       }
     };
-    if (!loggedIn && code) {
+    if (!isLoggedIn && code) {
       getToken();
     } else {
       setIsLoading(false);
-      setSuccess(loggedIn);
+      setSuccess(isLoggedIn);
     }
   }, []);
   return isLoading ? <BackdropLoader /> : success ? <Navigate to={from} replace /> : <Navigate to="/login" replace />;

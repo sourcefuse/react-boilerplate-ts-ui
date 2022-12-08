@@ -1,4 +1,9 @@
 {
+  "globals": {
+    "React": true,
+    "jsdom": true,
+    "JSX": true
+  },
   "env": {
     "browser": true,
     "es2021": true,
@@ -12,8 +17,10 @@
     "standard",
     "eslint:recommended",
     "plugin:sonarjs/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -21,7 +28,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "sonarjs", "jest-dom", "testing-library", "cypress"],
+  "plugins": ["react", "@typescript-eslint", "prettier", "sonarjs", "jest-dom", "testing-library", "cypress"],
   "overrides": [
     // enable eslint-plugin-testing-library rules or preset only for matching files!
     {
@@ -37,9 +44,8 @@
   "rules": {
     "react/react-in-jsx-scope": 0,
     "default-param-last": ["error"],
-    "no-console": ["warn", {"allow": ["warn", "error"]}]
-  },
-  "globals": {
-    "JSX": true
+    "no-console": ["warn", {"allow": ["warn", "error"]}],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error"
   }
 }

@@ -14,20 +14,17 @@ class ErrorBoundary extends React.Component<Props, State> {
     this.state = {hasError: false};
   }
 
-  // @ts-ignore
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: any) {
     // Update state so the next render will show the fallback UI.
     console.error(error);
     return {hasError: true};
   }
 
-  // @ts-ignore
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: any, errorInfo: any) {
     // You can also log the error to an error reporting service
     console.error(error, errorInfo);
   }
 
-  // @ts-ignore
   render(): ReactNode {
     if (this.state.hasError) {
       // no we only use these boundaries on top level, we can return the 404
