@@ -1,8 +1,8 @@
-import DatePicker from '@mui/lab/DatePicker';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
+import {DatePicker} from '@mui/x-date-pickers';
 import React, {memo} from 'react';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   value?: any;
   onChange: any;
   disabled?: boolean;
-  isTouched?: boolean | any;
+  isTouched?: boolean;
   returnValue?: boolean;
   errorMessage?: string[] | string | any;
   helperText?: string;

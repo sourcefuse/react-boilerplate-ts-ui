@@ -1,6 +1,18 @@
 import * as yup from 'yup';
 
-export const initialValues = {
+export type BillingType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  address: string;
+  country: string | null;
+  state: string | null;
+  zipCode: string;
+  terms: boolean;
+  opt: any[];
+};
+
+export const initialValues: BillingType = {
   firstName: '',
   lastName: '',
   email: '',
@@ -8,7 +20,7 @@ export const initialValues = {
   country: null,
   state: null,
   zipCode: '',
-  terms: null,
+  terms: false,
   opt: [],
 };
 

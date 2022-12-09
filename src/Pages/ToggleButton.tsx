@@ -4,10 +4,10 @@ import ComponentPaper from 'Components/ComponentPaper';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
 import ToggleButton from 'Components/Toggle/ToggleButton';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 export default function ToggleButtonComponent() {
-  const [values, setValues]: any = useState([]);
+  const [values, setValues] = useState<{label: string; value: string}[]>([]);
   const [value, setValue]: any = useState('');
   const [values1, setValues1]: any = useState([]);
   const [value1, setValue1]: any = useState('');

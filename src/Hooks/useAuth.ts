@@ -5,12 +5,12 @@ import {useContext} from 'react';
 
 const appConfig = getAppConfiguration();
 const useAuth = () => {
-  const {loggedIn, token, refreshToken, setAuth, setToken, setRefreshToken, authStateLoading, setAuthStateLoading} =
+  const {isLoggedIn, token, refreshToken, setAuth, setToken, setRefreshToken, authStateLoading, setAuthStateLoading} =
     useContext(AuthContext);
   const doLogIn = (token: string, refreshToken: string) => {
     setAuth(true, token, refreshToken);
   };
-  const logOut = async () => {
+  const logout = async () => {
     try {
       const baseUrl = appConfig.auth_api_base_url;
       const data = JSON.stringify({
@@ -27,21 +27,20 @@ const useAuth = () => {
         data,
       };
       setAuthStateLoading(true);
-      const response = await axios(config);
-      console.log('response from logout endpoint => ', response);
+      await axios(config);
     } catch (err) {
-      console.log('Error from logout endpoint => ', err);
+      console.error('Error from logout endpoint => ', err);
     } finally {
       setAuthStateLoading(false);
       setAuth(false, '', '');
     }
   };
   return {
-    loggedIn,
+    isLoggedIn,
     token,
     refreshToken,
     doLogIn,
-    logOut,
+    logout,
     setToken,
     setRefreshToken,
     authStateLoading,

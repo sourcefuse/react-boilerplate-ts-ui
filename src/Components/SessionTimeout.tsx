@@ -8,11 +8,11 @@ import {getAppConfiguration} from 'Configuration';
 import useAuth from 'Hooks/useAuth';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 
-const appconfig = getAppConfiguration();
+const appConfig = getAppConfiguration();
 
-const STORAGE_SESSION_TIME_KEY = appconfig.storage_session_time_key || 'rbp_session_expiration_time';
-const EXPIRY_TIME_IN_MINUTE = appconfig.expiry_time_in_minute || 15;
-const WARNING_ALERT_TIMEOUT_IN_MINUTE = appconfig.warning_alert_timeout_in_minute || 1;
+const STORAGE_SESSION_TIME_KEY = appConfig.storage_session_time_key || 'rbp_session_expiration_time';
+const EXPIRY_TIME_IN_MINUTE = appConfig.expiry_time_in_minute || 15;
+const WARNING_ALERT_TIMEOUT_IN_MINUTE = appConfig.warning_alert_timeout_in_minute || 1;
 const events = [
   // 'mousemove',
   // 'mousedown',
@@ -26,14 +26,14 @@ interface IWarningLogOutDialogProps {
   openDialog: boolean;
   closeDialog: () => void;
   cancelLogOut: () => void;
-  logOut: () => void;
+  logout: () => void;
   timer: number;
 }
 const WarningLogOutDialog: React.FC<IWarningLogOutDialogProps> = ({
   openDialog,
   closeDialog,
   cancelLogOut,
-  logOut,
+  logout,
   timer = WARNING_ALERT_TIMEOUT_IN_MINUTE * 60,
 }) => {
   const [open, setOpen] = useState<boolean>(openDialog);
@@ -43,7 +43,7 @@ const WarningLogOutDialog: React.FC<IWarningLogOutDialogProps> = ({
     handleClose();
   };
   const doSignOut = () => {
-    logOut();
+    logout();
     handleClose();
   };
   const handleClose = () => {
@@ -82,12 +82,11 @@ type SessionTimeoutProps = {
 const SessionTimeout = (props: SessionTimeoutProps) => {
   const intervalFunc = useRef(null);
   const warningTimerIntervalTime = useRef(null);
-  const {loggedIn, logOut} = useAuth();
+  const {isLoggedIn, logout} = useAuth();
 
   const [showPopup, setShowPopup] = useState(false);
-  const eventhandler = useCallback(() => {
-    // console.log('trigerring eventhandler ');
-    if (loggedIn) {
+  const eventHandler = useCallback(() => {
+    if (isLoggedIn) {
       sessionStorage.setItem(
         STORAGE_SESSION_TIME_KEY,
         (Date.now() + EXPIRY_TIME_IN_MINUTE * MINUTE_TO_MILISEC).toString(),
@@ -95,31 +94,26 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
     } else {
       sessionStorage.removeItem(STORAGE_SESSION_TIME_KEY);
     }
-  }, [loggedIn]);
+  }, [isLoggedIn]);
   const attachEventListeners = useCallback(() => {
-    // console.log('trigerring attachEventListeners ');
-    eventhandler();
+    eventHandler();
     events.forEach((event) => {
-      window.addEventListener(event, eventhandler);
+      window.addEventListener(event, eventHandler);
     });
-  }, [eventhandler]);
+  }, [eventHandler]);
   const removeEventListeners = useCallback(() => {
-    // console.log('trigerring removeEventListener ');
     events.forEach((event) => {
-      window.removeEventListener(event, eventhandler);
+      window.removeEventListener(event, eventHandler);
     });
-  }, [eventhandler]);
+  }, [eventHandler]);
   const doCleanup = useCallback(() => {
-    // console.log('trigerring doCleanup ');
-    if (loggedIn) {
-      logOut();
-      // console.log('dologout');
+    if (isLoggedIn) {
+      logout();
     }
     warningTimerIntervalTime.current = null;
     removeEventListeners();
-  }, [removeEventListeners, loggedIn]);
+  }, [removeEventListeners, isLoggedIn]);
   const cancelLogOut = () => {
-    // console.log('trigerring cancelLogOut ');
     attachEventListeners();
     warningTimerIntervalTime.current = null;
   };
@@ -128,9 +122,7 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
       const expiryTime = +sessionStorage.getItem(STORAGE_SESSION_TIME_KEY) || 0;
       const now = Date.now();
       const deltaTime = expiryTime - now;
-      // console.log('deltaTime =>', deltaTime);
       if (deltaTime < 0) {
-        // console.log('trigger logout');
         setShowPopup(false);
         doCleanup();
       } else if (deltaTime <= WARNING_ALERT_TIMEOUT_IN_MINUTE * MINUTE_TO_MILISEC) {
@@ -147,7 +139,7 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
     }, 1000);
   };
   useEffect(() => {
-    if (loggedIn) {
+    if (isLoggedIn) {
       clearInterval(intervalFunc.current);
       attachEventListeners();
       resetTimer();
@@ -156,7 +148,7 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
       clearInterval(intervalFunc.current);
       removeEventListeners();
     };
-  }, [loggedIn]);
+  }, [isLoggedIn]);
 
   return (
     <>
@@ -167,7 +159,7 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
             setShowPopup(false);
           }}
           cancelLogOut={cancelLogOut}
-          logOut={doCleanup}
+          logout={doCleanup}
           timer={warningTimerIntervalTime.current}
         />
       )}

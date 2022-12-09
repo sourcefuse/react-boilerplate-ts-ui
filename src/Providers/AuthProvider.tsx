@@ -1,26 +1,25 @@
 import useLocalStorage from 'Hooks/useLocalStorage';
-import PropTypes from 'prop-types';
-import {createContext, useCallback, useState} from 'react';
+import {createContext, ReactNode, useCallback, useState} from 'react';
 
-// @ts-ignore
 const defaultAuthContextValue = {
   authStateLoading: true,
-  loggedIn: false,
+  isLoggedIn: false,
   token: null,
   refreshToken: null,
-  setAuth: (loggedIn: boolean, token: string | null, refreshToken: string | null) => {},
+  setAuth: (isLoggedIn: boolean, token: string | null, refreshToken: string | null) => {},
   setToken: (value: string | null) => {},
   setRefreshToken: (value: string | null) => {},
   setAuthStateLoading: (value: boolean) => {},
 };
+
 export const AuthContext = createContext(defaultAuthContextValue);
-function AuthProvider({children}) {
+function AuthProvider({children}: {children: ReactNode}) {
   const [authStateLoading, setAuthStateLoading] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [refreshToken, setRefreshToken] = useLocalStorage('rbp_refresh_token', null);
   const [token, setToken] = useLocalStorage('rbp_access_token', null);
-  const setAuth = useCallback((loggedIn: boolean, token: string | null, refreshToken: string | null) => {
-    setLoggedIn(loggedIn);
+  const setAuth = useCallback((isLoggedIn: boolean, token: string | null, refreshToken: string | null) => {
+    setIsLoggedIn(isLoggedIn);
     setToken(token);
     setRefreshToken(refreshToken);
   }, []);
@@ -28,7 +27,7 @@ function AuthProvider({children}) {
     <AuthContext.Provider
       value={{
         authStateLoading,
-        loggedIn,
+        isLoggedIn,
         token,
         refreshToken,
         setAuth,
@@ -41,9 +40,5 @@ function AuthProvider({children}) {
     </AuthContext.Provider>
   );
 }
-
-AuthProvider.propTypes = {
-  children: PropTypes.node,
-};
 
 export default AuthProvider;

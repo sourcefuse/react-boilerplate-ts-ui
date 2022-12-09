@@ -3,6 +3,7 @@ import StepperTab from 'Components/StepperTab/StepperTab';
 import {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import Billing from './Billing/Billing';
+import {BillingType} from './Billing/utils';
 import Payment from './Payment/Payment';
 
 const steps = ['Billing', 'Payment'];
@@ -11,7 +12,7 @@ const Checkout = () => {
   const {amount, type} = state || {};
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
-  const [billingData, setBillingData] = useState({});
+  const [billingData, setBillingData] = useState<BillingType>({} as BillingType);
   const nextStep = () => setActiveStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
   const prevStep = () => setActiveStep((prev) => (prev === 0 ? prev : prev - 1));
 

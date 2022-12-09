@@ -8,32 +8,23 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import PropTypes from 'prop-types';
-import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {Link, Location} from 'react-router-dom';
+import {SideNavConfig, SideNavLinkTitle} from './sideNavConfig';
 import styles from './styles';
-// interface sideNavProps {
-//   children: Array<any>;
-//   link: string;
-//   icon: React.ReactNode;
-//   label: string;
-//   location: any;
-//   type: string;
-//   visible: boolean;
-// }
 
-// interface NestedNavProps {
-//   children: Array<any>;
-//   link: string;
-//   icon: React.ReactNode;
-//   label: string;
-//   location: any;
-//   isLinkActive: boolean;
-// }
+import ListItemButton from '@mui/material/ListItemButton';
 
-const isChildOf = (child, parent) => child.indexOf(parent) === 0;
+const isChildOf = (child: string, parent: string) => child.indexOf(parent) === 0;
 
-const NestedNavLink = ({link, children, isLinkActive, icon, label, location}) => {
+const NestedNavLink = ({
+  link,
+  children,
+  // isLinkActive,
+  icon,
+  label,
+  location,
+}: SideNavLinkTitle & {location: Location}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleCollapse = () => setIsOpen(!isOpen);
 
@@ -46,18 +37,14 @@ const NestedNavLink = ({link, children, isLinkActive, icon, label, location}) =>
   return (
     <>
       <ListItem
-        button
-        component="li"
         onClick={toggleCollapse}
         sx={{
           ...styles.link,
         }}
-        to={link}
-        disableRipple
       >
         {icon && <ListItemIcon sx={styles.listItemIcon}>{icon}</ListItemIcon>}
         <ListItemText primary={label} />
-        {isOpen ? <ExpandLessIcon sx={{...(isLinkActive && styles.linkItemIconActive)}} /> : <ExpandMoreIcon />}
+        {isOpen ? <ExpandLessIcon sx={{...(isOpen && styles.linkItemIconActive)}} /> : <ExpandMoreIcon />}
       </ListItem>
 
       {children && (
@@ -73,47 +60,36 @@ const NestedNavLink = ({link, children, isLinkActive, icon, label, location}) =>
   );
 };
 
-NestedNavLink.propTypes = {
-  children: PropTypes.array,
-  link: PropTypes.string,
-  icon: PropTypes.node,
-  label: PropTypes.string,
-  location: PropTypes.object.isRequired,
-  isLinkActive: PropTypes.bool,
-};
+const SideNavLink = (props: SideNavConfig & {location: Location}) => {
+  if (!props?.visible) return null;
 
-const SideNavLink = (props) => {
-  const {link, icon, label, children, location, type, visible} = props;
-
-  if (!visible) return null;
-
-  const isLinkActive = link && (location.pathname === link || isChildOf(location.pathname, link));
-
-  if (type === 'title')
+  if ('type' in props && 'label' in props && props.type === 'title') {
     return (
       <Typography component="li" sx={styles.title}>
-        {label}
+        {props.label}
       </Typography>
     );
+  }
 
-  if (type === 'divider') return <Divider component="li" sx={styles.divider} />;
+  if ('type' in props && props.type === 'divider') return <Divider component="li" sx={styles.divider} />;
 
-  if (!children)
+  if (!props?.children) {
+    const isLinkActive =
+      props.link && (props.location.pathname === props.link || isChildOf(props.location.pathname, props.link));
     return (
       <Grid component="li" sx={{paddingRight: 1}}>
-        <ListItem
-          button
-          component={link && Link}
-          to={link}
+        <ListItemButton
+          component={props.link ? Link : 'li'}
+          to={props.link}
           sx={{
             ...styles.link,
             ...(isLinkActive && styles.linkListActive),
           }}
           disableRipple
         >
-          {icon && (
+          {props.icon && (
             <ListItemIcon sx={{...styles.listItemIcon, ...(isLinkActive && styles.linkItemIconActive)}}>
-              {icon}
+              {props.icon}
             </ListItemIcon>
           )}
           <ListItemText
@@ -121,23 +97,14 @@ const SideNavLink = (props) => {
               ...(isLinkActive && styles.linkTextActive),
             }}
             disableTypography
-            primary={label}
+            primary={props.label}
           />
-        </ListItem>
+        </ListItemButton>
       </Grid>
     );
+  }
 
   return <NestedNavLink {...props} />;
-};
-
-SideNavLink.propTypes = {
-  children: PropTypes.array,
-  link: PropTypes.string,
-  icon: PropTypes.node,
-  label: PropTypes.string,
-  location: PropTypes.object.isRequired,
-  type: PropTypes.string,
-  visible: PropTypes.bool,
 };
 
 export default SideNavLink;

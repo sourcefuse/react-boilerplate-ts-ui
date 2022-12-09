@@ -18,5 +18,5 @@ const content = `{
 const writeFilePAth = './src/Configuration/config.json';
 
 writeFileSync(writeFilePAth, content, (err) => {
-  console.log('error while setting up environment json', err);
+  console.error('error while setting up environment json', err);
 });

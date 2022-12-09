@@ -3,7 +3,7 @@ import {getAppConfiguration} from 'Configuration/configuration';
 import useAuth from './useAuth';
 
 const useRefreshToken = () => {
-  const {refreshToken, token, setToken, setRefreshToken, logOut} = useAuth();
+  const {refreshToken, token, setToken, setRefreshToken, logout} = useAuth();
 
   return async () => {
     try {
@@ -24,7 +24,6 @@ const useRefreshToken = () => {
       };
 
       const response = await axios(config);
-      console.log('response from refresh token endpoint => ', response);
       const responseData = response.data;
       const accessToken = responseData.accessToken;
       const newRefreshToken = responseData.refreshToken;
@@ -35,8 +34,8 @@ const useRefreshToken = () => {
         refreshToken: newRefreshToken,
       };
     } catch (err) {
-      console.log('error while fetching refresh token => ', err);
-      logOut();
+      console.error('error while fetching refresh token => ', err);
+      logout();
     }
   };
 };

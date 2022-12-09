@@ -1,5 +1,4 @@
 import useAuth from 'Hooks/useAuth';
-import PropTypes from 'prop-types';
 import {lazy, Suspense} from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import BackdropLoader from '../Components/BackdropLoader/BackdropLoader';
@@ -19,8 +18,8 @@ const RouteGenerator = (props: IRoute & IGenerateRouteProps) => {
     return <Route path={path} key={key} element={<Navigate to={redirect} />} />;
   } else if (isPrivate) {
     return (
-      <Route element={<RequireAuth />}>
-        <Route path={path} key={key} element={<Component />} />
+      <Route key={key} element={<RequireAuth />}>
+        <Route path={path} element={<Component />} />
       </Route>
     );
   } else {
@@ -28,25 +27,13 @@ const RouteGenerator = (props: IRoute & IGenerateRouteProps) => {
   }
 };
 
-RouteGenerator.propTypes = {
-  component: PropTypes.node.isRequired,
-  path: PropTypes.string.isRequired,
-  key: PropTypes.string.isRequired,
-  redirect: PropTypes.string,
-  isPrivate: PropTypes.bool,
-  restricted: PropTypes.bool,
-  isLoggedIn: PropTypes.bool,
-};
-
 const AppRoutes = () => {
-  const {loggedIn} = useAuth();
+  const {isLoggedIn} = useAuth();
   return (
     <Suspense fallback={<BackdropLoader />}>
       <Routes>
         <Route element={<PersistLogin />}>
-          {layoutRouteConfig.map((route, id) =>
-            RouteGenerator({...route, key: `${route.path}-${id}`, isLoggedIn: loggedIn}),
-          )}
+          {layoutRouteConfig.map((route, id) => RouteGenerator({...route, key: `${route.path}-${id}`, isLoggedIn}))}
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

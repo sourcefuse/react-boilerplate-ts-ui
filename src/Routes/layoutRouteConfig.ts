@@ -1,13 +1,13 @@
-import {lazy} from 'react';
-// import HeaderLayout from '../Layouts/HeaderLayout/HeaderLayout';
-// import Mainlayout from '../Layouts/MainLayout/Mainlayout';
+import React, {lazy} from 'react';
 const Login = lazy(() => import('../Pages/Login'));
 const LoginRedirect = lazy(() => import('../Pages/LoginRedirect'));
 const Mainlayout = lazy(() => import('Layouts/MainLayout/Mainlayout'));
 const HeaderLayout = lazy(() => import('Layouts/HeaderLayout/HeaderLayout'));
 
 export interface IRoute {
-  component?: any;
+  component?:
+    | React.LazyExoticComponent<() => JSX.Element>
+    | React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
   path: string;
   redirect?: string;
   isPrivate?: boolean;
@@ -18,6 +18,7 @@ const layoutRouteConfig: IRoute[] = [
   {
     path: '/login',
     component: Login,
+    restricted: true,
   },
   {
     path: '/login_redirect',

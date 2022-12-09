@@ -6,19 +6,19 @@ import BackdropLoader from './BackdropLoader/BackdropLoader';
 
 const PersistLogin = () => {
   const refresh = useRefreshToken();
-  const {loggedIn, doLogIn, authStateLoading: loading, setAuthStateLoading: setLoading} = useAuth();
+  const {isLoggedIn, doLogIn, authStateLoading: loading, setAuthStateLoading: setLoading} = useAuth();
   useEffect(() => {
     const verifyRefreshToken = async () => {
       try {
         const {accessToken, refreshToken} = await refresh();
         doLogIn(accessToken, refreshToken);
       } catch (err) {
-        console.log('error while verify refresh token => ', err);
+        console.error('error while verify refresh token => ', err);
       } finally {
         setLoading(false);
       }
     };
-    !loggedIn ? verifyRefreshToken() : setLoading(false);
+    !isLoggedIn ? verifyRefreshToken() : setLoading(false);
   }, []);
   return loading ? <BackdropLoader /> : <Outlet />;
 };

@@ -25,7 +25,7 @@ const RadioButton: React.FC<Props> = ({
   returnValue,
   ...rest
 }) => {
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (returnValue) {
       onChange(e?.target?.value);
     } else {

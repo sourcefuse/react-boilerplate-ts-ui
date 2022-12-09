@@ -2,10 +2,9 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import PropTypes from 'prop-types';
-import React, {memo} from 'react';
+import {memo, ReactNode} from 'react';
 
-const PagePaper = ({title, children}) => {
+const PagePaper = ({title, children}: {title: string; children: ReactNode}) => {
   return (
     <Paper>
       {title && (
@@ -19,11 +18,6 @@ const PagePaper = ({title, children}) => {
       <Box sx={{padding: 2}}>{children}</Box>
     </Paper>
   );
-};
-
-PagePaper.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.node.isRequired,
 };
 
 export default memo(PagePaper);

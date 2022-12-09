@@ -1,9 +1,9 @@
 import {lazy} from 'react';
 
 const Home = lazy(() => import('Pages/Home'));
-// const WhoAmI = lazy(() => import('Pages/WhoAmI'));
 const Form = lazy(() => import('Pages/Form/Form'));
 const InputPage = lazy(() => import('Pages/InputPage'));
+const TransferListPage = lazy(() => import('Pages/TransferListPage'));
 const DropdownPage = lazy(() => import('Pages/DropdownPage'));
 const RadioButtonPage = lazy(() => import('Pages/RadioButtonPage'));
 const ToggleButtonPage = lazy(() => import('Pages/ToggleButton'));
@@ -25,13 +25,13 @@ const mainLayoutRouteConfig = [
     path: '/home',
     component: Home,
   },
-  // {
-  //   path: '/who-am-i',
-  //   component: WhoAmI,
-  // },
   {
     path: '/components/input',
     component: InputPage,
+  },
+  {
+    path: '/components/transfer-list',
+    component: TransferListPage,
   },
   {
     path: '/components/dropdown-autocomplete',

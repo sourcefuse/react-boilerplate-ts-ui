@@ -1,5 +1,5 @@
-import useMutation from 'CustomHooks/useMutation';
 import axiosFactory from 'Helpers/axios';
+import useMutation from 'Hooks/useMutation';
 const axios = axiosFactory();
 export default function useForm() {
   const {mutateAsync, isLoading} = useMutation({

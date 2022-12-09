@@ -31,7 +31,7 @@ const CodeBlock: React.FC<Props> = ({initial, fullCode}) => {
             </Tooltip>
           </Button>
         )}
-        <CopyToClipboard sx={{cursor: 'pointer'}} text={isExpanded ? fullCode : initial}>
+        <CopyToClipboard text={isExpanded ? fullCode : initial}>
           <Button aria-label="copy code button">
             <Tooltip title="Copy to clipboard">
               <FileCopyIcon />

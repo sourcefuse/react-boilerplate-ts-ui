@@ -1,19 +1,19 @@
 import {useState} from 'react';
 
-const useLocalStorage = (key, initialValue) => {
+const useLocalStorage = <T>(key: string, initialValue: T): [T, (value: T | ((prev: T) => T)) => void] => {
   const [storedValue, setStoredValue] = useState(() => {
     if (typeof window === 'undefined') {
       return initialValue;
     }
     try {
       const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+      return item ? (JSON.parse(item) as T) : initialValue;
     } catch (error) {
-      console.log('error while setting useLocalStorage initial value = ', error);
+      console.error('error while setting useLocalStorage initial value = ', error);
       return initialValue;
     }
   });
-  const setValue = (value) => {
+  const setValue = (value: T | ((prev: T) => T)) => {
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
@@ -21,7 +21,7 @@ const useLocalStorage = (key, initialValue) => {
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
     } catch (error) {
-      console.log('error while setting useLocalStorage value = ', error);
+      console.error('error while setting useLocalStorage value = ', error);
     }
   };
   return [storedValue, setValue];
