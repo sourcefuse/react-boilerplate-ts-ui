@@ -1,11 +1,11 @@
 {
-    "client_id": "webapp",
-    "client_secret": "saqw21!@",
-    "app_api_base_url": "",
-    "auth_api_base_url": "http://localhost:3005",
-    "audit_api_base_url": "http://localhost:3004",
-    "enable_session_timeout": false,
-    "storage_session_time_key": "rbp_session_expiration_time",
-    "expiry_time_in_minute": 1,
-    "warning_alert_timeout_in_minute": 0.5
-  }
+  "client_id": "",
+  "client_secret": "",
+  "app_api_base_url": "",
+  "auth_api_base_url": "",
+  "audit_api_base_url": "",
+  "enable_session_timeout": false,
+  "storage_session_time_key": "",
+  "expiry_time_in_minute": "",
+  "warning_alert_timeout_in_minute": ""
+}
