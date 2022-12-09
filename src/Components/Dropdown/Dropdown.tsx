@@ -1,4 +1,5 @@
-import {Autocomplete, Box, FormControl, FormHelperText, InputLabel, TextField} from '@mui/material';
+import {Autocomplete, Box, FormControl, FormHelperText, TextField} from '@mui/material';
+import InputLabel from 'Components/InputLabel';
 import React from 'react';
 
 interface Props {
@@ -37,11 +38,7 @@ const Dropdown: React.FC<Props> = ({
 
   return (
     <FormControl sx={{width: 1}} data-testid="dropdownFormControl">
-      {label && (
-        <InputLabel shrink htmlFor={newId}>
-          {label}
-        </InputLabel>
-      )}
+      {label && <InputLabel htmlFor={newId}>{label}</InputLabel>}
       <Autocomplete
         id={newId}
         options={options}

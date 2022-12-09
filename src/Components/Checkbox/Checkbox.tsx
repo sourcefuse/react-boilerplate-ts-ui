@@ -6,8 +6,8 @@ import {
   FormGroup,
   FormGroupProps,
   FormHelperText,
-  InputLabel,
 } from '@mui/material';
+import InputLabel from 'Components/InputLabel';
 import React, {memo} from 'react';
 
 interface Props {
@@ -73,7 +73,7 @@ const MuiCheckbox: React.FC<Props> = ({
 
   return (
     <FormControl disabled={disabled} data-testid="checkboxFormControl">
-      {label && <InputLabel shrink>{label}</InputLabel>}
+      {label && <InputLabel>{label}</InputLabel>}
       <FormGroup row={row}>
         {options.map((option: any, index) => (
           <FormControlLabel
@@ -90,6 +90,7 @@ const MuiCheckbox: React.FC<Props> = ({
                 name={singleSelect ? option?.value.toString() : id}
               />
             }
+            sx={{marginTop: 1}}
             label={option.label}
           />
         ))}

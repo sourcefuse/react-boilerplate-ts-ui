@@ -1,6 +1,7 @@
-import {FormControl, FormControlLabel, FormHelperText, InputLabel, RadioGroup} from '@mui/material';
+import {FormControl, FormControlLabel, FormHelperText, RadioGroup} from '@mui/material';
 import Radio from '@mui/material/Radio';
 import Typography from '@mui/material/Typography';
+import InputLabel from 'Components/InputLabel';
 import React, {memo} from 'react';
 
 interface Props {
@@ -34,11 +35,7 @@ const RadioButton: React.FC<Props> = ({
   };
   return (
     <FormControl sx={{width: 1}} disabled={disabled} data-test="radioButtonFormControl">
-      {label && (
-        <InputLabel shrink htmlFor={id}>
-          {label}
-        </InputLabel>
-      )}
+      {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <RadioGroup value={value} sx={{marginTop: 1}} name={id} aria-label={id} onChange={handleChange} id={id} {...rest}>
         {options.map((option, index) => (
           <FormControlLabel

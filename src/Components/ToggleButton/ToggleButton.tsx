@@ -2,8 +2,8 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import FormHelperText from '@mui/material/FormHelperText';
-import InputLabel from '@mui/material/InputLabel';
 import Switch from '@mui/material/Switch';
+import InputLabel from 'Components/InputLabel';
 import * as React from 'react';
 
 type Props = {
@@ -62,7 +62,7 @@ const Checkbox: React.FC<Props> = ({
 
   return (
     <FormControl disabled={disabled}>
-      {label && <InputLabel shrink>{label}</InputLabel>}
+      {label && <InputLabel>{label}</InputLabel>}
       <FormGroup row={row}>
         {options.map((option, index) => (
           <FormControlLabel
@@ -74,6 +74,7 @@ const Checkbox: React.FC<Props> = ({
                     ? value?.toString() === option?.value.toString()
                     : Array.isArray(value) && value.some((val) => val === option.value)
                 }
+                sx={{marginTop: 1}}
                 onChange={handleChange}
                 value={option.value}
                 name={singleSelect ? option?.value.toString() : id}

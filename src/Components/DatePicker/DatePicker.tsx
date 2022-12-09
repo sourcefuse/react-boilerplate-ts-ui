@@ -1,8 +1,8 @@
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import {DatePicker} from '@mui/x-date-pickers';
+import InputLabel from 'Components/InputLabel';
 import React, {memo} from 'react';
 
 interface Props {
@@ -31,11 +31,7 @@ const Datepicker: React.FC<Props> = ({
   const isError = errorMessage && isTouched && !disabled;
   return (
     <FormControl sx={{width: 1}} data-testid="datePickerFormControl">
-      {label && (
-        <InputLabel error={!!isError} shrink htmlFor={id}>
-          {label}
-        </InputLabel>
-      )}
+      {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <DatePicker
         InputAdornmentProps={{
           position: 'start',

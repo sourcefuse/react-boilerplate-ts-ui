@@ -1,14 +1,7 @@
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
-import {
-  FormControl,
-  FormHelperText,
-  IconButton,
-  InputLabel,
-  OutlinedInput,
-  OutlinedInputProps,
-  Tooltip,
-} from '@mui/material';
+import {FormControl, FormHelperText, IconButton, OutlinedInput, OutlinedInputProps, Tooltip} from '@mui/material';
+import InputLabel from 'Components/InputLabel';
 import React, {memo} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
@@ -21,6 +14,7 @@ interface Props extends OutlinedInputProps {
   isTouched?: boolean;
   helperText?: string;
   errorMessage?: string;
+  label?: string;
   endAdornment?: React.ReactNode;
   returnValue?: boolean;
   onChange?: any;
@@ -59,21 +53,16 @@ const Input: React.FC<Props> = ({
   const isError = errorMessage && isTouched && !disabled;
 
   return (
-    <FormControl sx={{width: 1, mt: 1}} data-testid="inputFormControl" disabled={disabled}>
-      {label && (
-        <InputLabel shrink htmlFor={id} sx={{marginLeft: -1}}>
-          {label}
-        </InputLabel>
-      )}
+    <FormControl sx={{width: 1}} data-testid="inputFormControl" disabled={disabled}>
+      {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <OutlinedInput
         data-testid="input"
         value={value}
         id={id}
-        sx={{marginTop: 3}}
+        sx={{marginTop: 2}}
         inputProps={{
           sx: {
             padding: 1,
-            may: 2,
           },
         }}
         onChange={(e) => onChange(returnValue ? e?.target?.value : e)}
