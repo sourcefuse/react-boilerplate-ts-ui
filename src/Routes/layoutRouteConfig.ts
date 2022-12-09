@@ -2,7 +2,6 @@ import React, {lazy} from 'react';
 const Login = lazy(() => import('../Pages/Login'));
 const LoginRedirect = lazy(() => import('../Pages/LoginRedirect'));
 const Mainlayout = lazy(() => import('Layouts/MainLayout/Mainlayout'));
-const HeaderLayout = lazy(() => import('Layouts/HeaderLayout/HeaderLayout'));
 
 export interface IRoute {
   component?:
@@ -32,11 +31,6 @@ const layoutRouteConfig: IRoute[] = [
   {
     path: '/*',
     component: Mainlayout,
-    isPrivate: true,
-  },
-  {
-    path: '/components',
-    component: HeaderLayout,
     isPrivate: true,
   },
 ];

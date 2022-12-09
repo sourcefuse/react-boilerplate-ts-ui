@@ -12,7 +12,7 @@ const darkenRate = 15;
 export const paletteConfig = {
   light: {
     background: {
-      default: '#f1f5f7',
+      // paper: '#f1f5f7',
     },
     primary: {
       // rose
