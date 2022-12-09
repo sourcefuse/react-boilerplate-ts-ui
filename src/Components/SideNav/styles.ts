@@ -1,6 +1,6 @@
 const styles = {
   link: {
-    width: '273.01px',
+    width: '270px',
     height: '30px',
     paddingY: 0.5,
     paddingX: 1,
@@ -18,8 +18,8 @@ const styles = {
   linkText: {
     position: 'relative',
     height: '13px',
-    left: '10.66%',
-    right: '64.34%',
+    left: '10.5%',
+    right: '64.5%',
 
     fontFamily: 'Gotham',
     fontStyle: 'normal',
@@ -31,8 +31,8 @@ const styles = {
   linkTextActive: {
     position: 'relative',
     height: '17px',
-    left: '10.66%',
-    right: '64.34%',
+    left: '10.6%',
+    right: '64.4%',
 
     fontFamily: 'Gotham',
     fontStyle: 'normal',
@@ -45,7 +45,7 @@ const styles = {
   listItemIcon: {minWidth: 30, position: 'relative', left: '9.56%'},
   linkItemIconActive: {
     position: 'relative',
-    left: '9.56%',
+    left: '9.5%',
     color: `#E81823`,
   },
   divider: {marginTop: 1, marginBottom: 1, height: 2},
