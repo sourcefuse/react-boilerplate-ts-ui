@@ -1,7 +1,8 @@
+import {Box} from '@mui/material';
 import List from '@mui/material/List';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Toolbar from '@mui/material/Toolbar';
-import Logo from 'Images/logo.png';
+import arcLogo from 'Images/ARC_logo.png';
 import React from 'react';
 import {useLocation} from 'react-router-dom';
 import sideNavConfig from './sideNavConfig';
@@ -38,7 +39,9 @@ const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open,
       data-testid="sidenav"
     >
       {(isAppBarFullWidth || !isPermanent) && <Toolbar />}
-      <img src={Logo} alt="logo" />
+      <Box sx={{display: 'flex', justifyContent: 'center', my: 2}}>
+        <img src={arcLogo} width="100px" alt="logo" />
+      </Box>
       <List>
         {sideNavConfig.map((sideNavConfigItem, index) => (
           <SideNavLink key={`menu-${index}`} location={location} {...sideNavConfigItem} />
