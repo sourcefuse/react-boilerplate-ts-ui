@@ -1,5 +1,5 @@
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
-import DashboardIcon from '@mui/icons-material/Dashboard';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ToggleOffIcon from '@mui/icons-material/ToggleOff';
 import {ReactNode} from 'react';
 
@@ -37,7 +37,7 @@ const sideNavConfig: SideNavConfig[] = [
   {
     label: 'home',
     link: '/home',
-    icon: <DashboardIcon />,
+    icon: <HomeOutlinedIcon />,
     visible: true,
   },
   {

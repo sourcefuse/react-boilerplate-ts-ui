@@ -43,7 +43,7 @@ const NestedNavLink = ({
         }}
       >
         {icon && <ListItemIcon sx={styles.listItemIcon}>{icon}</ListItemIcon>}
-        <ListItemText primary={label} />
+        <ListItemText primary={label} sx={{...styles.linkText}} disableTypography />
         {isOpen ? <ExpandLessIcon sx={{...(isOpen && styles.linkItemIconActive)}} /> : <ExpandMoreIcon />}
       </ListItem>
 
@@ -94,6 +94,7 @@ const SideNavLink = (props: SideNavConfig & {location: Location}) => {
           )}
           <ListItemText
             sx={{
+              ...styles.linkText,
               ...(isLinkActive && styles.linkTextActive),
             }}
             disableTypography
