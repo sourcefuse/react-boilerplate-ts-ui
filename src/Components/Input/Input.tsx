@@ -59,9 +59,9 @@ const Input: React.FC<Props> = ({
   const isError = errorMessage && isTouched && !disabled;
 
   return (
-    <FormControl sx={{width: 1}} data-testid="inputFormControl" disabled={disabled}>
+    <FormControl sx={{width: 1, mt: 1}} data-testid="inputFormControl" disabled={disabled}>
       {label && (
-        <InputLabel shrink htmlFor={id}>
+        <InputLabel shrink htmlFor={id} sx={{marginLeft: -1}}>
           {label}
         </InputLabel>
       )}
@@ -69,10 +69,11 @@ const Input: React.FC<Props> = ({
         data-testid="input"
         value={value}
         id={id}
-        sx={{marginTop: 2}}
+        sx={{marginTop: 3}}
         inputProps={{
           sx: {
             padding: 1,
+            may: 2,
           },
         }}
         onChange={(e) => onChange(returnValue ? e?.target?.value : e)}

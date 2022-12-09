@@ -9,7 +9,9 @@ import * as yup from 'yup';
 import Button from '../Components/Button/Button';
 import Input from '../Components/Input/Input';
 import {getAppConfiguration} from '../Configuration';
-import azurelogo from '../Images/azure_ad.png';
+import arclogo from '../Images/ARC_logo.png';
+import googlelogo from '../Images/google.png';
+import herologo from '../Images/hero.jpg';
 const initialState = {
   username: '',
   password: '',
@@ -92,61 +94,117 @@ const Login = () => {
     }
   }, []);
   return (
-    <Box component="div" sx={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <Grid container maxWidth="20em">
-        <Grid item xs={12}>
-          <Typography variant="caption" component="div" sx={{mt: 2, mb: 3}}>
-            Please enter your details to login
-          </Typography>
+    <>
+      <Grid container>
+        <Grid item xs={8}>
+          <Box
+            component="img"
+            sx={{
+              height: '99.2vh',
+              width: '100%',
+            }}
+            src={herologo}
+            alt="hero"
+          />
         </Grid>
-        <Grid item xs={12}>
-          <Box component="form" noValidate>
-            <Input
-              id="username"
-              label="Email or Username"
-              value={values?.username}
-              isTouched={!!touched?.username}
-              errorMessage={errors?.username as string}
-              onChange={handleChange}
-              sx={{my: 2}}
-            />
-            <Input
-              id="password"
-              type={showPassword ? 'text' : 'password'}
-              value={values?.password}
-              isTouched={!!touched?.password}
-              errorMessage={errors?.password as string}
-              label="Password"
-              onChange={handleChange}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    size="large"
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              sx={{my: 2}}
-            />
+        <Grid item xs={4}>
+          <Box
+            component="div"
+            sx={{
+              height: '100vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Grid container maxWidth="25em">
+              <Box
+                component="img"
+                sx={{
+                  width: 'auto',
+                }}
+                src={arclogo}
+                alt="hero"
+              />
+              <Grid item xs={12}>
+                <Typography variant="h4" sx={{mt: 13, color: 'text.main'}}>
+                  <b> Welcome to ARC </b>
+                </Typography>
+                <Typography variant="h4" sx={{mb: 1, color: '#000000'}}>
+                  <b> by SourceFuse </b>
+                </Typography>
+                <Typography variant="subtitle2" component="div" sx={{mt: 2, mb: 3, color: '#525252'}}>
+                  <i>Cut down your application development process to 60%,</i> with a huge amount of components & APIs.
+                  Create your account now!
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Box component="form" noValidate>
+                  <Input
+                    id="username"
+                    label="Email or Username"
+                    value={values?.username}
+                    isTouched={!!touched?.username}
+                    errorMessage={errors?.username as string}
+                    onChange={handleChange}
+                    sx={{my: 2, color: '#525252'}}
+                  />
+                  <Input
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    value={values?.password}
+                    isTouched={!!touched?.password}
+                    errorMessage={errors?.password as string}
+                    label="Password"
+                    onChange={handleChange}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          size="large"
+                        >
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    sx={{my: 2}}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={12} textAlign="left">
+                <Button
+                  onClick={handleSubmit}
+                  variant="contained"
+                  sx={{mt: 2, mb: 4, background: '#F4001F'}}
+                  isLoading={formCTALoading}
+                >
+                  SUBMIT
+                </Button>
+                <Divider orientation="horizontal" flexItem>
+                  You can also signup via
+                </Divider>
+                <Button
+                  size="small"
+                  onClick={handleAzureLogin}
+                  variant="outlined"
+                  sx={{mt: 4, color: '#525252'}}
+                  isLoading={azButtonLoading}
+                >
+                  <img src={googlelogo} alt="google" /> &nbsp; Signup with Google
+                </Button>
+              </Grid>
+              <Grid item xs={12} textAlign="center">
+                <Typography variant="subtitle2" component="div" sx={{mt: 15}}>
+                  {/* I already have an account in ARC by SourceFuse,  */}
+                </Typography>
+              </Grid>
+            </Grid>
           </Box>
         </Grid>
-        <Grid item xs={12} textAlign="center">
-          <Button onClick={handleSubmit} variant="contained" sx={{my: 2}} isLoading={formCTALoading}>
-            Login
-          </Button>
-          <Divider orientation="horizontal" flexItem>
-            OR
-          </Divider>
-          <Button onClick={handleAzureLogin} variant="outlined" sx={{my: 2}} isLoading={azButtonLoading}>
-            <img src={azurelogo} alt="Azure" width="30px" /> Continue With Azure AD
-          </Button>
-        </Grid>
       </Grid>
-    </Box>
+    </>
   );
 };
 
