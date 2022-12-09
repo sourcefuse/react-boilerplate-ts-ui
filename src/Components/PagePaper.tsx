@@ -1,10 +1,9 @@
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import {memo, ReactNode} from 'react';
 
-const PagePaper = ({title, children}: {title: string; children: ReactNode}) => {
+const PagePaper = ({title, children, description}: {title: string; children: ReactNode; description?: string}) => {
   return (
     <Paper>
       {title && (
@@ -12,9 +11,9 @@ const PagePaper = ({title, children}: {title: string; children: ReactNode}) => {
           <Typography sx={{padding: 2, textTransform: 'capitalize'}} component="h1" variant="h4">
             {title}
           </Typography>
-          <Divider sx={{marginBottom: 2}} />
         </>
       )}
+      {description && <Typography sx={{padding: 2}}>{description}</Typography>}
       <Box sx={{padding: 2}}>{children}</Box>
     </Paper>
   );

@@ -1,10 +1,9 @@
 import Typography from '@mui/material/Typography';
-import CodeBlock from 'Components/CodeBlock/CodeBlock';
-import ComponentPaper from 'Components/ComponentPaper';
+import ComponentViewer from 'Components/ComponentViewer';
 import Dropdown from 'Components/Dropdown/Dropdown';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 const options = [
   {label: 'Mr', value: 'mr'},
@@ -16,11 +15,9 @@ const DropdownPage = () => {
   const [value, setValue] = useState(options[0]);
   return (
     <PagePaper title="Dropdown/Autocomplete">
-      <ComponentPaper>
-        <Dropdown id="salutation" label="Salutation" value={value} options={options} onChange={setValue} returnValue />
-      </ComponentPaper>
-      <CodeBlock
-        fullCode={`import ComponentPaper from 'Components/ComponentPaper';
+      <ComponentViewer
+        title="Default Dropdown"
+        code={`import ComponentPaper from 'Components/ComponentPaper';
 import Dropdown from 'Components/Dropdown';
 import PagePaper from 'Components/PagePaper';
 import {useState} from 'react';
@@ -44,8 +41,10 @@ const DropdownPage = () => {
 
 export default DropdownPage;
 `}
-        initial={`<Dropdown id="salutation" label="Salutation" value={value} options={options} onChange={setValue} returnValue />`}
-      />
+      >
+        <Dropdown id="salutation" label="Salutation" value={value} options={options} onChange={setValue} returnValue />
+      </ComponentViewer>
+
       <Table
         data={[
           {name: 'id', type: 'string', desc: 'Unique id for dropdown field'},

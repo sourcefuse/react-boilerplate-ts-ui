@@ -61,7 +61,7 @@ const Checkbox: React.FC<Props> = ({
   };
 
   return (
-    <FormControl disabled={disabled} data-testid="checkboxFormControl">
+    <FormControl disabled={disabled}>
       {label && <InputLabel shrink>{label}</InputLabel>}
       <FormGroup row={row}>
         {options.map((option, index) => (

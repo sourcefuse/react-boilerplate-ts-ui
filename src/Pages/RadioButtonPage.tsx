@@ -1,10 +1,9 @@
 import Typography from '@mui/material/Typography';
-import CodeBlock from 'Components/CodeBlock/CodeBlock';
-import ComponentPaper from 'Components/ComponentPaper';
+import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import RadioButton from 'Components/RadioButton/RadioButton';
 import Table from 'Components/Table';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 const options = [
   {label: `I'm In`, value: 'yes'},
@@ -16,18 +15,9 @@ const RadioButtonPage = () => {
 
   return (
     <PagePaper title="Radio Button">
-      <ComponentPaper>
-        <RadioButton
-          id="emailUpdates"
-          value={emailUpdates}
-          onChange={setEmailUpdates}
-          returnValue
-          options={options}
-          label={'Opt in for email Updates'}
-        />
-      </ComponentPaper>
-      <CodeBlock
-        fullCode={`import ComponentPaper from 'Components/ComponentPaper';
+      <ComponentViewer
+        title="Default Radio Button"
+        code={`import ComponentPaper from 'Components/ComponentPaper';
 import PagePaper from 'Components/PagePaper';
 import RadioButton from 'Components/RadioButton/RadioButton';
 import {useState} from 'react';
@@ -58,16 +48,17 @@ const RadioButtonPage = () => {
 };
 
 export default RadioButtonPage;`}
-        initial={`<RadioButton
-  id="emailUpdates"
-  value={emailUpdates}
-  onChange={setEmailUpdates}
-  returnValue
-  options={options}
-  label={'Opt in for email Updates'}
-  row
-/>`}
-      />
+      >
+        <RadioButton
+          id="emailUpdates"
+          value={emailUpdates}
+          onChange={setEmailUpdates}
+          returnValue
+          options={options}
+          label={'Opt in for email Updates'}
+        />{' '}
+      </ComponentViewer>
+
       <Table
         data={[
           {name: 'id', type: 'string', desc: 'Unique id for radio button'},

@@ -11,6 +11,7 @@ import {Route, Routes} from 'react-router-dom';
 import mainLayoutRouteConfig from './mainLayoutRouteConfig';
 
 const drawerWidth = 270;
+const isAppBarFullWidth = false;
 
 interface IMainProps extends MUIStyledCommonProps {
   open: boolean;
@@ -68,9 +69,10 @@ const Mainlayout = () => {
 
   return (
     <Box sx={{display: 'flex'}}>
-      <AppBar open={open} toggleDrawer={toggleDrawer} data-testid="sidenav" />
+      <AppBar open={open} isPermanent={isPermanent} toggleDrawer={toggleDrawer} data-testid="sidenav" />
       <SideNav
         isPermanent={isPermanent}
+        isAppBarFullWidth={isAppBarFullWidth}
         drawerWidth={drawerWidth}
         toggleDrawer={toggleDrawer}
         open={open}

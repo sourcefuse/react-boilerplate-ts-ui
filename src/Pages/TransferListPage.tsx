@@ -1,5 +1,4 @@
-import CodeBlock from 'Components/CodeBlock/CodeBlock';
-import ComponentPaper from 'Components/ComponentPaper';
+import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
 import TransferList from 'Components/TransferList/TransferList';
@@ -20,11 +19,9 @@ const TransferListPage = () => {
   ]);
   return (
     <PagePaper title="Transfer List">
-      <ComponentPaper>
-        <TransferList left={left} right={right} setLeft={setLeft} setRight={setRight} />
-      </ComponentPaper>
-      <CodeBlock
-        fullCode={`import ComponentPaper from "Components/ComponentPaper";
+      <ComponentViewer
+        title="Default Transfer List"
+        code={`import ComponentPaper from "Components/ComponentPaper";
 import PagePaper from "Components/PagePaper";
 import TransferList from "Components/TransferList/TransferList";
 import { useState } from "react";
@@ -57,8 +54,9 @@ const TransferListPage = () => {
 };
 
 export default TransferListPage;`}
-        initial={`<TransferList left={left} right={right} setLeft={setLeft} setRight={setRight} />`}
-      />
+      >
+        <TransferList left={left} right={right} setLeft={setLeft} setRight={setRight} />
+      </ComponentViewer>
       <Table
         data={[
           {name: 'left,setLeft', type: 'React state', desc: 'useState variables to manage left side list'},

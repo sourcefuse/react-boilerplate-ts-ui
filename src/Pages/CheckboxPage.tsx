@@ -1,10 +1,9 @@
 import Typography from '@mui/material/Typography';
 import Checkbox from 'Components/Checkbox/Checkbox';
-import CodeBlock from 'Components/CodeBlock/CodeBlock';
-import ComponentPaper from 'Components/ComponentPaper';
+import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 const options = [
   {label: 'Frontend', value: 'frontend'},
@@ -16,11 +15,9 @@ const CheckboxPage = () => {
   const [value, setValue] = useState([]);
   return (
     <PagePaper title="Checkbox">
-      <ComponentPaper>
-        <Checkbox id="skills" value={value} onChange={setValue} options={options} label="Skills" returnValue row />
-      </ComponentPaper>
-      <CodeBlock
-        fullCode={`import Checkbox from 'Components/Checkbox/Checkbox';
+      <ComponentViewer
+        title="Default Input"
+        code={`import Checkbox from 'Components/Checkbox/Checkbox';
 import ComponentPaper from 'Components/ComponentPaper';
 import PagePaper from 'Components/PagePaper';
 import {useState} from 'react';
@@ -43,8 +40,10 @@ const CheckboxPage = () => {
 };
 
 export default CheckboxPage;`}
-        initial={`<Checkbox id="skills" value={value} onChange={setValue} options={options} label="Skills" returnValue row />`}
-      />
+      >
+        <Checkbox id="skills" value={value} onChange={setValue} options={options} label="Skills" returnValue row />
+      </ComponentViewer>
+
       <Table
         data={[
           {name: 'id', type: 'string', desc: 'Unique id for checkbox'},

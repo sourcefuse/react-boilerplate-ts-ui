@@ -6,7 +6,7 @@ import Dropdown from 'Components/Dropdown/Dropdown';
 import Input from 'Components/Input/Input';
 import PagePaper from 'Components/PagePaper';
 import RadioButton from 'Components/RadioButton/RadioButton';
-import ToggleButton from 'Components/Toggle/ToggleButton';
+import ToggleButton from 'Components/ToggleButton';
 import {useFormik} from 'formik';
 import useForm from './useForm';
 import {initialValues, validationSchema} from './utils';

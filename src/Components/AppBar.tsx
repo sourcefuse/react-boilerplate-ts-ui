@@ -15,13 +15,13 @@ import {memo} from 'react';
 const MyAppBar = styled(MuiAppBar)(({theme}) => ({
   zIndex: theme.zIndex.drawer + 1,
   boxShadow: 'none',
-  borderBottom: `1px solid`,
-  backgroundColor: theme.palette.mode === 'light' && '#fff',
-  color: theme.palette.mode === 'light' && '#000',
+  backgroundColor: theme.palette.background.paper,
+  color: theme.palette.text.primary,
 }));
 
 interface IAppBarProps {
   open?: boolean;
+  isPermanent?: boolean;
   toggleDrawer?: () => void;
 }
 const MenuButton = ({open, toggleDrawer}: IAppBarProps) => (
@@ -41,13 +41,29 @@ const Logout = () => {
     </Tooltip>
   );
 };
-const AppBar = ({open, toggleDrawer}: IAppBarProps) => {
+const AppBar = ({open, toggleDrawer, isPermanent}: IAppBarProps) => {
+  let appBarMargin = open ? 270 : 0;
+  appBarMargin = isPermanent ? appBarMargin : 0;
+
   return (
-    <MyAppBar>
+    <MyAppBar
+      sx={(theme) => ({
+        width: `calc(100% - ${appBarMargin}px)`,
+        transition: theme.transitions.create('width', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        ...(appBarMargin && {
+          transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
+        }),
+      })}
+    >
       <Toolbar>
         {toggleDrawer && <MenuButton open={open} toggleDrawer={toggleDrawer} />}
         <Typography component="h2" variant="h6" noWrap sx={{flexGrow: 1, fontWeight: 'bold', marginLeft: 2}}>
-          RBP
           <Breadcrumb />
         </Typography>
         <FullScreen />

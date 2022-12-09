@@ -26,15 +26,6 @@ export type SideNavConfig = SideNavLinkTitle | SideNavDividerType | SideNavTitle
 
 const sideNavConfig: SideNavConfig[] = [
   {
-    label: 'Menu',
-    type: 'title',
-    visible: true,
-  },
-  {
-    type: 'divider',
-    visible: true,
-  },
-  {
     label: 'home',
     link: '/home',
     icon: <HomeOutlinedIcon />,
@@ -44,7 +35,7 @@ const sideNavConfig: SideNavConfig[] = [
     label: 'Sourceloop Examples',
     link: '/sourceloop',
     icon: <AllInclusiveIcon />,
-    visible: true,
+    visible: false,
     children: [
       {
         label: 'Payment',
@@ -71,11 +62,6 @@ const sideNavConfig: SideNavConfig[] = [
     link: '/components',
     visible: true,
     children: [
-      {
-        label: 'Inputs',
-        type: 'title',
-        visible: true,
-      },
       {
         label: 'Input',
         link: '/components/input',
@@ -149,12 +135,12 @@ const sideNavConfig: SideNavConfig[] = [
       {
         label: 'Data',
         type: 'title',
-        visible: true,
+        visible: false,
       },
       {
         label: 'API call',
         link: '/components/api-call',
-        visible: true,
+        visible: false,
       },
     ],
   },

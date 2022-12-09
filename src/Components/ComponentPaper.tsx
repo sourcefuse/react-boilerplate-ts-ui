@@ -1,7 +1,6 @@
 import MuiPaper from '@mui/material/Paper';
 import {styled} from '@mui/material/styles';
-import PropTypes from 'prop-types';
-import React, {memo} from 'react';
+import {memo, ReactNode} from 'react';
 
 const Paper = styled(
   MuiPaper,
@@ -13,10 +12,6 @@ const Paper = styled(
   borderColor: theme?.palette?.border?.main,
 }));
 
-const ComponentPaper = ({children}) => <Paper elevation={0}>{children}</Paper>;
-
-ComponentPaper.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+const ComponentPaper = ({children}: {children: ReactNode}) => <Paper elevation={0}>{children}</Paper>;
 
 export default memo(ComponentPaper);
