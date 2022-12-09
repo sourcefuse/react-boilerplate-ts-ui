@@ -1,7 +1,6 @@
 import {render, screen, waitFor, within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {useFormik} from 'formik';
-import PropTypes from 'prop-types';
 import {useState} from 'react';
 import Dropdown from './Dropdown';
 
@@ -11,12 +10,9 @@ const options = [
   {label: 'Devops', value: 'devops'},
 ];
 
-const MockDropdown = ({initialValue = [], ...props}) => {
+const MockDropdown = ({initialValue = [], ...props}: any) => {
   const [value, setValue] = useState(initialValue);
   return <Dropdown id="test" value={value} onChange={setValue} label="test" options={options} returnValue {...props} />;
-};
-MockDropdown.propTypes = {
-  initialValue: PropTypes.any,
 };
 
 const MockFormikDropdown = (props: any) => {

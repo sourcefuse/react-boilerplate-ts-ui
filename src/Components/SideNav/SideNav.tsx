@@ -26,6 +26,7 @@ const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open,
         '& .MuiDrawer-paper': {
           width: drawerWidth,
           boxSizing: 'border-box',
+          backgroundColor: 'background.default',
         },
       }}
       variant={isPermanent ? 'persistent' : 'temporary'}

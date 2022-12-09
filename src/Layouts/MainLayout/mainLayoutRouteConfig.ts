@@ -19,11 +19,16 @@ const ApiCall = lazy(() => import('Pages/ApiCall/ApiCall'));
 const RatingPage = lazy(() => import('Pages/RatingPage'));
 const SliderPage = lazy(() => import('Pages/SliderPage'));
 const FABPage = lazy(() => import('Pages/FAB'));
+const Components = lazy(() => import('Pages/Components'));
 
 const mainLayoutRouteConfig = [
   {
     path: '/home',
     component: Home,
+  },
+  {
+    path: '/components',
+    component: Components,
   },
   {
     path: '/components/input',
@@ -86,7 +91,7 @@ const mainLayoutRouteConfig = [
     component: Checkout,
   },
   {
-    path: '//components/rating',
+    path: '/components/rating',
     component: RatingPage,
   },
   {

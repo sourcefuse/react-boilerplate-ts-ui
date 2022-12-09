@@ -15,7 +15,7 @@ import {memo} from 'react';
 const MyAppBar = styled(MuiAppBar)(({theme}) => ({
   zIndex: theme.zIndex.drawer + 1,
   boxShadow: 'none',
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: theme.palette.background.default,
   color: theme.palette.text.primary,
 }));
 
