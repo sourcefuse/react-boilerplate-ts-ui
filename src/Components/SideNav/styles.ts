@@ -1,7 +1,7 @@
 const styles = {
   link: {
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
+    width: '273.01px',
+    height: '30px',
     paddingY: 0.5,
     paddingX: 1,
     textTransform: 'capitalize',
@@ -14,14 +14,39 @@ const styles = {
       },
     },
   },
-  linkListActive: {backgroundColor: 'secondary.light', color: 'primary.main'},
-  linkTextActive: {
-    color: `primary.main`,
-    fontWeight: 'bold !important',
+  linkListActive: {backgroundColor: '#F7F7F7', color: 'primary.main'},
+  linkText: {
+    position: 'relative',
+    height: '13px',
+    left: '10.66%',
+    right: '64.34%',
+
+    fontFamily: 'Gotham',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: '14px',
+    lineHeight: '13px',
+    color: '#525252',
   },
-  listItemIcon: {minWidth: 30},
+  linkTextActive: {
+    position: 'relative',
+    height: '17px',
+    left: '10.66%',
+    right: '64.34%',
+
+    fontFamily: 'Gotham',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: '14px',
+    lineHeight: '17px',
+
+    color: '#000000',
+  },
+  listItemIcon: {minWidth: 30, position: 'relative', left: '9.56%'},
   linkItemIconActive: {
-    color: `primary.main`,
+    position: 'relative',
+    left: '9.56%',
+    color: `#E81823`,
   },
   divider: {marginTop: 1, marginBottom: 1, height: 2},
   title: {paddingX: 1, textTransform: 'uppercase', fontWeight: 'bold'},
