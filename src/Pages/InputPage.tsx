@@ -1,20 +1,20 @@
 import Typography from '@mui/material/Typography';
-import CodeBlock from 'Components/CodeBlock/CodeBlock';
-import ComponentPaper from 'Components/ComponentPaper';
+import ComponentViewer from 'Components/ComponentViewer';
 import Input from 'Components/Input/Input';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 const InputPage = () => {
   const [value, setValue] = useState('');
   return (
-    <PagePaper title="Input">
-      <ComponentPaper>
-        <Input id="myInput" inputLabel="My input" value={value} onChange={setValue} returnValue />
-      </ComponentPaper>
-      <CodeBlock
-        fullCode={`import ComponentPaper from "Components/ComponentPaper";
+    <PagePaper
+      title="Input"
+      description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos esse voluptate quos alias magni, excepturi at veniam dolore, error eaque cupiditate aperiam. Cumque nulla necessitatibus cum perferendis illo distinctio eos."
+    >
+      <ComponentViewer
+        title="Default Input"
+        code={`import ComponentPaper from "Components/ComponentPaper";
 import Input from "Components/Input";
 import {useState} from 'react';
 
@@ -28,8 +28,10 @@ const InputPage = () => {
 };
 
 export default InputPage;`}
-        initial={`<Input id="myInput" label="My input" value={value} onChange={setValue} returnValue />`}
-      />
+      >
+        <Input id="myInput" inputLabel="My input" value={value} onChange={setValue} returnValue />
+      </ComponentViewer>
+
       <Table
         data={[
           {name: 'id', type: 'string', desc: 'Unique id for input field'},

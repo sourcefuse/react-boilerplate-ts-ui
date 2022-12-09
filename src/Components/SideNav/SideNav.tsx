@@ -1,6 +1,7 @@
 import List from '@mui/material/List';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Toolbar from '@mui/material/Toolbar';
+import Logo from 'Images/logo.png';
 import React from 'react';
 import {useLocation} from 'react-router-dom';
 import sideNavConfig from './sideNavConfig';
@@ -11,9 +12,10 @@ interface Props {
   open: boolean;
   drawerWidth: number;
   toggleDrawer: any;
+  isAppBarFullWidth: boolean;
 }
 
-const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open}) => {
+const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open, isAppBarFullWidth}) => {
   const location = useLocation();
   return (
     <SwipeableDrawer
@@ -35,7 +37,8 @@ const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open}
       onClose={toggleDrawer}
       data-testid="sidenav"
     >
-      <Toolbar />
+      {(isAppBarFullWidth || !isPermanent) && <Toolbar />}
+      <img src={Logo} alt="logo" />
       <List>
         {sideNavConfig.map((sideNavConfigItem, index) => (
           <SideNavLink key={`menu-${index}`} location={location} {...sideNavConfigItem} />

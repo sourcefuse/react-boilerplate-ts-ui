@@ -6,7 +6,7 @@ const InputPage = lazy(() => import('Pages/InputPage'));
 const TransferListPage = lazy(() => import('Pages/TransferListPage'));
 const DropdownPage = lazy(() => import('Pages/DropdownPage'));
 const RadioButtonPage = lazy(() => import('Pages/RadioButtonPage'));
-const ToggleButtonPage = lazy(() => import('Pages/ToggleButton'));
+const ToggleButtonPage = lazy(() => import('Pages/ToggleButtonPage'));
 const CheckboxPage = lazy(() => import('Pages/CheckboxPage'));
 const ButtonPage = lazy(() => import('Pages/ButtonPage'));
 const ButtonGroup = lazy(() => import('Pages/ButtonGroup'));

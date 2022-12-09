@@ -2,7 +2,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Button from 'Components/Button/Button';
 import RadioButton from 'Components/RadioButton/RadioButton';
-import PropTypes from 'prop-types';
 import {useState} from 'react';
 import usePayment from './usePayment';
 
@@ -93,12 +92,6 @@ const Payment = ({prevStep, amount, type}: {prevStep: () => void; amount: number
       </Grid>
     </Grid>
   );
-};
-
-Payment.propTypes = {
-  prevStep: PropTypes.func.isRequired,
-  amount: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
 };
 
 export default Payment;

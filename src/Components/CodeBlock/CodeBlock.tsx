@@ -1,12 +1,10 @@
 import ExpandIcon from '@mui/icons-material/Expand';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Tooltip from '@mui/material/Tooltip';
 import Button from 'Components/Button/Button';
 import SyntaxHighlighter from 'Components/SyntaxHighlighter';
 import React, {memo, useState} from 'react';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 interface Props {
   initial: string;
@@ -31,13 +29,6 @@ const CodeBlock: React.FC<Props> = ({initial, fullCode}) => {
             </Tooltip>
           </Button>
         )}
-        <CopyToClipboard text={isExpanded ? fullCode : initial}>
-          <Button aria-label="copy code button">
-            <Tooltip title="Copy to clipboard">
-              <FileCopyIcon />
-            </Tooltip>
-          </Button>
-        </CopyToClipboard>
       </ButtonGroup>
       <SyntaxHighlighter>{isExpanded ? fullCode : initial}</SyntaxHighlighter>
     </Box>
