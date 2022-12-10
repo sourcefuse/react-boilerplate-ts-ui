@@ -78,7 +78,7 @@ const Mainlayout = () => {
         open={open}
         data-testid="sidenav"
       />
-      <Main open={open} isPermanent={isPermanent}>
+      <Main open={open} isPermanent={isPermanent} sx={{padding: '0'}}>
         <Toolbar />
         <Suspense fallback={<LinearProgress />}>
           <Routes>

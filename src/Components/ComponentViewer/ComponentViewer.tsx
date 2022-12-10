@@ -1,3 +1,5 @@
+import CodeIcon from '@mui/icons-material/Code';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import {Box, ButtonGroup, Grid, Typography} from '@mui/material';
 import MuiPaper from '@mui/material/Paper';
 import {styled} from '@mui/material/styles';
@@ -24,7 +26,13 @@ const TabButton = ({
   tabName: Tab;
 }) => {
   return (
-    <Button variant={activeTab === tabName ? 'contained' : 'outlined'} onClick={() => setActiveTab(tabName)}>
+    <Button
+      startIcon={tabName === 'demo' ? <RemoveRedEyeIcon /> : <CodeIcon />}
+      variant={activeTab === tabName ? 'contained' : 'outlined'}
+      onClick={() => setActiveTab(tabName)}
+      color="info"
+      // style={{color: '#000', borderRadius: '5px', background: '#D9D9D9'}}
+    >
       {tabName}
     </Button>
   );
@@ -37,7 +45,10 @@ export default function ComponentViewer({children, title, code}: {children: Reac
       <Grid container>
         <Grid container item xs={12} sx={{mb: 1}}>
           <Grid item xs={6}>
-            <Typography>{title}</Typography>
+            <Typography variant="subtitle2">
+              {' '}
+              <b>{title} </b>
+            </Typography>
           </Grid>
           <Grid container item xs={6} justifyContent="end">
             <ButtonGroup>
