@@ -8,7 +8,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Breadcrumb from 'Components/Breadcrumb/Breadcrumb';
 import FullScreen from 'Components/FullScreen';
-import ThemeSwitch from 'Components/ThemeSwitch';
 import useAuth from 'Hooks/useAuth';
 import {memo} from 'react';
 
@@ -67,7 +66,7 @@ const AppBar = ({open, toggleDrawer, isPermanent}: IAppBarProps) => {
           <Breadcrumb />
         </Typography>
         <FullScreen />
-        <ThemeSwitch />
+        {/* <ThemeSwitch /> */}
         <Logout />
       </Toolbar>
     </MyAppBar>
