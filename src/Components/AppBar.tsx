@@ -91,9 +91,29 @@ const AppBar = ({open, toggleDrawer, isPermanent, userName}: IAppBarProps & {use
           aria-haspopup="true"
           aria-expanded={menuOpen ? 'true' : undefined}
           onClick={handleClick}
-          sx={{border: '1px solid', borderRadius: 50}}
+          sx={{
+            border: '1px solid #ececec',
+            borderRadius: 50,
+            backgroundColor: '#ececec',
+            color: '#525252',
+            padding: '5px 15px',
+            textTransform: 'capitalize',
+          }}
         >
-          <Box sx={{width: 150, textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden'}}>{userName}</Box>
+          <Box
+            sx={{
+              minWidth: 50,
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              fontSize: '12px',
+              color: '#525252',
+              fontWeight: '600',
+              textAlign: 'left',
+            }}
+          >
+            {userName}
+          </Box>
         </Button>
         <Menu
           id="menu"
