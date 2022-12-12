@@ -39,7 +39,12 @@ const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open,
       onClose={toggleDrawer}
       data-testid="sidenav"
     >
-      {(isAppBarFullWidth || !isPermanent) && <Toolbar />}
+      {(isAppBarFullWidth || !isPermanent) && (
+        <>
+          <Toolbar />
+          <Toolbar />
+        </>
+      )}
       <Box sx={{display: 'flex', justifyContent: 'center', my: 2}}>
         <img src={arcLogo} width="100px" alt="logo" />
       </Box>
