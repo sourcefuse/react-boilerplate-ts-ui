@@ -57,6 +57,7 @@ export const paletteConfig = {
 };
 
 export const commonConfig = {
+  typography: {fontFamily: ['gotham'].join(',')},
   components: {
     MuiCssBaseline: {
       styleOverrides: {
