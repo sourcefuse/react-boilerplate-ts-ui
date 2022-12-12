@@ -71,7 +71,7 @@ const AppBar = ({open, toggleDrawer, isPermanent}: IAppBarProps) => {
               <img src={sfLogo} alt="sfLogo" />
             </Box>
           </Grid>
-          <Grid item xs={12} sx={{mt: 0, ml: -1}}>
+          <Grid item xs={12} sx={{mt: 1, ml: -1}}>
             <Typography component="h2" variant="h6" noWrap sx={{flexGrow: 1, fontWeight: 'bold', marginLeft: 2}}>
               <Breadcrumb />
             </Typography>

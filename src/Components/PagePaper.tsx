@@ -5,7 +5,7 @@ import {memo, ReactNode} from 'react';
 
 const PagePaper = ({title, children, description}: {title: string; children: ReactNode; description?: string}) => {
   return (
-    <Paper sx={{padding: ' 15px 0 0 15px'}}>
+    <Paper sx={{padding: ' 20px 0 0 15px'}}>
       {title && (
         <>
           <Typography sx={{pl: 2, pt: 2, textTransform: 'capitalize', fontWeight: 'bold'}} component="h3" variant="h4">
@@ -13,7 +13,7 @@ const PagePaper = ({title, children, description}: {title: string; children: Rea
           </Typography>
         </>
       )}
-      {description && <Typography sx={{padding: 2, color: '#525252'}}>{description}</Typography>}
+      {description && <Typography sx={{padding: 2, color: '#525252', pb: 0}}>{description}</Typography>}
       <Box sx={{padding: 2}}>{children}</Box>
     </Paper>
   );

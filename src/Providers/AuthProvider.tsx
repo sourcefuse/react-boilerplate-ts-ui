@@ -15,7 +15,7 @@ const defaultAuthContextValue = {
 export const AuthContext = createContext(defaultAuthContextValue);
 function AuthProvider({children}: {children: ReactNode}) {
   const [authStateLoading, setAuthStateLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [refreshToken, setRefreshToken] = useLocalStorage<string | null>('rbp_refresh_token', null);
   const [token, setToken] = useLocalStorage<string | null>('rbp_access_token', null);
   const setAuth = useCallback(

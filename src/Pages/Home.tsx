@@ -9,6 +9,8 @@ import iconGraphy from 'Images/iconography.png';
 import typography from 'Images/typography.png';
 import widgetImage from 'Images/widget-img.png';
 import React from 'react';
+const border = '1px solid  #D9D9D9;';
+// const paddinghorizontal = '0 15px';
 
 const Home = () => {
   return (
@@ -20,8 +22,7 @@ const Home = () => {
           height: '425px',
           display: 'flex',
           alignItems: 'center',
-          borderBottom: 1,
-          borderColor: 'grey.500',
+          borderBottom: border,
         }}
       >
         <Box>
@@ -46,28 +47,17 @@ const Home = () => {
         xs={6}
         textAlign="center"
         sx={{
-          borderBottom: 1,
-          borderColor: 'grey.500',
+          borderBottom: border,
         }}
       >
         <img src={bannerImage} alt="azure" />
       </Grid>
-      <Grid
-        item
-        sx={{
-          borderBottom: 1,
-          borderColor: 'grey.500',
-        }}
-        xs={6}
-      >
-        <Grid
-          container
-          sx={{px: 1, py: 4, border: 1, borderColor: 'grey.500', mt: 2, mb: 4, background: '#F7F7F7', borderRadius: 1}}
-        >
+      <Grid item xs={6}>
+        <Grid container sx={{px: 1, py: 4, border: border, mb: 2, mt: 1, background: '#F7F7F7', borderRadius: 1}}>
           <Grid item xs={7}>
-            <img src={leftComponent} alt="components" />
+            <img src={leftComponent} alt="components" width="100%" />
           </Grid>
-          <Grid item xs={5} sx={{pl: 3, pr: 2, pt: 5}}>
+          <Grid item xs={5} sx={{pl: 2, pr: 2, pt: 3}}>
             <Typography variant="h5">
               {' '}
               <b> Components </b>
@@ -79,22 +69,12 @@ const Home = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid
-        item
-        sx={{
-          borderBottom: 1,
-          borderColor: 'grey.500',
-        }}
-        xs={6}
-      >
-        <Grid
-          container
-          sx={{px: 1, py: 4, border: 1, borderColor: 'grey.500', mt: 2, mb: 4, background: '#F7F7F7', borderRadius: 1}}
-        >
+      <Grid item xs={6}>
+        <Grid container sx={{px: 2, py: 4, border: border, mb: 3, mt: 1, background: '#F7F7F7', borderRadius: 1}}>
           <Grid item xs={7} sx={{py: 1, mt: 1}}>
-            <img src={widgetImage} alt="components" />
+            <img src={widgetImage} alt="components" width="100%" />
           </Grid>
-          <Grid item xs={5} sx={{pl: 3, pr: 2, pt: 5}}>
+          <Grid item xs={5} sx={{pl: 1, pr: 2, pt: 1}}>
             <Typography variant="h5">
               {' '}
               <b> Widgets </b>
@@ -107,18 +87,28 @@ const Home = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Box sx={{mt: 4, pl: 2}}>
-        <Typography variant="h5">
-          {' '}
-          <b> Foundations</b>
-        </Typography>
-        <Typography variant="subtitle2" component="div" sx={{mt: 2, color: '#525252'}}>
-          The components that are fundamental to RAD are interfaces, objects that implement
-        </Typography>
-        <Typography variant="subtitle2" component="div">
-          those interfaces.
-        </Typography>
-      </Box>
+      <Grid container sx={{pb: 2}}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            borderTop: border,
+          }}
+        >
+          <Box sx={{mt: 4, pl: 2}}>
+            <Typography variant="h5">
+              {' '}
+              <b> Foundations</b>
+            </Typography>
+            <Typography variant="subtitle2" component="div" sx={{mt: 2, color: '#525252'}}>
+              The components that are fundamental to RAD are interfaces, objects that implement
+            </Typography>
+            <Typography variant="subtitle2" component="div">
+              those interfaces.
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
       <Grid container sx={{py: 1}}>
         <Grid item xs={4}>
           <Grid
@@ -126,12 +116,9 @@ const Home = () => {
             sx={{
               px: 1,
               py: 4,
-              border: 1,
-              borderColor: 'grey.500',
               mt: 2,
               mb: 4,
               background: '#F7F7F7',
-              borderRadius: 1,
             }}
           >
             <Grid item xs={7} sx={{pl: 3, pr: 2}}>
@@ -145,22 +132,20 @@ const Home = () => {
               <Link href="#">Explore Now</Link>
             </Grid>
             <Grid item xs={5} sx={{pl: 3, pr: 2, pt: 2}}>
-              <img src={colorScheme} alt="components" />
+              <img src={colorScheme} alt="components" width="100%" />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} sx={{px: 2}}>
           <Grid
             container
             sx={{
-              px: 1,
+              px: 3,
               py: 4,
-              border: 1,
-              borderColor: 'grey.500',
+              borderBottom: '1px solid #EDEDED',
               mt: 2,
               mb: 4,
               background: '#F7F7F7',
-              borderRadius: 1,
             }}
           >
             <Grid item xs={7} sx={{pl: 3, pr: 2}}>
@@ -174,7 +159,7 @@ const Home = () => {
               <Link href="#">Explore Now</Link>
             </Grid>
             <Grid item xs={5} sx={{pl: 3, pr: 2, pt: 1}}>
-              <img src={iconGraphy} alt="components" />
+              <img src={iconGraphy} alt="components" width="100%" />
             </Grid>
           </Grid>
         </Grid>
@@ -184,12 +169,10 @@ const Home = () => {
             sx={{
               px: 1,
               py: 4,
-              border: 1,
-              borderColor: 'grey.500',
+              borderBottom: '1px solid #EDEDED',
               mt: 2,
               mb: 4,
               background: '#F7F7F7',
-              borderRadius: 1,
             }}
           >
             <Grid item xs={7} sx={{pl: 3, pr: 2}}>
@@ -203,7 +186,7 @@ const Home = () => {
               <Link href="#">Explore Now</Link>
             </Grid>
             <Grid item xs={5} sx={{pl: 3, pr: 2, pt: 2}}>
-              <img src={typography} alt="components" />
+              <img src={typography} alt="components" width="100%" />
             </Grid>
           </Grid>
         </Grid>

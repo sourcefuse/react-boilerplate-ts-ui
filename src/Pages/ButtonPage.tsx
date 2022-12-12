@@ -31,7 +31,7 @@ const ButtonPage = () => {
 
 export default ButtonPage;`}
       >
-        <Button>Click here</Button>
+        <Button sx={{my: 2}}>Click here</Button>
       </ComponentViewer>
       <ComponentViewer
         title="Contained Button"
@@ -53,7 +53,9 @@ const ButtonPage = () => {
 
 export default ButtonPage;`}
       >
-        <Button variant="contained">Click here</Button>
+        <Button variant="contained" sx={{my: 2}}>
+          Click here
+        </Button>
       </ComponentViewer>
       <ComponentViewer
         title="Outlined Button"
@@ -75,7 +77,9 @@ const ButtonPage = () => {
 
 export default ButtonPage;`}
       >
-        <Button variant="outlined">Click here</Button>
+        <Button variant="outlined" sx={{my: 2}}>
+          Click here
+        </Button>
       </ComponentViewer>
 
       <ComponentViewer
@@ -103,7 +107,7 @@ const ButtonPage = () => {
 
 export default ButtonPage;`}
       >
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={2} sx={{py: 2}}>
           <Button variant="contained" color="primary">
             Click here
           </Button>

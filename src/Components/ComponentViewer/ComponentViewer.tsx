@@ -42,9 +42,9 @@ export default function ComponentViewer({children, title, code}: {children: Reac
   return (
     <Paper elevation={0}>
       <Grid container>
-        <Grid container item xs={12} sx={{mb: 1}}>
+        <Grid container item xs={12} sx={{my: 2}}>
           <Grid item xs={6}>
-            <Typography variant="subtitle2" sx={{fontWeight: 'bold'}}>
+            <Typography variant="subtitle2" sx={{fontWeight: 'bold', mt: 2}}>
               {title}
             </Typography>
           </Grid>
@@ -59,7 +59,7 @@ export default function ComponentViewer({children, title, code}: {children: Reac
           {activeTab === Tab.Demo ? (
             <Box
               sx={{
-                border: '1px solid',
+                border: '1px solid #D1D1D1',
                 borderRadius: 1,
                 padding: 2,
                 borderColor: 'divider',

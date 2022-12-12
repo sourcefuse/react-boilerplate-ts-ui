@@ -14,10 +14,10 @@ export interface ComponentViewItemInterface {
 
 const ComponentViewItem: React.FC<ComponentViewItemInterface> = ({link, imageUrl, name, variants}) => {
   return (
-    <Grid item xs={3}>
+    <Grid item xs={3} sx={{my: 1}}>
       <Link href={link} sx={{color: 'text.primary'}} underline="none">
-        <Box sx={(theme) => ({background: '#f1f5f7'})}>
-          <Box sx={{height: 200, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <Box sx={(theme) => ({background: '#F4F4F4'})}>
+          <Box sx={{height: 200, display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 1}}>
             <img src={imageUrl} alt={name} />
           </Box>
         </Box>
