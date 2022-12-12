@@ -1,20 +1,17 @@
 import Typography from '@mui/material/Typography';
-import CodeBlock from 'Components/CodeBlock/CodeBlock';
-import ComponentPaper from 'Components/ComponentPaper';
+import ComponentViewer from 'Components/ComponentViewer';
 import DatePicker from 'Components/DatePicker/DatePicker';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 const DatePickerPage = () => {
   const [value, setValue] = useState(null);
   return (
     <PagePaper title="DatePicker">
-      <ComponentPaper>
-        <DatePicker id="dob" value={value} onChange={setValue} label="D.O.B" returnValue />
-      </ComponentPaper>
-      <CodeBlock
-        fullCode={`import ComponentPaper from 'Components/ComponentPaper';
+      <ComponentViewer
+        title="Default DatePicker"
+        code={`import ComponentPaper from 'Components/ComponentPaper';
 import DatePicker from 'Components/DatePicker/DatePicker';
 import PagePaper from 'Components/PagePaper';
 import {useState} from 'react';
@@ -31,8 +28,9 @@ const DatePickerPage = () => {
 };
 
 export default DatePickerPage;`}
-        initial={`<DatePicker id="dob" value={value} onChange={setValue} label="D.O.B" returnValue />`}
-      />
+      >
+        <DatePicker id="dob" value={value} onChange={setValue} label="D.O.B" returnValue />
+      </ComponentViewer>
       <Table
         data={[
           {name: 'id', type: 'string', desc: 'Unique id for input field'},

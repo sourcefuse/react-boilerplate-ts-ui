@@ -80,7 +80,7 @@ const Payment = ({prevStep, amount, type}: {prevStep: () => void; amount: number
       </Grid>
       <Grid item container spacing={2} justifyContent="space-between" sx={{marginTop: 1}}>
         <Grid item>
-          <Button type="button" color="primary" variant="outlined" onClick={prevStep}>
+          <Button type="button" variant="outlined" onClick={prevStep}>
             Previous
           </Button>
         </Grid>

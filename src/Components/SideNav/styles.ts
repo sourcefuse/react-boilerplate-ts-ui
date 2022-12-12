@@ -6,10 +6,10 @@ const styles = {
     textTransform: 'capitalize',
     fontSize: 14,
     '&:hover': {
-      backgroundColor: 'primary.main',
-      color: '#fff',
+      backgroundColor: '#F7F7F7',
+      // color: '#fff',
       '& .MuiListItemIcon-root, .MuiSvgIcon-root, .MuiListItemText-root': {
-        color: '#fff',
+        // color: '#fff',
       },
     },
   },
@@ -21,7 +21,7 @@ const styles = {
   },
   listItemIcon: {minWidth: 30},
   linkItemIconActive: {
-    color: `primary.main`,
+    color: `secondary.main`,
   },
   divider: {marginTop: 1, marginBottom: 1, height: 2},
   title: {paddingX: 1, textTransform: 'uppercase', fontWeight: 'bold'},

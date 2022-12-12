@@ -44,7 +44,9 @@ const NestedNavLink = ({
           ...styles.link,
         }}
       >
-        {icon && <ListItemIcon sx={styles.listItemIcon}>{icon}</ListItemIcon>}
+        {icon && (
+          <ListItemIcon sx={{...styles.listItemIcon, ...(isOpen && styles.linkItemIconActive)}}>{icon}</ListItemIcon>
+        )}
         <ListItemText primary={label} disableTypography />
         {isOpen ? <ExpandLessIcon sx={{...(isOpen && styles.linkItemIconActive)}} /> : <ExpandMoreIcon />}
       </ListItem>

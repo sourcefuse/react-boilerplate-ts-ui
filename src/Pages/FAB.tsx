@@ -1,29 +1,35 @@
 import AddIcon from '@mui/icons-material/Add';
-import CodeBlock from 'Components/CodeBlock/CodeBlock';
-import ComponentPaper from 'Components/ComponentPaper';
+import ComponentViewer from 'Components/ComponentViewer';
 import FAB from 'Components/FloatingActionButton';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
-import * as React from 'react';
 
-const InputPage = () => {
+const FloatingActionButtonPage = () => {
   return (
     <PagePaper title="Floating Action Button">
-      <ComponentPaper>
+      <ComponentViewer
+        title="Default Button"
+        code={`import AddIcon from "@mui/icons-material/Add";
+import FAB from "Components/FloatingActionButton";
+import PagePaper from "Components/PagePaper";
+import React from "react";
+
+const FloatingActionButtonPage = () => {
+  return (
+    <PagePaper title="Floating Action Button">
+      <FAB color="primary" aria-label="add">
+        <AddIcon />
+      </FAB>
+    </PagePaper>
+  );
+};
+
+export default FloatingActionButtonPage;`}
+      >
         <FAB color="primary" aria-label="add">
           <AddIcon />
         </FAB>
-      </ComponentPaper>
-      <CodeBlock
-        fullCode={`
-        <Fab color="primary" aria-label="add">
-            <AddIcon />
-        </Fab>`}
-        initial={`
-        <Fab color="primary" aria-label="add">
-            <AddIcon />
-        </Fab>`}
-      />
+      </ComponentViewer>
       <Table
         data={[
           {
@@ -98,4 +104,4 @@ const InputPage = () => {
   );
 };
 
-export default InputPage;
+export default FloatingActionButtonPage;

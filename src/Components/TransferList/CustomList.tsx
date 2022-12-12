@@ -69,7 +69,7 @@ const CustomList: React.FC<Props> = ({items, title, handleToggle, checked, colum
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    sx={{backgroundColor: checked.some(({value}) => value === item.value) ? 'secondary.light' : null}}
+                    sx={{backgroundColor: checked.some(({value}) => value === item.value) ? 'primary.light' : null}}
                   >
                     <ListItemText id={labelId} primary={item?.label} />
                     <ListItemSecondaryAction></ListItemSecondaryAction>

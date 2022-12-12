@@ -8,7 +8,6 @@ import bannerImage from 'Images/home-banner.png';
 import iconGraphy from 'Images/iconography.png';
 import typography from 'Images/typography.png';
 import widgetImage from 'Images/widget-img.png';
-import React from 'react';
 const border = '1px solid  #D9D9D9;';
 // const paddinghorizontal = '0 15px';
 
@@ -53,7 +52,7 @@ const Home = () => {
         <img src={bannerImage} alt="azure" />
       </Grid>
       <Grid item xs={6}>
-        <Grid container sx={{px: 1, py: 4, border: border, mb: 2, mt: 1, background: '#F7F7F7', borderRadius: 1}}>
+        <Grid container sx={{px: 1, py: 4, border, mb: 2, mt: 1, background: '#F7F7F7', borderRadius: 1}}>
           <Grid item xs={7}>
             <img src={leftComponent} alt="components" width="100%" />
           </Grid>
@@ -70,7 +69,7 @@ const Home = () => {
         </Grid>
       </Grid>
       <Grid item xs={6}>
-        <Grid container sx={{px: 2, py: 4, border: border, mb: 3, mt: 1, background: '#F7F7F7', borderRadius: 1}}>
+        <Grid container sx={{px: 2, py: 4, border, mb: 3, mt: 1, background: '#F7F7F7', borderRadius: 1}}>
           <Grid item xs={7} sx={{py: 1, mt: 1}}>
             <img src={widgetImage} alt="components" width="100%" />
           </Grid>

@@ -99,7 +99,7 @@ const mainLayoutRouteConfig = [
     component: SliderPage,
   },
   {
-    path: '/components/floatingActionButton',
+    path: '/components/floating-action-button',
     component: FABPage,
   },
 ];

@@ -1,8 +1,9 @@
 import CodeIcon from '@mui/icons-material/Code';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import {Box, ButtonGroup, Grid, Typography} from '@mui/material';
+import {Box, ButtonGroup, Grid, SvgIconTypeMap, Typography} from '@mui/material';
 import MuiPaper from '@mui/material/Paper';
 import {styled} from '@mui/material/styles';
+import {OverridableComponent} from '@mui/types';
 import Button from 'Components/Button';
 import SyntaxHighlighter from 'Components/SyntaxHighlighter';
 import {ReactNode, useState} from 'react';
@@ -20,17 +21,22 @@ const TabButton = ({
   activeTab,
   setActiveTab,
   tabName,
+  Icon,
 }: {
   activeTab: Tab;
   setActiveTab: React.Dispatch<React.SetStateAction<Tab>>;
   tabName: Tab;
+  Icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {muiName: string};
 }) => {
+  const isActive = activeTab === tabName;
   return (
     <Button
-      startIcon={tabName === Tab.Demo ? <RemoveRedEyeIcon /> : <CodeIcon />}
-      variant={activeTab === tabName ? 'contained' : 'outlined'}
+      color="inherit"
+      disableElevation
+      startIcon={<Icon sx={{color: isActive ? 'primary.main' : '#525252'}} />}
+      variant={isActive ? 'contained' : 'outlined'}
       onClick={() => setActiveTab(tabName)}
-      color="info"
+      sx={{bgcolor: isActive ? '#fff' : '#E7E7E7', color: isActive ? '#000' : '#525252', border: 0}}
     >
       {tabName}
     </Button>
@@ -49,9 +55,9 @@ export default function ComponentViewer({children, title, code}: {children: Reac
             </Typography>
           </Grid>
           <Grid container item xs={6} justifyContent="end">
-            <ButtonGroup>
-              <TabButton activeTab={activeTab} setActiveTab={setActiveTab} tabName={Tab.Demo} />
-              <TabButton activeTab={activeTab} setActiveTab={setActiveTab} tabName={Tab.Code} />
+            <ButtonGroup sx={{border: '1px solid #D9D9D9'}}>
+              <TabButton activeTab={activeTab} setActiveTab={setActiveTab} tabName={Tab.Demo} Icon={RemoveRedEyeIcon} />
+              <TabButton activeTab={activeTab} setActiveTab={setActiveTab} tabName={Tab.Code} Icon={CodeIcon} />
             </ButtonGroup>
           </Grid>
         </Grid>

@@ -1,5 +1,5 @@
 import {Visibility, VisibilityOff} from '@mui/icons-material';
-import {Box, Divider, Grid, IconButton, InputAdornment, Typography} from '@mui/material';
+import {Box, Grid, IconButton, InputAdornment, Typography} from '@mui/material';
 import Button from 'Components/Button';
 import Input from 'Components/Input';
 import {getAppConfiguration} from 'Configuration';
@@ -7,7 +7,6 @@ import {useFormik} from 'formik';
 import axiosFactory from 'Helpers/axios';
 import useAuth from 'Hooks/useAuth';
 import arcLogo from 'Images/ARC_logo.png';
-import azureLogo from 'Images/azure_ad.png';
 import heroLogo from 'Images/hero.jpg';
 import {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
@@ -59,7 +58,7 @@ const Login = () => {
     onSubmit: submitLogin,
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [azButtonLoading, setAzButtonLoading] = useState(false);
+  // const [azButtonLoading, setAzButtonLoading] = useState(false);
   const [formCTALoading, setFormCTALoading] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -67,30 +66,30 @@ const Login = () => {
 
   const locationState = location.state as {from: {pathname: string | null} | null};
   const from = locationState?.from?.pathname ?? '/';
-  const handleAzureLogin = async () => {
-    try {
-      setAzButtonLoading(true);
-      const data = {
-        client_id: clientId,
-        client_secret: clientSecret,
-      };
-      const form = document.createElement('form');
-      document.body.appendChild(form);
-      form.method = 'post';
-      form.action = `${appConfig.auth_api_base_url}/auth/azure`;
-      for (const name in data) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = data[name];
-        form.appendChild(input);
-      }
-      form.submit();
-    } catch (err) {
-      console.error('error while login using Azure => ', err);
-      setAzButtonLoading(false);
-    }
-  };
+  // const handleAzureLogin = async () => {
+  //   try {
+  //     setAzButtonLoading(true);
+  //     const data = {
+  //       client_id: clientId,
+  //       client_secret: clientSecret,
+  //     };
+  //     const form = document.createElement('form');
+  //     document.body.appendChild(form);
+  //     form.method = 'post';
+  //     form.action = `${appConfig.auth_api_base_url}/auth/azure`;
+  //     for (const name in data) {
+  //       const input = document.createElement('input');
+  //       input.type = 'hidden';
+  //       input.name = name;
+  //       input.value = data[name];
+  //       form.appendChild(input);
+  //     }
+  //     form.submit();
+  //   } catch (err) {
+  //     console.error('error while login using Azure => ', err);
+  //     setAzButtonLoading(false);
+  //   }
+  // };
   useEffect(() => {
     if (isLoggedIn) {
       navigate('/', {replace: true});
@@ -180,12 +179,13 @@ const Login = () => {
                 <Button
                   onClick={handleSubmit}
                   variant="contained"
-                  sx={{mt: 2, mb: 4, background: '#F4001F', borderRadius: 6}}
+                  sx={{mt: 2, mb: 4, borderRadius: 6}}
                   isLoading={formCTALoading}
+                  color="secondary"
                 >
                   SUBMIT
                 </Button>
-                <Divider orientation="horizontal" flexItem>
+                {/* <Divider orientation="horizontal" flexItem>
                   You can also login via
                 </Divider>
                 <Button
@@ -196,7 +196,7 @@ const Login = () => {
                   isLoading={azButtonLoading}
                 >
                   <img src={azureLogo} alt="azure" width="30px" /> &nbsp; Continue With Azure AD
-                </Button>
+                </Button> */}
               </Grid>
               {/* <Grid item xs={12} textAlign="center">
                 <Typography variant="subtitle2" component="div" sx={{mt: 15}}>

@@ -93,7 +93,7 @@ const ButtonPage = () => {
     <PagePaper title="Button">
       <ComponentPaper>
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" color="primary">
+          <Button variant="contained">
             Click here
           </Button>
           <Button variant="contained" color="secondary">
@@ -108,9 +108,7 @@ const ButtonPage = () => {
 export default ButtonPage;`}
       >
         <Stack direction="row" spacing={2} sx={{py: 2}}>
-          <Button variant="contained" color="primary">
-            Click here
-          </Button>
+          <Button variant="contained">Click here</Button>
           <Button variant="contained" color="secondary">
             Click here
           </Button>

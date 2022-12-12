@@ -2,8 +2,9 @@ import {Box} from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import componentImage from 'Images/components.png';
 import React, {memo} from 'react';
-import componentImage from '../../Images/components.png';
+import {Link as RouterLink} from 'react-router-dom';
 import componentLists from '../Components/ComponentList';
 
 export interface ComponentViewItemInterface {
@@ -16,7 +17,7 @@ export interface ComponentViewItemInterface {
 const ComponentViewItem: React.FC<ComponentViewItemInterface> = ({link, imageUrl, name, variants}) => {
   return (
     <Grid item xs={3} sx={{my: 1}}>
-      <Link href={link} sx={{color: 'text.primary'}} underline="none">
+      <Link component={RouterLink} to={`/components/${link}`} sx={{color: 'text.primary'}} underline="none">
         <Box sx={(theme) => ({background: '#F4F4F4'})}>
           <Box sx={{height: 200, display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 1}}>
             <img src={imageUrl} alt={name} />

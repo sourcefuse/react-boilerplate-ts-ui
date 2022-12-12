@@ -1,17 +1,45 @@
 import Typography from '@mui/material/Typography';
-import CodeBlock from 'Components/CodeBlock/CodeBlock';
-import ComponentPaper from 'Components/ComponentPaper';
+import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Rating from 'Components/Rating';
 import Table from 'Components/Table';
 import * as React from 'react';
 
-const InputPage = () => {
+const RatingPage = () => {
   const [value, setValue]: any = React.useState(2);
   const [hover, setHover]: any = React.useState(-1);
   return (
     <PagePaper title="Rating">
-      <ComponentPaper>
+      <ComponentViewer
+        title="Default Button"
+        code={`import PagePaper from "Components/PagePaper";
+import Rating from "Components/Rating";
+import React from "react";
+
+const RatingPage = () => {
+  const [value, setValue] = React.useState(2);
+  const [hover, setHover]= React.useState(-1);
+  return (
+    <PagePaper title="Rating">
+      <Rating
+        name="hover-feedback"
+        onChangeActive={(event, newHover) => {
+          setHover(newHover);
+        }}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        precision={0.5}
+        hover={hover}
+        value={value}
+        label
+      />
+    </PagePaper>
+  );
+};
+
+export default RatingPage;`}
+      >
         <Rating
           name="hover-feedback"
           onChangeActive={(event, newHover) => {
@@ -25,8 +53,8 @@ const InputPage = () => {
           value={value}
           label
         />
-      </ComponentPaper>
-      <CodeBlock fullCode={``} initial={``} />
+      </ComponentViewer>
+
       <Table
         data={[
           {name: 'defaultValue', type: 'number', desc: 'The default value. Use when the component is not controlled.'},
@@ -187,4 +215,4 @@ const InputPage = () => {
   );
 };
 
-export default InputPage;
+export default RatingPage;

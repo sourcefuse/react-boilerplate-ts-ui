@@ -1,10 +1,10 @@
 import tinycolor from 'tinycolor2';
 
-const secondary = '#BF0000'; // crimson red
-const error = '#DF0101';
-const warning = '#FF8F1F';
-const success = '#6EB874';
-const info = '#CACADB';
+const secondary = '#0469E3';
+// const error = '#DF0101';
+// const warning = '#FF8F1F';
+// const success = '#6EB874';
+// const info = '#CACADB';
 
 const lightenRate = 7.5;
 const darkenRate = 15;
@@ -15,39 +15,39 @@ export const paletteConfig = {
       // paper: '#f1f5f7',
     },
     primary: {
+      main: secondary,
+      light: tinycolor(secondary).lighten(lightenRate).toHexString(),
+      dark: tinycolor(secondary).darken(darkenRate).toHexString(),
+    },
+    secondary: {
       // rose
-      main: '#C53E6C',
+      main: '#E81823',
       light: '#FC7092',
       dark: '#90003B',
     },
-    secondary: {
-      main: secondary,
-      light: '#FFE8E8',
-      dark: tinycolor(secondary).darken(darkenRate).toHexString(),
-    },
-    error: {
-      main: error,
-      light: tinycolor(error).lighten(lightenRate).toHexString(),
-      dark: tinycolor(error).darken(darkenRate).toHexString(),
-    },
-    warning: {
-      main: warning,
-      light: tinycolor(warning).lighten(lightenRate).toHexString(),
-      dark: tinycolor(warning).darken(darkenRate).toHexString(),
-    },
-    success: {
-      main: success,
-      light: tinycolor(success).lighten(lightenRate).toHexString(),
-      dark: tinycolor(success).darken(darkenRate).toHexString(),
-    },
-    info: {
-      main: info,
-      light: tinycolor(info).lighten(lightenRate).toHexString(),
-      dark: tinycolor(info).darken(darkenRate).toHexString(),
-    },
-    border: {
-      main: '#ddd',
-    },
+    // error: {
+    //   main: error,
+    //   light: tinycolor(error).lighten(lightenRate).toHexString(),
+    //   dark: tinycolor(error).darken(darkenRate).toHexString(),
+    // },
+    // warning: {
+    //   main: warning,
+    //   light: tinycolor(warning).lighten(lightenRate).toHexString(),
+    //   dark: tinycolor(warning).darken(darkenRate).toHexString(),
+    // },
+    // success: {
+    //   main: success,
+    //   light: tinycolor(success).lighten(lightenRate).toHexString(),
+    //   dark: tinycolor(success).darken(darkenRate).toHexString(),
+    // },
+    // info: {
+    //   main: info,
+    //   light: tinycolor(info).lighten(lightenRate).toHexString(),
+    //   dark: tinycolor(info).darken(darkenRate).toHexString(),
+    // },
+    // border: {
+    //   main: '#ddd',
+    // },
   },
   dark: {
     border: {
@@ -57,7 +57,7 @@ export const paletteConfig = {
 };
 
 export const commonConfig = {
-  typography: {fontFamily: ['gotham'].join(',')},
+  // typography: {fontFamily: ['gotham'].join(',')},
   components: {
     MuiCssBaseline: {
       styleOverrides: {

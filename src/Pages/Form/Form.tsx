@@ -168,7 +168,7 @@ export default function Form() {
         </Grid>
         <Grid container spacing={2} justifyContent="flex-end" sx={{marginTop: 1}}>
           <Grid item>
-            <Button type="button" color="primary" variant="outlined" onClick={resetForm}>
+            <Button type="button" variant="outlined" onClick={resetForm}>
               Reset
             </Button>
           </Grid>

@@ -19,7 +19,7 @@ const useAxiosPrivate = (baseUrl) => {
       (error) => Promise.reject(error),
     );
     const responseInterceptor = privateAxiosInstance.interceptors.response.use(
-      (response) => response,
+      (response) => response.data,
       async (error) => {
         const prevRequest = error?.config;
         if ((error?.response?.status === 401 || error?.response?.status === 403) && !prevRequest?.sent) {

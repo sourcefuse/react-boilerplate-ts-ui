@@ -1,6 +1,7 @@
-import LogoutIcon from '@mui/icons-material/Logout';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuIcon from '@mui/icons-material/Menu';
-import {Typography} from '@mui/material';
+import {Menu, MenuItem, Typography} from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -12,7 +13,8 @@ import Breadcrumb from 'Components/Breadcrumb/Breadcrumb';
 import FullScreen from 'Components/FullScreen';
 import useAuth from 'Hooks/useAuth';
 import sfLogo from 'Images/SF_logo.png';
-import {memo} from 'react';
+import {memo, useState} from 'react';
+import Button from './Button';
 
 const MyAppBar = styled(MuiAppBar)(({theme}) => ({
   zIndex: theme.zIndex.drawer + 1,
@@ -33,19 +35,19 @@ const MenuButton = ({open, toggleDrawer}: IAppBarProps) => (
     </IconButton>
   </Tooltip>
 );
-const Logout = () => {
-  const {logout} = useAuth();
-  return (
-    <Tooltip title="Logout">
-      <IconButton onClick={logout}>
-        <LogoutIcon />
-      </IconButton>
-    </Tooltip>
-  );
-};
-const AppBar = ({open, toggleDrawer, isPermanent}: IAppBarProps) => {
+
+const AppBar = ({open, toggleDrawer, isPermanent, userName}: IAppBarProps & {userName?: string}) => {
   let appBarMargin = open ? 270 : 0;
   appBarMargin = isPermanent ? appBarMargin : 0;
+  const {logout} = useAuth();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const menuOpen = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <MyAppBar
@@ -80,7 +82,30 @@ const AppBar = ({open, toggleDrawer, isPermanent}: IAppBarProps) => {
 
         <FullScreen />
         {/* <ThemeSwitch /> */}
-        <Logout />
+
+        <Button
+          startIcon={<AccountCircleIcon />}
+          endIcon={<KeyboardArrowDownIcon />}
+          id="menu-button"
+          aria-controls={menuOpen ? 'menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={menuOpen ? 'true' : undefined}
+          onClick={handleClick}
+          sx={{border: '1px solid', borderRadius: 50}}
+        >
+          <Box sx={{width: 150, textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden'}}>{userName}</Box>
+        </Button>
+        <Menu
+          id="menu"
+          MenuListProps={{
+            'aria-labelledby': 'menu-button',
+          }}
+          anchorEl={anchorEl}
+          open={menuOpen}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={logout}>Logout</MenuItem>
+        </Menu>
       </Toolbar>
     </MyAppBar>
   );

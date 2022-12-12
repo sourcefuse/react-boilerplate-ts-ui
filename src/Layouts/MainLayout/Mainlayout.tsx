@@ -9,6 +9,7 @@ import NotFound from 'Pages/NotFound';
 import {Suspense, useCallback, useEffect, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import mainLayoutRouteConfig from './mainLayoutRouteConfig';
+import useMainLayout from './useMainLayout';
 
 const drawerWidth = 270;
 const isAppBarFullWidth = false;
@@ -40,6 +41,7 @@ const Mainlayout = () => {
   const toggleDrawer = () => setOpen((prev) => !prev);
   const [isPermanent, setIsPermanent] = useState(true);
   const theme = useTheme();
+  const {userData} = useMainLayout();
 
   const handleWindowWidthChange = useCallback(
     (firstRender) => {
@@ -68,7 +70,13 @@ const Mainlayout = () => {
 
   return (
     <Box sx={{display: 'flex'}}>
-      <AppBar open={open} isPermanent={isPermanent} toggleDrawer={toggleDrawer} data-testid="sidenav" />
+      <AppBar
+        open={open}
+        isPermanent={isPermanent}
+        toggleDrawer={toggleDrawer}
+        data-testid="sidenav"
+        userName={userData ? `${userData.firstName} ${userData.lastName}` : 'User'}
+      />
       <SideNav
         isPermanent={isPermanent}
         isAppBarFullWidth={isAppBarFullWidth}

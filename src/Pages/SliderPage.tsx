@@ -1,17 +1,35 @@
-import CodeBlock from 'Components/CodeBlock/CodeBlock';
-import ComponentPaper from 'Components/ComponentPaper';
+import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Slider from 'Components/Slider';
 import Table from 'Components/Table';
-import * as React from 'react';
 
-const InputPage = () => {
+const SliderPage = () => {
   return (
     <PagePaper title="Slider">
-      <ComponentPaper>
+      <ComponentViewer
+        title="Default Button"
+        code={`import PagePaper from "Components/PagePaper";
+import Slider from "Components/Slider";
+import React from "react";
+
+const SliderPage = () => {
+  return (
+    <PagePaper title="Slider">
+      <Slider
+        size="small"
+        defaultValue={70}
+        aria-label="Small"
+        valueLabelDisplay="auto"
+      />
+    </PagePaper>
+  );
+};
+
+export default SliderPage;`}
+      >
         <Slider size="small" defaultValue={70} aria-label="Small" valueLabelDisplay="auto" />
-      </ComponentPaper>
-      <CodeBlock fullCode={``} initial={``} />
+      </ComponentViewer>
+
       <Table
         data={[
           {
@@ -194,4 +212,4 @@ const InputPage = () => {
   );
 };
 
-export default InputPage;
+export default SliderPage;

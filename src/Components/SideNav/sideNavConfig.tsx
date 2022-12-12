@@ -100,7 +100,7 @@ const sideNavConfig: SideNavConfig[] = [
       {
         label: 'Button Group',
         link: '/components/group-button',
-        visible: true,
+        visible: false,
       },
       {
         label: 'Stepper tab',
@@ -123,8 +123,8 @@ const sideNavConfig: SideNavConfig[] = [
         visible: true,
       },
       {
-        label: 'FloatingActionButton',
-        link: '/components/floatingActionButton',
+        label: 'Floating Action Button',
+        link: '/components/floating-action-button',
         visible: true,
       },
       {
