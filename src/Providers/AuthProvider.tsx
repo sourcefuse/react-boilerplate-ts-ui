@@ -16,13 +16,16 @@ export const AuthContext = createContext(defaultAuthContextValue);
 function AuthProvider({children}: {children: ReactNode}) {
   const [authStateLoading, setAuthStateLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [refreshToken, setRefreshToken] = useLocalStorage('rbp_refresh_token', null);
-  const [token, setToken] = useLocalStorage('rbp_access_token', null);
-  const setAuth = useCallback((isLoggedIn: boolean, token: string | null, refreshToken: string | null) => {
-    setIsLoggedIn(isLoggedIn);
-    setToken(token);
-    setRefreshToken(refreshToken);
-  }, []);
+  const [refreshToken, setRefreshToken] = useLocalStorage<string | null>('rbp_refresh_token', null);
+  const [token, setToken] = useLocalStorage<string | null>('rbp_access_token', null);
+  const setAuth = useCallback(
+    (isLoggedIn: boolean, token: string | null, refreshToken: string | null) => {
+      setIsLoggedIn(isLoggedIn);
+      setToken(token);
+      setRefreshToken(refreshToken);
+    },
+    [setRefreshToken, setToken],
+  );
   return (
     <AuthContext.Provider
       value={{

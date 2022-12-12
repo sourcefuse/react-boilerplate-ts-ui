@@ -27,11 +27,10 @@ const TabButton = ({
 }) => {
   return (
     <Button
-      startIcon={tabName === 'demo' ? <RemoveRedEyeIcon /> : <CodeIcon />}
+      startIcon={tabName === Tab.Demo ? <RemoveRedEyeIcon /> : <CodeIcon />}
       variant={activeTab === tabName ? 'contained' : 'outlined'}
       onClick={() => setActiveTab(tabName)}
       color="info"
-      // style={{color: '#000', borderRadius: '5px', background: '#D9D9D9'}}
     >
       {tabName}
     </Button>
@@ -45,9 +44,8 @@ export default function ComponentViewer({children, title, code}: {children: Reac
       <Grid container>
         <Grid container item xs={12} sx={{mb: 1}}>
           <Grid item xs={6}>
-            <Typography variant="subtitle2">
-              {' '}
-              <b>{title} </b>
+            <Typography variant="subtitle2" sx={{fontWeight: 'bold'}}>
+              {title}
             </Typography>
           </Grid>
           <Grid container item xs={6} justifyContent="end">

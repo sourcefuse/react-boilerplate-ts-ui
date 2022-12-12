@@ -21,7 +21,6 @@ const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'open' && prop !== 'isPermanent',
 })<IMainProps>(({theme, open, isPermanent}) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -78,7 +77,7 @@ const Mainlayout = () => {
         open={open}
         data-testid="sidenav"
       />
-      <Main open={open} isPermanent={isPermanent} sx={{padding: '0'}}>
+      <Main open={open} isPermanent={isPermanent}>
         <Toolbar />
         <Suspense fallback={<LinearProgress />}>
           <Routes>

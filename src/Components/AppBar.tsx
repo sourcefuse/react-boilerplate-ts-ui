@@ -11,8 +11,8 @@ import {Box} from '@mui/system';
 import Breadcrumb from 'Components/Breadcrumb/Breadcrumb';
 import FullScreen from 'Components/FullScreen';
 import useAuth from 'Hooks/useAuth';
+import sfLogo from 'Images/SF_logo.png';
 import {memo} from 'react';
-import sfLogo from './../Images/SF_logo.png';
 
 const MyAppBar = styled(MuiAppBar)(({theme}) => ({
   zIndex: theme.zIndex.drawer + 1,
@@ -68,7 +68,7 @@ const AppBar = ({open, toggleDrawer, isPermanent}: IAppBarProps) => {
           <Grid item xs={12}>
             <Box sx={{mt: 3}}>
               {toggleDrawer && <MenuButton open={open} toggleDrawer={toggleDrawer} />}
-              <img src={sfLogo} alt="Azure" />
+              <img src={sfLogo} alt="sfLogo" />
             </Box>
           </Grid>
           <Grid item xs={12} sx={{mt: 0, ml: -1}}>

@@ -31,6 +31,7 @@ const layoutRouteConfig: IRoute[] = [
   {
     path: '/*',
     component: Mainlayout,
+    isPrivate: true,
   },
 ];
 
