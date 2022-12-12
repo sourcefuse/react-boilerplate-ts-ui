@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import React, {memo} from 'react';
+import componentImage from '../../Images/components.png';
 import componentLists from '../Components/ComponentList';
 
 export interface ComponentViewItemInterface {
@@ -30,8 +31,8 @@ const ComponentViewItem: React.FC<ComponentViewItemInterface> = ({link, imageUrl
 
 const Components = () => {
   return (
-    <Grid container spacing={2} sx={{p: 4}}>
-      <Grid item xs={6}>
+    <Grid container spacing={2} sx={{p: 4}} alignItems="center">
+      <Grid item xs={7}>
         <Typography variant="h4">
           {' '}
           <b> Components</b>
@@ -41,8 +42,8 @@ const Components = () => {
           namespace in which those objects can be found and operated upon.
         </Typography>
       </Grid>
-      <Grid item xs={6} textAlign="center">
-        {/* <img src={componentImage} alt="component"> */}
+      <Grid item xs={5} textAlign="center">
+        <img src={componentImage} alt="component" width="300px" />
       </Grid>
       {componentLists.map(({name, imageUrl, variants, link}) => {
         return <ComponentViewItem key={name} name={name} imageUrl={imageUrl} variants={variants} link={link} />;
