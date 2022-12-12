@@ -30,9 +30,19 @@ const ComponentViewItem: React.FC<ComponentViewItemInterface> = ({link, imageUrl
 
 const Components = () => {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <Typography variant="h3">All components</Typography>
+    <Grid container spacing={2} sx={{p: 4}}>
+      <Grid item xs={6}>
+        <Typography variant="h4">
+          {' '}
+          <b> Components</b>
+        </Typography>
+        <Typography variant="subtitle2" component="div" sx={{my: 3, color: '#525252'}}>
+          The components that are fundamental to RAD are interfaces, objects that implement those interfaces, and the
+          namespace in which those objects can be found and operated upon.
+        </Typography>
+      </Grid>
+      <Grid item xs={6} textAlign="center">
+        {/* <img src={componentImage} alt="component"> */}
       </Grid>
       {componentLists.map(({name, imageUrl, variants, link}) => {
         return <ComponentViewItem key={name} name={name} imageUrl={imageUrl} variants={variants} link={link} />;
