@@ -4,15 +4,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {getAppConfiguration} from 'Configuration';
 import useAuth from 'Hooks/useAuth';
+import useConfig from 'Hooks/useConfig';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 
-const appConfig = getAppConfiguration();
-
-const STORAGE_SESSION_TIME_KEY = appConfig.storage_session_time_key || 'rbp_session_expiration_time';
-const EXPIRY_TIME_IN_MINUTE = appConfig.expiry_time_in_minute || 15;
-const WARNING_ALERT_TIMEOUT_IN_MINUTE = appConfig.warning_alert_timeout_in_minute || 1;
 const events = [
   // 'mousemove',
   // 'mousedown',
@@ -34,7 +29,7 @@ const WarningLogOutDialog: React.FC<IWarningLogOutDialogProps> = ({
   closeDialog,
   cancelLogOut,
   logout,
-  timer = WARNING_ALERT_TIMEOUT_IN_MINUTE * 60,
+  timer,
 }) => {
   const [open, setOpen] = useState<boolean>(openDialog);
   const [countdown, setCountdown] = useState<number>(timer);
@@ -80,19 +75,19 @@ type SessionTimeoutProps = {
   warningPopupTime?: number;
 };
 const SessionTimeout = (props: SessionTimeoutProps) => {
+  const {
+    config: {storageSessionTimeKey, expiryTimeInMinute, warningAlertTimeoutInMinute},
+  } = useConfig();
   const intervalFunc = useRef(null);
-  const warningTimerIntervalTime = useRef(null);
+  const warningTimerIntervalTime = useRef<number>(null);
   const {isLoggedIn, logout} = useAuth();
 
   const [showPopup, setShowPopup] = useState(false);
   const eventHandler = useCallback(() => {
     if (isLoggedIn) {
-      sessionStorage.setItem(
-        STORAGE_SESSION_TIME_KEY,
-        (Date.now() + EXPIRY_TIME_IN_MINUTE * MINUTE_TO_MILISEC).toString(),
-      );
+      sessionStorage.setItem(storageSessionTimeKey, (Date.now() + expiryTimeInMinute * MINUTE_TO_MILISEC).toString());
     } else {
-      sessionStorage.removeItem(STORAGE_SESSION_TIME_KEY);
+      sessionStorage.removeItem(storageSessionTimeKey);
     }
   }, [isLoggedIn]);
   const attachEventListeners = useCallback(() => {
@@ -119,13 +114,13 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
   };
   const resetTimer = () => {
     intervalFunc.current = setInterval(() => {
-      const expiryTime = +sessionStorage.getItem(STORAGE_SESSION_TIME_KEY) || 0;
+      const expiryTime = +sessionStorage.getItem(storageSessionTimeKey) || 0;
       const now = Date.now();
       const deltaTime = expiryTime - now;
       if (deltaTime < 0) {
         setShowPopup(false);
         doCleanup();
-      } else if (deltaTime <= WARNING_ALERT_TIMEOUT_IN_MINUTE * MINUTE_TO_MILISEC) {
+      } else if (deltaTime <= warningAlertTimeoutInMinute * MINUTE_TO_MILISEC) {
         if (!showPopup && !warningTimerIntervalTime.current) {
           removeEventListeners();
           setShowPopup(true);

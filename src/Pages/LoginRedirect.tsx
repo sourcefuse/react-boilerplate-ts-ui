@@ -1,15 +1,18 @@
 import BackdropLoader from 'Components/BackdropLoader/BackdropLoader';
-import {getAppConfiguration} from 'Configuration/configuration';
 import axiosFactory from 'Helpers/axios';
 import useAuth from 'Hooks/useAuth';
+import useConfig from 'Hooks/useConfig';
 import {useEffect, useState} from 'react';
 import {Navigate, useLocation, useSearchParams} from 'react-router-dom';
 
 const LoginRedirect = () => {
+  const {
+    config: {authApiBaseUrl, clientId},
+  } = useConfig();
   const [searchParam] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
   const [success, setSuccess] = useState(false);
-  const {doLogIn, isLoggedIn} = useAuth();
+  const {isLoggedIn} = useAuth();
   const location = useLocation();
   const locationState = location.state as {from: {pathname: string | null} | null};
   const from = locationState?.from?.pathname ?? '/';
@@ -18,18 +21,17 @@ const LoginRedirect = () => {
     const code = searchParam.get('code');
     const getToken = async () => {
       try {
-        const appConfig = getAppConfiguration();
-        const axios = axiosFactory(appConfig.auth_api_base_url);
+        const axios = axiosFactory(authApiBaseUrl);
         const url = 'auth/token';
         const data = {
           code,
-          clientId: appConfig.client_id,
+          clientId,
         };
         const response = await axios.post(url, data);
         const accessToken = response.data?.accessToken;
         const refreshToken = response.data?.refreshToken;
         if (accessToken && refreshToken) {
-          doLogIn(accessToken, refreshToken);
+          // doLogIn(accessToken, refreshToken);
         }
         setSuccess(!!accessToken);
       } catch (err) {

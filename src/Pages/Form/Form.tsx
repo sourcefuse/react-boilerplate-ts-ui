@@ -46,7 +46,6 @@ export default function Form() {
               id="firstName"
               label="First Name"
               value={values?.firstName}
-              isTouched={touched?.firstName}
               errorMessage={errors?.firstName}
               onChange={handleChange}
             />
@@ -56,7 +55,6 @@ export default function Form() {
               id="lastName"
               label="Last Name"
               value={values?.lastName}
-              isTouched={touched?.lastName}
               errorMessage={errors?.lastName}
               onChange={handleChange}
             />

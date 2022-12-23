@@ -1,7 +1,7 @@
 import {MutationFunction, useMutation as defaultUseMutation} from '@tanstack/react-query';
 import {useSnackbar} from 'notistack';
 
-function useMutation<T, U>({fn, successMsg}: {fn: MutationFunction<T, U>; successMsg?: string}) {
+function useMutation<T, U extends unknown>({fn, successMsg}: {fn: MutationFunction<T, U>; successMsg?: string}) {
   const {enqueueSnackbar} = useSnackbar();
   return defaultUseMutation(fn, {
     onError: (e: any) => {

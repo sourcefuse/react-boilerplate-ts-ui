@@ -29,7 +29,7 @@ const InputPage = () => {
 
 export default InputPage;`}
       >
-        <Input id="myInput" inputLabel="My input" value={value} onChange={setValue} returnValue />
+        <Input id="myInput" label="My input" value={value} onChange={setValue} />
       </ComponentViewer>
 
       <Table

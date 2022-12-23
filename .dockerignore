@@ -1,5 +1,5 @@
 .husky
 build/
 node_modules/
-/public/env-config.js
-env-config.js
+/public/config.json
+config.json

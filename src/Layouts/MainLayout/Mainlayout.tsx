@@ -44,7 +44,7 @@ const Mainlayout = () => {
   const {userData} = useMainLayout();
 
   const handleWindowWidthChange = useCallback(
-    (firstRender) => {
+    (firstRender?: boolean) => {
       const windowWidth = window.innerWidth;
       const breakpointWidth = theme.breakpoints.values.md;
       const isSmallScreen = windowWidth < breakpointWidth;
@@ -60,9 +60,9 @@ const Mainlayout = () => {
 
   useEffect(
     function () {
-      window.addEventListener('resize', handleWindowWidthChange);
+      window.addEventListener('resize', () => handleWindowWidthChange());
       return function cleanup() {
-        window.removeEventListener('resize', handleWindowWidthChange);
+        window.removeEventListener('resize', () => handleWindowWidthChange());
       };
     },
     [handleWindowWidthChange],

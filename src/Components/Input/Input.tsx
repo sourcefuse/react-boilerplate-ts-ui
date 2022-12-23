@@ -1,34 +1,41 @@
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
-import {FormControl, FormHelperText, IconButton, OutlinedInput, OutlinedInputProps, Tooltip} from '@mui/material';
+import {FormControl, FormHelperText, IconButton, Tooltip} from '@mui/material';
+import TextField, {TextFieldProps} from '@mui/material/TextField';
 import InputLabel from 'Components/InputLabel';
 import React, {memo} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-interface Props extends OutlinedInputProps {
+export type InputProps = Omit<TextFieldProps, 'variant' | 'onChange'> & {
   id: string;
-  inputLabel?: string;
-  value?: any;
-  disabled?: boolean;
-  copyEnabled?: boolean;
-  isTouched?: boolean;
-  helperText?: string;
-  errorMessage?: string;
   label?: string;
+  copyEnabled?: boolean;
+  errorMessage?: string;
+  startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
-  returnValue?: boolean;
-  onChange?: any;
-}
+  onChange?: (val: string) => void;
+  variant?: TextFieldProps['variant'];
+};
 
-const getEndAdornment: React.FC<any> = ({copyEnabled, value, isError, endAdornment}) => {
+const getEndAdornment = ({
+  copyEnabled,
+  value,
+  isError,
+  endAdornment,
+}: {
+  copyEnabled: boolean;
+  value?: TextFieldProps['value'];
+  isError: boolean | undefined;
+  endAdornment: React.ReactNode;
+}) => {
   if (endAdornment && !isError) return endAdornment;
 
   if (isError) return <ReportProblemOutlinedIcon color="error" />;
   if (copyEnabled)
     return (
       <Tooltip title="Copy to clipboard">
-        <IconButton>
-          <CopyToClipboard text={value}>
+        <IconButton sx={{cursor: 'pointer'}}>
+          <CopyToClipboard text={value?.toString() || ''}>
             <FileCopyIcon />
           </CopyToClipboard>
         </IconButton>
@@ -36,37 +43,41 @@ const getEndAdornment: React.FC<any> = ({copyEnabled, value, isError, endAdornme
     );
 };
 
-const Input: React.FC<Props> = ({
+const Input: React.FC<InputProps> = ({
   id,
   value,
   label,
   helperText,
   disabled = false,
   endAdornment,
+  startAdornment,
   copyEnabled = false,
   errorMessage,
-  isTouched,
+  type = 'text',
+  variant = 'outlined',
   onChange,
-  returnValue,
+  defaultValue,
   ...rest
 }) => {
-  const isError = errorMessage && isTouched && !disabled;
-
+  const isError = !!errorMessage;
   return (
-    <FormControl sx={{width: 1}} data-testid="inputFormControl" disabled={disabled}>
+    <FormControl sx={{width: 1}} data-testid="inputFormControl" error={isError} disabled={disabled}>
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
-      <OutlinedInput
+      <TextField
+        disabled={disabled}
         data-testid="input"
         value={value}
+        defaultValue={defaultValue}
         id={id}
-        sx={{marginTop: 2}}
-        inputProps={{
-          sx: {
-            padding: 1,
-          },
+        type={type}
+        variant={variant}
+        InputProps={{
+          endAdornment: getEndAdornment({copyEnabled, value, isError, endAdornment}),
+          startAdornment,
         }}
-        onChange={(e) => onChange(returnValue ? e?.target?.value : e)}
-        endAdornment={getEndAdornment({copyEnabled, value, isError, endAdornment})}
+        onChange={(e: any) => {
+          if (onChange) onChange(e?.target?.value);
+        }}
         {...rest}
       />
       {(isError || helperText) && <FormHelperText>{isError ? errorMessage : helperText}</FormHelperText>}

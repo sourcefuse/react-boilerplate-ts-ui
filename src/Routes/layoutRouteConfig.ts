@@ -4,9 +4,7 @@ const LoginRedirect = lazy(() => import('../Pages/LoginRedirect'));
 const Mainlayout = lazy(() => import('Layouts/MainLayout/Mainlayout'));
 
 export interface IRoute {
-  component?:
-    | React.LazyExoticComponent<() => JSX.Element>
-    | React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>;
+  component?: React.LazyExoticComponent<() => JSX.Element>;
   path: string;
   redirect?: string;
   isPrivate?: boolean;

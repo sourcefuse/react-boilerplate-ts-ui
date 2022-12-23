@@ -1,71 +1,26 @@
-import {Visibility, VisibilityOff} from '@mui/icons-material';
-import {Box, Grid, IconButton, InputAdornment, Typography} from '@mui/material';
+import {Box, Grid, Typography} from '@mui/material';
 import Button from 'Components/Button';
-import Input from 'Components/Input';
-import {getAppConfiguration} from 'Configuration';
-import {useFormik} from 'formik';
-import axiosFactory from 'Helpers/axios';
+import Form from 'Components/Forms/Form';
+import FormInput from 'Components/Forms/FormInput';
+import FormPasswordInput from 'Components/Forms/FormPasswordInput';
 import useAuth from 'Hooks/useAuth';
 import arcLogo from 'Images/ARC_logo.png';
 import heroLogo from 'Images/hero.jpg';
-import {useEffect, useState} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
 import * as yup from 'yup';
 
-const initialState = {
+const initialValues = {
   username: '',
   password: '',
 };
 
-const formValidation = yup.object().shape({
-  username: yup.string().required('UserName is Required'),
-  password: yup.string().required('Password is Required'),
+const validationSchema = yup.object({
+  username: yup.string().required().label('UserName'),
+  password: yup.string().required().label('Password'),
 });
 
-const appConfig = getAppConfiguration();
-const clientId = appConfig.client_id;
-const clientSecret = appConfig.client_secret;
 const Login = () => {
-  const {doLogIn, isLoggedIn} = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const submitLogin = async (formValue) => {
-    try {
-      const data = JSON.stringify({
-        client_id: clientId,
-        client_secret: clientSecret,
-        ...formValue,
-      });
-      const axios = axiosFactory(appConfig.auth_api_base_url);
-      const config = {
-        method: 'post',
-        url: '/auth/login-token',
-        data,
-      };
-      setFormCTALoading(true);
-      const response = await axios(config);
-      const responseData = response.data;
-      doLogIn(responseData.accessToken, responseData.refreshToken);
-      navigate(from, {replace: true});
-    } catch (err) {
-      console.error('error while login => ', err);
-      setFormCTALoading(false);
-    }
-  };
-  const {errors, touched, values, handleSubmit, handleChange} = useFormik({
-    initialValues: {...initialState},
-    validationSchema: formValidation,
-    onSubmit: submitLogin,
-  });
-  const [showPassword, setShowPassword] = useState(false);
-  // const [azButtonLoading, setAzButtonLoading] = useState(false);
-  const [formCTALoading, setFormCTALoading] = useState(false);
+  const {login, loginLoading} = useAuth();
 
-  const handleClickShowPassword = () => setShowPassword(!showPassword);
-  const handleMouseDownPassword = () => setShowPassword(!showPassword);
-
-  const locationState = location.state as {from: {pathname: string | null} | null};
-  const from = locationState?.from?.pathname ?? '/';
   // const handleAzureLogin = async () => {
   //   try {
   //     setAzButtonLoading(true);
@@ -90,11 +45,7 @@ const Login = () => {
   //     setAzButtonLoading(false);
   //   }
   // };
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/', {replace: true});
-    }
-  }, []);
+
   return (
     <>
       <Grid container>
@@ -140,52 +91,26 @@ const Login = () => {
                   Create your account now!
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
-                <Box component="form" noValidate>
-                  <Input
-                    id="username"
-                    label="Email or Username"
-                    value={values?.username}
-                    isTouched={!!touched?.username}
-                    errorMessage={errors?.username as string}
-                    onChange={handleChange}
-                    sx={{my: 2, color: '#525252'}}
-                  />
-                  <Input
-                    id="password"
-                    type={showPassword ? 'text' : 'password'}
-                    value={values?.password}
-                    isTouched={!!touched?.password}
-                    errorMessage={errors?.password as string}
-                    label="Password"
-                    onChange={handleChange}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          size="large"
-                        >
-                          {showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                    sx={{my: 2}}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={12} textAlign="left">
-                <Button
-                  onClick={handleSubmit}
-                  variant="contained"
-                  sx={{mt: 2, mb: 4, borderRadius: 6}}
-                  isLoading={formCTALoading}
-                  color="secondary"
-                >
-                  SUBMIT
-                </Button>
-                {/* <Divider orientation="horizontal" flexItem>
+              <Form initialValues={initialValues} onSubmit={login} validationSchema={validationSchema}>
+                <Grid item xs={12}>
+                  <FormInput id="username" label="UserName" />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormPasswordInput id="password" label="Password" />
+                </Grid>
+                <Grid container item xs={12}>
+                  <Button
+                    variant="contained"
+                    sx={{mt: 2, mb: 4, borderRadius: 6}}
+                    isLoading={loginLoading}
+                    color="secondary"
+                    type="submit"
+                  >
+                    SUBMIT
+                  </Button>
+                </Grid>
+              </Form>
+              {/* <Divider orientation="horizontal" flexItem>
                   You can also login via
                 </Divider>
                 <Button
@@ -197,7 +122,6 @@ const Login = () => {
                 >
                   <img src={azureLogo} alt="azure" width="30px" /> &nbsp; Continue With Azure AD
                 </Button> */}
-              </Grid>
               {/* <Grid item xs={12} textAlign="center">
                 <Typography variant="subtitle2" component="div" sx={{mt: 15}}>
                   I already have an account in ARC by SourceFuse, 

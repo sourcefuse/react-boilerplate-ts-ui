@@ -1,6 +1,5 @@
 import {render, screen, within} from '@testing-library/react';
 import ThemeProvider from 'Providers/theme/ThemeProvider';
-import React from 'react';
 import Input from './Input';
 
 describe('Input', () => {
@@ -17,7 +16,7 @@ describe('Input', () => {
   it('should be display error when errorMessage and isTouched are true', () => {
     render(
       <ThemeProvider>
-        <Input id="test" label="test" errorMessage="error msg" isTouched />
+        <Input id="test" label="test" errorMessage="error msg" />
       </ThemeProvider>,
     );
     const inputFormControl = screen.getByTestId('inputFormControl');

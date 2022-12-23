@@ -1,8 +1,9 @@
 # build environment
-FROM node:alpine as build
+FROM node:16-alpine as build
 WORKDIR /app
+COPY package*.json ./
+RUN npm install --omit=dev
 COPY . .
-RUN npm install
 RUN npm run build
 
 # production environment
@@ -14,11 +15,14 @@ EXPOSE 80
 
 # Copy .env file and shell script to container
 WORKDIR /usr/share/nginx/html
-COPY ./.env .
+COPY ./env.sh .
+COPY ./config.template.json .
 
 # Add bash
 RUN apk add --no-cache bash
 
+# Make our shell script executable
+RUN chmod +x env.sh
 
 # Start Nginx server
 CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]

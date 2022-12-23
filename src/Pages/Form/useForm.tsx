@@ -1,5 +1,6 @@
 import axiosFactory from 'Helpers/axios';
 import useMutation from 'Hooks/useMutation';
+import {FormI} from './utils';
 const axios = axiosFactory();
 export default function useForm() {
   const {mutateAsync, isLoading} = useMutation({
@@ -7,7 +8,7 @@ export default function useForm() {
     successMsg: 'Form submitted',
   });
 
-  const submitForm = async ({salutation, hobby, ...rest}) => {
+  const submitForm = async ({salutation, hobby, ...rest}: FormI) => {
     const data: any = {
       ...rest,
       salutation: salutation?.value,

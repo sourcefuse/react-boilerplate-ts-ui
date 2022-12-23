@@ -25,5 +25,5 @@ yarn-error.log*
 
 .idea
 
-/public/env-config.js
-env-config.js
+/public/config.json
+config.json

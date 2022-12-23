@@ -1,11 +1,19 @@
-import {QueryKey, useQuery as defaultUseQuery} from '@tanstack/react-query';
+import {QueryKey, useQuery as defaultUseQuery, UseQueryOptions} from '@tanstack/react-query';
 import {useSnackbar} from 'notistack';
 
-function useQuery<T>({key, fn, options = {}}: {key: QueryKey; fn: () => Promise<T>; options?: any}) {
+function useQuery<T>({
+  key,
+  fn,
+  options = {},
+}: {
+  key: QueryKey;
+  fn: () => Promise<T>;
+  options?: UseQueryOptions<T, Error | {error: Error}>;
+}) {
   const {enqueueSnackbar} = useSnackbar();
   return defaultUseQuery(key, fn, {
     ...options,
-    onError: (e: Error | {error: Error}) => {
+    onError: (e) => {
       let error = '';
       if (!e) {
         error = 'Something went wrong';

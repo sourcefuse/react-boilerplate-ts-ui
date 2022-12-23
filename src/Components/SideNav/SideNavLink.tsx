@@ -5,6 +5,7 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
@@ -12,8 +13,6 @@ import {useEffect, useState} from 'react';
 import {Link, Location} from 'react-router-dom';
 import {SideNavConfig, SideNavLinkTitle} from './sideNavConfig';
 import styles from './styles';
-
-import ListItemButton from '@mui/material/ListItemButton';
 
 const isChildOf = (child: string, parent: string) => child.indexOf(parent) === 0;
 

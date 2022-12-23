@@ -34,7 +34,6 @@ const Billing = ({
             id="firstName"
             label="First Name"
             value={values?.firstName}
-            isTouched={touched?.firstName}
             errorMessage={errors?.firstName}
             onChange={handleChange}
           />
@@ -44,27 +43,18 @@ const Billing = ({
             id="lastName"
             label="Last Name"
             value={values?.lastName}
-            isTouched={touched?.lastName}
             errorMessage={errors?.lastName}
             onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12}>
-          <Input
-            id="email"
-            label="Email"
-            value={values?.email}
-            isTouched={touched?.email}
-            errorMessage={errors?.email}
-            onChange={handleChange}
-          />
+          <Input id="email" label="Email" value={values?.email} errorMessage={errors?.email} onChange={handleChange} />
         </Grid>
         <Grid item xs={12}>
           <Input
             id="address"
             label="Address"
             value={values?.address}
-            isTouched={touched?.address}
             errorMessage={errors?.address}
             onChange={handleChange}
           />
@@ -100,7 +90,6 @@ const Billing = ({
             id="zipCode"
             label="Zip code"
             value={values?.zipCode}
-            isTouched={touched?.zipCode}
             errorMessage={errors?.zipCode}
             onChange={handleChange}
           />

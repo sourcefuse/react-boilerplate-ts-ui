@@ -1,5 +1,21 @@
 import * as yup from 'yup';
 
+export interface FormI {
+  salutation: {
+    label: string;
+    value: string;
+  };
+  firstName: string;
+  lastName: string;
+  education: string | null;
+  hobby: string[];
+  emailUpdates: string;
+  dob: string | null;
+  skills: string[];
+  badge: string[];
+  region: string;
+}
+
 export const initialValues = {
   salutation: {label: 'Mr', value: 'mr'},
   firstName: '',

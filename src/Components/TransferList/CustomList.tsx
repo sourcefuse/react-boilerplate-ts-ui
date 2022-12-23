@@ -36,13 +36,7 @@ const CustomList: React.FC<Props> = ({items, title, handleToggle, checked, colum
     <>
       <Typography>{title}</Typography>
       <Box component="div">
-        <Input
-          id={`search-${title}`}
-          onChange={onChange}
-          placeholder={'search'}
-          startAdornment={<SearchIcon />}
-          returnValue
-        />
+        <Input id={`search-${title}`} onChange={onChange} placeholder={'search'} startAdornment={<SearchIcon />} />
       </Box>
       <List
         sx={{
