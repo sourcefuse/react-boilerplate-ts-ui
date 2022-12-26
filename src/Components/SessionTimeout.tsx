@@ -78,16 +78,16 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
   const {
     config: {storageSessionTimeKey, expiryTimeInMinute, warningAlertTimeoutInMinute},
   } = useConfig();
-  const intervalFunc = useRef(null);
-  const warningTimerIntervalTime = useRef<number>(null);
+  const intervalFunc = useRef<NodeJS.Timer | null>(null);
+  const warningTimerIntervalTime = useRef<number | null>(null);
   const {isLoggedIn, logout} = useAuth();
 
   const [showPopup, setShowPopup] = useState(false);
   const eventHandler = useCallback(() => {
     if (isLoggedIn) {
-      sessionStorage.setItem(storageSessionTimeKey, (Date.now() + expiryTimeInMinute * MINUTE_TO_MILISEC).toString());
+      sessionStorage.setItem(storageSessionTimeKey!, (Date.now() + expiryTimeInMinute * MINUTE_TO_MILISEC).toString());
     } else {
-      sessionStorage.removeItem(storageSessionTimeKey);
+      sessionStorage.removeItem(storageSessionTimeKey!);
     }
   }, [isLoggedIn]);
   const attachEventListeners = useCallback(() => {
@@ -114,7 +114,7 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
   };
   const resetTimer = () => {
     intervalFunc.current = setInterval(() => {
-      const expiryTime = +sessionStorage.getItem(storageSessionTimeKey) || 0;
+      const expiryTime = +sessionStorage.getItem(storageSessionTimeKey!)! || 0;
       const now = Date.now();
       const deltaTime = expiryTime - now;
       if (deltaTime < 0) {
@@ -135,12 +135,12 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
   };
   useEffect(() => {
     if (isLoggedIn) {
-      clearInterval(intervalFunc.current);
+      clearInterval(intervalFunc.current!);
       attachEventListeners();
       resetTimer();
     }
     return () => {
-      clearInterval(intervalFunc.current);
+      clearInterval(intervalFunc.current!);
       removeEventListeners();
     };
   }, [isLoggedIn]);
@@ -155,7 +155,7 @@ const SessionTimeout = (props: SessionTimeoutProps) => {
           }}
           cancelLogOut={cancelLogOut}
           logout={doCleanup}
-          timer={warningTimerIntervalTime.current}
+          timer={warningTimerIntervalTime.current!}
         />
       )}
     </>
