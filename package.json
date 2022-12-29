@@ -47,6 +47,7 @@
     "eslint-plugin-testing-library": "^5.9.1",
     "formik": "^2.2.9",
     "husky": "^8.0.2",
+    "lodash.clonedeep": "^4.5.0",
     "notistack": "^2.0.8",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",

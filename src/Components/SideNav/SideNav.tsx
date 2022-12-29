@@ -3,10 +3,11 @@ import List from '@mui/material/List';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Toolbar from '@mui/material/Toolbar';
 import arcLogo from 'Images/ARC_logo.png';
-import React from 'react';
+import React, {useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import sideNavConfig from './sideNavConfig';
 import SideNavLink from './SideNavLink';
+import SearchBar from '../SearchBar/SearchBar';
 
 interface Props {
   isPermanent: boolean;
@@ -18,6 +19,8 @@ interface Props {
 
 const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open, isAppBarFullWidth}) => {
   const location = useLocation();
+  const [sideNavList, setSideNavList] = useState(sideNavConfig);
+
   return (
     <SwipeableDrawer
       sx={{
@@ -48,8 +51,9 @@ const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open,
       <Box sx={{display: 'flex', justifyContent: 'center', my: 2}}>
         <img src={arcLogo} width="100px" alt="logo" />
       </Box>
+      <SearchBar componentList={sideNavConfig} updateList={setSideNavList} />
       <List>
-        {sideNavConfig.map((sideNavConfigItem, index) => (
+        {sideNavList.map((sideNavConfigItem, index) => (
           <SideNavLink key={`menu-${index}`} location={location} {...sideNavConfigItem} />
         ))}
       </List>
