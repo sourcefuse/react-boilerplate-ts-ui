@@ -1,6 +1,8 @@
+import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
+import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import TransferList from 'Components/TransferList/TransferList';
 import {useState} from 'react';
 
@@ -18,10 +20,12 @@ const TransferListPage = () => {
     {value: 'ri4', label: 'Right item 4'},
   ]);
   return (
-    <PagePaper title="Transfer List">
-      <ComponentViewer
-        title="Default Transfer List"
-        code={`import ComponentPaper from "Components/ComponentPaper";
+    <Stack direction="row">
+      <Box sx={{flexGrow: 1}}>
+        <PagePaper title="Transfer List">
+          <ComponentViewer
+            title="Default Transfer List"
+            code={`import ComponentPaper from "Components/ComponentPaper";
 import PagePaper from "Components/PagePaper";
 import TransferList from "Components/TransferList/TransferList";
 import { useState } from "react";
@@ -54,17 +58,20 @@ const TransferListPage = () => {
 };
 
 export default TransferListPage;`}
-      >
-        <TransferList left={left} right={right} setLeft={setLeft} setRight={setRight} />
-      </ComponentViewer>
-      <Table
-        data={[
-          {name: 'left,setLeft', type: 'React state', desc: 'useState variables to manage left side list'},
-          {name: 'right,setRight', type: 'React state', desc: 'useState variables to manage right side list'},
-          {name: 'height', type: 'number', defaultVal: 200, desc: 'Set height of transfer window in px'},
-        ]}
-      />
-    </PagePaper>
+          >
+            <TransferList left={left} right={right} setLeft={setLeft} setRight={setRight} />
+          </ComponentViewer>
+          <Table
+            data={[
+              {name: 'left,setLeft', type: 'React state', desc: 'useState variables to manage left side list'},
+              {name: 'right,setRight', type: 'React state', desc: 'useState variables to manage right side list'},
+              {name: 'height', type: 'number', defaultVal: 200, desc: 'Set height of transfer window in px'},
+            ]}
+          />
+        </PagePaper>
+      </Box>
+      <TableOfContent />
+    </Stack>
   );
 };
 

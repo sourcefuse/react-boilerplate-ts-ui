@@ -1,6 +1,8 @@
+import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
+import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import MultiReturnEvent from './MultiReturnEvent';
 import MultiReturnValue from './MultiReturnValue';
 import SingleReturnEvent from './SingleReturnEvent';
@@ -8,10 +10,12 @@ import SingleReturnValue from './SingleReturnValue';
 
 export default function ToggleButtonComponent() {
   return (
-    <PagePaper title="Toggle Button">
-      <ComponentViewer
-        title="Default Toggle Button"
-        code={`import ToggleButton from 'Components/ToggleButton';
+    <Stack direction="row">
+      <Box sx={{flexGrow: 1}}>
+        <PagePaper title="Toggle Button">
+          <ComponentViewer
+            title="Default Toggle Button"
+            code={`import ToggleButton from 'Components/ToggleButton';
 import {useState} from 'react';
 
 export default function SingleReturnEvent() {
@@ -34,12 +38,12 @@ export default function SingleReturnEvent() {
   );
 }
 `}
-      >
-        <SingleReturnValue />
-      </ComponentViewer>
-      <ComponentViewer
-        title="Multi value Toggle Button"
-        code={`import ToggleButton from 'Components/ToggleButton';
+          >
+            <SingleReturnValue />
+          </ComponentViewer>
+          <ComponentViewer
+            title="Multi value Toggle Button"
+            code={`import ToggleButton from 'Components/ToggleButton';
 import {useState} from 'react';
 
 export default function MultiReturnValue() {
@@ -61,12 +65,12 @@ export default function MultiReturnValue() {
   );
 }        
 `}
-      >
-        <MultiReturnValue />
-      </ComponentViewer>
-      <ComponentViewer
-        title="Single toggle button capture event"
-        code={`import ToggleButton from 'Components/ToggleButton';
+          >
+            <MultiReturnValue />
+          </ComponentViewer>
+          <ComponentViewer
+            title="Single toggle button capture event"
+            code={`import ToggleButton from 'Components/ToggleButton';
 import {useState} from 'react';
 
 export default function SingleReturnEvent() {
@@ -89,12 +93,12 @@ export default function SingleReturnEvent() {
   );
 }            
 `}
-      >
-        <SingleReturnEvent />
-      </ComponentViewer>
-      <ComponentViewer
-        title="Multiple toggle button capture event"
-        code={`import ToggleButton from 'Components/ToggleButton';
+          >
+            <SingleReturnEvent />
+          </ComponentViewer>
+          <ComponentViewer
+            title="Multiple toggle button capture event"
+            code={`import ToggleButton from 'Components/ToggleButton';
 import {useState} from 'react';
 
 export default function MultiReturnEvent() {
@@ -124,30 +128,33 @@ export default function MultiReturnEvent() {
   );
 }                    
 `}
-      >
-        <MultiReturnEvent />
-      </ComponentViewer>
+          >
+            <MultiReturnEvent />
+          </ComponentViewer>
 
-      <Table
-        data={[
-          {
-            name: 'align',
-            type: (
-              <>
-                <>{` align 'center'| 'inherit'| 'justify'| 'left'| 'right' `}</>
-              </>
-            ),
-            desc: `'inherit'	
+          <Table
+            data={[
+              {
+                name: 'align',
+                type: (
+                  <>
+                    <>{` align 'center'| 'inherit'| 'justify'| 'left'| 'right' `}</>
+                  </>
+                ),
+                desc: `'inherit'	
             Set the text-align on the table cell content.
             Monetary or generally number fields should be right aligned as that allows you to add them up quickly in your head without having to worry about decimals.`,
-          },
-          {
-            name: 'children',
-            type: 'node',
-            desc: `	The content of the component.`,
-          },
-        ]}
-      />
-    </PagePaper>
+              },
+              {
+                name: 'children',
+                type: 'node',
+                desc: `	The content of the component.`,
+              },
+            ]}
+          />
+        </PagePaper>
+      </Box>
+      <TableOfContent />
+    </Stack>
   );
 }
