@@ -1,5 +1,5 @@
 import {QueryKey, useQuery as defaultUseQuery, UseQueryOptions} from '@tanstack/react-query';
-import {useSnackbar} from 'notistack';
+// import {useSnackbar} from 'notistack';
 
 function useQuery<T>({
   key,
@@ -10,20 +10,20 @@ function useQuery<T>({
   fn: () => Promise<T>;
   options?: UseQueryOptions<T, Error | {error: Error}>;
 }) {
-  const {enqueueSnackbar} = useSnackbar();
+  // const {enqueueSnackbar} = useSnackbar();
   return defaultUseQuery(key, fn, {
     ...options,
-    onError: (e) => {
-      let error = '';
-      if (!e) {
-        error = 'Something went wrong';
-      } else if ('message' in e) {
-        error = e.message;
-      } else {
-        error = e?.error?.message || '';
-      }
-      enqueueSnackbar(error || 'Something went wrong', {variant: 'error'});
-    },
+    // onError: (e) => {
+    //   let error = '';
+    //   if (!e) {
+    //     error = 'Something went wrong';
+    //   } else if ('message' in e) {
+    //     error = e.message;
+    //   } else {
+    //     error = e?.error?.message || '';
+    //   }
+    //   enqueueSnackbar(error || 'Something went wrong', {variant: 'error'});
+    // },
   });
 }
 

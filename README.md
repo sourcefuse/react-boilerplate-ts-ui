@@ -51,10 +51,10 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 | <a name="CLIENT_SECRET"></a> `CLIENT_SECRET`                                     | Secret key known only to the application server and the authorization server. | `string`  |         |   yes    |
 | <a name="AUTH_API_BASE_URL"></a> `AUTH_API_BASE_URL`                             | Base URL of the authentication service.                                       | `string`  |         |   yes    |
 | <a name="APP_API_BASE_URL"></a> `APP_API_BASE_URL`                               |                                                                               | `string`  |         |    no    |
-| <a name="ENABLE_SESSION_TIMEOUT"></a> `ENABLE_SESSION_TIMEOUT`                   |                                                                               | `boolean` | "true"  |    no    |
+| <a name="ENABLE_SESSION_TIMEOUT"></a> `ENABLE_SESSION_TIMEOUT`                   | Session timeout for idle timer                                                | `boolean` | "true"  |    no    |
 | <a name="STORAGE_SESSION_TIMEKEY"></a> `STORAGE_SESSION_TIMEKEY`                 |                                                                               | `string`  |         |    no    |
-| <a name="EXPIRY_TIME_IN_MINUTE"></a> `EXPIRY_TIME_IN_MINUTE`                     |                                                                               | `number`  |         |    no    |
-| <a name="WARNING_ALERT_TIMEOUT_IN_MINUTE"></a> `WARNING_ALERT_TIMEOUT_IN_MINUTE` |                                                                               | `number`  |         |    no    |
+| <a name="EXPIRY_TIME_IN_MINUTE"></a> `EXPIRY_TIME_IN_MINUTE`                     | Session expiry time                                                           | `number`  |         |    no    |
+| <a name="WARNING_ALERT_TIMEOUT_IN_MINUTE"></a> `WARNING_ALERT_TIMEOUT_IN_MINUTE` | Session warning alert time                                                    | `number`  |         |    no    |
 
 ## Learn More
 

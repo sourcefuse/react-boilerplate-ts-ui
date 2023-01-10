@@ -3,12 +3,12 @@ import axiosFactory from '../Helpers/axios';
 import useAuth from './useAuth';
 
 const useAxios = (baseUrl?: string) => {
-  const {authData, refresh} = useAuth();
+  const {authData, refresh, logout} = useAuth();
   const axiosInstance = useMemo(() => axiosFactory(baseUrl), [baseUrl]);
   useEffect(() => {
     axiosInstance.interceptors.request.use(
       (config) => {
-        if (config?.headers && authData?.accessToken) {
+        if (config?.headers && authData?.accessToken && !config.headers.Authorization) {
           config.headers.Authorization = `Bearer ${authData.accessToken}`;
         }
         return config;
@@ -21,14 +21,17 @@ const useAxios = (baseUrl?: string) => {
         const prevRequest = error?.config;
         if ((error?.response?.status === 401 || error?.response?.status === 403) && !prevRequest?.sent) {
           prevRequest.sent = true;
-          const {accessToken} = await refresh();
-          prevRequest.headers.Authorization = `Bearer ${accessToken}`;
-          return axiosInstance(prevRequest);
+          const refreshData = await refresh();
+          if (refreshData?.accessToken) {
+            prevRequest.headers.Authorization = `Bearer ${refreshData.accessToken}`;
+            return axiosInstance(prevRequest);
+          }
+        } else {
+          logout();
         }
-        return Promise.reject(error);
       },
     );
-  }, [axiosInstance, authData.accessToken, refresh]);
+  }, [axiosInstance, authData.accessToken, refresh, logout]);
 
   return axiosInstance;
 };

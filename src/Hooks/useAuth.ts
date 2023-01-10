@@ -52,11 +52,22 @@ export default function useAuth() {
     [loginRequest, setIsLoggedIn, setAuthData],
   );
 
+  const logout = useCallback(() => {
+    queryClient.clear();
+    setIsLoggedIn(false);
+    localStorage.clear();
+    sessionStorage.clear();
+  }, [queryClient, setIsLoggedIn]);
+
   const refresh = useCallback(async () => {
-    const {data} = await refreshRequest({});
-    setAuthData(data);
-    return data;
-  }, [refreshRequest, setAuthData]);
+    try {
+      const {data} = await refreshRequest({});
+      setAuthData(data);
+      return data;
+    } catch (e) {
+      logout();
+    }
+  }, [logout, refreshRequest, setAuthData]);
 
   // const signUp = useCallback(
   //   async (userObj: SignUpForm) => {
@@ -67,13 +78,6 @@ export default function useAuth() {
   //   },
   //   [setIsLogin, setAuthData, signUpRequest],
   // );
-
-  const logout = useCallback(() => {
-    queryClient.clear();
-    setIsLoggedIn(false);
-    localStorage.clear();
-    sessionStorage.clear();
-  }, [queryClient, setIsLoggedIn]);
 
   return {isLoggedIn, login, authData, logout, loginLoading, refresh};
 }
