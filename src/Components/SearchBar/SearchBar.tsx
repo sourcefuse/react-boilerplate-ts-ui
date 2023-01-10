@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import {SideNavConfig, SideNavLinkTitle} from 'Components/SideNav/sideNavConfig';
-import Input from 'Components/Input';
 import {InputAdornment, Stack} from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Input from 'Components/Input';
+import {SideNavConfig, SideNavLinkTitle} from 'Components/SideNav/sideNavConfig';
 import {cloneDeep} from 'lodash';
+import React, {useEffect, useState} from 'react';
 
 const SearchBar: React.FC<{
   componentList: SideNavConfig[];
@@ -43,18 +43,15 @@ const SearchBar: React.FC<{
         onChange={(value) => {
           setSearchQuery(value);
         }}
-        variant="outlined"
         placeholder="Search Components"
         size="small"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton type="submit" aria-label="search">
-                <SearchIcon style={{fill: '#D1D1D1'}} />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
+        endAdornment={
+          <InputAdornment position="end">
+            <IconButton type="submit" aria-label="search">
+              <SearchIcon style={{fill: '#D1D1D1'}} />
+            </IconButton>
+          </InputAdornment>
+        }
       />
     </Stack>
   );

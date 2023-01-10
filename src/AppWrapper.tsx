@@ -9,7 +9,14 @@ import NotificationProvider from 'Providers/NotificationProvider';
 import ThemeProvider from 'Providers/theme/ThemeProvider';
 import {BrowserRouter} from 'react-router-dom';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 2,
+    },
+  },
+});
 
 function AppWrapper() {
   return (

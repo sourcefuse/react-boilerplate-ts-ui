@@ -1,12 +1,11 @@
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
-import {FormControl, FormHelperText, IconButton, Tooltip} from '@mui/material';
-import TextField, {TextFieldProps} from '@mui/material/TextField';
+import {FormControl, FormHelperText, IconButton, OutlinedInput, OutlinedInputProps, Tooltip} from '@mui/material';
 import InputLabel from 'Components/InputLabel';
 import React, {memo} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-export type InputProps = Omit<TextFieldProps, 'variant' | 'onChange'> & {
+export type InputProps = Omit<OutlinedInputProps, 'onChange'> & {
   id: string;
   label?: string;
   copyEnabled?: boolean;
@@ -14,7 +13,7 @@ export type InputProps = Omit<TextFieldProps, 'variant' | 'onChange'> & {
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
   onChange?: (val: string) => void;
-  variant?: TextFieldProps['variant'];
+  helperText?: string;
 };
 
 const getEndAdornment = ({
@@ -24,7 +23,7 @@ const getEndAdornment = ({
   endAdornment,
 }: {
   copyEnabled: boolean;
-  value?: TextFieldProps['value'];
+  value?: OutlinedInputProps['value'];
   isError: boolean | undefined;
   endAdornment: React.ReactNode;
 }) => {
@@ -50,34 +49,30 @@ const Input: React.FC<InputProps> = ({
   helperText,
   disabled = false,
   endAdornment,
-  startAdornment,
   copyEnabled = false,
   errorMessage,
-  type = 'text',
-  variant = 'outlined',
   onChange,
-  defaultValue,
   ...rest
 }) => {
   const isError = !!errorMessage;
   return (
     <FormControl sx={{width: 1}} data-testid="inputFormControl" error={isError} disabled={disabled}>
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
-      <TextField
+      <OutlinedInput
         disabled={disabled}
         data-testid="input"
         value={value}
-        defaultValue={defaultValue}
         id={id}
-        type={type}
-        variant={variant}
-        InputProps={{
-          endAdornment: getEndAdornment({copyEnabled, value, isError, endAdornment}),
-          startAdornment,
+        sx={{marginTop: 2}}
+        inputProps={{
+          sx: {
+            padding: 1,
+          },
         }}
-        onChange={(e: any) => {
+        onChange={(e) => {
           if (onChange) onChange(e?.target?.value);
         }}
+        endAdornment={getEndAdornment({copyEnabled, value, isError, endAdornment})}
         {...rest}
       />
       {(isError || helperText) && <FormHelperText>{isError ? errorMessage : helperText}</FormHelperText>}
