@@ -43,6 +43,19 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+## Inputs
+
+| Name                                                                             | Description                                                                   | Type      | Default | Required |
+| -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | --------- | ------- | :------: |
+| <a name="CLIENT_ID"></a> `CLIENT_ID`                                             | Unique public Identifier for the app.                                         | `string`  | `""`    |   yes    |
+| <a name="CLIENT_SECRET"></a> `CLIENT_SECRET`                                     | Secret key known only to the application server and the authorization server. | `string`  |         |   yes    |
+| <a name="AUTH_API_BASE_URL"></a> `AUTH_API_BASE_URL`                             | Base URL of the authentication service.                                       | `string`  |         |   yes    |
+| <a name="APP_API_BASE_URL"></a> `APP_API_BASE_URL`                               |                                                                               | `string`  |         |    no    |
+| <a name="ENABLE_SESSION_TIMEOUT"></a> `ENABLE_SESSION_TIMEOUT`                   |                                                                               | `boolean` | "true"  |    no    |
+| <a name="STORAGE_SESSION_TIMEKEY"></a> `STORAGE_SESSION_TIMEKEY`                 |                                                                               | `string`  |         |    no    |
+| <a name="EXPIRY_TIME_IN_MINUTE"></a> `EXPIRY_TIME_IN_MINUTE`                     |                                                                               | `number`  |         |    no    |
+| <a name="WARNING_ALERT_TIMEOUT_IN_MINUTE"></a> `WARNING_ALERT_TIMEOUT_IN_MINUTE` |                                                                               | `number`  |         |    no    |
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
