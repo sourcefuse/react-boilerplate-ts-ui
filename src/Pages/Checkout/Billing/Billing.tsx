@@ -101,7 +101,6 @@ const Billing = ({
             value={values?.terms}
             onChange={handleChange}
             options={[{label: 'I accept the terms and conditions', value: true}]}
-            isTouched={!!touched?.terms}
             errorMessage={errors?.terms}
             singleSelect
           />
@@ -115,7 +114,6 @@ const Billing = ({
               {label: 'Save this information for next time', value: 'saveInfo'},
               {label: 'Subscribe to the newsletter', value: 'subscribe'},
             ]}
-            isTouched={!!touched?.opt}
             errorMessage={errors?.opt}
           />
         </Grid>
