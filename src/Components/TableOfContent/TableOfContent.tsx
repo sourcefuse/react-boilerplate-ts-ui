@@ -1,8 +1,8 @@
-import {Box, List, ListItemButton, ListItemText, Stack} from '@mui/material';
-import {useEffect, useRef, useState} from 'react';
-import styles from './styles';
-import {Link} from 'react-router-dom';
 import {TimelineDot} from '@mui/lab';
+import {Box, List, ListItemButton, ListItemText, Stack} from '@mui/material';
+import {useCallback, useEffect, useRef, useState} from 'react';
+import {Link} from 'react-router-dom';
+import styles from './styles';
 
 interface Heading {
   id: string;
@@ -62,7 +62,17 @@ const useTitles = () => {
   return {headings};
 };
 
-const HeadingItem: React.FC<{title: string; id: string; activeId: string}> = ({title, id, activeId}) => {
+const HeadingItem = ({title, id, activeId}: {title: string; id: string; activeId: string}) => {
+  const handleClick = useCallback(() => {
+    const ref = document.getElementById(id)!;
+    setTimeout(function () {
+      ref.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }, 100);
+  }, [id]);
+
   return (
     <Stack direction="row" sx={id === activeId ? {alignItems: 'baseline', margin: '-6px'} : {alignItems: 'baseline'}}>
       {id === activeId && (
@@ -75,15 +85,7 @@ const HeadingItem: React.FC<{title: string; id: string; activeId: string}> = ({t
       <ListItemButton
         component={Link}
         to={`#${id}`}
-        onClick={() => {
-          const ref = document.getElementById(id)!;
-          setTimeout(function () {
-            ref.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-            });
-          }, 100);
-        }}
+        onClick={handleClick}
         sx={id === activeId ? styles.activeLink : styles.link}
       >
         <ListItemText primary={title} />
@@ -101,7 +103,7 @@ const TableOfContent = () => {
   return (
     <Box sx={styles.container}>
       {headings.map((heading) => (
-        <List key={heading.id}>
+        <List key={heading.id} sx={{p: 0}}>
           <HeadingItem id={heading.id} title={heading.title} activeId={activeId} />
         </List>
       ))}
