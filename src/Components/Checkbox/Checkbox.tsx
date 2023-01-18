@@ -1,13 +1,13 @@
 import {
   Checkbox as MuiCheckbox,
+  CheckboxProps as MuiCheckboxProps,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormHelperText,
-  CheckboxProps as MuiCheckboxProps,
 } from '@mui/material';
-import React, {memo, useCallback} from 'react';
 import InputLabel from 'Components/InputLabel';
+import React, {memo, useCallback} from 'react';
 
 export interface CheckboxOption {
   label: string;
