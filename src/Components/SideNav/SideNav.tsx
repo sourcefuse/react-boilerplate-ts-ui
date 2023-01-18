@@ -2,12 +2,12 @@ import {Box} from '@mui/material';
 import List from '@mui/material/List';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Toolbar from '@mui/material/Toolbar';
-import arcLogo from 'Images/ARC_logo.png';
+import arcLogo from 'Assets/ARC_logo.png';
 import React, {useState} from 'react';
 import {useLocation} from 'react-router-dom';
+import SearchBar from '../SearchBar/SearchBar';
 import sideNavConfig from './sideNavConfig';
 import SideNavLink from './SideNavLink';
-import SearchBar from '../SearchBar/SearchBar';
 
 interface Props {
   isPermanent: boolean;

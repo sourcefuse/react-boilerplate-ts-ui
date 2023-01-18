@@ -2,12 +2,12 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import colorScheme from 'Images/circle-frame.png';
-import leftComponent from 'Images/component-left.png';
-import bannerImage from 'Images/home-banner.png';
-import iconGraphy from 'Images/iconography.png';
-import typography from 'Images/typography.png';
-import widgetImage from 'Images/widget-img.png';
+import colorScheme from 'Assets/circle-frame.png';
+import leftComponent from 'Assets/component-left.png';
+import bannerImage from 'Assets/home-banner.png';
+import iconGraphy from 'Assets/iconography.png';
+import typography from 'Assets/typography.png';
+import widgetImage from 'Assets/widget-img.png';
 const border = '1px solid  #D9D9D9;';
 // const paddinghorizontal = '0 15px';
 

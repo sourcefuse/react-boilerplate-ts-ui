@@ -9,10 +9,10 @@ import {styled} from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import {Box} from '@mui/system';
+import sfLogo from 'Assets/SF_logo.png';
 import Breadcrumb from 'Components/Breadcrumb/Breadcrumb';
 import FullScreen from 'Components/FullScreen';
 import useAuth from 'Hooks/useAuth';
-import sfLogo from 'Images/SF_logo.png';
 import {memo, useState} from 'react';
 import Button from './Button';
 

@@ -1,11 +1,11 @@
 import {Box, Grid, Typography} from '@mui/material';
+import arcLogo from 'Assets/ARC_logo.png';
+import heroLogo from 'Assets/hero.jpg';
 import Button from 'Components/Button';
 import Form from 'Components/Forms/Form';
 import FormInput from 'Components/Forms/FormInput';
 import FormPasswordInput from 'Components/Forms/FormPasswordInput';
 import useAuth from 'Hooks/useAuth';
-import arcLogo from 'Images/ARC_logo.png';
-import heroLogo from 'Images/hero.jpg';
 import * as yup from 'yup';
 
 const initialValues = {

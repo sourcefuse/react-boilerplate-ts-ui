@@ -2,7 +2,7 @@ import {Box} from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import componentImage from 'Images/components.png';
+import componentImage from 'Assets/components.png';
 import React, {memo} from 'react';
 import {Link as RouterLink} from 'react-router-dom';
 import componentLists from '../Components/ComponentList';
