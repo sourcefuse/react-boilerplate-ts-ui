@@ -5,10 +5,10 @@ import {memo, ReactNode} from 'react';
 
 const PagePaper = ({title, children, description}: {title: string; children: ReactNode; description?: string}) => {
   return (
-    <Paper sx={{padding: ' 20px 0 0 15px'}}>
+    <Paper sx={{padding: ' 20px 0 0 15px', boxShadow: 'none'}}>
       {title && (
         <>
-          <Typography sx={{pl: 2, pt: 2, textTransform: 'capitalize', fontWeight: 'bold'}} component="h3" variant="h4">
+          <Typography sx={{pl: 2, pt: 2, textTransform: 'capitalize', fontWeight: 'bold'}} component="h1" variant="h4">
             {title}
           </Typography>
         </>

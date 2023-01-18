@@ -50,7 +50,12 @@ export default function ComponentViewer({children, title, code}: {children: Reac
       <Grid container>
         <Grid container item xs={12} sx={{my: 2}}>
           <Grid item xs={6}>
-            <Typography variant="subtitle2" sx={{fontWeight: 'bold', mt: 2}}>
+            <Typography
+              id={title}
+              className="headings"
+              variant="subtitle2"
+              sx={{fontWeight: 'bold', mt: 2, scrollMarginTop: '200px'}}
+            >
               {title}
             </Typography>
           </Grid>
