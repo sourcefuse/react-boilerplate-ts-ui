@@ -70,17 +70,12 @@ export default CheckboxPage;`}
               {
                 name: 'onChange',
                 type: 'func',
-                desc: (
-                  <>
-                    <Typography>Callback fired when the value is changed</Typography>
-                    <br />
-                    <Typography sx={{fontWeight: 'bold'}}>Signature:</Typography>
-                    <Typography>fn(event: object) =&gt; void</Typography>
-                    <Typography>
-                      ( or if <b>returnValue</b> is <b>True</b> fn(value: string) =&gt; void)
-                    </Typography>
-                  </>
-                ),
+                desc: <Typography>Callback fired when the value is changed</Typography>,
+              },
+              {
+                name: 'other props',
+                type: 'CheckboxProps',
+                desc: 'Props of MUI checkbox are also available.',
               },
             ]}
           />

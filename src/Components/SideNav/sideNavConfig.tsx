@@ -137,6 +137,11 @@ const sideNavConfig: SideNavConfig[] = [
             link: '/components/form/form-input',
             visible: true,
           },
+          {
+            label: 'FormCheckbox',
+            link: '/components/form/form-checkbox',
+            visible: true,
+          },
         ],
       },
       {

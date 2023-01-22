@@ -24,7 +24,7 @@ describe('Checkbox', () => {
     it('should be multi select by default', () => {
       const MockCheckBox = () => {
         const [value, setValue]: any = useState([]);
-        return <Checkbox id="test" value={value} onChange={setValue} label="test" options={options} returnValue />;
+        return <Checkbox id="test" value={value} onChange={setValue} label="test" options={options} />;
       };
       render(<MockCheckBox />);
       const optionOne = screen.getByRole('checkbox', {name: /frontend/i});
@@ -45,17 +45,7 @@ describe('Checkbox', () => {
     it('should be single select if singleSelect flag is passed', () => {
       const MockCheckBox = () => {
         const [value, setValue]: any = useState('');
-        return (
-          <Checkbox
-            id="test"
-            value={value}
-            onChange={setValue}
-            label="test"
-            options={options}
-            returnValue
-            singleSelect
-          />
-        );
+        return <Checkbox id="test" value={value} onChange={setValue} label="test" options={options} singleSelect />;
       };
       render(<MockCheckBox />);
       const optionOne = screen.getByRole('checkbox', {name: /frontend/i});
