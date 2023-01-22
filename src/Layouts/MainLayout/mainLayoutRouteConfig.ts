@@ -1,3 +1,4 @@
+import FormCheckboxPage from 'Pages/FormCheckboxPage';
 import {lazy} from 'react';
 
 const Home = lazy(() => import('Pages/Home'));
@@ -105,6 +106,10 @@ const mainLayoutRouteConfig = [
   {
     path: '/components/form/form-input',
     component: FormInputPage,
+  },
+  {
+    path: '/components/form/form-checkbox',
+    component: FormCheckboxPage,
   },
   {
     path: '/components/stepper-tab',

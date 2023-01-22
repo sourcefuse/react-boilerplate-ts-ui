@@ -1,10 +1,10 @@
 import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
+import Form from 'Components/Forms/Form';
+import FormCheckbox from 'Components/Forms/FormCheckbox';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
-import Form from 'Components/Forms/Form';
-import FormCheckbox from 'Components/Forms/FormCheckbox';
 
 const submitHandler = () => {
   return null;
