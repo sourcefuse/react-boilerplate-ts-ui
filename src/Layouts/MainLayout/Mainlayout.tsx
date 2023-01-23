@@ -38,7 +38,7 @@ const Main = styled('main', {
 
 const Mainlayout = () => {
   const [open, setOpen] = useState(true);
-  const toggleDrawer = () => setOpen((prev) => !prev);
+  const toggleDrawer = useCallback(() => setOpen((prev) => !prev), []);
   const [isPermanent, setIsPermanent] = useState(true);
   const theme = useTheme();
   const {userData} = useMainLayout();

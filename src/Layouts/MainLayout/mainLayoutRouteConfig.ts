@@ -1,4 +1,3 @@
-import FormCheckboxPage from 'Pages/FormCheckboxPage';
 import {lazy} from 'react';
 
 const Home = lazy(() => import('Pages/Home'));
@@ -22,6 +21,7 @@ const SliderPage = lazy(() => import('Pages/SliderPage'));
 const FABPage = lazy(() => import('Pages/FAB'));
 const Components = lazy(() => import('Pages/Components'));
 const FormInputPage = lazy(() => import('Pages/FormInputPage'));
+const FormCheckboxPage = lazy(() => import('Pages/FormCheckboxPage'));
 
 const mainLayoutRouteConfig = [
   {
