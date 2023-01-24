@@ -75,7 +75,6 @@ const Payment = ({prevStep, amount, type}: {prevStep: () => void; amount: number
           onChange={setPaymentMethod}
           options={options}
           label={'Select payment method'}
-          returnValue
         />
       </Grid>
       <Grid item container spacing={2} justifyContent="space-between" sx={{marginTop: 1}}>

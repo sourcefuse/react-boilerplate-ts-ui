@@ -1,21 +1,28 @@
-import {FormControl, FormControlLabel, FormHelperText, RadioGroup} from '@mui/material';
+import {FormControl, FormControlLabel, FormGroupProps, FormHelperText, RadioGroup} from '@mui/material';
 import Radio from '@mui/material/Radio';
 import Typography from '@mui/material/Typography';
 import InputLabel from 'Components/InputLabel';
-import React, {memo} from 'react';
+import React, {memo, ReactNode, useCallback} from 'react';
 
-interface Props {
-  id: string;
-  label?: string;
-  value?: any;
-  onChange?: any;
-  options: Array<{label: string; value: string}>;
-  helperText?: string;
-  disabled?: boolean;
-  returnValue?: boolean;
+export interface RadioButtonOption {
+  label: string;
+  value: string;
 }
 
-const RadioButton: React.FC<Props> = ({
+export interface RadioButtonProps extends FormGroupProps {
+  id: string;
+  label?: string;
+  children?: ReactNode;
+  defaultValue?: string;
+  name?: string;
+  onChange?: any;
+  value?: any;
+  options: RadioButtonOption[];
+  helperText?: string;
+  disabled?: boolean;
+}
+
+const RadioButton: React.FC<RadioButtonProps> = ({
   id,
   value,
   label,
@@ -23,23 +30,22 @@ const RadioButton: React.FC<Props> = ({
   options = [],
   helperText,
   disabled = false,
-  returnValue,
   ...rest
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (returnValue) {
-      onChange(e?.target?.value);
-    } else {
-      onChange(e);
-    }
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange(e.target.value);
+    },
+    [onChange],
+  );
+
   return (
     <FormControl sx={{width: 1}} disabled={disabled} data-test="radioButtonFormControl">
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <RadioGroup value={value} sx={{marginTop: 1}} name={id} aria-label={id} onChange={handleChange} id={id} {...rest}>
-        {options.map((option, index) => (
+        {options.map((option: RadioButtonOption) => (
           <FormControlLabel
-            key={`${id}-${index}`}
+            key={option.label}
             value={option?.value}
             control={<Radio />}
             label={<Typography sx={{textTransform: 'capitalize'}}>{option?.label}</Typography>}
