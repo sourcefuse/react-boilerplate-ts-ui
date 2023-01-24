@@ -157,6 +157,11 @@ const sideNavConfig: SideNavConfig[] = [
             link: '/components/form/form-date-time-picker',
             visible: true,
           },
+          {
+            label: 'FormRadioButton',
+            link: '/components/form/form-radio-button',
+            visible: true,
+          },
         ],
       },
       {

@@ -72,7 +72,14 @@ export default RadioButtonPage;`}
               {
                 name: 'onChange',
                 type: 'func',
-                desc: <Typography>Callback fired when the value is changed</Typography>,
+                desc: (
+                  <>
+                    <Typography>Callback fired when the value is changed</Typography>
+                    <br />
+                    <Typography sx={{fontWeight: 'bold'}}>Signature:</Typography>
+                    <Typography>fn(val: any) =&gt; void</Typography>
+                  </>
+                ),
               },
             ]}
           />

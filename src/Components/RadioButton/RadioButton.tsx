@@ -14,8 +14,7 @@ export interface RadioButtonProps extends FormGroupProps {
   label?: string;
   children?: ReactNode;
   defaultValue?: string;
-  name?: string;
-  onChange?: any;
+  onChange?: (val: any) => void;
   value?: any;
   options: RadioButtonOption[];
   helperText?: string;
@@ -34,7 +33,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 }) => {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(e.target.value);
+      onChange!(e.target.value);
     },
     [onChange],
   );
