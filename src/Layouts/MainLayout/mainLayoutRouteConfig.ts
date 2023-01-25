@@ -20,6 +20,7 @@ const RatingPage = lazy(() => import('Pages/RatingPage'));
 const SliderPage = lazy(() => import('Pages/SliderPage'));
 const FABPage = lazy(() => import('Pages/FAB'));
 const Components = lazy(() => import('Pages/Components'));
+const FormInputPage = lazy(() => import('Pages/FormInputPage'));
 
 const mainLayoutRouteConfig = [
   {
@@ -65,6 +66,10 @@ const mainLayoutRouteConfig = [
   {
     path: '/components/form',
     component: Form,
+  },
+  {
+    path: '/components/form/form-input',
+    component: FormInputPage,
   },
   {
     path: '/components/stepper-tab',

@@ -2,7 +2,7 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
 import {FormControl, FormHelperText, IconButton, OutlinedInput, OutlinedInputProps, Tooltip} from '@mui/material';
 import InputLabel from 'Components/InputLabel';
-import React, {memo} from 'react';
+import React, {memo, useCallback} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 export type InputProps = Omit<OutlinedInputProps, 'onChange'> & {
@@ -55,6 +55,12 @@ const Input: React.FC<InputProps> = ({
   ...rest
 }) => {
   const isError = !!errorMessage;
+  const handleChangeEvent = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (onChange) onChange(e?.target?.value);
+    },
+    [onChange],
+  );
   return (
     <FormControl sx={{width: 1}} data-testid="inputFormControl" error={isError} disabled={disabled}>
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
@@ -69,9 +75,7 @@ const Input: React.FC<InputProps> = ({
             padding: 1,
           },
         }}
-        onChange={(e) => {
-          if (onChange) onChange(e?.target?.value);
-        }}
+        onChange={handleChangeEvent}
         endAdornment={getEndAdornment({copyEnabled, value, isError, endAdornment})}
         {...rest}
       />

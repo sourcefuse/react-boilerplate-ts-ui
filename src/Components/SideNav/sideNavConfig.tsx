@@ -131,6 +131,13 @@ const sideNavConfig: SideNavConfig[] = [
         label: 'form',
         link: '/components/form',
         visible: true,
+        children: [
+          {
+            label: 'FormInput',
+            link: '/components/form/form-input',
+            visible: true,
+          },
+        ],
       },
       {
         label: 'Data',
