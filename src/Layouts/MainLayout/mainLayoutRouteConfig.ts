@@ -27,6 +27,7 @@ const FormDatePickerPage = lazy(() => import('Pages/FormDatePickerPage'));
 const FormDateTimePickerPage = lazy(() => import('Pages/FormDateTimePickerPage'));
 const FormRadioButtonPage = lazy(() => import('Pages/FormRadioButtonPage'));
 const FormDropdownPage = lazy(() => import('Pages/FormDropdownPage'));
+const FormInputPage = lazy(() => import('Pages/FormInputPage'));
 
 const mainLayoutRouteConfig = [
   {
@@ -100,6 +101,10 @@ const mainLayoutRouteConfig = [
   {
     path: '/components/form/form-dropdown',
     component: FormDropdownPage,
+  },
+  {
+    path: '/components/form/form-input',
+    component: FormInputPage,
   },
   {
     path: '/components/stepper-tab',

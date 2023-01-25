@@ -167,6 +167,11 @@ const sideNavConfig: SideNavConfig[] = [
             link: '/components/form/form-dropdown',
             visible: true,
           },
+          {
+            label: 'FormInput',
+            link: '/components/form/form-input',
+            visible: true,
+          },
         ],
       },
       {
