@@ -23,6 +23,7 @@ const Components = lazy(() => import('Pages/Components'));
 const FormInputPage = lazy(() => import('Pages/FormInputPage'));
 const FormCheckboxPage = lazy(() => import('Pages/FormCheckboxPage'));
 const FormSliderPage = lazy(() => import('Pages/FormSliderPage'));
+const FormDatePickerPage = lazy(() => import('Pages/FormDatePickerPage'));
 
 const mainLayoutRouteConfig = [
   {
@@ -80,6 +81,10 @@ const mainLayoutRouteConfig = [
   {
     path: '/components/form/form-slider',
     component: FormSliderPage,
+  },
+  {
+    path: '/components/form/form-date-picker',
+    component: FormDatePickerPage,
   },
   {
     path: '/components/stepper-tab',

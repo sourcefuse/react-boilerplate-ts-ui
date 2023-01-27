@@ -147,6 +147,11 @@ const sideNavConfig: SideNavConfig[] = [
             link: '/components/form/form-slider',
             visible: true,
           },
+          {
+            label: 'FormDatePicker',
+            link: '/components/form/form-date-picker',
+            visible: true,
+          },
         ],
       },
       {
