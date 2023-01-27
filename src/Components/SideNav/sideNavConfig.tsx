@@ -152,6 +152,11 @@ const sideNavConfig: SideNavConfig[] = [
             link: '/components/form/form-date-picker',
             visible: true,
           },
+          {
+            label: 'FormDateTimePicker',
+            link: '/components/form/form-date-time-picker',
+            visible: true,
+          },
         ],
       },
       {
