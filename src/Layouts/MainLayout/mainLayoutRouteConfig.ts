@@ -29,6 +29,7 @@ const FormDateTimePickerPage = lazy(() => import('Pages/FormDateTimePickerPage')
 const FormRadioButtonPage = lazy(() => import('Pages/FormRadioButtonPage'));
 const FormDropdownPage = lazy(() => import('Pages/FormDropdownPage'));
 const FormInputPage = lazy(() => import('Pages/FormInputPage'));
+const FormDropdownPage = lazy(() => import('Pages/FormDropdownPage'));
 
 const mainLayoutRouteConfig = [
   {
@@ -110,6 +111,10 @@ const mainLayoutRouteConfig = [
   {
     path: '/components/form/form-checkbox',
     component: FormCheckboxPage,
+  },
+  {
+    path: '/components/form/form-dropdown',
+    component: FormDropdownPage,
   },
   {
     path: '/components/stepper-tab',
