@@ -64,7 +64,6 @@ const Billing = ({
             id="country"
             label="Country"
             value={values?.country}
-            isTouched={!!touched?.country}
             errorMessage={errors?.country}
             options={[{label: 'India', value: 'india'}]}
             onChange={handleChange}
@@ -75,7 +74,6 @@ const Billing = ({
             id="state"
             label="State"
             value={values?.state}
-            isTouched={!!touched?.state}
             errorMessage={errors?.state}
             options={[
               {label: 'Punjab', value: 'punjab'},

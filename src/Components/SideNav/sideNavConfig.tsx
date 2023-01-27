@@ -162,6 +162,11 @@ const sideNavConfig: SideNavConfig[] = [
             link: '/components/form/form-radio-button',
             visible: true,
           },
+          {
+            label: 'FormDropdown',
+            link: '/components/form/form-dropdown',
+            visible: true,
+          },
         ],
       },
       {
