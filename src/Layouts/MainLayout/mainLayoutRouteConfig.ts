@@ -22,6 +22,7 @@ const FABPage = lazy(() => import('Pages/FAB'));
 const Components = lazy(() => import('Pages/Components'));
 const FormInputPage = lazy(() => import('Pages/FormInputPage'));
 const FormCheckboxPage = lazy(() => import('Pages/FormCheckboxPage'));
+const FormSliderPage = lazy(() => import('Pages/FormSliderPage'));
 
 const mainLayoutRouteConfig = [
   {
@@ -75,6 +76,10 @@ const mainLayoutRouteConfig = [
   {
     path: '/components/form/form-checkbox',
     component: FormCheckboxPage,
+  },
+  {
+    path: '/components/form/form-slider',
+    component: FormSliderPage,
   },
   {
     path: '/components/stepper-tab',
