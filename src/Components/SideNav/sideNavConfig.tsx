@@ -162,6 +162,26 @@ const sideNavConfig: SideNavConfig[] = [
             link: '/components/form/form-radio-button',
             visible: true,
           },
+          {
+            label: 'FormDropdown',
+            link: '/components/form/form-dropdown',
+            visible: true,
+          },
+          {
+            label: 'FormInput',
+            link: '/components/form/form-input',
+            visible: true,
+          },
+          {
+            label: 'FormCheckbox',
+            link: '/components/form/form-checkbox',
+            visible: true,
+          },
+          {
+            label: 'FormDropdown',
+            link: '/components/form/form-dropdown',
+            visible: true,
+          },
         ],
       },
       {

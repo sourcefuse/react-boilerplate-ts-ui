@@ -35,7 +35,6 @@ export default function Form() {
                   id="salutation"
                   label="Salutation"
                   value={values?.salutation}
-                  isTouched={!!touched?.salutation}
                   errorMessage={errors?.salutation}
                   options={[
                     {label: 'Mr', value: 'mr'},
@@ -77,7 +76,6 @@ export default function Form() {
                   id="education"
                   label="Education"
                   value={values?.education}
-                  isTouched={!!touched?.education}
                   errorMessage={errors?.education}
                   options={[
                     {label: 'Graduation', value: 'graduation'},
@@ -93,7 +91,6 @@ export default function Form() {
                   id="hobby"
                   label="Hobby"
                   value={values?.hobby}
-                  isTouched={!!touched?.hobby}
                   errorMessage={errors.hobby}
                   options={[
                     {label: 'Swimming', value: 'swimming'},

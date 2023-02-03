@@ -1,84 +1,114 @@
-import {Autocomplete, Box, FormControl, FormHelperText, TextField} from '@mui/material';
-import InputLabel from 'Components/InputLabel';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import Autocomplete, {AutocompleteProps} from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
+import TextField from '@mui/material/TextField';
 import React from 'react';
 
-interface Props {
+export interface DropdownProps
+  extends Omit<AutocompleteProps<{value: any; label: string}, boolean, boolean, boolean>, 'renderInput' | 'options'> {
   id: string;
   label?: string;
   disabled?: boolean;
-  isTouched?: boolean;
   enableAutoComplete?: boolean;
-  returnValue?: boolean;
   multiple?: boolean;
   helperText?: string;
   errorMessage?: any;
   options: Array<{value: any; label: string}>;
-  value?: any;
   onChange?: any;
+  width?: number;
+  disableBorder?: boolean;
+  isLoading?: boolean;
+}
+
+interface Props extends DropdownProps {
+  value?: any;
 }
 
 const Dropdown: React.FC<Props> = ({
   id,
   errorMessage,
-  isTouched,
   disabled,
   label,
   helperText,
   options,
   onChange,
   enableAutoComplete = false,
-  returnValue,
   value,
   multiple,
+  width,
+  disableBorder,
+  isLoading,
   ...rest
 }) => {
-  const isError = errorMessage && isTouched && !disabled;
+  const isError = !!errorMessage;
   const newId = enableAutoComplete ? id : `${id}-${Date.now()}`;
   if (enableAutoComplete) multiple = false;
 
   return (
-    <FormControl sx={{width: 1}} data-testid="dropdownFormControl">
-      {label && <InputLabel htmlFor={newId}>{label}</InputLabel>}
+    <FormControl sx={{width: width ?? 1}} data-testid="dropdownFormControl" error={isError}>
       <Autocomplete
         id={newId}
         options={options}
+        loading={isLoading}
         freeSolo={enableAutoComplete}
-        disableClearable={enableAutoComplete}
+        disableClearable={!enableAutoComplete}
         isOptionEqualToValue={(option, val) => option?.value === val?.value}
-        getOptionLabel={(option) => option?.label}
-        renderOption={(props, option) => (
-          <Box component="li" {...props} key={option.value}>
-            {option.label}
-          </Box>
-        )}
+        getOptionLabel={(option) => {
+          if (typeof option !== 'string') {
+            return option?.label || '';
+          }
+          return '';
+        }}
+        disableCloseOnSelect={multiple}
+        renderOption={(props, option, {selected}) => {
+          return (
+            <React.Fragment key={option.value}>
+              {multiple ? (
+                <li {...props}>
+                  <Checkbox
+                    icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+                    checkedIcon={<CheckBoxIcon fontSize="small" />}
+                    checked={selected}
+                  />
+                  {option.label}
+                </li>
+              ) : (
+                <Box component="li" {...props}>
+                  {option.label}
+                </Box>
+              )}
+            </React.Fragment>
+          );
+        }}
         sx={{
           '& .MuiOutlinedInput-root': {
             padding: '1px',
           },
+          '& .MuiOutlinedInput-notchedOutline': {
+            ...(disableBorder && {border: 'none'}),
+          },
+          '& .MuiInputLabel-root': {
+            top: -8,
+          },
+          '& .MuiInputLabel-shrink': {
+            top: 0,
+          },
         }}
         disabled={disabled}
         onChange={(e, val) => {
-          if (returnValue) {
-            onChange(val);
-          } else {
-            const event = {
-              target: {
-                name: id,
-                value: val,
-              },
-            };
-            onChange(event);
-          }
+          onChange(val);
         }}
         renderInput={(params) => (
           <TextField
+            label={label}
             error={!!isError}
             {...params}
-            sx={{
-              marginTop: 2,
-            }}
             onChange={(e) => {
-              if (enableAutoComplete) {
+              if (enableAutoComplete && !multiple) {
                 let val: any = null;
                 if (e.target.value) {
                   val = {
@@ -86,17 +116,7 @@ const Dropdown: React.FC<Props> = ({
                     value: e.target.value,
                   };
                 }
-                if (returnValue) {
-                  onChange(val);
-                } else {
-                  const event = {
-                    target: {
-                      name: id,
-                      value: val,
-                    },
-                  };
-                  onChange(event);
-                }
+                onChange(val);
               }
             }}
             inputProps={{
@@ -104,8 +124,9 @@ const Dropdown: React.FC<Props> = ({
               readOnly: !enableAutoComplete,
               sx: {
                 caretColor: !enableAutoComplete && 'transparent',
+                cursor: !enableAutoComplete && 'pointer !important',
               },
-              ...(enableAutoComplete && {value: value?.label || ''}),
+              ...(enableAutoComplete && !multiple && {value: value?.label || ''}),
             }}
           />
         )}

@@ -1,51 +1,44 @@
 import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
-import Dropdown from 'Components/Dropdown/Dropdown';
+import Form from 'Components/Forms/Form';
+import FormDropdown from 'Components/Forms/FormDropdown';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
-import {useState} from 'react';
 
+const submitHandler = () => {
+  return null;
+};
 const options = [
   {label: 'Mr', value: 'mr'},
   {label: 'Mrs', value: 'mrs'},
   {label: 'Ms', value: 'ms'},
 ];
 
-const DropdownPage = () => {
-  const [value, setValue] = useState(options[0]);
+const FormDropdownPage = () => {
   return (
     <Stack direction="row">
       <Box sx={{flexGrow: 1}}>
-        <PagePaper title="Dropdown/Autocomplete">
+        <PagePaper
+          title="FormDropdown"
+          description="FormDropdown component provides with a hassle free way to manage state of your formik sliders. This component uses Formik internally to manage state for your sliders."
+        >
           <ComponentViewer
-            title="Default Dropdown"
-            code={`import ComponentPaper from 'Components/ComponentPaper';
-import Dropdown from 'Components/Dropdown';
-import PagePaper from 'Components/PagePaper';
-import {useState} from 'react';
+            title="Default FormDropdown"
+            code={`
+        import Form from 'Components/Forms/Form';
+        import FormSlider from 'Components/Forms/FormDropdown';
 
-const options = [
-  {label: 'Mr', value: 'mr'},
-  {label: 'Mrs', value: 'mrs'},
-  {label: 'Ms', value: 'ms'},
-];
-
-const DropdownPage = () => {
-  const [value, setValue] = useState(options[0]);
-  return (
-    <PagePaper title="Input">
-      <ComponentPaper>
-        <Dropdown id="salutation" label="Salutation" value={value} options={options} onChange={setValue} returnValue />
-      </ComponentPaper>
-    </PagePaper>
-  );
-};
-
-export default DropdownPage;
-`}
+            <Form initialValues={{salutation: null}} onSubmit={() => {}}>
+              <FormDropdown id="salutation" label="Salutation" options={options} />
+            </Form>
+                `}
           >
-            <Dropdown id="salutation" label="Salutation" value={value} options={options} onChange={setValue} />
+            <Box sx={{width: 200}}>
+              <Form initialValues={{salutation: null}} onSubmit={submitHandler}>
+                <FormDropdown id="salutation" label="Salutation" options={options} />
+              </Form>
+            </Box>
           </ComponentViewer>
 
           <Table
@@ -80,4 +73,4 @@ export default DropdownPage;
   );
 };
 
-export default DropdownPage;
+export default FormDropdownPage;
