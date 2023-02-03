@@ -37,7 +37,7 @@ const CheckboxPage = () => {
   return (
     <PagePaper title="Dropdown/Autocomplete">
       <ComponentPaper>
-        <Checkbox id="skills" value={value} onChange={setValue} options={options} label="Skills" returnValue row />
+        <Checkbox id="skills" value={value} onChange={setValue} options={options} label="Skills" row />
       </ComponentPaper>
     </PagePaper>
   );
@@ -45,7 +45,7 @@ const CheckboxPage = () => {
 
 export default CheckboxPage;`}
           >
-            <Checkbox id="skills" value={value} onChange={setValue} options={options} label="Skills" returnValue row />
+            <Checkbox id="skills" value={value} onChange={setValue} options={options} label="Skills" row />
           </ComponentViewer>
 
           <Table
@@ -55,16 +55,9 @@ export default CheckboxPage;`}
               {name: 'options', type: '{label:string, value:any}', desc: 'Options for checkbox'},
               {name: 'value', type: 'string | number'},
               {name: 'disabled', type: 'bool', defaultVal: 'false'},
-              {name: 'isTouched', type: 'bool', defaultVal: 'false'},
               {name: 'helperText', type: 'string', desc: 'Display text below checkbox'},
               {name: 'singleSelect', type: 'bool', defaultVal: 'false', desc: 'If only one value needs to be selected'},
               {name: 'row', type: 'bool', defaultVal: 'false', desc: 'Display checkbox horizontally'},
-              {
-                name: 'returnValue',
-                type: 'bool',
-                defaultVal: false,
-                desc: 'If onChange expects value as param',
-              },
               {
                 name: 'errorMessage',
                 type: 'string',
@@ -77,17 +70,12 @@ export default CheckboxPage;`}
               {
                 name: 'onChange',
                 type: 'func',
-                desc: (
-                  <>
-                    <Typography>Callback fired when the value is changed</Typography>
-                    <br />
-                    <Typography sx={{fontWeight: 'bold'}}>Signature:</Typography>
-                    <Typography>fn(event: object) =&gt; void</Typography>
-                    <Typography>
-                      ( or if <b>returnValue</b> is <b>True</b> fn(value: string) =&gt; void)
-                    </Typography>
-                  </>
-                ),
+                desc: <Typography>Callback fired when the value is changed</Typography>,
+              },
+              {
+                name: 'other props',
+                type: 'CheckboxProps',
+                desc: 'Props of MUI checkbox are also available.',
               },
             ]}
           />

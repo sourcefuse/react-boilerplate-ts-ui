@@ -127,7 +127,6 @@ export default function Form() {
                     {label: 'Backend', value: 'backend'},
                     {label: 'Devops', value: 'devops'},
                   ]}
-                  isTouched={!!touched?.skills}
                   label="Skills"
                   errorMessage={errors?.skills}
                   row
@@ -144,7 +143,6 @@ export default function Form() {
                     {label: 'East', value: 'east'},
                     {label: 'West', value: 'west'},
                   ]}
-                  isTouched={!!touched?.region}
                   label="Region"
                   errorMessage={errors?.region}
                   row
