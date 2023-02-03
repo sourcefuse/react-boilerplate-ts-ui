@@ -1,5 +1,6 @@
 import Checkbox, {CheckboxProps} from 'Components/Checkbox/Checkbox';
 import {useFormikContext} from 'formik';
+import React from 'react';
 
 type Formik = {
   [x: string]: string;
