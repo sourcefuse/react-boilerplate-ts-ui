@@ -20,14 +20,17 @@ const FormSliderPage = () => {
         >
           <ComponentViewer
             title="Default FormSlider"
-            code={`
-        import Form from 'Components/Forms/Form';
-        import FormSlider from 'Components/Forms/FormSlider';
+            code={`import Form from 'Components/Forms/Form';
+import FormSlider from 'Components/Forms/FormSlider';
 
-            <Form initialValues={{slider: 1}} onSubmit={() => {}}>
-              <FormSlider id="slider" label="Brightness" min={1} max={10} />
-            </Form>
-                `}
+const FormSliderPage = () => {
+  return(
+    <Form initialValues={{slider: 4}} onSubmit={() => {}}>
+      <FormSlider id="slider" label="Brightness" min={1} max={10} />
+    </Form>
+  )
+}
+`}
           >
             <Box sx={{width: 200}}>
               <Form initialValues={{slider: 4}} onSubmit={submitHandler}>
@@ -38,14 +41,17 @@ const FormSliderPage = () => {
 
           <ComponentViewer
             title="Discrete FormSlider"
-            code={`
-        import Form from 'Components/Forms/Form';
-        import FormSlider from 'Components/Forms/FormSlider';
+            code={`import Form from 'Components/Forms/Form';
+import FormSlider from 'Components/Forms/FormSlider';
 
-            <Form initialValues={{slider: 3}} onSubmit={() => {}}>
-              <FormSlider id="slider" label="Brightness" marks min={1} max={10} />
-            </Form>
-                `}
+const FormSliderPage = () => {
+  return(
+    <Form initialValues={{slider: 3}} onSubmit={() => {}}>
+      <FormSlider id="slider" label="Brightness" marks min={1} max={10} />
+    </Form>
+  )
+}
+`}
           >
             <Box sx={{width: 200}}>
               <Form initialValues={{slider: 3}} onSubmit={submitHandler}>
@@ -56,18 +62,21 @@ const FormSliderPage = () => {
 
           <ComponentViewer
             title="Range FormSlider"
-            code={`
-        import Form from 'Components/Forms/Form';
-        import FormSlider from 'Components/Forms/FormSlider';
+            code={`import Form from 'Components/Forms/Form';
+import FormSlider from 'Components/Forms/FormSlider';
 
-            <Form initialValues={{slider: [30, 50]}} onSubmit={() => {}}>
-              <FormSlider id="slider" label="Temperature" marks min={1} max={10} />
-            </Form>
-                `}
+const FormSliderPage = () => {
+  return(
+    <Form initialValues={{slider: [30, 50]}} onSubmit={() => {}}>
+      <FormSlider id="slider" label="Temperature" marks min={1} max={100} minDistance={10} />
+    </Form>
+  )
+}
+`}
           >
             <Box sx={{width: 500}}>
               <Form initialValues={{slider: [30, 50]}} onSubmit={submitHandler}>
-                <FormSlider id="slider" label="Temperature" marks min={1} max={100} />
+                <FormSlider id="slider" label="Temperature" marks min={1} max={100} minDistance={10} />
               </Form>
             </Box>
           </ComponentViewer>
@@ -76,7 +85,7 @@ const FormSliderPage = () => {
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for form slider'},
               {name: 'label', type: 'string', desc: 'Label for form slider'},
-              {name: 'other props', type: 'SliderProps', desc: 'Accepts all the other props of MUI Slider'},
+              {name: 'other props', type: 'SliderProps', desc: 'Accepts all the other props of Slider'},
             ]}
           />
         </PagePaper>

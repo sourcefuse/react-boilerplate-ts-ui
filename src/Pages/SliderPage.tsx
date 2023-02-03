@@ -11,25 +11,21 @@ const SliderPage = () => {
       <Box sx={{flexGrow: 1}}>
         <PagePaper title="Slider">
           <ComponentViewer
-            title="Default Button"
-            code={`import PagePaper from "Components/PagePaper";
-import Slider from "Components/Slider";
+            title="Default Slider"
+            code={`import Slider from "Components/Slider";
 import React from "react";
 
 const SliderPage = () => {
   return (
-    <PagePaper title="Slider">
       <Slider
         size="small"
         defaultValue={70}
         aria-label="Small"
         valueLabelDisplay="auto"
       />
-    </PagePaper>
   );
 };
-
-export default SliderPage;`}
+`}
           >
             <Slider size="small" defaultValue={70} aria-label="Small" valueLabelDisplay="auto" />
           </ComponentViewer>
@@ -142,7 +138,7 @@ export default SliderPage;`}
                 name: 'onChange',
                 type: 'func',
                 defaultVal: '',
-                desc: "Callback function that is fired when the slider's value changed.\n\nSignature:\nfunction(event: Event, value: number | Array<number>, activeThumb: number) => void\nevent: The event source of the callback. You can pull out the new value by accessing event.target.value (any). Warning: This is a generic event not a change event.\nvalue: The new value.\nactiveThumb: Index of the currently moved thumb.",
+                desc: "Callback function that is fired when the slider's value changed.\n\nSignature:\nfunction(val: any) => void\nevent: The event source of the callback.",
               },
               {
                 name: 'onChangeCommitted',
@@ -209,6 +205,16 @@ export default SliderPage;`}
                 type: 'func\n| string',
                 defaultVal: '(x) => x',
                 desc: "The format function the value label's value.\nWhen a function is provided, it should have the following signature:\n- {number} value The value label's value to format - {number} index The value label's index to format",
+              },
+              {
+                name: 'minDistance',
+                type: 'number',
+                desc: 'A min distance between two thumbs can be enforced using this. By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the disableSwap prop. ',
+              },
+              {
+                name: 'otherProps',
+                type: 'SliderProps',
+                desc: 'All the MUI slider props are also available',
               },
             ]}
           />
