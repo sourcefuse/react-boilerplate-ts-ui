@@ -1,9 +1,11 @@
-import {FormControl, FormHelperText, SxProps, Theme, useTheme} from '@mui/material';
+import {useTheme} from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
 import TextField, {TextFieldProps} from '@mui/material/TextField';
-import {DatePicker as MuiDatePicker} from '@mui/x-date-pickers/DatePicker';
+import {DateTimePicker as MuiDateTimePicker} from '@mui/x-date-pickers/DateTimePicker';
 import React, {memo, useCallback} from 'react';
 
-export interface DatePickerProps {
+export interface DateTimePickerProps {
   id: string;
   label?: string;
   onChange?: (val: Date | null) => void;
@@ -11,14 +13,13 @@ export interface DatePickerProps {
   errorMessage?: string;
   helperText?: string;
   minDateTime?: Date;
-  sx?: SxProps<Theme>;
 }
 
-interface Props extends DatePickerProps {
+interface Props extends DateTimePickerProps {
   value?: any;
 }
 
-const DatePicker: React.FC<Props> = ({id, label, value, onChange, errorMessage, sx, disabled, helperText, ...rest}) => {
+const DateTimePicker: React.FC<Props> = ({id, label, value, onChange, errorMessage, disabled, helperText, ...rest}) => {
   const theme = useTheme();
   const isError = !!errorMessage;
   const handleChange = useCallback(
@@ -56,8 +57,8 @@ const DatePicker: React.FC<Props> = ({id, label, value, onChange, errorMessage, 
   );
 
   return (
-    <FormControl sx={{width: 1, ...sx}} data-testid="datePickerFormControl" disabled={disabled} error={isError}>
-      <MuiDatePicker
+    <FormControl sx={{width: 1}} data-testid="datePickerFormControl" disabled={disabled} error={isError}>
+      <MuiDateTimePicker
         InputAdornmentProps={{
           position: 'start',
         }}
@@ -72,4 +73,4 @@ const DatePicker: React.FC<Props> = ({id, label, value, onChange, errorMessage, 
   );
 };
 
-export default memo(DatePicker);
+export default memo(DateTimePicker);

@@ -69,7 +69,6 @@ export default function Form() {
                   value={values?.dob}
                   onChange={handleChange}
                   errorMessage={errors?.dob}
-                  isTouched={!!touched?.dob}
                   label="D.O.B"
                 />
               </Grid>

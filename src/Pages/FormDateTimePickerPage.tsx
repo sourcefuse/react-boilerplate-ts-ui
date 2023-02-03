@@ -1,39 +1,41 @@
 import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
-import DatePicker from 'Components/DatePicker/DatePicker';
+import Form from 'Components/Forms/Form';
+import FormDateTimePicker from 'Components/Forms/FormDateTimePicker';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
-import {useState} from 'react';
 
-const DatePickerPage = () => {
-  const [value, setValue] = useState<Date | null>(null);
+const submitHandler = () => {
+  return null;
+};
+
+const FormDateTimePickerPage = () => {
   return (
     <Stack direction="row">
       <Box sx={{flexGrow: 1}}>
-        <PagePaper title="DatePicker">
+        <PagePaper
+          title="FormDatePicker"
+          description="FormDatePicker component provides with a hassle free way to manage state of your date pickers. This component uses Formik internally to manage state for your date pickers."
+        >
           <ComponentViewer
-            title="Default DatePicker"
-            code={`import ComponentPaper from 'Components/ComponentPaper';
-import DatePicker from 'Components/DatePicker/DatePicker';
-import PagePaper from 'Components/PagePaper';
-import {useState} from 'react';
+            title="Default FormDateTimePicker"
+            code={`
+        import Form from 'Components/Forms/Form';
+        import FormSlider from 'Components/Forms/FormDateTimePicker';
 
-const DatePickerPage = () => {
-  const [value, setValue] = useState(null);
-  return (
-    <PagePaper title="DatePicker">
-      <ComponentPaper>
-        <DatePicker id="dob" value={value} onChange={setValue} label="D.O.B" returnValue />
-      </ComponentPaper>
-    </PagePaper>
-  );
-};
-
-export default DatePickerPage;`}
+            <Form initialValues={{date: new Date('2023-01-27')}} onSubmit={() => {}}>
+              <FormDateTimePicker id="date" label="D.O.B" />
+            </Form>
+                `}
           >
-            <DatePicker id="dob" value={value} onChange={setValue} label="D.O.B" />
+            <Box sx={{width: 250}}>
+              <Form initialValues={{date: new Date('2023-01-27')}} onSubmit={submitHandler}>
+                <FormDateTimePicker id="date" label="D.O.B" />
+              </Form>
+            </Box>
           </ComponentViewer>
+
           <Table
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for input field'},
@@ -64,4 +66,4 @@ export default DatePickerPage;`}
   );
 };
 
-export default DatePickerPage;
+export default FormDateTimePickerPage;
