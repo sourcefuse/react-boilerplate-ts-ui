@@ -1,4 +1,3 @@
-import FormCheckboxPage from 'Pages/FormCheckboxPage';
 import {lazy} from 'react';
 
 const Home = lazy(() => import('Pages/Home'));
@@ -21,7 +20,6 @@ const RatingPage = lazy(() => import('Pages/RatingPage'));
 const SliderPage = lazy(() => import('Pages/SliderPage'));
 const FABPage = lazy(() => import('Pages/FAB'));
 const Components = lazy(() => import('Pages/Components'));
-const FormInputPage = lazy(() => import('Pages/FormInputPage'));
 const FormCheckboxPage = lazy(() => import('Pages/FormCheckboxPage'));
 const FormSliderPage = lazy(() => import('Pages/FormSliderPage'));
 const FormDatePickerPage = lazy(() => import('Pages/FormDatePickerPage'));
@@ -29,7 +27,6 @@ const FormDateTimePickerPage = lazy(() => import('Pages/FormDateTimePickerPage')
 const FormRadioButtonPage = lazy(() => import('Pages/FormRadioButtonPage'));
 const FormDropdownPage = lazy(() => import('Pages/FormDropdownPage'));
 const FormInputPage = lazy(() => import('Pages/FormInputPage'));
-const FormDropdownPage = lazy(() => import('Pages/FormDropdownPage'));
 
 const mainLayoutRouteConfig = [
   {

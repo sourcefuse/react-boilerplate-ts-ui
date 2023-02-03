@@ -17,7 +17,7 @@ const Billing = ({
   billingData: BillingType;
   setBillingData: React.Dispatch<React.SetStateAction<BillingType>>;
 }) => {
-  const {errors, touched, values, handleSubmit, handleChange} = useFormik({
+  const {errors, values, handleSubmit, handleChange} = useFormik({
     initialValues: {...initialValues, ...billingData},
     validationSchema,
     onSubmit: async (val) => {

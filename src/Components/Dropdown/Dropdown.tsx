@@ -1,6 +1,6 @@
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, {AutocompleteProps} from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
@@ -8,7 +8,8 @@ import FormHelperText from '@mui/material/FormHelperText';
 import TextField from '@mui/material/TextField';
 import React from 'react';
 
-export interface DropdownProps {
+export interface DropdownProps
+  extends Omit<AutocompleteProps<{value: any; label: string}, boolean, boolean, boolean>, 'renderInput' | 'options'> {
   id: string;
   label?: string;
   disabled?: boolean;
@@ -18,13 +19,9 @@ export interface DropdownProps {
   errorMessage?: any;
   options: Array<{value: any; label: string}>;
   onChange?: any;
-  ListboxComponent?: any;
-  ListboxProps?: any;
   width?: number;
   disableBorder?: boolean;
   isLoading?: boolean;
-  filterOptions?: any;
-  onInputChange?: any;
 }
 
 interface Props extends DropdownProps {
@@ -49,7 +46,7 @@ const Dropdown: React.FC<Props> = ({
 }) => {
   const isError = !!errorMessage;
   const newId = enableAutoComplete ? id : `${id}-${Date.now()}`;
-  // if (enableAutoComplete) multiple = false;
+  if (enableAutoComplete) multiple = false;
 
   return (
     <FormControl sx={{width: width ?? 1}} data-testid="dropdownFormControl" error={isError}>
@@ -60,7 +57,12 @@ const Dropdown: React.FC<Props> = ({
         freeSolo={enableAutoComplete}
         disableClearable={!enableAutoComplete}
         isOptionEqualToValue={(option, val) => option?.value === val?.value}
-        getOptionLabel={(option) => option?.label || ''}
+        getOptionLabel={(option) => {
+          if (typeof option !== 'string') {
+            return option?.label || '';
+          }
+          return '';
+        }}
         disableCloseOnSelect={multiple}
         renderOption={(props, option, {selected}) => {
           return (
