@@ -1,9 +1,13 @@
-import {useTheme} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import TextField, {TextFieldProps} from '@mui/material/TextField';
-import {DateTimePicker as MuiDateTimePicker} from '@mui/x-date-pickers/DateTimePicker';
+import {
+  DateTimePicker as MuiDateTimePicker,
+  DateTimePickerProps as MuiDateTimePickerProps,
+} from '@mui/x-date-pickers/DateTimePicker';
 import React, {memo, useCallback} from 'react';
+
+type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
 export interface DateTimePickerProps {
   id: string;
@@ -19,8 +23,16 @@ interface Props extends DateTimePickerProps {
   value?: any;
 }
 
-const DateTimePicker: React.FC<Props> = ({id, label, value, onChange, errorMessage, disabled, helperText, ...rest}) => {
-  const theme = useTheme();
+const DateTimePicker: React.FC<Props & PartialBy<MuiDateTimePickerProps<any, Date>, 'renderInput'>> = ({
+  id,
+  label,
+  value,
+  onChange,
+  errorMessage,
+  disabled,
+  helperText,
+  ...rest
+}) => {
   const isError = !!errorMessage;
   const handleChange = useCallback(
     (date: Date | null) => {
@@ -28,33 +40,7 @@ const DateTimePicker: React.FC<Props> = ({id, label, value, onChange, errorMessa
     },
     [onChange],
   );
-  const handleRenderInput = useCallback(
-    (params: TextFieldProps) => (
-      <TextField
-        {...params}
-        variant="outlined"
-        label={label}
-        sx={{
-          '& .MuiOutlinedInput-input': {
-            paddingY: 1,
-          },
-          '& .MuiInputLabel-root': {
-            top: -8,
-          },
-          '& .MuiInputLabel-shrink': {
-            top: 0,
-          },
-          ...(theme.palette.mode !== 'dark' && {
-            bgcolor: '#E4E7EE',
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'transparent',
-            },
-          }),
-        }}
-      />
-    ),
-    [label, theme.palette.mode],
-  );
+  const handleRenderInput = useCallback((params: TextFieldProps) => <TextField {...params} label={label} />, [label]);
 
   return (
     <FormControl sx={{width: 1}} data-testid="datePickerFormControl" disabled={disabled} error={isError}>
