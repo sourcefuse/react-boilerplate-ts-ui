@@ -1,7 +1,6 @@
-import React, {useCallback} from 'react';
 import Checkbox, {CheckboxProps} from 'Components/Checkbox/Checkbox';
 import {useFormikContext} from 'formik';
-import React from 'react';
+import React, {useCallback} from 'react';
 
 type Formik = {
   [x: string]: string;
