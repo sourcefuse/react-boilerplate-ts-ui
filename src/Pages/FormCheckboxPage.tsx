@@ -6,12 +6,14 @@ import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import Form from 'Components/Forms/Form';
 import FormCheckbox from 'Components/Forms/FormCheckbox';
 
+const submitHandler = () => {
+  return null;
+};
+
 const FormCheckboxPage = () => {
   const initialValues = {
     skills: [],
   };
-
-  const submitHandler = () => {};
 
   const options = [
     {label: 'Frontend', value: 'frontend'},
@@ -27,10 +29,11 @@ const FormCheckboxPage = () => {
         >
           <ComponentViewer
             title="Default Checkbox"
-            code={`import Form from 'Components/Forms/Form';
+            code={`
+            import Form from 'Components/Forms/Form';
             import FormCheckbox from 'Components/Forms/FormCheckbox';
             
-            const TransferListPage = () => {
+            const FormCheckboxDemo = () => {
               const initialValues = {
                 skills: [],
               };
@@ -49,7 +52,7 @@ const FormCheckboxPage = () => {
               );
             };
             
-            export default TransferListPage;
+            export default FormCheckboxDemo;
             `}
           >
             <Form initialValues={initialValues} onSubmit={submitHandler}>
@@ -58,10 +61,11 @@ const FormCheckboxPage = () => {
           </ComponentViewer>
           <ComponentViewer
             title="Single Select Checkbox"
-            code={`import Form from 'Components/Forms/Form';
+            code={`
+            import Form from 'Components/Forms/Form';
             import FormCheckbox from 'Components/Forms/FormCheckbox';
             
-            const TransferListPage = () => {
+            const FormCheckboxDemo = () => {
               const initialValues = {
                 skills: [],
               };
@@ -80,7 +84,7 @@ const FormCheckboxPage = () => {
               );
             };
             
-            export default TransferListPage;
+            export default FormCheckboxDemo;
             `}
           >
             <Form initialValues={initialValues} onSubmit={submitHandler}>

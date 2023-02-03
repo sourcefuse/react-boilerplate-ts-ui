@@ -6,8 +6,13 @@ import {
   FormHelperText,
   CheckboxProps as MuiCheckboxProps,
 } from '@mui/material';
-import React, {memo} from 'react';
+import React, {memo, useCallback} from 'react';
 import InputLabel from 'Components/InputLabel';
+
+export interface CheckboxOption {
+  label: string;
+  value: any;
+}
 
 export interface CheckboxProps extends MuiCheckboxProps {
   label?: string;
@@ -15,8 +20,8 @@ export interface CheckboxProps extends MuiCheckboxProps {
   errorMessage?: string | Array<any>;
   row?: boolean;
   singleSelect?: boolean;
-  options: Array<Object>;
-  onChange?: ((value: React.ChangeEvent<HTMLInputElement> | Object | string | Array<any>) => void) | any;
+  options: CheckboxOption[];
+  onChange?: (val: any) => void;
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -33,30 +38,33 @@ const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
   const isError = !!errorMessage;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!onChange) return;
-    if (singleSelect) {
-      const val = value === e?.target?.name ? '' : e.target.name;
-      onChange(val);
-    } else if (Array.isArray(value)) {
-      const index = value.findIndex((val) => val === e?.target?.value);
-      const newValue = [...value];
-      if (index === -1) {
-        newValue.push(e.target.value);
-      } else {
-        newValue.splice(index, 1);
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!onChange) return;
+      if (singleSelect) {
+        const val = value === e?.target?.name ? '' : e.target.name;
+        onChange(val);
+      } else if (Array.isArray(value)) {
+        const index = value.findIndex((val) => val === e?.target?.value);
+        const newValue = [...value];
+        if (index === -1) {
+          newValue.push(e.target.value);
+        } else {
+          newValue.splice(index, 1);
+        }
+        onChange(newValue);
       }
-      onChange(newValue);
-    }
-  };
+    },
+    [onChange, singleSelect, value],
+  );
 
   return (
     <FormControl disabled={disabled} data-testid="checkboxFormControl">
       {label && <InputLabel>{label}</InputLabel>}
       <FormGroup row={row}>
-        {options.map((option: any, index) => (
+        {options.map((option: CheckboxOption) => (
           <FormControlLabel
-            key={index}
+            key={option.label}
             control={
               <MuiCheckbox
                 checked={
