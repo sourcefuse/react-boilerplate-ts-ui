@@ -41,7 +41,6 @@ const RadioButtonPage = () => {
           id="emailUpdates"
           value={emailUpdates}
           onChange={setEmailUpdates}
-          returnValue
           options={options}
           label={'Opt in for email Updates'}
           row
@@ -57,7 +56,6 @@ export default RadioButtonPage;`}
               id="emailUpdates"
               value={emailUpdates}
               onChange={setEmailUpdates}
-              returnValue
               options={options}
               label={'Opt in for email Updates'}
             />{' '}
@@ -72,12 +70,6 @@ export default RadioButtonPage;`}
               {name: 'disabled', type: 'bool', defaultVal: 'false'},
               {name: 'helperText', type: 'string', desc: 'Display text below radio button field'},
               {
-                name: 'returnValue',
-                type: 'bool',
-                defaultVal: false,
-                desc: 'If onChange expects value as param',
-              },
-              {
                 name: 'onChange',
                 type: 'func',
                 desc: (
@@ -85,10 +77,7 @@ export default RadioButtonPage;`}
                     <Typography>Callback fired when the value is changed</Typography>
                     <br />
                     <Typography sx={{fontWeight: 'bold'}}>Signature:</Typography>
-                    <Typography>fn(event: object) =&gt; void</Typography>
-                    <Typography>
-                      ( or if <b>returnValue</b> is <b>True</b> fn(value: string) =&gt; void)
-                    </Typography>
+                    <Typography>fn(val: any) =&gt; void</Typography>
                   </>
                 ),
               },
