@@ -20,17 +20,17 @@ const FormDropdownPage = () => {
     <Stack direction="row">
       <Box sx={{flexGrow: 1}}>
         <PagePaper
-          title="FormSlider"
-          description="FormSlider component provides with a hassle free way to manage state of your formik sliders. This component uses Formik internally to manage state for your sliders."
+          title="FormDropdown"
+          description="FormDropdown component provides with a hassle free way to manage state of your formik sliders. This component uses Formik internally to manage state for your sliders."
         >
           <ComponentViewer
-            title="Default FormSlider"
+            title="Default FormDropdown"
             code={`
         import Form from 'Components/Forms/Form';
-        import FormSlider from 'Components/Forms/FormSlider';
+        import FormSlider from 'Components/Forms/FormDropdown';
 
-            <Form initialValues={{slider: 1}} onSubmit={() => {}}>
-              <FormSlider id="slider" label="Brightness" min={1} max={10} />
+            <Form initialValues={{salutation: null}} onSubmit={() => {}}>
+              <FormDropdown id="salutation" label="Salutation" options={options} />
             </Form>
                 `}
           >
