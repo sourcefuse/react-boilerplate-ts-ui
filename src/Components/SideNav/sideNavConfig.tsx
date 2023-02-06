@@ -182,6 +182,11 @@ const sideNavConfig: SideNavConfig[] = [
             link: '/components/form/form-dropdown',
             visible: true,
           },
+          {
+            label: 'FormToggleButton',
+            link: '/components/form/form-toggle-button',
+            visible: true,
+          },
         ],
       },
       {

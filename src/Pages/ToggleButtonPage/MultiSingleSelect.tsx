@@ -1,14 +1,15 @@
 import ToggleButton from 'Components/ToggleButton';
-import {useState} from 'react';
+import React, {useState} from 'react';
 
-export default function MultiReturnValue() {
+export default function MultiSingleSelect() {
   const [value, setValue] = useState<{label: string; value: string}[]>([]);
   return (
     <ToggleButton
-      id="multiple"
+      id="single-select"
       value={value}
       onChange={setValue}
-      label="Multiple Toggle Multi Select"
+      singleSelect
+      label="Multiple Toggle Single Select"
       options={[
         {label: 'Frontend', value: 'frontend'},
         {label: 'Backend', value: 'backend'},
