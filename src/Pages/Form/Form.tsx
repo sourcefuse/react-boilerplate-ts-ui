@@ -1,111 +1,82 @@
 import {Box, Stack} from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Button from 'Components/Button/Button';
-import Checkbox from 'Components/Checkbox/Checkbox';
-import DatePicker from 'Components/DatePicker/DatePicker';
-import Dropdown from 'Components/Dropdown/Dropdown';
-import Input from 'Components/Input/Input';
 import PagePaper from 'Components/PagePaper';
-import RadioButton from 'Components/RadioButton/RadioButton';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
-import ToggleButton from 'Components/ToggleButton';
-import {useFormik} from 'formik';
+import Form from 'Components/Forms/Form';
 import useForm from './useForm';
 import {initialValues, validationSchema} from './utils';
+import FormDropdown from 'Components/Forms/FormDropdown';
+import FormInput from 'Components/Forms/FormInput';
+import FormDatePicker from 'Components/Forms/FormDatePicker';
+import FormRadioButton from 'Components/Forms/FormRadioButton';
+import FormCheckbox from 'Components/Forms/FormCheckbox';
+import FormToggleButton from 'Components/Forms/FormToggleButton';
 
-export default function Form() {
+export default function FormPage() {
   const {submitForm, isLoading} = useForm();
-  const {errors, touched, values, handleSubmit, handleChange, resetForm} = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: async (val) => {
-      await submitForm(val);
-      resetForm();
-    },
-  });
 
   return (
     <Stack direction="row">
       <Box sx={{flexGrow: 1}}>
         <PagePaper title="Form">
-          <form onSubmit={handleSubmit}>
+          <Form
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={async (val: typeof initialValues, actions: any) => {
+              actions.resetForm({
+                values: initialValues,
+              });
+              await submitForm(val);
+            }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={12} md={12} lg={2}>
-                <Dropdown
+                <FormDropdown
                   id="salutation"
                   label="Salutation"
-                  value={values?.salutation}
-                  errorMessage={errors?.salutation}
                   options={[
                     {label: 'Mr', value: 'mr'},
                     {label: 'Mrs', value: 'mrs'},
                     {label: 'Ms', value: 'ms'},
                   ]}
-                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={5}>
-                <Input
-                  id="firstName"
-                  label="First Name"
-                  value={values?.firstName}
-                  errorMessage={errors?.firstName}
-                  onChange={handleChange}
-                />
+                <FormInput id="firstName" label="First Name" />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={5}>
-                <Input
-                  id="lastName"
-                  label="Last Name"
-                  value={values?.lastName}
-                  errorMessage={errors?.lastName}
-                  onChange={handleChange}
-                />
+                <FormInput id="lastName" label="Last Name" />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
-                <DatePicker
-                  id="dob"
-                  value={values?.dob}
-                  onChange={handleChange}
-                  errorMessage={errors?.dob}
-                  label="D.O.B"
-                />
+                <FormDatePicker id="dob" label="D.O.B" />
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
-                <Dropdown
+                <FormDropdown
                   id="education"
                   label="Education"
-                  value={values?.education}
-                  errorMessage={errors?.education}
                   options={[
                     {label: 'Graduation', value: 'graduation'},
                     {label: 'Post graduation', value: 'postGraduation'},
                     {label: 'Doctorate', value: 'doctorate'},
                   ]}
-                  onChange={handleChange}
                   enableAutoComplete
                 />
               </Grid>
               <Grid item xs={12}>
-                <Dropdown
+                <FormDropdown
                   id="hobby"
                   label="Hobby"
-                  value={values?.hobby}
-                  errorMessage={errors.hobby}
                   options={[
                     {label: 'Swimming', value: 'swimming'},
                     {label: 'Singing', value: 'singing'},
                     {label: 'Dancing', value: 'dancing'},
                   ]}
-                  onChange={handleChange}
                   multiple
                 />
               </Grid>
               <Grid item xs={12}>
-                <RadioButton
+                <FormRadioButton
                   id="emailUpdates"
-                  value={values?.emailUpdates}
-                  onChange={handleChange}
                   options={[
                     {label: `I'm In`, value: 'yes'},
                     {label: `I'm Out`, value: 'no'},
@@ -114,25 +85,20 @@ export default function Form() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <Checkbox
+                <FormCheckbox
                   id="skills"
-                  value={values?.skills}
-                  onChange={handleChange}
                   options={[
                     {label: 'Frontend', value: 'frontend'},
                     {label: 'Backend', value: 'backend'},
                     {label: 'Devops', value: 'devops'},
                   ]}
                   label="Skills"
-                  errorMessage={errors?.skills}
                   row
                 />
               </Grid>
               <Grid item xs={12}>
-                <Checkbox
+                <FormCheckbox
                   id="region"
-                  value={values?.region}
-                  onChange={handleChange}
                   options={[
                     {label: 'North', value: 'North'},
                     {label: 'south', value: 'south'},
@@ -140,31 +106,26 @@ export default function Form() {
                     {label: 'West', value: 'west'},
                   ]}
                   label="Region"
-                  errorMessage={errors?.region}
                   row
                   singleSelect
                 />
               </Grid>
               <Grid item xs={12}>
-                <ToggleButton
+                <FormToggleButton
                   id="badge"
-                  value={values?.badge}
-                  onChange={handleChange}
                   options={[
                     {label: 'Badge1', value: 'badge1'},
                     {label: 'Badge2', value: 'badge2'},
                     {label: 'Badge3', value: 'badge3'},
                   ]}
-                  isTouched={!!touched?.badge}
                   label="Region"
-                  errorMessage={errors?.badge}
                   row
                 />
               </Grid>
             </Grid>
             <Grid container spacing={2} justifyContent="flex-end" sx={{marginTop: 1}}>
               <Grid item>
-                <Button type="button" variant="outlined" onClick={resetForm}>
+                <Button type="reset" variant="outlined">
                   Reset
                 </Button>
               </Grid>
@@ -174,10 +135,9 @@ export default function Form() {
                 </Button>
               </Grid>
             </Grid>
-          </form>
+          </Form>
         </PagePaper>
       </Box>
-      <TableOfContent />
     </Stack>
   );
 }
