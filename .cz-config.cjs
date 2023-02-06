@@ -28,7 +28,7 @@ module.exports = {
 
   allowTicketNumber: true,
   isTicketNumberRequired: true,
-  ticketNumberPrefix: 'SRA-',
+  ticketNumberPrefix: 'ARC-',
   ticketNumberRegExp: '\\d{1,5}',
 
   // override the messages, defaults are as follows

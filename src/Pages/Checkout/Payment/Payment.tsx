@@ -35,7 +35,7 @@ const Payment = ({prevStep, amount, type}: {prevStep: () => void; amount: number
   const url =
     type === PlanType.Orders ? process.env.REACT_APP_ORDERS_API_PATH : process.env.REACT_APP_SUBSCRIPTION_API_PATH;
 
-  const {submitForm, isLoading} = usePayment(url);
+  const {submitForm, isLoading} = usePayment(url!);
   const [paymentMethod, setPaymentMethod] = useState(PaymentType.RazorPay);
 
   const handlePayment = async () => {
