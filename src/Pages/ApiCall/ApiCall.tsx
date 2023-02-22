@@ -18,6 +18,7 @@ const ApiCall = () => {
         data={data}
       />
       <CodeBlock
+        initial=""
         fullCode={`// ApiCall.js
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
