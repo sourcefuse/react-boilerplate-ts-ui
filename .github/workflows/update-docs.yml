@@ -18,7 +18,7 @@ jobs:
         with:
           source_file: 'README.md'
           destination_repo: 'sourcefuse/arc-docs'
-          destination_folder: 'arc-ui-docs'
+          destination_folder: 'docs/arc-ui-docs'
           rename: 'index.md'
           user_email: 'saurabh.jindal@email.com'
           user_name: 'saurabhjindal-SF'
