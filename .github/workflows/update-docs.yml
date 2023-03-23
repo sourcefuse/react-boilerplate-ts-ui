@@ -11,15 +11,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Pushes test file
+      - name: Pushes readme file
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.ARC_DOCS_TOKEN }}
         with:
           source_file: 'README.md'
           destination_repo: 'sourcefuse/arc-docs'
           destination_folder: 'docs/arc-ui-docs'
           rename: 'index.md'
-          user_email: 'saurabh.jindal@email.com'
+          user_email: 'saurabh.jindal@gmail.com'
           user_name: 'saurabhjindal-SF'
           commit_message: ${{ github.event.head_commit.message }}
