@@ -14,12 +14,12 @@ jobs:
       - name: Pushes readme file
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.ARC_DOCS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           source_file: 'README.md'
           destination_repo: 'sourcefuse/arc-docs'
           destination_folder: 'docs/arc-ui-docs'
           rename: 'index.md'
-          user_email: 'saurabh.jindal@gmail.com'
-          user_name: 'saurabhjindal-SF'
+          user_email: 'github-actions@github.com'
+          user_name: 'github-actions'
           commit_message: ${{ github.event.head_commit.message }}
