@@ -27,6 +27,10 @@ src/
     └── layoutRouteConfig.ts (contains top level route mapping for layouts)
 ```
 
+## How to use
+
+The react app is pre configured with mui material theme , auth guards , notification provider , error boundary , routes , page layouts and many reuseable components inside the components directory . To Use the template, clone the repo , Add the [environment variables](#Inputs) to connect to ARC backend service.
+
 ## <a id="prereqs"></a> Pre-Requisites
 
 - [node.js](https://nodejs.dev/download/)

@@ -1,0 +1,26 @@
+name: Update-docs
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+jobs:
+  transfer-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Pushes readme file
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.ARC_DOCS_API_TOKEN_GITHUB }}
+        with:
+          source_file: 'README.md'
+          destination_repo: 'sourcefuse/arc-docs'
+          destination_folder: 'docs/arc-ui-docs'
+          rename: 'index.md'
+          user_email: 'github-actions@github.com'
+          user_name: ${{ github.actor }}
+          commit_message: ${{ github.event.head_commit.message }}
