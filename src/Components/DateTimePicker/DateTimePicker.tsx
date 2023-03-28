@@ -1,10 +1,10 @@
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
+import {FormControl, FormHelperText, SxProps, Theme} from '@mui/material';
 import TextField, {TextFieldProps} from '@mui/material/TextField';
 import {
   DateTimePicker as MuiDateTimePicker,
   DateTimePickerProps as MuiDateTimePickerProps,
 } from '@mui/x-date-pickers/DateTimePicker';
+import InputLabel from 'Components/InputLabel';
 import React, {memo, useCallback} from 'react';
 
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
@@ -17,6 +17,7 @@ export interface DateTimePickerProps {
   errorMessage?: string;
   helperText?: string;
   minDateTime?: Date;
+  sx?: SxProps<Theme>;
 }
 
 interface Props extends DateTimePickerProps {
@@ -29,6 +30,7 @@ const DateTimePicker: React.FC<Props & PartialBy<MuiDateTimePickerProps<any, Dat
   value,
   onChange,
   errorMessage,
+  sx,
   disabled,
   helperText,
   ...rest
@@ -40,13 +42,31 @@ const DateTimePicker: React.FC<Props & PartialBy<MuiDateTimePickerProps<any, Dat
     },
     [onChange],
   );
-  const handleRenderInput = useCallback((params: TextFieldProps) => <TextField {...params} label={label} />, [label]);
+
+  const handleRenderInput = useCallback(
+    (params: TextFieldProps) => {
+      return (
+        <>
+          {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
+          <TextField sx={{marginTop: 2}} {...params} />
+        </>
+      );
+    },
+    [id, label],
+  );
 
   return (
-    <FormControl sx={{width: 1}} data-testid="datePickerFormControl" disabled={disabled} error={isError}>
+    <FormControl sx={{width: 1, ...sx}} data-testid="datePickerFormControl" disabled={disabled} error={isError}>
       <MuiDateTimePicker
         InputAdornmentProps={{
           position: 'start',
+        }}
+        InputProps={{
+          sx: {
+            '.MuiInputBase-input': {
+              padding: 1,
+            },
+          },
         }}
         disabled={disabled}
         value={value}

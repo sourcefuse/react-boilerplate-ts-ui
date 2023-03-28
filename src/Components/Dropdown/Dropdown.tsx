@@ -6,6 +6,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import TextField from '@mui/material/TextField';
+import InputLabel from 'Components/InputLabel';
 import React from 'react';
 
 export interface DropdownProps
@@ -50,6 +51,7 @@ const Dropdown: React.FC<Props> = ({
 
   return (
     <FormControl sx={{width: width ?? 1}} data-testid="dropdownFormControl" error={isError}>
+      {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <Autocomplete
         id={newId}
         options={options}
@@ -91,12 +93,7 @@ const Dropdown: React.FC<Props> = ({
           '& .MuiOutlinedInput-notchedOutline': {
             ...(disableBorder && {border: 'none'}),
           },
-          '& .MuiInputLabel-root': {
-            top: -8,
-          },
-          '& .MuiInputLabel-shrink': {
-            top: 0,
-          },
+          marginTop: 2,
         }}
         disabled={disabled}
         onChange={(e, val) => {
@@ -104,7 +101,6 @@ const Dropdown: React.FC<Props> = ({
         }}
         renderInput={(params) => (
           <TextField
-            label={label}
             error={!!isError}
             {...params}
             onChange={(e) => {
