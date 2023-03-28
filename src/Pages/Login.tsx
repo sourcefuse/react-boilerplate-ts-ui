@@ -95,7 +95,7 @@ const Login = () => {
                 <Grid item xs={12}>
                   <FormInput id="username" label="UserName" />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{mt: 1}}>
                   <FormPasswordInput id="password" label="Password" />
                 </Grid>
                 <Grid container item xs={12}>

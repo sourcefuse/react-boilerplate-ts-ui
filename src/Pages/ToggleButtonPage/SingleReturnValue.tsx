@@ -7,8 +7,8 @@ export default function SingleReturnValue() {
     <ToggleButton
       id="single"
       singleSelect
-      returnValue
       value={value}
+      label="Single Toggle"
       onChange={setValue}
       options={[{label: 'Frontend', value: 'frontend'}]}
     />

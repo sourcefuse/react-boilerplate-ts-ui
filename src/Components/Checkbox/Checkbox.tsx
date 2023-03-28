@@ -35,6 +35,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   id,
   value,
   singleSelect,
+  ...rest
 }) => {
   const isError = !!errorMessage;
 
@@ -75,6 +76,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
                 onChange={handleChange}
                 value={option.value}
                 name={singleSelect ? option?.value.toString() : id}
+                {...rest}
               />
             }
             sx={{marginTop: 1}}

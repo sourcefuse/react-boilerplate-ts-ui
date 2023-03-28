@@ -1,4 +1,4 @@
-import {FormControl, FormControlLabel, FormGroupProps, FormHelperText, RadioGroup} from '@mui/material';
+import {FormControl, FormControlLabel, RadioGroupProps, FormHelperText, RadioGroup} from '@mui/material';
 import Radio from '@mui/material/Radio';
 import Typography from '@mui/material/Typography';
 import InputLabel from 'Components/InputLabel';
@@ -9,7 +9,7 @@ export interface RadioButtonOption {
   value: string;
 }
 
-export interface RadioButtonProps extends FormGroupProps {
+export interface RadioButtonProps extends RadioGroupProps {
   id: string;
   label?: string;
   children?: ReactNode;

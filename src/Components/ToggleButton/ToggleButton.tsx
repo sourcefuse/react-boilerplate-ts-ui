@@ -2,50 +2,47 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import FormHelperText from '@mui/material/FormHelperText';
-import Switch from '@mui/material/Switch';
+import Switch, {SwitchProps} from '@mui/material/Switch';
 import InputLabel from 'Components/InputLabel';
-import * as React from 'react';
+import React, {useCallback} from 'react';
 
-type Props = {
-  id: string;
-  label?: string;
+export interface ToggleButtonOption {
+  label: string;
   value: any;
-  disabled?: boolean;
-  isTouched?: boolean;
+}
+
+export interface ToggleButtonProps extends SwitchProps {
+  label?: string;
   helperText?: string;
   errorMessage?: string | Array<any>;
-  returnValue?: boolean;
   row?: boolean;
   singleSelect?: boolean;
-  onChange: (value: any) => void;
-  options?: {label: string; value: string}[];
-};
-const Checkbox: React.FC<Props> = ({
-  onChange,
+  options: ToggleButtonOption[];
+  onChange?: (val: any) => void;
+}
+
+const ToggleButton: React.FC<ToggleButtonProps> = ({
   options = [],
   row = false,
   label,
   helperText,
   disabled,
   errorMessage,
-  isTouched,
   id,
   value,
   singleSelect,
-  returnValue,
+  onChange,
+  ...rest
 }) => {
-  const isError = errorMessage && isTouched && !disabled;
+  const isError = !!errorMessage;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (singleSelect) {
-      const val = value === e?.target?.name ? '' : e.target.name;
-      if (returnValue) {
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!onChange) return;
+      if (singleSelect) {
+        const val = value === e?.target?.name ? '' : e.target.name;
         onChange(val);
-      } else {
-        onChange(e);
-      }
-    } else if (Array.isArray(value)) {
-      if (returnValue) {
+      } else if (Array.isArray(value)) {
         const index = value.findIndex((val) => val === e?.target?.value);
         const newValue = [...value];
         if (index === -1) {
@@ -54,19 +51,18 @@ const Checkbox: React.FC<Props> = ({
           newValue.splice(index, 1);
         }
         onChange(newValue);
-      } else {
-        onChange(e);
       }
-    }
-  };
+    },
+    [onChange, singleSelect, value],
+  );
 
   return (
     <FormControl disabled={disabled}>
       {label && <InputLabel>{label}</InputLabel>}
       <FormGroup row={row}>
-        {options.map((option, index) => (
+        {options.map((option) => (
           <FormControlLabel
-            key={index}
+            key={option.label}
             control={
               <Switch
                 checked={
@@ -78,6 +74,7 @@ const Checkbox: React.FC<Props> = ({
                 onChange={handleChange}
                 value={option.value}
                 name={singleSelect ? option?.value.toString() : id}
+                {...rest}
               />
             }
             label={option.label}
@@ -89,4 +86,4 @@ const Checkbox: React.FC<Props> = ({
   );
 };
 
-export default React.memo(Checkbox);
+export default React.memo(ToggleButton);

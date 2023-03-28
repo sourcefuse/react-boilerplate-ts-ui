@@ -1,9 +1,13 @@
-import {useTheme} from '@mui/material';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
+import {FormControl, FormHelperText, SxProps, Theme} from '@mui/material';
 import TextField, {TextFieldProps} from '@mui/material/TextField';
-import {DateTimePicker as MuiDateTimePicker} from '@mui/x-date-pickers/DateTimePicker';
+import {
+  DateTimePicker as MuiDateTimePicker,
+  DateTimePickerProps as MuiDateTimePickerProps,
+} from '@mui/x-date-pickers/DateTimePicker';
+import InputLabel from 'Components/InputLabel';
 import React, {memo, useCallback} from 'react';
+
+type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
 export interface DateTimePickerProps {
   id: string;
@@ -13,14 +17,24 @@ export interface DateTimePickerProps {
   errorMessage?: string;
   helperText?: string;
   minDateTime?: Date;
+  sx?: SxProps<Theme>;
 }
 
 interface Props extends DateTimePickerProps {
   value?: any;
 }
 
-const DateTimePicker: React.FC<Props> = ({id, label, value, onChange, errorMessage, disabled, helperText, ...rest}) => {
-  const theme = useTheme();
+const DateTimePicker: React.FC<Props & PartialBy<MuiDateTimePickerProps<any, Date>, 'renderInput'>> = ({
+  id,
+  label,
+  value,
+  onChange,
+  errorMessage,
+  sx,
+  disabled,
+  helperText,
+  ...rest
+}) => {
   const isError = !!errorMessage;
   const handleChange = useCallback(
     (date: Date | null) => {
@@ -28,39 +42,31 @@ const DateTimePicker: React.FC<Props> = ({id, label, value, onChange, errorMessa
     },
     [onChange],
   );
+
   const handleRenderInput = useCallback(
-    (params: TextFieldProps) => (
-      <TextField
-        {...params}
-        variant="outlined"
-        label={label}
-        sx={{
-          '& .MuiOutlinedInput-input': {
-            paddingY: 1,
-          },
-          '& .MuiInputLabel-root': {
-            top: -8,
-          },
-          '& .MuiInputLabel-shrink': {
-            top: 0,
-          },
-          ...(theme.palette.mode !== 'dark' && {
-            bgcolor: '#E4E7EE',
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'transparent',
-            },
-          }),
-        }}
-      />
-    ),
-    [label, theme.palette.mode],
+    (params: TextFieldProps) => {
+      return (
+        <>
+          {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
+          <TextField sx={{marginTop: 2}} {...params} />
+        </>
+      );
+    },
+    [id, label],
   );
 
   return (
-    <FormControl sx={{width: 1}} data-testid="datePickerFormControl" disabled={disabled} error={isError}>
+    <FormControl sx={{width: 1, ...sx}} data-testid="datePickerFormControl" disabled={disabled} error={isError}>
       <MuiDateTimePicker
         InputAdornmentProps={{
           position: 'start',
+        }}
+        InputProps={{
+          sx: {
+            '.MuiInputBase-input': {
+              padding: 1,
+            },
+          },
         }}
         disabled={disabled}
         value={value}

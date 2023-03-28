@@ -5,12 +5,26 @@ on:
       - main
     paths:
       - 'README.md'
+      - 'assets/'
 jobs:
   transfer-file:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Pushes assets folder
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.ARC_DOCS_API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'assets'
+          destination-github-username: 'sourcefuse'
+          destination-repository-name: 'arc-docs'
+          target-directory: 'docs/arc-ui-docs/assets'
+          user-email: 'github-actions@github.com'
+          user-name: ${{ github.actor }}
+          target-branch: main
+          commit-message: ${{ github.event.head_commit.message }}
       - name: Pushes readme file
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:

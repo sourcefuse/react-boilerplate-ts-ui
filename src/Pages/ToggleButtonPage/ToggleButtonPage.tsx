@@ -3,10 +3,9 @@ import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Table from 'Components/Table';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
-import MultiReturnEvent from './MultiReturnEvent';
 import MultiReturnValue from './MultiReturnValue';
-import SingleReturnEvent from './SingleReturnEvent';
 import SingleReturnValue from './SingleReturnValue';
+import MultiSingleSelect from './MultiSingleSelect';
 
 export default function ToggleButtonComponent() {
   return (
@@ -41,6 +40,7 @@ export default function SingleReturnEvent() {
           >
             <SingleReturnValue />
           </ComponentViewer>
+
           <ComponentViewer
             title="Multi value Toggle Button"
             code={`import ToggleButton from 'Components/ToggleButton';
@@ -50,10 +50,9 @@ export default function MultiReturnValue() {
   const [value, setValue] = useState<{label: string; value: string}[]>([]);
   return (
     <ToggleButton
-      id="multipe"
-      returnValue
+      id="multiple"
       value={value}
-      label="Mult Toggle Retrun Value on Change"
+      label="Multiple Toggle Return Value on Change"
       onChange={setValue}
       options={[
         {label: 'Frontend', value: 'frontend'},
@@ -68,56 +67,21 @@ export default function MultiReturnValue() {
           >
             <MultiReturnValue />
           </ComponentViewer>
+
           <ComponentViewer
-            title="Single toggle button capture event"
+            title="Multi value Single Select"
             code={`import ToggleButton from 'Components/ToggleButton';
 import {useState} from 'react';
 
-export default function SingleReturnEvent() {
+export default function MultiReturnValue() {
   const [value, setValue] = useState<{label: string; value: string}[]>([]);
-
-  const handleSubmit = (e: any) => {
-    const value = e.target.checked ? e.target.value : '';
-    setValue(value);
-  };
-
   return (
     <ToggleButton
-      id="singleWithEven"
+      id="multiple"
+      value={value}
       singleSelect
-      value={value}
-      label="Single Toggle return event on Change"
-      onChange={handleSubmit}
-      options={[{label: 'Frontend', value: 'frontend'}]}
-    />
-  );
-}            
-`}
-          >
-            <SingleReturnEvent />
-          </ComponentViewer>
-          <ComponentViewer
-            title="Multiple toggle button capture event"
-            code={`import ToggleButton from 'Components/ToggleButton';
-import {useState} from 'react';
-
-export default function MultiReturnEvent() {
-  const [value, setValue] = useState<{label: string; value: string}[]>([]);
-
-  const handleSubmit = (e: any) => {
-    if (e.target.checked) {
-      setValue([...value, e.target.value]);
-    } else {
-      const index = value.findIndex((val: any) => val === e?.target?.value);
-      value.splice(index, 1);
-      setValue([...value]);
-    }
-  };
-  return (
-    <ToggleButton
-      id="multipleWithEvent"
-      value={value}
-      onChange={handleSubmit}
+      label="Multiple Toggle Return Value on Change"
+      onChange={setValue}
       options={[
         {label: 'Frontend', value: 'frontend'},
         {label: 'Backend', value: 'backend'},
@@ -126,10 +90,10 @@ export default function MultiReturnEvent() {
       row
     />
   );
-}                    
+}        
 `}
           >
-            <MultiReturnEvent />
+            <MultiSingleSelect />
           </ComponentViewer>
 
           <Table
