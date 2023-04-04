@@ -1,0 +1,26 @@
+---
+name: Tag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ## tag
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set GIT_TAG
+        run: |
+          echo "VERSION=$(cat .version | tr -d " \t\n\r")" >> $GITHUB_ENV
+      - name: git-tag
+        uses: pkgdeps/git-tag-action@v2.0.1
+        with:
+          version: ${{ env.VERSION }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repo: ${{ github.repository }}
+          git_commit_sha: ${{ github.sha }}
+          git_tag_prefix: ""
