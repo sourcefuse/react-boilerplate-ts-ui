@@ -12,3 +12,13 @@ ignore:
     - '*':
         reason: None Given
         expires: 2024-11-07T11:38:28.614Z
+
+  'SNYK-JS-JSON5-3182856':
+    - '*':
+        reason: None Given
+        expires: 2024-11-07T11:38:28.614Z
+
+  'SNYK-JS-WORDWRAP-3149973':
+    - '*':
+        reason: No Path or upgrade available
+        expires: 2024-11-07T11:38:28.614Z            
