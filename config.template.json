@@ -1,6 +1,5 @@
 {
   "clientId": "$CLIENT_ID",
-  "clientSecret": "$CLIENT_SECRET",
   "appApiBaseUrl": "$APP_API_BASE_URL",
   "authApiBaseUrl": "$AUTH_API_BASE_URL",
   "enableSessionTimeout": "$ENABLE_SESSION_TIMEOUT",

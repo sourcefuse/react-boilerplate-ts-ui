@@ -6,7 +6,6 @@ services:
       - '3000:80'
     environment:
       - CLIENT_ID=
-      - CLIENT_SECRET=
       - APP_API_BASE_URL=
       - AUTH_API_BASE_URL=http://localhost:3005
       - ENABLE_SESSION_TIMEOUT=false
