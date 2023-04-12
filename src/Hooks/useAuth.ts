@@ -8,7 +8,7 @@ import useConfig from './useConfig';
 export default function useAuth() {
   const {isLoggedIn, setIsLoggedIn, setAuthData, authData} = useContext(AuthContext);
   const {
-    config: {clientId, clientSecret, authApiBaseUrl},
+    config: {clientId, authApiBaseUrl},
   } = useConfig();
   const queryClient = useQueryClient();
   const client = axiosFactory(authApiBaseUrl);
@@ -17,7 +17,6 @@ export default function useAuth() {
     fn: (values: LoginForm) =>
       client.post(`/auth/login-token`, {
         client_id: clientId,
-        client_secret: clientSecret,
         ...values,
       }),
     successMsg: 'Login successful',

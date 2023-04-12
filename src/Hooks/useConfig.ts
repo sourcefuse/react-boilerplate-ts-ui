@@ -4,7 +4,6 @@ import {useEffect, useState} from 'react';
 
 interface Configuration {
   clientId: string;
-  clientSecret: string;
   authApiBaseUrl: string;
   appApiBaseUrl?: string;
   enableSessionTimeout?: string;
@@ -14,7 +13,6 @@ interface Configuration {
 }
 export interface AppConfiguration {
   clientId: string;
-  clientSecret: string;
   authApiBaseUrl: string;
   appApiBaseUrl?: string;
   enableSessionTimeout: boolean;
