@@ -21,7 +21,7 @@ const AuditLogsPage = () => {
   const {accessToken} = useContext(AuthContext).authData;
 
   const getAuditLogs = async (baseUrl: string): Promise<AuditLog[]> => {
-    const client = axiosFactory(`https://sl-auth-test-v3-lambda.sfrefarch.com/`);
+    const client = axiosFactory(baseUrl);
     const logsResponse = await client.get<ApiAuditLog[]>('/audit-logs', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
