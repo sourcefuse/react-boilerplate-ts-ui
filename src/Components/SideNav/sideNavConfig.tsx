@@ -1,6 +1,7 @@
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ToggleOffIcon from '@mui/icons-material/ToggleOff';
+import DataObjectOutlinedIcon from '@mui/icons-material/DataObjectOutlined';
 import {ReactNode} from 'react';
 
 export type SideNavDividerType = {
@@ -200,6 +201,12 @@ const sideNavConfig: SideNavConfig[] = [
         visible: false,
       },
     ],
+  },
+  {
+    label: 'Logs',
+    link: '/audit-logs',
+    icon: <DataObjectOutlinedIcon />,
+    visible: true,
   },
 ];
 

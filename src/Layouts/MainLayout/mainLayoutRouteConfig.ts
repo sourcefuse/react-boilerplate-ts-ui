@@ -28,11 +28,16 @@ const FormRadioButtonPage = lazy(() => import('Pages/FormRadioButtonPage'));
 const FormDropdownPage = lazy(() => import('Pages/FormDropdownPage'));
 const FormInputPage = lazy(() => import('Pages/FormInputPage'));
 const FormToggleButtonPage = lazy(() => import('Pages/FormToggleButtonPage'));
+const AuditLogsPage = lazy(() => import('Pages/AuditLogs'));
 
 const mainLayoutRouteConfig = [
   {
     path: '/home',
     component: Home,
+  },
+  {
+    path: '/audit-logs',
+    component: AuditLogsPage,
   },
   {
     path: '/components',
