@@ -28,7 +28,7 @@ const FormRadioButtonPage = lazy(() => import('Pages/FormRadioButtonPage'));
 const FormDropdownPage = lazy(() => import('Pages/FormDropdownPage'));
 const FormInputPage = lazy(() => import('Pages/FormInputPage'));
 const FormToggleButtonPage = lazy(() => import('Pages/FormToggleButtonPage'));
-const AuditLogsPage = lazy(() => import('Pages/AuditLogs'));
+const AuditLogsPage = lazy(() => import('Pages/AuditLogs/AuditLogs'));
 
 const mainLayoutRouteConfig = [
   {
