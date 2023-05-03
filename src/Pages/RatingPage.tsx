@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Rating from 'Components/Rating';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import * as React from 'react';
 
@@ -59,7 +59,7 @@ export default RatingPage;`}
             />
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {
                 name: 'defaultValue',

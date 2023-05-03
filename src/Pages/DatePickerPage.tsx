@@ -2,7 +2,7 @@ import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import DatePicker from 'Components/DatePicker/DatePicker';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import {useState} from 'react';
 
@@ -34,7 +34,7 @@ export default DatePickerPage;`}
           >
             <DatePicker id="dob" value={value} onChange={setValue} label="D.O.B" />
           </ComponentViewer>
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for input field'},
               {name: 'label', type: 'string', desc: 'Label for input field'},

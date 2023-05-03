@@ -3,7 +3,7 @@ import ComponentViewer from 'Components/ComponentViewer';
 import Form from 'Components/Forms/Form';
 import FormSlider from 'Components/Forms/FormSlider';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 
 const submitHandler = () => {
@@ -81,7 +81,7 @@ const FormSliderPage = () => {
             </Box>
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for form slider'},
               {name: 'label', type: 'string', desc: 'Label for form slider'},

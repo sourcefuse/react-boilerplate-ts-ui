@@ -2,7 +2,7 @@ import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import Dropdown from 'Components/Dropdown/Dropdown';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import {useState} from 'react';
 
@@ -48,7 +48,7 @@ export default DropdownPage;
             <Dropdown id="salutation" label="Salutation" value={value} options={options} onChange={setValue} />
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for dropdown field'},
               {name: 'label', type: 'string', desc: 'Label for dropdown field'},

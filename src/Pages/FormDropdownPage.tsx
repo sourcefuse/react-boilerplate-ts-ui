@@ -3,7 +3,7 @@ import ComponentViewer from 'Components/ComponentViewer';
 import Form from 'Components/Forms/Form';
 import FormDropdown from 'Components/Forms/FormDropdown';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 
 const submitHandler = () => {
@@ -41,7 +41,7 @@ const FormDropdownPage = () => {
             </Box>
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for dropdown field'},
               {name: 'label', type: 'string', desc: 'Label for dropdown field'},

@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import RadioButton from 'Components/RadioButton/RadioButton';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import {useState} from 'react';
 
@@ -61,7 +61,7 @@ export default RadioButtonPage;`}
             />{' '}
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for radio button'},
               {name: 'label', type: 'string', desc: 'Label for radio button field'},

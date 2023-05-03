@@ -2,7 +2,7 @@ import {Box, Stack} from '@mui/material';
 import Button from 'Components/Button/Button';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 
 const ButtonPage = () => {
@@ -220,7 +220,7 @@ export default ButtonPage;`}
               </Button>
             </Stack>
           </ComponentViewer>
-          <Table
+          <PropsTable
             data={[
               {name: 'color', type: 'string', desc: 'color of the button'},
               {name: 'isLoading', type: 'bool', defaultVal: 'false', desc: 'loading state of the button'},

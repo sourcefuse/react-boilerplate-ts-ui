@@ -3,7 +3,7 @@ import ComponentViewer from 'Components/ComponentViewer';
 import Form from 'Components/Forms/Form';
 import FormToggleButton from 'Components/Forms/FormToggleButton';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 
 const submitHandler = () => {
@@ -86,7 +86,7 @@ export default FormToggleButtonDemo;
             </Form>
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for checkbox'},
               {name: 'label', type: 'string', desc: 'Label for checkbox'},

@@ -5,7 +5,7 @@ import Button from 'Components/Button/Button';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import StepperTab from 'Components/StepperTab/StepperTab';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import {useState} from 'react';
 
@@ -73,7 +73,7 @@ export default StepperTabPage;`}
               </Grid>
             </Box>
           </ComponentViewer>
-          <Table
+          <PropsTable
             data={[
               {name: 'steps', type: 'string[]', desc: 'Array containing the step names'},
               {name: 'activeStep', type: 'number'},

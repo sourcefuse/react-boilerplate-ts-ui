@@ -1,7 +1,7 @@
 import {Box, Stack, Typography} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import Form from 'Components/Forms/Form';
 import FormRadioButton from 'Components/Forms/FormRadioButton';
@@ -92,7 +92,7 @@ const FormRadioButtonPage = () => {
             </Form>
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for Radio Group'},
               {name: 'label', type: 'string', desc: 'Label for Radio Group'},

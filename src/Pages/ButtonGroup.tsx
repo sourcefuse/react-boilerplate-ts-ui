@@ -6,7 +6,7 @@ import Button from 'Components/Button/Button';
 import CodeBlock from 'Components/CodeBlock/CodeBlock';
 import ComponentPaper from 'Components/ComponentPaper';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import React from 'react';
 
 const Btn = (
@@ -376,7 +376,7 @@ export default function VariantButtonGroup() {
                   <Button>Three</Button>
               </ButtonGroup>    `}
       />
-      <Table
+      <PropsTable
         data={[
           {
             name: 'align',
