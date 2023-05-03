@@ -4,7 +4,7 @@ import ComponentViewer from 'Components/ComponentViewer';
 import Form from 'Components/Forms/Form';
 import FormInput from 'Components/Forms/FormInput';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import SearchIcon from '@mui/icons-material/Search';
 import * as yup from 'yup';
@@ -81,7 +81,7 @@ const FormInputPage = () => {
             </Form>
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for input field'},
               {name: 'label', type: 'string', desc: 'Label for input field'},
