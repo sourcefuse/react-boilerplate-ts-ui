@@ -6,6 +6,7 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
@@ -16,13 +17,16 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  TableFooter,
   TableHead,
+  TablePagination,
   TableRow,
   TableSortLabel,
 } from '@mui/material';
 import {memo, useMemo, useState} from 'react';
 import {filterFns} from './FilterFunctions';
 import {DebouncedInput} from './DebounceInput';
+import TablePaginationActions from './PaginationActions';
 
 export interface TableProps<T extends Record<string, any>> {
   data: T[];
@@ -31,6 +35,8 @@ export interface TableProps<T extends Record<string, any>> {
   enableGlobalFiltering?: boolean;
   globalFilterFn?: FilterFn<T>;
   enableColumnFiltering?: boolean;
+  enablePagination?: boolean;
+  rowsPerPageOptions?: Array<number | {label: string; value: number}>;
 }
 
 const ARCTable = <T extends Record<string, any>>({
@@ -40,13 +46,15 @@ const ARCTable = <T extends Record<string, any>>({
   enableGlobalFiltering,
   globalFilterFn = filterFns.fuzzy,
   enableColumnFiltering,
+  enablePagination,
+  rowsPerPageOptions = [5, 10, 25, {label: 'All', value: data.length}],
 }: TableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const tableData = useMemo(() => data, [data]);
   const [globalFilter, setGlobalFilter] = useState('');
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-  const {getHeaderGroups, getRowModel} = useReactTable({
+  const table = useReactTable({
     data: tableData,
     columns,
     state: {
@@ -61,7 +69,11 @@ const ARCTable = <T extends Record<string, any>>({
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
+
+  const {getHeaderGroups, getRowModel} = table;
+  const {pageSize, pageIndex} = table.getState().pagination;
 
   return (
     <TableContainer component={Paper}>
@@ -119,6 +131,29 @@ const ARCTable = <T extends Record<string, any>>({
             </TableRow>
           ))}
         </TableBody>
+        {enablePagination && (
+          <TableFooter>
+            <TablePagination
+              rowsPerPageOptions={rowsPerPageOptions}
+              component="div"
+              count={table.getFilteredRowModel().rows.length}
+              rowsPerPage={pageSize}
+              page={pageIndex}
+              SelectProps={{
+                inputProps: {'aria-label': 'rows per page'},
+                native: true,
+              }}
+              onPageChange={(_, page) => {
+                table.setPageIndex(page);
+              }}
+              onRowsPerPageChange={(e) => {
+                const size = e.target.value ? Number(e.target.value) : 10;
+                table.setPageSize(size);
+              }}
+              ActionsComponent={TablePaginationActions}
+            />
+          </TableFooter>
+        )}
       </MuiTable>
     </TableContainer>
   );
