@@ -7,14 +7,17 @@ export const tableColumns: ColumnDef<DataTableType>[] = [
   {
     header: 'Id',
     accessorKey: '_id',
+    id: '_id',
     enableSorting: false,
   },
   {
     header: 'Name',
     accessorKey: 'name',
+    id: 'name',
   },
   {
     header: 'Active Status',
+    id: 'activeStatus',
     accessorFn: (row) => {
       return row.isActive === true ? 'Online' : 'Offline';
     },
@@ -22,10 +25,12 @@ export const tableColumns: ColumnDef<DataTableType>[] = [
   {
     header: 'Age',
     accessorKey: 'age',
+    id: 'age',
   },
   {
     header: 'Gender',
     accessorKey: 'gender',
+    id: 'gender',
     cell: (row) => row.renderValue(),
   },
 ];
