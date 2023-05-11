@@ -3,30 +3,16 @@ import {
   ColumnFiltersState,
   FilterFn,
   SortingState,
-  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import {
-  Box,
-  Table as MuiTable,
-  Paper,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
-} from '@mui/material';
+import {Table as MuiTable, Paper, TableBody, TableContainer, TableFooter, TableHead, TableRow} from '@mui/material';
 import {memo, useMemo, useState} from 'react';
 import {filterFns} from './FilterFunctions';
-import {DebouncedInput} from './DebounceInput';
-import TablePaginationActions from './PaginationActions';
+import {DefaultColumn, DefaultRow, DefaultTablePagination, GlobalFilter} from './helper';
 
 export interface TableProps<T extends Record<string, any>> {
   data: T[];
@@ -77,72 +63,35 @@ const ARCTable = <T extends Record<string, any>>({
 
   return (
     <TableContainer component={Paper}>
-      {enableGlobalFiltering && (
-        <Box display="flex" justifyContent="flex-end">
-          <DebouncedInput
-            id="global-search"
-            value={globalFilter ?? ''}
-            onChange={(value) => setGlobalFilter(String(value))}
-            variant="outlined"
-          />
-        </Box>
-      )}
+      {enableGlobalFiltering && <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />}
       <MuiTable>
         <TableHead>
           {getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableCell key={header.id} sx={{fontWeight: 'bold'}}>
-                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                  {enableSorting && (
-                    <TableSortLabel
-                      active={!!header.column.getIsSorted()}
-                      onClick={header.column.getToggleSortingHandler()}
-                      direction={header.column.getIsSorted() && header.column.getIsSorted() === 'asc' ? 'asc' : 'desc'}
-                    />
-                  )}
-                  {enableColumnFiltering && header.column.getCanFilter() ? (
-                    <DebouncedInput
-                      id={`${header.column.columnDef.header}-search`}
-                      value={(() => {
-                        const filterValue = header.column.getFilterValue();
-                        if (typeof filterValue === 'number') {
-                          return filterValue;
-                        }
-                        return (filterValue ?? '') as string;
-                      })()}
-                      onChange={(value) => header.column.setFilterValue(value)}
-                      placeholder={`Search ${header.column.columnDef.header}`}
-                      variant="standard"
-                      sx={{width: '150px', height: '32px', marginTop: '5px'}}
-                    />
-                  ) : null}
-                </TableCell>
+              {headerGroup.headers.map((header, index) => (
+                <DefaultColumn
+                  key={header.id}
+                  header={header}
+                  index={index}
+                  enableColumnFiltering={enableColumnFiltering}
+                  enableSorting={enableSorting}
+                />
               ))}
             </TableRow>
           ))}
         </TableHead>
         <TableBody>
-          {getRowModel().rows.map((row) => (
-            <TableRow key={row.id} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-              {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
-              ))}
-            </TableRow>
+          {getRowModel().rows.map((row, index) => (
+            <DefaultRow key={row.id} row={row} index={index} />
           ))}
         </TableBody>
         {enablePagination && (
           <TableFooter>
-            <TablePagination
+            <DefaultTablePagination
               rowsPerPageOptions={rowsPerPageOptions}
-              component="div"
               count={table.getFilteredRowModel().rows.length}
-              rowsPerPage={pageSize}
-              page={pageIndex}
-              SelectProps={{
-                inputProps: {'aria-label': 'rows per page'},
-                native: true,
-              }}
+              pageSize={pageSize}
+              pageIndex={pageIndex}
               onPageChange={(_, page) => {
                 table.setPageIndex(page);
               }}
@@ -150,7 +99,6 @@ const ARCTable = <T extends Record<string, any>>({
                 const size = e.target.value ? Number(e.target.value) : 10;
                 table.setPageSize(size);
               }}
-              ActionsComponent={TablePaginationActions}
             />
           </TableFooter>
         )}

@@ -4,7 +4,8 @@ import {Header, Row, flexRender} from '@tanstack/react-table';
 import PropTypes from 'prop-types';
 import {Draggable, DraggableProvided, DraggableStateSnapshot} from 'react-beautiful-dnd';
 import {DebouncedInput} from './DebounceInput';
-import {TableRow} from '@mui/material';
+import {Box, TablePagination, TableRow} from '@mui/material';
+import TablePaginationActions from './PaginationActions';
 
 interface ColumnProps<T extends Record<string, any>> {
   header: Header<T, unknown>;
@@ -146,5 +147,58 @@ export const DefaultRow = <T extends Record<string, any>>({row, index}: TableRow
         <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
       ))}
     </TableRow>
+  );
+};
+
+interface GlobalFilterProps {
+  globalFilter: string;
+  setGlobalFilter: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const GlobalFilter: React.FC<GlobalFilterProps> = ({globalFilter, setGlobalFilter}: GlobalFilterProps) => {
+  return (
+    <Box display="flex" justifyContent="flex-end">
+      <DebouncedInput
+        id="global-search"
+        value={globalFilter ?? ''}
+        onChange={(value) => setGlobalFilter(String(value))}
+        variant="outlined"
+      />
+    </Box>
+  );
+};
+
+type TablePaginationProps = {
+  rowsPerPageOptions: (number | {label: string; value: number})[];
+  count: number;
+  pageSize: number;
+  pageIndex: number;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
+  onRowsPerPageChange: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+};
+
+export const DefaultTablePagination: React.FC<TablePaginationProps> = ({
+  rowsPerPageOptions,
+  count,
+  pageSize,
+  pageIndex,
+  onPageChange,
+  onRowsPerPageChange,
+}: TablePaginationProps) => {
+  return (
+    <TablePagination
+      rowsPerPageOptions={rowsPerPageOptions}
+      component="div"
+      count={count}
+      rowsPerPage={pageSize}
+      page={pageIndex}
+      SelectProps={{
+        inputProps: {'aria-label': 'rows per page'},
+        native: true,
+      }}
+      onPageChange={onPageChange}
+      onRowsPerPageChange={onRowsPerPageChange}
+      ActionsComponent={TablePaginationActions}
+    />
   );
 };
