@@ -22,11 +22,13 @@ const SearchBar: React.FC<{
       (elem: SideNavLinkTitle) => elem.label === 'Components',
     ) as SideNavLinkTitle;
 
-    list.children?.forEach((component) => {
-      if (!component.label.toLowerCase().includes(query)) {
-        component.visible = false;
-      }
-    });
+    if (list && list.children) {
+      list.children?.forEach((component) => {
+        if (!component.label.toLowerCase().includes(query)) {
+          component.visible = false;
+        }
+      });
+    }
 
     updateList(data);
   };

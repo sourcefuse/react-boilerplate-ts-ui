@@ -16,7 +16,7 @@ ReactSyntaxHighlighter.registerLanguage('jsx', jsx);
 const SyntaxHighlighter = ({children}: {children: string}) => {
   const theme = useTheme();
   return (
-    <Box sx={{position: 'relative'}}>
+    <Box sx={{position: 'relative'}} data-testid="syntax-highlighter">
       <CopyToClipboard text={children}>
         <Button aria-label="copy code button" sx={{position: 'absolute', right: 5, top: 5}}>
           <Tooltip title="Copy to clipboard">

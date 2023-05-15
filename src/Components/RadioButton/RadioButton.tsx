@@ -39,7 +39,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   );
 
   return (
-    <FormControl sx={{width: 1}} disabled={disabled} data-test="radioButtonFormControl">
+    <FormControl sx={{width: 1}} disabled={disabled} data-testid="radioButtonFormControl">
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <RadioGroup value={value} sx={{marginTop: 1}} name={id} aria-label={id} onChange={handleChange} id={id} {...rest}>
         {options.map((option: RadioButtonOption) => (

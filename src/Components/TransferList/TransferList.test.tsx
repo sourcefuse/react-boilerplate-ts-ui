@@ -1,5 +1,4 @@
-import {render, screen, within} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import {render, screen, within, fireEvent} from '@testing-library/react';
 import React, {useState} from 'react';
 import TransferList from './TransferList';
 
@@ -51,10 +50,10 @@ describe('TransferList', () => {
     const leftCustomList = screen.getByTestId('left');
     const leftSideList = within(leftCustomList).getByRole('list');
     const leftListItem = within(leftSideList).getByRole('button', {name: /left item 1/i});
-    userEvent.click(leftListItem);
+    fireEvent.click(leftListItem);
     const moveRightButton = screen.getByRole('button', {name: /move selected right/i});
     expect(moveRightButton).toBeEnabled();
-    userEvent.click(moveRightButton);
+    fireEvent.click(moveRightButton);
     const leftListItems = within(leftSideList).getAllByRole('button');
     expect(leftListItems.length).toBe(3);
     const rightCustomList = screen.getByTestId('right');
@@ -69,10 +68,10 @@ describe('TransferList', () => {
     const rightCustomList = screen.getByTestId('right');
     const rightSideList = within(rightCustomList).getByRole('list');
     const rightListItem = within(rightSideList).getByRole('button', {name: /right item 1/i});
-    userEvent.click(rightListItem);
+    fireEvent.click(rightListItem);
     const moveLeftButton = screen.getByRole('button', {name: /move selected left/i});
     expect(moveLeftButton).toBeEnabled();
-    userEvent.click(moveLeftButton);
+    fireEvent.click(moveLeftButton);
     const rightListItems = within(rightSideList).getAllByRole('button');
     expect(rightListItems.length).toBe(3);
     const leftCustomList = screen.getByTestId('left');
@@ -85,7 +84,7 @@ describe('TransferList', () => {
     render(<MockTransferList />);
 
     const moveAllRightButton = screen.getByRole('button', {name: /move all right/i});
-    userEvent.click(moveAllRightButton);
+    fireEvent.click(moveAllRightButton);
 
     const leftCustomList = screen.getByTestId('left');
     const leftSideList = within(leftCustomList).getByRole('list');
@@ -102,7 +101,7 @@ describe('TransferList', () => {
     render(<MockTransferList />);
 
     const moveAllLeftButton = screen.getByRole('button', {name: /move all left/i});
-    userEvent.click(moveAllLeftButton);
+    fireEvent.click(moveAllLeftButton);
 
     const rightCustomList = screen.getByTestId('right');
     const rightSideList = within(rightCustomList).getByRole('list');
