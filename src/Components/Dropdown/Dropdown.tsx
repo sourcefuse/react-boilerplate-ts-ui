@@ -53,6 +53,7 @@ const Dropdown: React.FC<Props> = ({
     <FormControl sx={{width: width ?? 1}} data-testid="dropdownFormControl" error={isError}>
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <Autocomplete
+        data-testid="dropdownAutocomplete"
         id={newId}
         options={options}
         loading={isLoading}

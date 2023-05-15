@@ -36,7 +36,7 @@ const DropdownPage = () => {
   return (
     <PagePaper title="Input">
       <ComponentPaper>
-        <Dropdown id="salutation" label="Salutation" value={value} options={options} onChange={setValue} returnValue />
+        <Dropdown id="salutation" label="Salutation" value={value} options={options} onChange={setValue} />
       </ComponentPaper>
     </PagePaper>
   );

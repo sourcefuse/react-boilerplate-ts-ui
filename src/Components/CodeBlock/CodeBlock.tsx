@@ -15,7 +15,7 @@ const CodeBlock: React.FC<Props> = ({initial, fullCode}) => {
   const [isExpanded, setIsExpanded] = useState(!initial);
   const toggleExpand = () => setIsExpanded((prev) => !prev);
   return (
-    <Box sx={{marginTop: 4}}>
+    <Box sx={{marginTop: 4}} data-testid="code-block">
       <ButtonGroup
         sx={{display: 'flex', justifyContent: 'right'}}
         size="small"

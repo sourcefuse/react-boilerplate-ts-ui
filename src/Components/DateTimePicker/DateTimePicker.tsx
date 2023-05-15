@@ -56,7 +56,7 @@ const DateTimePicker: React.FC<Props & PartialBy<MuiDateTimePickerProps<any, Dat
   );
 
   return (
-    <FormControl sx={{width: 1, ...sx}} data-testid="datePickerFormControl" disabled={disabled} error={isError}>
+    <FormControl sx={{width: 1, ...sx}} data-testid="dateTimePickerFormControl" disabled={disabled} error={isError}>
       <MuiDateTimePicker
         InputAdornmentProps={{
           position: 'start',

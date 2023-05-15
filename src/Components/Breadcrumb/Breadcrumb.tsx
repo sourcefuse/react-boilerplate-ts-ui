@@ -21,7 +21,7 @@ export default function Breadcrumb(): JSX.Element {
   const breadcrumbs = useBreadcrumbs(routes, {disableDefaults: true});
 
   return (
-    <MuiBreadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+    <MuiBreadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb" data-testid="breadcrumb">
       {breadcrumbs.map(({match, breadcrumb}, index) => (
         <Grid key={index}>
           {breadcrumbs.length - 1 === index ? (

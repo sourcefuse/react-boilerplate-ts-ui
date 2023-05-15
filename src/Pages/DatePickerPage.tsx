@@ -24,7 +24,7 @@ const DatePickerPage = () => {
   return (
     <PagePaper title="DatePicker">
       <ComponentPaper>
-        <DatePicker id="dob" value={value} onChange={setValue} label="D.O.B" returnValue />
+        <DatePicker id="dob" value={value} onChange={setValue} label="D.O.B" />
       </ComponentPaper>
     </PagePaper>
   );
