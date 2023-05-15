@@ -1,7 +1,7 @@
 import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import TransferList from 'Components/TransferList/TransferList';
 import {useState} from 'react';
@@ -61,7 +61,7 @@ export default TransferListPage;`}
           >
             <TransferList left={left} right={right} setLeft={setLeft} setRight={setRight} />
           </ComponentViewer>
-          <Table
+          <PropsTable
             data={[
               {name: 'left,setLeft', type: 'React state', desc: 'useState variables to manage left side list'},
               {name: 'right,setRight', type: 'React state', desc: 'useState variables to manage right side list'},

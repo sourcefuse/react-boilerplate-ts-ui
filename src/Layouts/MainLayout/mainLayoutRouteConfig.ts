@@ -29,6 +29,7 @@ const FormDropdownPage = lazy(() => import('Pages/FormDropdownPage'));
 const FormInputPage = lazy(() => import('Pages/FormInputPage'));
 const FormToggleButtonPage = lazy(() => import('Pages/FormToggleButtonPage'));
 const AuditLogsPage = lazy(() => import('Pages/AuditLogs/AuditLogs'));
+const TablePage = lazy(() => import('Pages/TablePage/TablePage'));
 
 const mainLayoutRouteConfig = [
   {
@@ -158,6 +159,10 @@ const mainLayoutRouteConfig = [
   {
     path: '/components/floating-action-button',
     component: FABPage,
+  },
+  {
+    path: '/components/table',
+    component: TablePage,
   },
 ];
 

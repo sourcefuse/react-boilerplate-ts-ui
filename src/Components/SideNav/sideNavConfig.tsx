@@ -129,6 +129,11 @@ const sideNavConfig: SideNavConfig[] = [
         visible: true,
       },
       {
+        label: 'Table',
+        link: '/components/table',
+        visible: true,
+      },
+      {
         label: 'form',
         link: '/components/form',
         visible: true,

@@ -2,7 +2,7 @@ import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Slider from 'Components/Slider';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 
 const SliderPage = () => {
@@ -30,7 +30,7 @@ const SliderPage = () => {
             <Slider size="small" defaultValue={70} aria-label="Small" valueLabelDisplay="auto" />
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {
                 name: 'aria-label',

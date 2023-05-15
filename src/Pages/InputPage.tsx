@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import ComponentViewer from 'Components/ComponentViewer';
 import Input from 'Components/Input/Input';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import {useState} from 'react';
 
@@ -36,7 +36,7 @@ export default InputPage;`}
             <Input id="myInput" label="My input" value={value} onChange={setValue} />
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for input field'},
               {name: 'label', type: 'string', desc: 'Label for input field'},

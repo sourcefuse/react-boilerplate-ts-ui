@@ -3,7 +3,7 @@ import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import FAB from 'Components/FloatingActionButton';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 
 const FloatingActionButtonPage = () => {
@@ -34,7 +34,7 @@ export default FloatingActionButtonPage;`}
               <AddIcon />
             </FAB>
           </ComponentViewer>
-          <Table
+          <PropsTable
             data={[
               {
                 name: 'children',

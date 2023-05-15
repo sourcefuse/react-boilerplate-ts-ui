@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Checkbox from 'Components/Checkbox/Checkbox';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import {useState} from 'react';
 
@@ -48,7 +48,7 @@ export default CheckboxPage;`}
             <Checkbox id="skills" value={value} onChange={setValue} options={options} label="Skills" row />
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {name: 'id', type: 'string', desc: 'Unique id for checkbox'},
               {name: 'label', type: 'string', desc: 'Label for checkbox'},

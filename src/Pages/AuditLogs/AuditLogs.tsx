@@ -1,5 +1,7 @@
 import {Box, CircularProgress} from '@mui/material';
 import {useGetAuditLogs} from './useAuditLogs';
+import {Table} from 'Components/Table';
+import {auditColumns} from './utils';
 
 const AuditLogsPage = () => {
   const {data: auditLogs, isLoading, isError} = useGetAuditLogs();
@@ -25,14 +27,9 @@ const AuditLogsPage = () => {
   }
 
   return (
-    <div>
-      <h1>Audit Logs</h1>
-      <ul>
-        {auditLogs.map((item) => (
-          <li key={item.id}>{JSON.stringify(item, null, 2)}</li>
-        ))}
-      </ul>
-    </div>
+    <Box sx={{margin: 5}}>
+      <Table data={auditLogs} columns={auditColumns} enableGlobalFiltering />
+    </Box>
   );
 };
 

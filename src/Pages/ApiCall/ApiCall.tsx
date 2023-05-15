@@ -1,13 +1,13 @@
 import CodeBlock from 'Components/CodeBlock/CodeBlock';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import useApiCall from './useApiCall';
 
 const ApiCall = () => {
   const {data, isLoading} = useApiCall();
   return (
     <PagePaper title="API call">
-      <Table
+      <PropsTable
         isLoading={isLoading}
         columns={[
           {value: 'userId', label: 'User ID'},

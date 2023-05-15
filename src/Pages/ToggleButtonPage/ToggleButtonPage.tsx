@@ -1,7 +1,7 @@
 import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
-import Table from 'Components/Table';
+import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import MultiReturnValue from './MultiReturnValue';
 import SingleReturnValue from './SingleReturnValue';
@@ -96,7 +96,7 @@ export default function MultiReturnValue() {
             <MultiSingleSelect />
           </ComponentViewer>
 
-          <Table
+          <PropsTable
             data={[
               {
                 name: 'align',
