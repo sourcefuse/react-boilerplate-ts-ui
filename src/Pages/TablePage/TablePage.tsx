@@ -1,4 +1,4 @@
-import {Box, Stack, Typography} from '@mui/material';
+import {Box, Stack, ThemeProvider, Typography} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
@@ -6,6 +6,7 @@ import {tableColumns} from './utils';
 import {DataTable} from './data';
 import {DndTable, Table} from 'Components/Table';
 import PropsTable from 'Components/PropsTable';
+import customTheme from './CustomTheme';
 
 const TablePage = () => {
   return (
@@ -228,7 +229,7 @@ const tableColumns: ColumnDef<DataTableType>[] = [
             <Table columns={tableColumns} data={DataTable.slice(0, 5)} enableSorting />
           </ComponentViewer>
           <ComponentViewer
-            title="Table with Global Filter"
+            title="Global Filter"
             code={`import {Table} from 'Components/Table';
 
 type DataTableType = {
@@ -333,7 +334,7 @@ const tableColumns: ColumnDef<DataTableType>[] = [
             <Table columns={tableColumns} data={DataTable.slice(0, 5)} enableSorting enableGlobalFiltering />
           </ComponentViewer>
           <ComponentViewer
-            title="Table with Columns Filtering"
+            title="Columns Filtering"
             code={`import {Table} from 'Components/Table';
 
 type DataTableType = {
@@ -444,7 +445,7 @@ const tableColumns: ColumnDef<DataTableType>[] = [
             />
           </ComponentViewer>
           <ComponentViewer
-            title="Table with Pagination"
+            title="Pagination"
             code={`import {Table} from 'Components/Table';
 
 type DataTableType = {
@@ -547,6 +548,295 @@ const tableColumns: ColumnDef<DataTableType>[] = [
 `}
           >
             <Table columns={tableColumns} data={DataTable} enablePagination />
+          </ComponentViewer>
+          <ComponentViewer
+            title="Custom Props"
+            code={`import {Table} from 'Components/Table';
+
+type DataTableType = {
+  _id: string;
+  isActive: boolean;
+  picture?: string;
+  age: number;
+  name: string;
+  gender: string;
+  email: string;
+  phone: string;
+};
+
+const DataTable = [
+  {
+    _id: '644f76e1c8f95a550729db88',
+    isActive: true,
+    balance: '$2,166.05',
+    picture: 'http://placehold.it/32x32',
+    age: 38,
+    name: 'Tabatha Warner',
+    gender: 'female',
+    email: 'tabathawarner@frosnex.com',
+    phone: '+1 (958) 426-2797',
+  },
+  {
+    _id: '644f76e123eb64cff53a3e0e',
+    isActive: true,
+    balance: '$1,955.12',
+    picture: 'http://placehold.it/32x32',
+    age: 27,
+    name: 'Santana Mcgowan',
+    gender: 'male',
+    email: 'santanamcgowan@bezal.com',
+    phone: '+1 (810) 482-2801',
+  },
+  {
+    _id: '644f76e18aab42f76ea75178',
+    isActive: false,
+    balance: '$3,326.96',
+    picture: 'http://placehold.it/32x32',
+    age: 22,
+    name: 'Travis Nguyen',
+    gender: 'male',
+    email: 'travisnguyen@plasmosis.com',
+    phone: '+1 (937) 435-2785',
+  },
+  {
+    _id: '644f76e145923784c648f6df',
+    isActive: true,
+    balance: '$1,392.08',
+    picture: 'http://placehold.it/32x32',
+    age: 39,
+    name: 'Muriel Barlow',
+    gender: 'female',
+    email: 'murielbarlow@autograte.com',
+    phone: '+1 (853) 571-2037',
+  },
+  {
+    _id: '644f76e16311fb7abee4aead',
+    isActive: false,
+    balance: '$1,253.31',
+    picture: 'http://placehold.it/32x32',
+    age: 32,
+    name: 'Liliana Wilson',
+    gender: 'female',
+    email: 'lilianawilson@snowpoke.com',
+    phone: '+1 (926) 573-2808',
+  },
+];
+
+const tableColumns: ColumnDef<DataTableType>[] = [
+  {
+    header: 'Id',
+    accessorKey: '_id',
+    enableSorting: false,
+  },
+  {
+    header: 'Name',
+    accessorKey: 'name',
+  },
+  {
+    header: 'Active Status',
+    accessorFn: (row) => {
+      return row.isActive === true ? 'Online' : 'Offline';
+    },
+  },
+  {
+    header: 'Age',
+    accessorKey: 'age',
+  },
+  {
+    header: 'Gender',
+    accessorKey: 'gender',
+    cell: (row) => row.renderValue(),
+  },
+];
+
+<Table
+  columns={tableColumns}
+  data={DataTable}
+  enableSorting
+  enableColumnFiltering
+  enableGlobalFiltering
+  enablePagination
+  tablePropsObject={{
+    bodyCellProps: {
+      sx: {backgroundColor: 'whitesmoke'},
+    },
+    tableContainerProps: {
+      sx: {padding: 2},
+    },
+  }}
+/>
+`}
+          >
+            <Table
+              columns={tableColumns}
+              data={DataTable}
+              enableSorting
+              enableColumnFiltering
+              enableGlobalFiltering
+              enablePagination
+              tablePropsObject={{
+                bodyCellProps: {
+                  sx: {backgroundColor: 'whitesmoke'},
+                },
+                tableContainerProps: {
+                  sx: {padding: 2},
+                },
+              }}
+            />
+          </ComponentViewer>
+          <ComponentViewer
+            title="Custom Theme"
+            code={`import {Table} from 'Components/Table';
+import {createTheme} from '@mui/material/styles';
+
+type DataTableType = {
+  _id: string;
+  isActive: boolean;
+  picture?: string;
+  age: number;
+  name: string;
+  gender: string;
+  email: string;
+  phone: string;
+};
+
+const DataTable = [
+  {
+    _id: '644f76e1c8f95a550729db88',
+    isActive: true,
+    balance: '$2,166.05',
+    picture: 'http://placehold.it/32x32',
+    age: 38,
+    name: 'Tabatha Warner',
+    gender: 'female',
+    email: 'tabathawarner@frosnex.com',
+    phone: '+1 (958) 426-2797',
+  },
+  {
+    _id: '644f76e123eb64cff53a3e0e',
+    isActive: true,
+    balance: '$1,955.12',
+    picture: 'http://placehold.it/32x32',
+    age: 27,
+    name: 'Santana Mcgowan',
+    gender: 'male',
+    email: 'santanamcgowan@bezal.com',
+    phone: '+1 (810) 482-2801',
+  },
+  {
+    _id: '644f76e18aab42f76ea75178',
+    isActive: false,
+    balance: '$3,326.96',
+    picture: 'http://placehold.it/32x32',
+    age: 22,
+    name: 'Travis Nguyen',
+    gender: 'male',
+    email: 'travisnguyen@plasmosis.com',
+    phone: '+1 (937) 435-2785',
+  },
+  {
+    _id: '644f76e145923784c648f6df',
+    isActive: true,
+    balance: '$1,392.08',
+    picture: 'http://placehold.it/32x32',
+    age: 39,
+    name: 'Muriel Barlow',
+    gender: 'female',
+    email: 'murielbarlow@autograte.com',
+    phone: '+1 (853) 571-2037',
+  },
+  {
+    _id: '644f76e16311fb7abee4aead',
+    isActive: false,
+    balance: '$1,253.31',
+    picture: 'http://placehold.it/32x32',
+    age: 32,
+    name: 'Liliana Wilson',
+    gender: 'female',
+    email: 'lilianawilson@snowpoke.com',
+    phone: '+1 (926) 573-2808',
+  },
+];
+
+const tableColumns: ColumnDef<DataTableType>[] = [
+  {
+    header: 'Id',
+    accessorKey: '_id',
+    enableSorting: false,
+  },
+  {
+    header: 'Name',
+    accessorKey: 'name',
+  },
+  {
+    header: 'Active Status',
+    accessorFn: (row) => {
+      return row.isActive === true ? 'Online' : 'Offline';
+    },
+  },
+  {
+    header: 'Age',
+    accessorKey: 'age',
+  },
+  {
+    header: 'Gender',
+    accessorKey: 'gender',
+    cell: (row) => row.renderValue(),
+  },
+];
+
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const customTheme = createTheme(theme, {
+  components: {
+    MuiTableCell: {
+      styleOverrides: {
+        head: {
+          backgroundColor: theme.palette.common.black,
+        },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          '&:nth-of-type(even)': {
+            backgroundColor: theme.palette.action.hover,
+          },
+          '&:last-child td, &:last-child th': {
+            border: 0,
+          },
+        },
+      },
+    },
+  },
+});
+
+<ThemeProvider theme={customTheme}>
+  <Table
+    columns={tableColumns}
+    data={DataTable}
+    enableSorting
+    enableColumnFiltering
+    enableGlobalFiltering
+    enablePagination
+  />
+</ThemeProvider>
+`}
+          >
+            <ThemeProvider theme={customTheme}>
+              <Table
+                columns={tableColumns}
+                data={DataTable}
+                enableSorting
+                enableColumnFiltering
+                enableGlobalFiltering
+                enablePagination
+              />
+            </ThemeProvider>
           </ComponentViewer>
           <ComponentViewer
             title="RowDnd Table"
@@ -954,6 +1244,21 @@ const tableColumns: ColumnDef<DataTableType>[] = [
                 type: 'boolean',
                 defaultVal: 'false',
                 desc: 'A boolean value indicating whether column dragging and dropping should be enabled in the table. When set to true, users can interactively rearrange the columns of the table by dragging and dropping them to new positions.',
+              },
+              {
+                name: 'MUITablePropsObject',
+                type: 'MUITablePropsObject',
+                desc: `The MUITablePropsObject is a prop type that represents a set of properties used to configure a Material-UI table component. It includes the following properties:
+                - tableContainerProps: Props for the table container component.
+                - tableProps: Props for the main table component.
+                - tableHeadProps: Props for the table head component.
+                - headerRowProps: Props for the table header row component.
+                - tableBodyProps: Props for the table body component.
+                - tableFooterProps: Props for the table footer component.
+                - tablePaginationProps: Props for the table pagination component.
+                - bodyRowProps: Props for the table body row component.
+                - bodyCellProps: Props for the table body cell component.
+                - columnCellProps: Props for the table column cell component.`,
               },
             ]}
           />

@@ -1,4 +1,21 @@
 import {
+  Table as MuiTable,
+  TableProps as MuiTableProps,
+  Paper,
+  TableBody,
+  TableBodyProps,
+  TableCellProps,
+  TableContainer,
+  TableContainerProps,
+  TableFooter,
+  TableFooterProps,
+  TableHead,
+  TableHeadProps,
+  TablePaginationProps,
+  TableRow,
+  TableRowProps,
+} from '@mui/material';
+import {
   ColumnDef,
   ColumnFiltersState,
   FilterFn,
@@ -9,10 +26,22 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import {Table as MuiTable, Paper, TableBody, TableContainer, TableFooter, TableHead, TableRow} from '@mui/material';
 import {memo, useMemo, useState} from 'react';
 import {filterFns} from './FilterFunctions';
 import {DefaultColumn, DefaultRow, DefaultTablePagination, GlobalFilter} from './helper';
+
+export type MUITablePropsObject = {
+  tableContainerProps?: TableContainerProps;
+  tableProps?: MuiTableProps;
+  tableHeadProps?: TableHeadProps;
+  headerRowProps?: TableRowProps;
+  tableBodyProps?: TableBodyProps;
+  tableFooterProps?: TableFooterProps;
+  tablePaginationProps?: TablePaginationProps;
+  bodyRowProps?: TableRowProps;
+  bodyCellProps?: TableCellProps;
+  columnCellProps?: TableCellProps;
+};
 
 export interface TableProps<T extends Record<string, any>> {
   data: T[];
@@ -23,6 +52,7 @@ export interface TableProps<T extends Record<string, any>> {
   enableColumnFiltering?: boolean;
   enablePagination?: boolean;
   rowsPerPageOptions?: Array<number | {label: string; value: number}>;
+  tablePropsObject?: MUITablePropsObject;
 }
 
 const ARCTable = <T extends Record<string, any>>({
@@ -34,6 +64,7 @@ const ARCTable = <T extends Record<string, any>>({
   enableColumnFiltering,
   enablePagination,
   rowsPerPageOptions = [5, 10, 25, {label: 'All', value: data.length}],
+  tablePropsObject,
 }: TableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const tableData = useMemo(() => data, [data]);
@@ -62,12 +93,12 @@ const ARCTable = <T extends Record<string, any>>({
   const {pageSize, pageIndex} = table.getState().pagination;
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} {...tablePropsObject?.tableContainerProps}>
       {enableGlobalFiltering && <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />}
-      <MuiTable>
-        <TableHead>
+      <MuiTable {...tablePropsObject?.tableProps}>
+        <TableHead {...tablePropsObject?.tableHeadProps}>
           {getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
+            <TableRow key={headerGroup.id} {...tablePropsObject?.headerRowProps}>
               {headerGroup.headers.map((header, index) => (
                 <DefaultColumn
                   key={header.id}
@@ -75,18 +106,25 @@ const ARCTable = <T extends Record<string, any>>({
                   index={index}
                   enableColumnFiltering={enableColumnFiltering}
                   enableSorting={enableSorting}
+                  columnCellProps={tablePropsObject?.columnCellProps}
                 />
               ))}
             </TableRow>
           ))}
         </TableHead>
-        <TableBody>
+        <TableBody {...tablePropsObject?.tableBodyProps}>
           {getRowModel().rows.map((row, index) => (
-            <DefaultRow key={row.id} row={row} index={index} />
+            <DefaultRow
+              key={row.id}
+              row={row}
+              index={index}
+              bodyRowProps={tablePropsObject?.bodyRowProps}
+              bodyCellProps={tablePropsObject?.bodyCellProps}
+            />
           ))}
         </TableBody>
         {enablePagination && (
-          <TableFooter>
+          <TableFooter {...tablePropsObject?.tableFooterProps}>
             <DefaultTablePagination
               rowsPerPageOptions={rowsPerPageOptions}
               count={table.getFilteredRowModel().rows.length}
@@ -99,6 +137,7 @@ const ARCTable = <T extends Record<string, any>>({
                 const size = e.target.value ? Number(e.target.value) : 10;
                 table.setPageSize(size);
               }}
+              tablePaginationProps={tablePropsObject?.tablePaginationProps}
             />
           </TableFooter>
         )}
