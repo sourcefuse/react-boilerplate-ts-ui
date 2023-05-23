@@ -34,7 +34,7 @@ export const DebouncedInput = ({value: initialValue, onChange, debounceTime = 30
   };
 
   return (
-    <Stack direction="row" sx={{px: '10px'}}>
+    <Stack direction="row">
       <TextField
         size="small"
         placeholder="Search Across Table"
@@ -46,11 +46,11 @@ export const DebouncedInput = ({value: initialValue, onChange, debounceTime = 30
             <InputAdornment position="end">
               {value ? (
                 <IconButton aria-label="clear" onClick={handleClearClick}>
-                  <ClearIcon style={{fill: '#D1D1D1'}} />
+                  <ClearIcon />
                 </IconButton>
               ) : (
                 <IconButton aria-label="search">
-                  <SearchIcon style={{fill: '#D1D1D1'}} />
+                  <SearchIcon />
                 </IconButton>
               )}
             </InputAdornment>

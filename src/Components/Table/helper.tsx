@@ -1,10 +1,16 @@
-import TableCell from '@mui/material/TableCell';
+import {
+  Box,
+  TablePaginationProps as MuiTablePaginationProps,
+  TableRowProps as MuiTableRowProps,
+  TablePagination,
+  TableRow,
+} from '@mui/material';
+import TableCell, {TableCellProps} from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import {Header, Row, flexRender} from '@tanstack/react-table';
 import PropTypes from 'prop-types';
 import {Draggable, DraggableProvided, DraggableStateSnapshot} from 'react-beautiful-dnd';
 import {DebouncedInput} from './DebounceInput';
-import {Box, TablePagination, TableRow} from '@mui/material';
 import TablePaginationActions from './PaginationActions';
 
 interface ColumnProps<T extends Record<string, any>> {
@@ -12,6 +18,7 @@ interface ColumnProps<T extends Record<string, any>> {
   index: number;
   enableSorting?: boolean;
   enableColumnFiltering?: boolean;
+  columnCellProps?: TableCellProps;
 }
 
 export const DraggableColumn = <T extends Record<string, any>>({
@@ -19,6 +26,7 @@ export const DraggableColumn = <T extends Record<string, any>>({
   index,
   enableSorting,
   enableColumnFiltering,
+  columnCellProps,
 }: ColumnProps<T>): JSX.Element => {
   return (
     <Draggable draggableId={header.id} index={index}>
@@ -32,8 +40,9 @@ export const DraggableColumn = <T extends Record<string, any>>({
             {...draggableProvided.dragHandleProps}
             style={{
               ...draggableProvided.draggableProps.style,
-              background: snapshot.isDragging ? 'blue' : 'none',
+              background: snapshot.isDragging ? 'rgba(245,245,245, 0.75)' : 'none',
             }}
+            {...columnCellProps}
           >
             {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
             {enableSorting && (
@@ -76,9 +85,16 @@ DraggableColumn.propTypes = {
 type TableRowProps<T extends Record<string, any>> = {
   row: Row<T>;
   index: number;
+  bodyCellProps?: TableCellProps;
+  bodyRowProps?: MuiTableRowProps;
 };
 
-export const DraggableTableRow = <T extends Record<string, any>>({row, index}: TableRowProps<T>) => {
+export const DraggableTableRow = <T extends Record<string, any>>({
+  row,
+  index,
+  bodyCellProps,
+  bodyRowProps,
+}: TableRowProps<T>) => {
   return (
     <Draggable draggableId={row.id} index={index}>
       {(draggableProvided: DraggableProvided, snapshot: DraggableStateSnapshot) => {
@@ -93,9 +109,12 @@ export const DraggableTableRow = <T extends Record<string, any>>({row, index}: T
               background: snapshot.isDragging ? 'rgba(245,245,245, 0.75)' : 'none',
             }}
             sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: snapshot.isDragging ? 'grabbing' : 'pointer'}}
+            {...bodyRowProps}
           >
             {row.getVisibleCells().map((cell) => (
-              <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+              <TableCell key={cell.id} {...bodyCellProps}>
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+              </TableCell>
             ))}
           </TableRow>
         );
@@ -109,9 +128,10 @@ export const DefaultColumn = <T extends Record<string, any>>({
   index,
   enableSorting,
   enableColumnFiltering,
+  columnCellProps,
 }: ColumnProps<T>): JSX.Element => {
   return (
-    <TableCell key={header.id} sx={{fontWeight: 'bold'}}>
+    <TableCell key={header.id} sx={{fontWeight: 'bold'}} {...columnCellProps}>
       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
       {enableSorting && (
         <TableSortLabel
@@ -140,11 +160,18 @@ export const DefaultColumn = <T extends Record<string, any>>({
   );
 };
 
-export const DefaultRow = <T extends Record<string, any>>({row, index}: TableRowProps<T>) => {
+export const DefaultRow = <T extends Record<string, any>>({
+  row,
+  index,
+  bodyCellProps,
+  bodyRowProps,
+}: TableRowProps<T>) => {
   return (
-    <TableRow key={row.id} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+    <TableRow key={row.id} sx={{'&:last-child td, &:last-child th': {border: 0}}} {...bodyRowProps}>
       {row.getVisibleCells().map((cell) => (
-        <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+        <TableCell key={cell.id} {...bodyCellProps}>
+          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+        </TableCell>
       ))}
     </TableRow>
   );
@@ -175,6 +202,7 @@ type TablePaginationProps = {
   pageIndex: number;
   onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
   onRowsPerPageChange: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  tablePaginationProps?: MuiTablePaginationProps;
 };
 
 export const DefaultTablePagination: React.FC<TablePaginationProps> = ({
@@ -184,6 +212,7 @@ export const DefaultTablePagination: React.FC<TablePaginationProps> = ({
   pageIndex,
   onPageChange,
   onRowsPerPageChange,
+  tablePaginationProps,
 }: TablePaginationProps) => {
   return (
     <TablePagination
@@ -199,6 +228,7 @@ export const DefaultTablePagination: React.FC<TablePaginationProps> = ({
       onPageChange={onPageChange}
       onRowsPerPageChange={onRowsPerPageChange}
       ActionsComponent={TablePaginationActions}
+      {...tablePaginationProps}
     />
   );
 };

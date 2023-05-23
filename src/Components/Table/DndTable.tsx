@@ -21,12 +21,10 @@ import {
   TableRow,
   TableBody,
   TableFooter,
-  TablePagination,
 } from '@mui/material';
 import {DebouncedInput} from './DebounceInput';
 import {StrictModeDroppable} from './StrictModeDroppable';
-import {DefaultColumn, DefaultRow, DraggableColumn, DraggableTableRow} from './helper';
-import TablePaginationActions from './PaginationActions';
+import {DefaultColumn, DefaultRow, DefaultTablePagination, DraggableColumn, DraggableTableRow} from './helper';
 
 export interface DndTableProps<T extends Record<string, any>> extends TableProps<T> {
   enableRowDnd?: boolean;
@@ -44,6 +42,7 @@ const AdvancedTable = <T extends Record<string, any>>({
   rowsPerPageOptions = [5, 10, 25, {label: 'All', value: data.length}],
   enableColumnDnd,
   enableRowDnd = true,
+  tablePropsObject,
 }: DndTableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const tableData = useMemo(() => data, [data]);
@@ -105,7 +104,7 @@ const AdvancedTable = <T extends Record<string, any>>({
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} {...tablePropsObject?.tableContainerProps}>
       {enableGlobalFiltering && (
         <Box display="flex" justifyContent="flex-end">
           <DebouncedInput
@@ -116,13 +115,17 @@ const AdvancedTable = <T extends Record<string, any>>({
           />
         </Box>
       )}
-      <MuiTable>
+      <MuiTable {...tablePropsObject?.tableProps}>
         <DragDropContext onDragEnd={handleDragEnd}>
           <StrictModeDroppable droppableId="columns" type="columns" direction="horizontal">
             {(droppableProvided: DroppableProvided) => (
-              <TableHead ref={droppableProvided.innerRef} {...droppableProvided.droppableProps}>
+              <TableHead
+                ref={droppableProvided.innerRef}
+                {...droppableProvided.droppableProps}
+                {...tablePropsObject?.tableHeadProps}
+              >
                 {getHeaderGroups().map((headerGroup) => (
-                  <TableRow key={headerGroup.id}>
+                  <TableRow key={headerGroup.id} {...tablePropsObject?.headerRowProps}>
                     {headerGroup.headers.map((header, index) => {
                       return enableColumnDnd ? (
                         <DraggableColumn
@@ -131,6 +134,7 @@ const AdvancedTable = <T extends Record<string, any>>({
                           index={index}
                           enableSorting={enableSorting}
                           enableColumnFiltering={enableColumnFiltering}
+                          columnCellProps={tablePropsObject?.columnCellProps}
                         />
                       ) : (
                         <DefaultColumn
@@ -139,6 +143,7 @@ const AdvancedTable = <T extends Record<string, any>>({
                           index={index}
                           enableSorting={enableSorting}
                           enableColumnFiltering={enableColumnFiltering}
+                          columnCellProps={tablePropsObject?.columnCellProps}
                         />
                       );
                     })}
@@ -150,12 +155,22 @@ const AdvancedTable = <T extends Record<string, any>>({
           </StrictModeDroppable>
           <StrictModeDroppable droppableId="row" direction="vertical" type="row">
             {(droppableProvided: DroppableProvided) => (
-              <TableBody ref={droppableProvided.innerRef} {...droppableProvided.droppableProps}>
+              <TableBody
+                ref={droppableProvided.innerRef}
+                {...droppableProvided.droppableProps}
+                {...tablePropsObject?.tableBodyProps}
+              >
                 {getRowModel().rows.map((row, index) => {
                   return enableRowDnd ? (
                     <DraggableTableRow key={row.id} row={row} index={index} />
                   ) : (
-                    <DefaultRow key={row.id} row={row} index={index} />
+                    <DefaultRow
+                      key={row.id}
+                      row={row}
+                      index={index}
+                      bodyRowProps={tablePropsObject?.bodyRowProps}
+                      bodyCellProps={tablePropsObject?.bodyCellProps}
+                    />
                   );
                 })}
                 {droppableProvided.placeholder}
@@ -163,17 +178,12 @@ const AdvancedTable = <T extends Record<string, any>>({
             )}
           </StrictModeDroppable>
           {enablePagination && (
-            <TableFooter>
-              <TablePagination
+            <TableFooter {...tablePropsObject?.tableFooterProps}>
+              <DefaultTablePagination
                 rowsPerPageOptions={rowsPerPageOptions}
-                component="div"
                 count={table.getFilteredRowModel().rows.length}
-                rowsPerPage={pageSize}
-                page={pageIndex}
-                SelectProps={{
-                  inputProps: {'aria-label': 'rows per page'},
-                  native: true,
-                }}
+                pageSize={pageSize}
+                pageIndex={pageIndex}
                 onPageChange={(_, page) => {
                   table.setPageIndex(page);
                 }}
@@ -181,7 +191,7 @@ const AdvancedTable = <T extends Record<string, any>>({
                   const size = e.target.value ? Number(e.target.value) : 10;
                   table.setPageSize(size);
                 }}
-                ActionsComponent={TablePaginationActions}
+                tablePaginationProps={tablePropsObject?.tablePaginationProps}
               />
             </TableFooter>
           )}
