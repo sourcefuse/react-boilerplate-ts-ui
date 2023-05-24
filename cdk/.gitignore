@@ -9,3 +9,4 @@ cdktf.log
 tsconfig.tsbuildinfo
 !jest.config.js
 !setup.js
+__tests__/__snapshots__

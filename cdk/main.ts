@@ -14,7 +14,7 @@ import {CreateAcmCertificate} from './helper/utils';
 
 config();
 
-class MyStack extends TerraformStack {
+export class CloudFrontStaticWebsiteStack extends TerraformStack {
   constructor(scope: Construct, name: string) {
     super(scope, name);
 
@@ -156,5 +156,5 @@ function uploadDirectoryToS3(sourcePath: string, bucket: aws.s3Bucket.S3Bucket, 
 }
 
 const app = new App();
-new MyStack(app, 'spa-host');
+new CloudFrontStaticWebsiteStack(app, 'spa-host');
 app.synth();
