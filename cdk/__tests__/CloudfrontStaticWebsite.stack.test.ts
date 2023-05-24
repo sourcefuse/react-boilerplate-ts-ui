@@ -14,13 +14,19 @@ import {CloudfrontDistribution} from '@cdktf/provider-aws/lib/cloudfront-distrib
 
 config({path: path.join(__dirname, '../.env')});
 
-describe('CoudfrontStaticWebsiteStack Tests', () => {
+describe('CloudfrontStaticWebsiteStack Tests', () => {
   const app = Testing.app();
   const stack = new CloudFrontStaticWebsiteStack(app, 'test');
   const synthesized = Testing.synth(stack);
 
   it('should create an S3 bucket', () => {
     expect(synthesized).toHaveResource(S3Bucket);
+  });
+
+  it('S3 bucket should match name provided in env', () => {
+    expect(synthesized).toHaveResourceWithProperties(S3Bucket, {
+      bucket: process.env.S3_BUCKET_NAME,
+    });
   });
 
   it('should create an S3 bucket policy', () => {
@@ -43,7 +49,7 @@ describe('CoudfrontStaticWebsiteStack Tests', () => {
     expect(synthesized).toHaveResource(Route53Record);
   });
 
-  it('acm record should have domain name provided in env', () => {
+  it('acm record should match domain name provided in env', () => {
     expect(synthesized).toHaveResourceWithProperties(AcmCertificate, {
       domain_name: process.env.CUSTOM_DOMAIN,
     });
@@ -65,7 +71,7 @@ describe('CoudfrontStaticWebsiteStack Tests', () => {
     expect(Testing.fullSynth(stack)).toBeValidTerraform();
   });
 
-  it('should be plan successfully', () => {
+  it('should plan successfully', () => {
     expect(Testing.fullSynth(stack)).toPlanSuccessfully();
   });
 });
