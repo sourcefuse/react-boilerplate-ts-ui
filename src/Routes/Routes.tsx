@@ -23,23 +23,48 @@ const RouteGenerator: React.FC<IRoute & IGenerateRouteProps> = ({
   isLoggedIn,
   originalPath,
   redirectTo,
+  childRoutes,
 }) => {
+  let renderedComponent = null;
+
   if (redirect) {
     return <Route path={path} key={key} element={<Navigate to={redirect} />} />;
   } else if (isPrivate) {
     if (isLoggedIn && Component) {
-      return <Route path={path} key={key} element={<Component />} />;
+      renderedComponent = <Route path={path} key={key} element={<Component />} />;
     } else {
-      return <Route path={path} key={key} element={<Navigate to={`/login?redirectTo=${originalPath}`} />} />;
+      renderedComponent = (
+        <Route path={path} key={key} element={<Navigate to={`/login?redirectTo=${originalPath}`} />} />
+      );
     }
   } else {
     if (isLoggedIn && restricted) {
-      return <Route path={path} key={key} element={<Navigate to={redirectTo || '/'} />} />;
+      renderedComponent = <Route path={path} key={key} element={<Navigate to={redirectTo || '/'} />} />;
     } else if (Component) {
-      return <Route path={path} key={key} element={<Component />} />;
+      renderedComponent = <Route path={path} key={key} element={<Component />} />;
     }
   }
-  return null;
+
+  if (childRoutes) {
+    return (
+      <>
+        {renderedComponent}
+        <Route key={key} path={path} element={Component && <Component />}>
+          {childRoutes.map((childRoute, index) => {
+            const routeGeneratorParams = {
+              key,
+              isLoggedIn,
+              originalPath,
+              redirectTo,
+              ...childRoute,
+            };
+            return RouteGenerator(routeGeneratorParams);
+          })}
+        </Route>
+      </>
+    );
+  }
+  return renderedComponent;
 };
 
 const Routes = () => {

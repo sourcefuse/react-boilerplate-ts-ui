@@ -9,6 +9,7 @@ export interface IRoute {
   redirect?: string;
   isPrivate?: boolean;
   restricted?: boolean;
+  childRoutes?: IRoute[];
 }
 
 const layoutRouteConfig: IRoute[] = [
