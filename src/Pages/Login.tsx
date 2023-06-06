@@ -6,6 +6,9 @@ import Form from 'Components/Forms/Form';
 import FormInput from 'Components/Forms/FormInput';
 import FormPasswordInput from 'Components/Forms/FormPasswordInput';
 import useAuth from 'Hooks/useAuth';
+import {LoginForm} from 'Providers/AuthProvider';
+import {FormikHelpers} from 'formik';
+import {useLocation, useNavigate} from 'react-router-dom';
 import * as yup from 'yup';
 
 const initialValues = {
@@ -20,7 +23,19 @@ const validationSchema = yup.object({
 
 const Login = () => {
   const {login, loginLoading} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
+  const handleNavigation = () => {
+    navigate(from, {replace: true});
+  };
+
+  const handleSubmit = async (values: LoginForm, {setSubmitting}: FormikHelpers<LoginForm>) => {
+    await login(values);
+    handleNavigation();
+    setSubmitting(false);
+  };
   // const handleAzureLogin = async () => {
   //   try {
   //     setAzButtonLoading(true);
@@ -91,7 +106,7 @@ const Login = () => {
                   Create your account now!
                 </Typography>
               </Grid>
-              <Form initialValues={initialValues} onSubmit={login} validationSchema={validationSchema}>
+              <Form initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
                 <Grid item xs={12}>
                   <FormInput id="username" label="UserName" />
                 </Grid>
