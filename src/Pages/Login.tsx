@@ -36,30 +36,6 @@ const Login = () => {
     handleNavigation();
     setSubmitting(false);
   };
-  // const handleAzureLogin = async () => {
-  //   try {
-  //     setAzButtonLoading(true);
-  //     const data = {
-  //       client_id: clientId,
-  //       client_secret: clientSecret,
-  //     };
-  //     const form = document.createElement('form');
-  //     document.body.appendChild(form);
-  //     form.method = 'post';
-  //     form.action = `${appConfig.auth_api_base_url}/auth/azure`;
-  //     for (const name in data) {
-  //       const input = document.createElement('input');
-  //       input.type = 'hidden';
-  //       input.name = name;
-  //       input.value = data[name];
-  //       form.appendChild(input);
-  //     }
-  //     form.submit();
-  //   } catch (err) {
-  //     console.error('error while login using Azure => ', err);
-  //     setAzButtonLoading(false);
-  //   }
-  // };
 
   return (
     <>
@@ -125,23 +101,6 @@ const Login = () => {
                   </Button>
                 </Grid>
               </Form>
-              {/* <Divider orientation="horizontal" flexItem>
-                  You can also login via
-                </Divider>
-                <Button
-                  size="small"
-                  onClick={handleAzureLogin}
-                  variant="outlined"
-                  sx={{mt: 4, color: '#525252', borderColor: '#525252'}}
-                  isLoading={azButtonLoading}
-                >
-                  <img src={azureLogo} alt="azure" width="30px" /> &nbsp; Continue With Azure AD
-                </Button> */}
-              {/* <Grid item xs={12} textAlign="center">
-                <Typography variant="subtitle2" component="div" sx={{mt: 15}}>
-                  I already have an account in ARC by SourceFuse, 
-                </Typography>
-              </Grid> */}
             </Grid>
           </Box>
         </Grid>
