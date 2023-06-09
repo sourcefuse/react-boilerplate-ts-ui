@@ -6,6 +6,9 @@ import Form from 'Components/Forms/Form';
 import FormInput from 'Components/Forms/FormInput';
 import FormPasswordInput from 'Components/Forms/FormPasswordInput';
 import useAuth from 'Hooks/useAuth';
+import {LoginForm} from 'Providers/AuthProvider';
+import {FormikHelpers} from 'formik';
+import {useLocation, useNavigate} from 'react-router-dom';
 import * as yup from 'yup';
 
 const initialValues = {
@@ -20,35 +23,23 @@ const validationSchema = yup.object({
 
 const Login = () => {
   const {login, loginLoading} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
-  // const handleAzureLogin = async () => {
-  //   try {
-  //     setAzButtonLoading(true);
-  //     const data = {
-  //       client_id: clientId,
-  //       client_secret: clientSecret,
-  //     };
-  //     const form = document.createElement('form');
-  //     document.body.appendChild(form);
-  //     form.method = 'post';
-  //     form.action = `${appConfig.auth_api_base_url}/auth/azure`;
-  //     for (const name in data) {
-  //       const input = document.createElement('input');
-  //       input.type = 'hidden';
-  //       input.name = name;
-  //       input.value = data[name];
-  //       form.appendChild(input);
-  //     }
-  //     form.submit();
-  //   } catch (err) {
-  //     console.error('error while login using Azure => ', err);
-  //     setAzButtonLoading(false);
-  //   }
-  // };
+  const handleNavigation = () => {
+    navigate(from, {replace: true});
+  };
+
+  const handleSubmit = async (values: LoginForm, {setSubmitting}: FormikHelpers<LoginForm>) => {
+    await login(values);
+    handleNavigation();
+    setSubmitting(false);
+  };
 
   return (
     <>
-      <Grid container>
+      <Grid container data-testid="LoginPage">
         <Grid item xs={8}>
           <Box
             component="img"
@@ -91,7 +82,7 @@ const Login = () => {
                   Create your account now!
                 </Typography>
               </Grid>
-              <Form initialValues={initialValues} onSubmit={login} validationSchema={validationSchema}>
+              <Form initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
                 <Grid item xs={12}>
                   <FormInput id="username" label="UserName" />
                 </Grid>
@@ -110,23 +101,6 @@ const Login = () => {
                   </Button>
                 </Grid>
               </Form>
-              {/* <Divider orientation="horizontal" flexItem>
-                  You can also login via
-                </Divider>
-                <Button
-                  size="small"
-                  onClick={handleAzureLogin}
-                  variant="outlined"
-                  sx={{mt: 4, color: '#525252', borderColor: '#525252'}}
-                  isLoading={azButtonLoading}
-                >
-                  <img src={azureLogo} alt="azure" width="30px" /> &nbsp; Continue With Azure AD
-                </Button> */}
-              {/* <Grid item xs={12} textAlign="center">
-                <Typography variant="subtitle2" component="div" sx={{mt: 15}}>
-                  I already have an account in ARC by SourceFuse, 
-                </Typography>
-              </Grid> */}
             </Grid>
           </Box>
         </Grid>
