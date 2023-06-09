@@ -2,10 +2,19 @@ import {Box, Typography} from '@mui/material';
 import BackdropLoader from 'Components/BackdropLoader';
 import useOnlineStatus from 'Providers/OnlineStatusProvider';
 import React, {Suspense} from 'react';
-import {useRoutes} from 'react-router-dom';
-import routesConfig from './layoutRouteConfig';
+import {RouteObject, useRoutes} from 'react-router-dom';
 
-const Routes = () => {
+interface RoutesProps {
+  routesConfig: RouteObject[];
+}
+
+/**
+ * Renders the routes of the application based on the provided routes configuration.
+ *
+ * @param {RoutesProps} routesConfig - The configuration of routes to render.
+ * @returns The rendered Routes component.
+ */
+const Routes: React.FC<RoutesProps> = ({routesConfig}) => {
   const isOnline = useOnlineStatus();
   const routes = useRoutes(routesConfig);
   return (

@@ -13,7 +13,7 @@ const border = '1px solid  #D9D9D9;';
 
 const Home = () => {
   return (
-    <Grid container spacing={2} sx={{px: 4}}>
+    <Grid container spacing={2} sx={{px: 4}} data-testid="HomePage">
       <Grid
         item
         xs={6}

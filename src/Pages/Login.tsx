@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <>
-      <Grid container>
+      <Grid container data-testid="LoginPage">
         <Grid item xs={8}>
           <Box
             component="img"

@@ -1,27 +1,37 @@
+import {AuthRedirectWrapper} from 'Components/AuthRedirectWrapper';
 import {ProtectedRouteWrapper} from 'Components/ProtectedRouteWrapper';
-import {authorizationFunctions} from 'Helpers/authorizationFunctions';
 import React, {lazy} from 'react';
 import {Navigate, RouteObject} from 'react-router';
 const Login = lazy(() => import('../Pages/Login'));
 const Mainlayout = lazy(() => import('Layouts/MainLayout/Mainlayout'));
 
-const routesConfig: RouteObject[] = [
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/',
-    element: <Navigate to={'/home'} replace />,
-  },
-  {
-    path: '/*',
-    element: (
-      <ProtectedRouteWrapper isAuthorized={authorizationFunctions.isAuthenticated}>
-        <Mainlayout />
-      </ProtectedRouteWrapper>
-    ),
-  },
-];
-
-export default routesConfig;
+/**
+ * Routes that require authorization are protected using the ProtectedRouteWrapper component (default authorization is user authentication).
+ * Authenticated users are redirected to the home page using the AuthRedirectWrapper component.
+ *
+ * @returns An array of RouteObject defining the routes of the application.
+ */
+export const getRouteConfig = (): RouteObject[] => {
+  return [
+    {
+      path: '/login',
+      element: (
+        <AuthRedirectWrapper>
+          <Login />
+        </AuthRedirectWrapper>
+      ),
+    },
+    {
+      path: '/',
+      element: <Navigate to={'/home'} replace />,
+    },
+    {
+      path: '/*',
+      element: (
+        <ProtectedRouteWrapper>
+          <Mainlayout />
+        </ProtectedRouteWrapper>
+      ),
+    },
+  ];
+};
