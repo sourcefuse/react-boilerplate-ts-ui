@@ -1,13 +1,14 @@
 import useConfig from 'Hooks/useConfig';
 import {ApiAuditLog, AuditLog} from './utils';
 import axiosFactory from 'Helpers/axios';
-import {useContext} from 'react';
-import {AuthContext} from 'Providers/AuthProvider';
+
 import {UseMutationResult, UseQueryResult, useMutation, useQuery} from '@tanstack/react-query';
+import {useSelector} from 'react-redux';
+import {selectCurrentAccessToken} from 'redux/auth/authSlice';
 
 export const useGetAuditLogs = (): UseQueryResult<AuditLog[], unknown> => {
   const {authApiBaseUrl} = useConfig().config;
-  const {accessToken} = useContext(AuthContext).authData;
+  const accessToken = useSelector(selectCurrentAccessToken);
 
   const getAuditLogs = async (baseUrl: string): Promise<AuditLog[]> => {
     const client = axiosFactory(baseUrl);
@@ -32,7 +33,7 @@ export const useGetAuditLogs = (): UseQueryResult<AuditLog[], unknown> => {
 
 export const useCreateAuditLogs = (): UseMutationResult<void, unknown, ApiAuditLog> => {
   const {authApiBaseUrl} = useConfig().config;
-  const {accessToken} = useContext(AuthContext).authData;
+  const accessToken = useSelector(selectCurrentAccessToken);
 
   const createAuditLogs = async (data: ApiAuditLog, baseUrl: string) => {
     const client = axiosFactory(baseUrl);

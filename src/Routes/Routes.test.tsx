@@ -2,7 +2,6 @@ import {MemoryRouter, Outlet, RouteObject} from 'react-router-dom';
 import Routes from './Routes';
 import {render, screen} from '@testing-library/react';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import AuthProvider from 'Providers/AuthProvider';
 import NotificationProvider from 'Providers/NotificationProvider';
 import {getRouteConfig} from './layoutRouteConfig';
 import {vi} from 'vitest';
@@ -22,9 +21,7 @@ const TestApp: React.FC<{initialEntries: any[]}> = ({initialEntries}: {initialEn
     <QueryClientProvider client={queryClient}>
       <MemoryRouter initialEntries={initialEntries}>
         <NotificationProvider>
-          <AuthProvider>
-            <Routes routesConfig={getRouteConfig()} />
-          </AuthProvider>
+          <Routes routesConfig={getRouteConfig()} />
         </NotificationProvider>
       </MemoryRouter>
     </QueryClientProvider>

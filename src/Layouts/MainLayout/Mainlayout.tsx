@@ -9,7 +9,7 @@ import NotFound from 'Pages/NotFound';
 import {Suspense, useCallback, useEffect, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import mainLayoutRouteConfig from './mainLayoutRouteConfig';
-import useMainLayout from './useMainLayout';
+import {useGetUserQuery} from 'redux/auth/authApiSlice';
 
 const drawerWidth = 270;
 const isAppBarFullWidth = false;
@@ -41,7 +41,8 @@ const Mainlayout = () => {
   const toggleDrawer = useCallback(() => setOpen((prev) => !prev), []);
   const [isPermanent, setIsPermanent] = useState(true);
   const theme = useTheme();
-  const {userData} = useMainLayout();
+
+  const {data: userData} = useGetUserQuery();
 
   const handleWindowWidthChange = useCallback(
     (firstRender?: boolean) => {

@@ -1,16 +1,3 @@
-import axiosFactory from 'Helpers/axios';
-import useQuery from 'Hooks/useQuery';
-import {useEffect, useState} from 'react';
-
-interface Configuration {
-  clientId: string;
-  authApiBaseUrl: string;
-  appApiBaseUrl?: string;
-  enableSessionTimeout?: string;
-  storageSessionTimeKey?: string;
-  expiryTimeInMinute?: string;
-  warningAlertTimeoutInMinute?: string;
-}
 export interface AppConfiguration {
   clientId: string;
   authApiBaseUrl: string;
@@ -22,30 +9,25 @@ export interface AppConfiguration {
 }
 
 const useConfig = () => {
-  const [config, setConfig] = useState<AppConfiguration>({} as AppConfiguration);
-  const client = axiosFactory();
+  const {
+    VITE_CLIENT_ID,
+    VITE_APP_API_BASE_URL,
+    VITE_AUTH_API_BASE_URL,
+    VITE_ENABLE_SESSION_TIMEOUT,
+    VITE_STORAGE_SESSION_TIME_KEY,
+    VITE_EXPIRY_TIME_IN_MINUTE,
+    VITE_WARNING_ALERT_TIMEOUT_IN_MINUTE,
+  } = import.meta.env;
 
-  const {data: configData} = useQuery<{data: Configuration}>({
-    key: ['config'],
-    fn: () => client.get('/config.json'),
-    options: {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-    },
-  });
-
-  useEffect(() => {
-    if (configData) {
-      const data = configData?.data;
-      const newConfig = {
-        ...data,
-        enableSessionTimeout: data?.enableSessionTimeout === 'true',
-        expiryTimeInMinute: data?.expiryTimeInMinute ? +data.expiryTimeInMinute : 1,
-        warningAlertTimeoutInMinute: data?.warningAlertTimeoutInMinute ? +data.warningAlertTimeoutInMinute : 1,
-      };
-      setConfig({...newConfig});
-    }
-  }, [configData]);
+  const config: AppConfiguration = {
+    clientId: VITE_CLIENT_ID as string,
+    authApiBaseUrl: VITE_AUTH_API_BASE_URL,
+    appApiBaseUrl: VITE_APP_API_BASE_URL,
+    enableSessionTimeout: VITE_ENABLE_SESSION_TIMEOUT === 'true',
+    storageSessionTimeKey: VITE_STORAGE_SESSION_TIME_KEY,
+    expiryTimeInMinute: VITE_EXPIRY_TIME_IN_MINUTE ? +VITE_EXPIRY_TIME_IN_MINUTE : 1,
+    warningAlertTimeoutInMinute: VITE_WARNING_ALERT_TIMEOUT_IN_MINUTE ? +VITE_WARNING_ALERT_TIMEOUT_IN_MINUTE : 1,
+  };
 
   return {config};
 };

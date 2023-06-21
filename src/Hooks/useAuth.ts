@@ -1,82 +1,52 @@
-import {useQueryClient} from '@tanstack/react-query';
-import axiosFactory from 'Helpers/axios';
-import useMutation from 'Hooks/useMutation';
-import {AuthContext, AuthData, LoginForm} from 'Providers/AuthProvider';
-import {useCallback, useContext} from 'react';
+import {useSnackbar} from 'notistack';
 import useConfig from './useConfig';
+import {useDispatch, useSelector} from 'react-redux';
+import {useLoginMutation, useLogoutMutation} from 'redux/auth/authApiSlice';
+import type {LoginForm} from 'redux/auth/authApiSlice';
+import {
+  selectCurrentAuthState,
+  selectCurrentLoginStatus,
+  selectCurrentRefreshToken,
+  setCredentials,
+  unsetCredentials,
+} from 'redux/auth/authSlice';
 
 export default function useAuth() {
-  const {isLoggedIn, setIsLoggedIn, setAuthData, authData} = useContext(AuthContext);
   const {
-    config: {clientId, authApiBaseUrl},
+    config: {clientId},
   } = useConfig();
-  const queryClient = useQueryClient();
-  const client = axiosFactory(authApiBaseUrl);
 
-  const {mutateAsync: loginRequest, isLoading: loginLoading} = useMutation<{data: AuthData}, LoginForm>({
-    fn: (values: LoginForm) =>
-      client.post(`/auth/login-token`, {
+  const {enqueueSnackbar} = useSnackbar();
+
+  const dispatch = useDispatch();
+  const [loginApi, {isLoading: loginLoading}] = useLoginMutation();
+  const [logoutApi, {isLoading: logoutLoading}] = useLogoutMutation();
+
+  const refreshToken = useSelector(selectCurrentRefreshToken);
+  const isLoggedIn = useSelector(selectCurrentLoginStatus);
+  const authData = useSelector(selectCurrentAuthState);
+
+  const login = async (values: LoginForm) => {
+    try {
+      const response = await loginApi({
         client_id: clientId,
         ...values,
-      }),
-    successMsg: 'Login successful',
-  });
-
-  const {mutateAsync: refreshRequest} = useMutation({
-    fn: () =>
-      client.post<any, {data: AuthData}>(
-        `/auth/token-refresh`,
-        {
-          refreshToken: authData.refreshToken,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${authData.accessToken}`,
-          },
-        },
-      ),
-  });
-
-  // const {mutateAsync: signUpRequest, isLoading: signUpLoading} = useMutation<AuthData, SignUpForm>({
-  //   fn: (values: SignUpForm) => client.post<any, AuthData>(`/auth/sign-up`, values),
-  //   successMsg: 'Sign up successful',
-  // });
-
-  const login = useCallback(
-    async (val: LoginForm) => {
-      const {data} = await loginRequest(val);
-      setAuthData(data);
-      setIsLoggedIn(true);
-    },
-    [loginRequest, setIsLoggedIn, setAuthData],
-  );
-
-  const logout = useCallback(() => {
-    queryClient.clear();
-    setIsLoggedIn(false);
-    localStorage.clear();
-    sessionStorage.clear();
-  }, [queryClient, setIsLoggedIn]);
-
-  const refresh = useCallback(async () => {
-    try {
-      const {data} = await refreshRequest({});
-      setAuthData(data);
-      return data;
-    } catch (e) {
-      logout();
+      }).unwrap();
+      dispatch(setCredentials(response));
+      enqueueSnackbar('Login Successful', {variant: 'success'});
+    } catch (err: any) {
+      enqueueSnackbar(`${err.status}: ${err.data.error.name}`, {variant: 'error'});
     }
-  }, [logout, refreshRequest, setAuthData]);
+  };
 
-  // const signUp = useCallback(
-  //   async (userObj: SignUpForm) => {
-  //     delete userObj.terms;
-  //     const data = await signUpRequest(userObj);
-  //     setAuthData(data);
-  //     setIsLogin(true);
-  //   },
-  //   [setIsLogin, setAuthData, signUpRequest],
-  // );
+  const logout = async () => {
+    try {
+      await logoutApi(refreshToken).unwrap();
+      dispatch(unsetCredentials());
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  return {isLoggedIn, login, authData, logout, loginLoading, refresh};
+  return {isLoggedIn, login, authData, logout, loginLoading, logoutLoading};
 }

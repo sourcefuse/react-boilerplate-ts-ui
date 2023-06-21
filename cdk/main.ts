@@ -42,7 +42,7 @@ export class CloudFrontStaticWebsiteStack extends TerraformStack {
     });
 
     const oac = new aws.cloudfrontOriginAccessControl.CloudfrontOriginAccessControl(this, 'oac', {
-      name: 'spaOriginAccessControl',
+      name: `${bucketName}OAC`,
       description: 'Allow CloudFront access to the bucket',
       originAccessControlOriginType: 's3',
       signingBehavior: 'always',
@@ -63,6 +63,11 @@ export class CloudFrontStaticWebsiteStack extends TerraformStack {
       customErrorResponse: [
         {
           errorCode: 404,
+          responseCode: 200,
+          responsePagePath: '/index.html',
+        },
+        {
+          errorCode: 403,
           responseCode: 200,
           responsePagePath: '/index.html',
         },
