@@ -1,6 +1,5 @@
 import {useSnackbar} from 'notistack';
 import useConfig from './useConfig';
-import {useDispatch, useSelector} from 'react-redux';
 import {useLoginMutation, useLogoutMutation} from 'redux/auth/authApiSlice';
 import type {LoginForm} from 'redux/auth/authApiSlice';
 import {
@@ -10,7 +9,12 @@ import {
   setCredentials,
   unsetCredentials,
 } from 'redux/auth/authSlice';
+import {useAppDispatch, useAppSelector} from 'redux/hooks';
 
+/**
+ * Custom hook for handling authentication-related functionality.
+ * Manages login, logout, and provides necessary data and loading states.
+ */
 export default function useAuth() {
   const {
     config: {clientId},
@@ -18,14 +22,18 @@ export default function useAuth() {
 
   const {enqueueSnackbar} = useSnackbar();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [loginApi, {isLoading: loginLoading}] = useLoginMutation();
   const [logoutApi, {isLoading: logoutLoading}] = useLogoutMutation();
 
-  const refreshToken = useSelector(selectCurrentRefreshToken);
-  const isLoggedIn = useSelector(selectCurrentLoginStatus);
-  const authData = useSelector(selectCurrentAuthState);
+  const refreshToken = useAppSelector(selectCurrentRefreshToken);
+  const isLoggedIn = useAppSelector(selectCurrentLoginStatus);
+  const authData = useAppSelector(selectCurrentAuthState);
 
+  /**
+   * Performs login with the provided login form values.
+   * @param values - credentials.
+   */
   const login = async (values: LoginForm) => {
     try {
       const response = await loginApi({
@@ -39,6 +47,9 @@ export default function useAuth() {
     }
   };
 
+  /**
+   * Performs logout by making a request to the logout API endpoint and clearing storages.
+   */
   const logout = async () => {
     try {
       await logoutApi(refreshToken).unwrap();

@@ -24,9 +24,7 @@ export type AuditLog = {
   before: beforeLog;
 };
 
-export type ApiAuditLog = {
-  [key: string]: any;
-};
+export type ApiAuditLog = Record<string, any>;
 
 export const auditColumns: ColumnDef<AuditLog>[] = [
   {

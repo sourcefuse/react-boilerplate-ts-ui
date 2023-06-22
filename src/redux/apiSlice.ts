@@ -13,6 +13,15 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
+
+/**
+ * Base query function with re-Authentication handling and header preparation.
+ * This function serves as an interceptor for API requests.
+ *
+ * @param args - The fetch arguments for the request.
+ * @param api - The API object provided by `createApi`.
+ * @param extraOptions - Extra options for the query.
+ */
 const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
   args,
   api,
