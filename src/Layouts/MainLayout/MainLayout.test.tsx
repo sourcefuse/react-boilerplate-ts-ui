@@ -2,11 +2,19 @@
 import {render, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {BrowserRouter} from 'react-router-dom';
+import {Provider} from 'react-redux';
 import MainLayout from './Mainlayout';
+import {store} from '../../redux/store';
+import NotificationProvider from 'Providers/NotificationProvider';
+
 const MockMainLayout = () => (
-  <BrowserRouter>
-    <MainLayout />
-  </BrowserRouter>
+  <Provider store={store}>
+    <NotificationProvider>
+      <BrowserRouter>
+        <MainLayout />
+      </BrowserRouter>
+    </NotificationProvider>
+  </Provider>
 );
 
 describe('MainLayout', () => {

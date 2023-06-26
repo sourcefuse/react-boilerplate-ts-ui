@@ -5,14 +5,18 @@ import NotificationProvider from 'Providers/NotificationProvider';
 import {getRouteConfig} from './layoutRouteConfig';
 import {vi} from 'vitest';
 import {authorizationFunctions} from 'Helpers/authorizationFunctions';
+import {store} from '../redux/store';
+import {Provider} from 'react-redux';
 
 const TestApp: React.FC<{initialEntries: any[]}> = ({initialEntries}: {initialEntries: any[]}) => {
   return (
-    <MemoryRouter initialEntries={initialEntries}>
-      <NotificationProvider>
-        <Routes routesConfig={getRouteConfig()} />
-      </NotificationProvider>
-    </MemoryRouter>
+    <Provider store={store}>
+      <MemoryRouter initialEntries={initialEntries}>
+        <NotificationProvider>
+          <Routes routesConfig={getRouteConfig()} />
+        </NotificationProvider>
+      </MemoryRouter>
+    </Provider>
   );
 };
 
