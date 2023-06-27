@@ -1,33 +1,22 @@
 import {MemoryRouter, Outlet, RouteObject} from 'react-router-dom';
 import Routes from './Routes';
 import {render, screen} from '@testing-library/react';
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import AuthProvider from 'Providers/AuthProvider';
 import NotificationProvider from 'Providers/NotificationProvider';
 import {getRouteConfig} from './layoutRouteConfig';
 import {vi} from 'vitest';
 import {authorizationFunctions} from 'Helpers/authorizationFunctions';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 2,
-    },
-  },
-});
+import {store} from '../redux/store';
+import {Provider} from 'react-redux';
 
 const TestApp: React.FC<{initialEntries: any[]}> = ({initialEntries}: {initialEntries: any[]}) => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
       <MemoryRouter initialEntries={initialEntries}>
         <NotificationProvider>
-          <AuthProvider>
-            <Routes routesConfig={getRouteConfig()} />
-          </AuthProvider>
+          <Routes routesConfig={getRouteConfig()} />
         </NotificationProvider>
       </MemoryRouter>
-    </QueryClientProvider>
+    </Provider>
   );
 };
 

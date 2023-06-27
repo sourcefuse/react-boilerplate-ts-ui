@@ -6,9 +6,9 @@ import Form from 'Components/Forms/Form';
 import FormInput from 'Components/Forms/FormInput';
 import FormPasswordInput from 'Components/Forms/FormPasswordInput';
 import useAuth from 'Hooks/useAuth';
-import {LoginForm} from 'Providers/AuthProvider';
 import {FormikHelpers} from 'formik';
 import {useLocation, useNavigate} from 'react-router-dom';
+import type {LoginForm} from 'redux/auth/authApiSlice';
 import * as yup from 'yup';
 
 const initialValues = {
@@ -23,6 +23,7 @@ const validationSchema = yup.object({
 
 const Login = () => {
   const {login, loginLoading} = useAuth();
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';

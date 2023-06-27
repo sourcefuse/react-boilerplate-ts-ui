@@ -1,10 +1,10 @@
 import {Box, CircularProgress} from '@mui/material';
-import {useGetAuditLogs} from './useAuditLogs';
 import {Table} from 'Components/Table';
 import {auditColumns} from './utils';
+import {useGetLogsQuery} from './auditLogsApiSlice';
 
 const AuditLogsPage = () => {
-  const {data: auditLogs, isLoading, isError} = useGetAuditLogs();
+  const {data: auditLogs, isLoading, isError} = useGetLogsQuery();
 
   if (isLoading) {
     return (
@@ -28,7 +28,7 @@ const AuditLogsPage = () => {
 
   return (
     <Box sx={{margin: 5}}>
-      <Table data={auditLogs} columns={auditColumns} enableGlobalFiltering />
+      <Table data={auditLogs!} columns={auditColumns} enableGlobalFiltering />
     </Box>
   );
 };

@@ -11,8 +11,8 @@
     "@mui/material": "^5.10.15",
     "@mui/types": "^7.2.1",
     "@mui/x-date-pickers": "^5.0.9",
-    "@tanstack/react-query": "^4.16.1",
-    "@tanstack/react-query-devtools": "^4.16.1",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/match-sorter-utils": "^8.8.4",
     "@tanstack/react-table": "^8.8.5",
     "@testing-library/cypress": "^8.0.7",
     "@testing-library/jest-dom": "^5.16.5",
@@ -29,7 +29,6 @@
     "@typescript-eslint/parser": "^5.45.1",
     "@vitejs/plugin-legacy": "^4.0.1",
     "@vitejs/plugin-react": "^3.1.0",
-    "axios": "^1.2.0",
     "c8": "^7.12.0",
     "cross-env": "^7.0.3",
     "date-fns": "^2.29.3",
@@ -59,6 +58,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-idle-timer": "^5.4.2",
+    "react-redux": "^8.1.0",
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3",
     "react-syntax-highlighter": "^15.5.0",
@@ -109,5 +109,8 @@
     "cz-customizable": "^7.0.0",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.0"
+  },
+  "overrides": {
+    "semver": "^7.5.2"
   }
 }

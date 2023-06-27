@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Button from 'Components/Button/Button';
 import PagePaper from 'Components/PagePaper';
 import Form from 'Components/Forms/Form';
-import useForm from './useForm';
 import {initialValues, validationSchema} from './utils';
 import FormDropdown from 'Components/Forms/FormDropdown';
 import FormInput from 'Components/Forms/FormInput';
@@ -13,8 +12,6 @@ import FormCheckbox from 'Components/Forms/FormCheckbox';
 import FormToggleButton from 'Components/Forms/FormToggleButton';
 
 export default function FormPage() {
-  const {submitForm, isLoading} = useForm();
-
   return (
     <Stack direction="row">
       <Box sx={{flexGrow: 1}}>
@@ -26,7 +23,6 @@ export default function FormPage() {
               actions.resetForm({
                 values: initialValues,
               });
-              await submitForm(val);
             }}
           >
             <Grid container spacing={2}>
@@ -130,7 +126,7 @@ export default function FormPage() {
                 </Button>
               </Grid>
               <Grid item>
-                <Button isLoading={isLoading} variant="outlined" type="submit">
+                <Button variant="outlined" type="submit">
                   Submit
                 </Button>
               </Grid>

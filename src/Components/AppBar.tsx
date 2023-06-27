@@ -15,6 +15,7 @@ import FullScreen from 'Components/FullScreen';
 import useAuth from 'Hooks/useAuth';
 import {memo, useState} from 'react';
 import Button from './Button';
+import BackdropLoader from './BackdropLoader/BackdropLoader';
 
 const MyAppBar = styled(MuiAppBar)(({theme}) => ({
   zIndex: theme.zIndex.drawer + 1,
@@ -39,7 +40,12 @@ const MenuButton = ({open, toggleDrawer}: IAppBarProps) => (
 const AppBar = ({open, toggleDrawer, isPermanent, userName}: IAppBarProps & {userName?: string}) => {
   let appBarMargin = open ? 270 : 0;
   appBarMargin = isPermanent ? appBarMargin : 0;
-  const {logout} = useAuth();
+  const {logout, logoutLoading} = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const menuOpen = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -50,84 +56,90 @@ const AppBar = ({open, toggleDrawer, isPermanent, userName}: IAppBarProps & {use
   };
 
   return (
-    <MyAppBar
-      sx={(theme) => ({
-        width: `calc(100% - ${appBarMargin}px)`,
-        transition: theme.transitions.create('width', {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-        ...(appBarMargin && {
-          transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-          }),
-        }),
-      })}
-    >
-      <Toolbar>
-        <Grid container>
-          <Grid item xs={12}>
-            <Box sx={{mt: 3}}>
-              {toggleDrawer && <MenuButton open={open} toggleDrawer={toggleDrawer} />}
-              <img src={sfLogo} alt="sfLogo" />
-            </Box>
-          </Grid>
-          <Grid item xs={12} sx={{mt: 1, ml: -1}}>
-            <Typography component="h2" variant="h6" noWrap sx={{flexGrow: 1, fontWeight: 'bold', marginLeft: 2}}>
-              <Breadcrumb />
-            </Typography>
-          </Grid>
-        </Grid>
-
-        <FullScreen />
-        {/* <ThemeSwitch /> */}
-
-        <Button
-          startIcon={<AccountCircleIcon />}
-          endIcon={<KeyboardArrowDownIcon />}
-          id="menu-button"
-          aria-controls={menuOpen ? 'menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={menuOpen ? 'true' : undefined}
-          onClick={handleClick}
-          sx={{
-            border: '1px solid #ececec',
-            borderRadius: 50,
-            backgroundColor: '#ececec',
-            color: '#525252',
-            padding: '5px 15px',
-            textTransform: 'capitalize',
-          }}
+    <>
+      {logoutLoading ? (
+        <BackdropLoader />
+      ) : (
+        <MyAppBar
+          sx={(theme) => ({
+            width: `calc(100% - ${appBarMargin}px)`,
+            transition: theme.transitions.create('width', {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.leavingScreen,
+            }),
+            ...(appBarMargin && {
+              transition: theme.transitions.create('width', {
+                easing: theme.transitions.easing.easeOut,
+                duration: theme.transitions.duration.enteringScreen,
+              }),
+            }),
+          })}
         >
-          <Box
-            sx={{
-              minWidth: 50,
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              fontSize: '12px',
-              color: '#525252',
-              fontWeight: '600',
-              textAlign: 'left',
-            }}
-          >
-            {userName}
-          </Box>
-        </Button>
-        <Menu
-          id="menu"
-          MenuListProps={{
-            'aria-labelledby': 'menu-button',
-          }}
-          anchorEl={anchorEl}
-          open={menuOpen}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={logout}>Logout</MenuItem>
-        </Menu>
-      </Toolbar>
-    </MyAppBar>
+          <Toolbar>
+            <Grid container>
+              <Grid item xs={12}>
+                <Box sx={{mt: 3}}>
+                  {toggleDrawer && <MenuButton open={open} toggleDrawer={toggleDrawer} />}
+                  <img src={sfLogo} alt="sfLogo" />
+                </Box>
+              </Grid>
+              <Grid item xs={12} sx={{mt: 1, ml: -1}}>
+                <Typography component="h2" variant="h6" noWrap sx={{flexGrow: 1, fontWeight: 'bold', marginLeft: 2}}>
+                  <Breadcrumb />
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <FullScreen />
+            {/* <ThemeSwitch /> */}
+
+            <Button
+              startIcon={<AccountCircleIcon />}
+              endIcon={<KeyboardArrowDownIcon />}
+              id="menu-button"
+              aria-controls={menuOpen ? 'menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={menuOpen ? 'true' : undefined}
+              onClick={handleClick}
+              sx={{
+                border: '1px solid #ececec',
+                borderRadius: 50,
+                backgroundColor: '#ececec',
+                color: '#525252',
+                padding: '5px 15px',
+                textTransform: 'capitalize',
+              }}
+            >
+              <Box
+                sx={{
+                  minWidth: 50,
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  fontSize: '12px',
+                  color: '#525252',
+                  fontWeight: '600',
+                  textAlign: 'left',
+                }}
+              >
+                {userName}
+              </Box>
+            </Button>
+            <Menu
+              id="menu"
+              MenuListProps={{
+                'aria-labelledby': 'menu-button',
+              }}
+              anchorEl={anchorEl}
+              open={menuOpen}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
+          </Toolbar>
+        </MyAppBar>
+      )}
+    </>
   );
 };
 

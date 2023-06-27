@@ -12,10 +12,8 @@ const ButtonPage = lazy(() => import('Pages/ButtonPage'));
 const ButtonGroup = lazy(() => import('Pages/ButtonGroup'));
 const Subscription = lazy(() => import('Pages/Subscription'));
 const Order = lazy(() => import('Pages/Order'));
-const Checkout = lazy(() => import('Pages/Checkout/Checkout'));
 const StepperTabPage = lazy(() => import('Pages/StepperTabPage'));
 const DatePickerPage = lazy(() => import('Pages/DatePickerPage'));
-const ApiCall = lazy(() => import('Pages/ApiCall/ApiCall'));
 const RatingPage = lazy(() => import('Pages/RatingPage'));
 const SliderPage = lazy(() => import('Pages/SliderPage'));
 const FABPage = lazy(() => import('Pages/FAB'));
@@ -133,20 +131,12 @@ const mainLayoutRouteConfig = [
     component: DatePickerPage,
   },
   {
-    path: '/components/api-call',
-    component: ApiCall,
-  },
-  {
     path: '/sourceloop/payment/subscription',
     component: Subscription,
   },
   {
     path: '/sourceloop/payment/order',
     component: Order,
-  },
-  {
-    path: '/sourceloop/payment/checkout',
-    component: Checkout,
   },
   {
     path: '/components/rating',
