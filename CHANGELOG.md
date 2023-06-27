@@ -1,3 +1,22 @@
+# [1.0.0](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/0.3.1...1.0.0) (2023-06-27)
+
+
+### Bug Fixes
+
+* **core:** ARC-984 fixed referencing of config variables ([5a82a32](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/5a82a32e763bef6c1c19f34d9de4f17558dc4543))
+
+
+### Features
+
+* **core:** ARC-379 added redux for state management ([cd80852](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/cd80852af817262ecd87e789ee8cccac42f737e7))
+
+
+### BREAKING CHANGES
+
+* **core:** Added redux for state management, rtk query for api calls
+
+
+
 ## [0.3.1](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/0.3.0...0.3.1) (2023-06-09)
 
 
@@ -28,24 +47,7 @@
 * **core:** Added Pagination to the Table ([5378f61](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/5378f61121235051688d93a58cfb60f43fdc2cad))
 * **core:** Added table to Audit Logs page ([a9e9354](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/a9e93540ad4d5fbda225cf039fb635b9f97d78ea))
 * **core:** Added table, sorting and filtering ([d079f3f](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/d079f3f73f528e207155daf9d0fb8c258fbe273d))
-* **core:** ARC-1 ([390b868](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/390b868b6232d0bcd1d2160621ec0843f28780ca))
-* **core:** ARC-1 ([dae2afb](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/dae2afb1f2863623bd2e1e3b3794a92385fbc6ef))
-* **core:** ARC-1 ([5c5b3db](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/5c5b3db560985651bcd325dfe18fd7117cdaa267))
-* **core:** ARC-1 ([3736a31](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/3736a31755d9bf7e187b329e578e98bfdb04cf65))
-* **core:** ARC-1 ([d43f67a](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/d43f67a1b76c73ea51517ad79fab3bede66e4912))
-* **core:** ARC-1  ([5ddc5f5](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/5ddc5f5ad72c8744d2338500aa26b08cdab6890f))
-* **core:** ARC-775 ([bba68d4](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/bba68d464904716cea8cb265f94a824f56e0ab47))
 * **core:** ARC-943 add automated release and tagging system ([136fd0a](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/136fd0a8013927280a5332649d2dee1733dbbb54))
-
-
-### Performance Improvements
-
-* **core:** ARC-1 remove unused package ([14c0404](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/14c0404cd5dbea103bedbe9f460441292e424763))
-
-
-### BREAKING CHANGES
-
-* **core:** 1
 
 
 
