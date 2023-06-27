@@ -1,18 +1,7 @@
 import type {BaseQueryFn, FetchArgs, FetchBaseQueryError} from '@reduxjs/toolkit/query';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {AuthData, setCredentials, unsetCredentials} from './auth/authSlice';
-import {RootState} from './store';
-
-const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_AUTH_API_BASE_URL,
-  prepareHeaders(headers, {getState}) {
-    const token = (getState() as RootState).auth.accessToken;
-    if (token) {
-      headers.set('Authorization', `Bearer ${token}`);
-    }
-    return headers;
-  },
-});
+import type {RootState} from './store';
 
 /**
  * Base query function with re-Authentication handling and header preparation.
@@ -27,6 +16,19 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
   api,
   extraOptions,
 ) => {
+  const baseUrl = (api.getState() as RootState).config.configData?.authApiBaseUrl;
+
+  const baseQuery = fetchBaseQuery({
+    baseUrl,
+    prepareHeaders(headers, {getState}) {
+      const token = (getState() as RootState).auth.accessToken;
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
+  });
+
   let result = await baseQuery(args, api, extraOptions);
 
   if (result.error && result.error.status === 401) {

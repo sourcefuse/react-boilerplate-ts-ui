@@ -27,9 +27,6 @@ const authSlice = createSlice({
       state.accessToken = accessToken;
       state.refreshToken = refreshToken;
       state.expires = expires;
-      localStorage.setItem('accessToken', accessToken!);
-      localStorage.setItem('refreshToken', refreshToken!);
-      localStorage.setItem('expires', expires?.toString()!);
       state.isLoggedIn = true;
     },
     unsetCredentials: (state) => {
@@ -37,8 +34,6 @@ const authSlice = createSlice({
       state.refreshToken = null;
       state.expires = null;
       state.isLoggedIn = false;
-      localStorage.clear();
-      sessionStorage.clear();
     },
   },
 });
