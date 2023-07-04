@@ -111,6 +111,9 @@
     "prettier": "^2.8.0"
   },
   "overrides": {
-    "semver": "^7.5.2"
+    "semver": "^7.5.2",
+    "jsdom": {
+      "tough-cookie": "^4.1.3"
+    }
   }
 }

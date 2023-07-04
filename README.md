@@ -15,15 +15,12 @@ src/
 ├── Helpers
 ├── Hooks/
 │   ├── useAuth.ts (Hook for auth related methods/properties)
-│   ├── useConfig.ts (Hook for fetching runtime app config and parsing values)
-│   ├── useAxios.ts (Hook for network calls)
-│   ├── useMutation.ts (Hook for mutation network calls, provides data caching and state management )
-│   └── useQuery.ts (Hook for Query network calls, provides data caching and state management)
+│   ├── useConfig.ts (Hook for fetching runtime app config and parsing values)management
 ├── Layouts (Reuseable page layouts , which will provide sub route config for accessing Pages)
 ├── Pages
-├── Providers/
+├── Providers
 │   ├── theme (mui theme config)
-│   ├── AuthProvider.ts (context provider for all auth activities)
+│   ├── Provider (Redux Provider)
 │   ├── ErrorBoundary.ts
 │   └── NotificationProvider.ts (provider for showing notifications)
 └── Routes/
@@ -202,7 +199,6 @@ export default function Login() {
 | <a name="CLIENT_ID"></a> `CLIENT_ID`                                             | Unique public Identifier for the app.   | `string`  |         |   yes    |
 | <a name="AUTH_API_BASE_URL"></a> `AUTH_API_BASE_URL`                             | Base URL of the authentication service. | `string`  |         |   yes    |
 | <a name="APP_API_BASE_URL"></a> `APP_API_BASE_URL`                               |                                         | `string`  |         |    no    |
-| <a name="ENABLE_SESSION_TIMEOUT"></a> `ENABLE_SESSION_TIMEOUT`                   | Session timeout for idle timer          | `boolean` | "true"  |    no    |
-| <a name="STORAGE_SESSION_TIMEKEY"></a> `STORAGE_SESSION_TIMEKEY`                 |                                         | `string`  |         |    no    |
+| <a name="ENABLE_SESSION_TIMEOUT"></a> `ENABLE_SESSION_TIMEOUT`                   | Session timeout for idle timer          | `boolean` |         |    no    |
 | <a name="EXPIRY_TIME_IN_MINUTE"></a> `EXPIRY_TIME_IN_MINUTE`                     | Session expiry time                     | `number`  |         |    no    |
 | <a name="WARNING_ALERT_TIMEOUT_IN_MINUTE"></a> `WARNING_ALERT_TIMEOUT_IN_MINUTE` | Session warning alert time              | `number`  |         |    no    |
