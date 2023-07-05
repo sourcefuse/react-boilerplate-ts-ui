@@ -3,7 +3,6 @@
   "appApiBaseUrl": "$APP_API_BASE_URL",
   "authApiBaseUrl": "$AUTH_API_BASE_URL",
   "enableSessionTimeout": "$ENABLE_SESSION_TIMEOUT",
-  "storageSessionTimeKey": "$STORAGE_SESSION_TIME_KEY",
   "expiryTimeInMinute": "$EXPIRY_TIME_IN_MINUTE",
   "warningAlertTimeoutInMinute": "$WARNING_ALERT_TIMEOUT_IN_MINUTE"
 }
