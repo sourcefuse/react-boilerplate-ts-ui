@@ -23,12 +23,12 @@ const FormSlider: React.FC<SliderProps> = ({id, disabled, ...rest}) => {
   return (
     <Slider
       value={values[id!]}
-      onChange={handleOnChangeEvent}
       errorMessage={isError ? errors[id!] : ''}
       valueLabelDisplay="auto"
       getAriaValueText={valuetext}
       disableSwap
       {...rest}
+      onChange={handleOnChangeEvent}
     />
   );
 };

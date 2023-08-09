@@ -6,7 +6,7 @@ import React, {ReactNode, useRef, useState} from 'react';
 import {DragDropContext, Droppable, DropResult} from 'react-beautiful-dnd';
 import CustomList from './CustomList';
 
-interface Props {
+export interface TransferListProps {
   left: Array<{label: string; value: string}>;
   setLeft: any;
   right: Array<{label: string; value: string}>;
@@ -22,7 +22,7 @@ function intersection(arr1: {label: string; value: string}[], arr2: {label: stri
   return arr1.filter((item1) => arr2.some((item2) => item2.value === item1.value));
 }
 
-const TransferList: React.FC<Props> = ({left = [], setLeft, right = [], setRight, height = 200}) => {
+const TransferList: React.FC<TransferListProps> = ({left = [], setLeft, right = [], setRight, height = 200}) => {
   const leftRef: any = useRef(null);
   const rightRef: any = useRef(null);
 

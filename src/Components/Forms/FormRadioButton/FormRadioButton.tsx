@@ -16,10 +16,10 @@ const FormRadioButton: React.FC<RadioButtonProps> = ({id, disabled, ...rest}) =>
     <RadioButton
       id={id}
       value={values[id]}
-      onChange={handleOnChangeEvent}
       disabled={disabled}
       helperText={isError ? errors[id] : ''}
       {...rest}
+      onChange={handleOnChangeEvent}
     />
   );
 };

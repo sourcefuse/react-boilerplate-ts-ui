@@ -7,7 +7,7 @@ export interface Configuration {
   enableSessionTimeout: string;
   storageSessionTimeKey?: string;
   expiryTimeInMinute: string;
-  warningAlertTimeoutInMinute: string;
+  promptTimeBeforeIdleInMinute: string;
 }
 
 export const fetchConfigData = createAsyncThunk<Configuration, void, {rejectValue: string}>(

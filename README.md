@@ -194,11 +194,11 @@ export default function Login() {
 
 ## Inputs
 
-| Name                                                                             | Description                             | Type      | Default | Required |
-| -------------------------------------------------------------------------------- | --------------------------------------- | --------- | ------- | :------: |
-| <a name="CLIENT_ID"></a> `CLIENT_ID`                                             | Unique public Identifier for the app.   | `string`  |         |   yes    |
-| <a name="AUTH_API_BASE_URL"></a> `AUTH_API_BASE_URL`                             | Base URL of the authentication service. | `string`  |         |   yes    |
-| <a name="APP_API_BASE_URL"></a> `APP_API_BASE_URL`                               |                                         | `string`  |         |    no    |
-| <a name="ENABLE_SESSION_TIMEOUT"></a> `ENABLE_SESSION_TIMEOUT`                   | Session timeout for idle timer          | `boolean` | false   |    no    |
-| <a name="EXPIRY_TIME_IN_MINUTE"></a> `EXPIRY_TIME_IN_MINUTE`                     | Session expiry time                     | `number`  | 15      |    no    |
-| <a name="WARNING_ALERT_TIMEOUT_IN_MINUTE"></a> `WARNING_ALERT_TIMEOUT_IN_MINUTE` | Session warning alert time              | `number`  | 1       |    no    |
+| Name                                                                                 | Description                                                                                    | Type      | Default | Required |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | --------- | ------- | :------: |
+| <a name="CLIENT_ID"></a> `CLIENT_ID`                                                 | Unique public Identifier for the app.                                                          | `string`  |         |   yes    |
+| <a name="AUTH_API_BASE_URL"></a> `AUTH_API_BASE_URL`                                 | Base URL of the authentication service.                                                        | `string`  |         |   yes    |
+| <a name="APP_API_BASE_URL"></a> `APP_API_BASE_URL`                                   |                                                                                                | `string`  |         |    no    |
+| <a name="ENABLE_SESSION_TIMEOUT"></a> `ENABLE_SESSION_TIMEOUT`                       | Session timeout for idle timer                                                                 | `boolean` | false   |    no    |
+| <a name="EXPIRY_TIME_IN_MINUTE"></a> `EXPIRY_TIME_IN_MINUTE`                         | Session expiry time                                                                            | `number`  | 15      |    no    |
+| <a name="PROMPT_TIME_BEFORE_IDLE_IN_MINUTE"></a> `PROMPT_TIME_BEFORE_IDLE_IN_MINUTE` | The duration (in minutes) before the user becomes idle, when the warning dialog will be shown. | `number`  | 1       |    no    |

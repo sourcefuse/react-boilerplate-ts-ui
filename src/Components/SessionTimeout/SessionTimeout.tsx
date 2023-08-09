@@ -6,14 +6,26 @@ import BackdropLoader from 'Components/BackdropLoader/BackdropLoader';
 
 const MINUTE_TO_MS = 60 * 1000;
 
+/**
+ *
+ * @param {number} expiryTimeInMinute - The duration of inactivity (in minutes) after which the user will be logged out.
+ * @param {number} promptTimeBeforeIdleInMinute - The duration (in minutes) before the user becomes idle, when the warning dialog will be shown.
+ */
 export interface SessionTimeoutProps {
   expiryTimeInMinute: number;
-  warningAlertTimeoutInMinute: number;
+  promptTimeBeforeIdleInMinute: number;
 }
 
+/**
+ * This component manages the session timeout functionality.
+ * It displays a warning dialog before logging out the user due to inactivity.
+ *
+ * @component
+ *
+ */
 const SessionTimeout: React.FC<SessionTimeoutProps> = ({
   expiryTimeInMinute = 15,
-  warningAlertTimeoutInMinute = 1,
+  promptTimeBeforeIdleInMinute = 1,
 }: SessionTimeoutProps) => {
   const {logout, logoutLoading} = useAuth();
   const [showPopup, setShowPopup] = useState(false);
@@ -47,7 +59,7 @@ const SessionTimeout: React.FC<SessionTimeoutProps> = ({
   const {getRemainingTime, reset, message, isPrompted} = useIdleTimer({
     onIdle,
     onPrompt,
-    promptBeforeIdle: warningAlertTimeoutInMinute * MINUTE_TO_MS,
+    promptBeforeIdle: promptTimeBeforeIdleInMinute * MINUTE_TO_MS,
     timeout: expiryTimeInMinute * MINUTE_TO_MS,
     throttle: 500,
     crossTab: true,

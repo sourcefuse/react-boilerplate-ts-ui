@@ -9,7 +9,7 @@ import useAuth from 'Hooks/useAuth';
 
 function App() {
   const dispatch = useAppDispatch();
-  const {enableSessionTimeout, expiryTimeInMinute, warningAlertTimeoutInMinute} = useConfig().config;
+  const {enableSessionTimeout, expiryTimeInMinute, promptTimeBeforeIdleInMinute} = useConfig().config;
   const {isLoggedIn} = useAuth();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function App() {
       {enableSessionTimeout && isLoggedIn ? (
         <SessionTimeout
           expiryTimeInMinute={expiryTimeInMinute}
-          warningAlertTimeoutInMinute={warningAlertTimeoutInMinute}
+          promptTimeBeforeIdleInMinute={promptTimeBeforeIdleInMinute}
         />
       ) : null}
     </>

@@ -4,7 +4,7 @@ import React, {memo} from 'react';
 
 interface BtnProps extends ButtonProps {
   isLoading?: boolean;
-  onClick?: any;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 const Button: React.FC<BtnProps> = ({children, color = 'primary', isLoading, disabled, ...rest}) => {
   return (
