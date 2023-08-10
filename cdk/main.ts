@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as mime from 'mime-types';
 import {config} from 'dotenv';
+import uniqid from 'uniqid';
 import * as aws from '@cdktf/provider-aws';
 import {Construct} from 'constructs';
 import {App, TerraformStack} from 'cdktf';
@@ -138,7 +139,13 @@ export class CloudFrontStaticWebsiteStack extends TerraformStack {
   }
 }
 
-function uploadDirectoryToS3(sourcePath: string, bucket: aws.s3Bucket.S3Bucket, prefix: string, context: Construct) {
+function uploadDirectoryToS3(
+  this: any,
+  sourcePath: string,
+  bucket: aws.s3Bucket.S3Bucket,
+  prefix: string,
+  context: Construct,
+) {
   const files = fs.readdirSync(sourcePath);
 
   for (const file of files) {
@@ -150,7 +157,9 @@ function uploadDirectoryToS3(sourcePath: string, bucket: aws.s3Bucket.S3Bucket, 
     if (fileStats.isDirectory()) {
       uploadDirectoryToS3(filePath, bucket, fileKey, context);
     } else {
-      new aws.s3Object.S3Object(context, `spaBucketObject-${file}`, {
+      const objectName = `${file}-${uniqid()}`;
+
+      new aws.s3Object.S3Object(context, objectName, {
         bucket: bucket.id,
         key: fileKey,
         source: path.resolve(filePath),

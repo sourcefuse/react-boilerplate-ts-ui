@@ -16,8 +16,8 @@ const FormDateTimePicker: React.FC<DateTimePickerProps> = ({id, disabled, ...res
       id={id}
       value={values[id]}
       errorMessage={isError ? errors[id] : ''}
-      onChange={handleChange}
       disabled={disabled}
+      onChange={handleChange}
       {...rest}
     />
   );

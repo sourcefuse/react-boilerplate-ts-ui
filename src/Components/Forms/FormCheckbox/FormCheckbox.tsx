@@ -21,8 +21,8 @@ const FormCheckbox: React.FC<CheckboxProps> = ({id, disabled, ...rest}) => {
       id={id}
       value={values[id!]}
       errorMessage={isError ? errors[id!] : ''}
-      onChange={handleOnChangeEvent}
       disabled={disabled}
+      onChange={handleOnChangeEvent}
       {...rest}
     />
   );

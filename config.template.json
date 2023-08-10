@@ -4,5 +4,5 @@
   "authApiBaseUrl": "$AUTH_API_BASE_URL",
   "enableSessionTimeout": "$ENABLE_SESSION_TIMEOUT",
   "expiryTimeInMinute": "$EXPIRY_TIME_IN_MINUTE",
-  "warningAlertTimeoutInMinute": "$WARNING_ALERT_TIMEOUT_IN_MINUTE"
+  "promptTimeBeforeIdleInMinute": "$PROMPT_TIME_BEFORE_IDLE_IN_MINUTE"
 }

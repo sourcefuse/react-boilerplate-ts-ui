@@ -9,7 +9,7 @@ export interface AppConfiguration {
   enableSessionTimeout: boolean;
   storageSessionTimeKey?: string;
   expiryTimeInMinute: number;
-  warningAlertTimeoutInMinute: number;
+  promptTimeBeforeIdleInMinute: number;
 }
 
 const useConfig = () => {
@@ -21,9 +21,9 @@ const useConfig = () => {
       const newConfig: AppConfiguration = {
         ...configData,
         enableSessionTimeout: configData.enableSessionTimeout === 'true',
-        expiryTimeInMinute: configData?.expiryTimeInMinute ? +configData.expiryTimeInMinute : 1,
-        warningAlertTimeoutInMinute: configData?.warningAlertTimeoutInMinute
-          ? +configData.warningAlertTimeoutInMinute
+        expiryTimeInMinute: configData?.expiryTimeInMinute ? +configData.expiryTimeInMinute : 15,
+        promptTimeBeforeIdleInMinute: configData?.promptTimeBeforeIdleInMinute
+          ? +configData.promptTimeBeforeIdleInMinute
           : 1,
       };
       setConfig({...newConfig});

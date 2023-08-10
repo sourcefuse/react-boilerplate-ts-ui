@@ -1,7 +1,7 @@
 import {Step, StepConnector, StepLabel, Stepper, StepperProps, styled} from '@mui/material';
 import React, {memo} from 'react';
 
-interface Props {
+export interface StepperTabProps {
   activeStep: number;
   steps: Array<any>;
   orientation?: StepperProps['orientation'];
@@ -20,7 +20,7 @@ const Connector = styled(
 
 const activeColor = 'primary.main';
 
-const StepperTab: React.FC<Props> = ({steps = [], activeStep, orientation = 'horizontal'}) => {
+const StepperTab: React.FC<StepperTabProps> = ({steps = [], activeStep, orientation = 'horizontal'}) => {
   return (
     <Stepper
       orientation={orientation}
