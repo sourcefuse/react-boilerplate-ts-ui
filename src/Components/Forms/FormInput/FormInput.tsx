@@ -18,8 +18,8 @@ const FormInput: React.FC<InputProps> = ({id, disabled, ...rest}) => {
       value={getValue(values, id)}
       errorMessage={isError ? getValue(errors, id) : ''}
       disabled={disabled}
-      {...rest}
       onChange={handleChangeEvent}
+      {...rest}
     />
   );
 };

@@ -18,8 +18,8 @@ const FormRadioButton: React.FC<RadioButtonProps> = ({id, disabled, ...rest}) =>
       value={values[id]}
       disabled={disabled}
       helperText={isError ? errors[id] : ''}
-      {...rest}
       onChange={handleOnChangeEvent}
+      {...rest}
     />
   );
 };

@@ -157,7 +157,7 @@ function uploadDirectoryToS3(
     if (fileStats.isDirectory()) {
       uploadDirectoryToS3(filePath, bucket, fileKey, context);
     } else {
-      const objectName = `spaBucketObject-${uniqid()}`;
+      const objectName = `${file}-${uniqid()}`;
 
       new aws.s3Object.S3Object(context, objectName, {
         bucket: bucket.id,

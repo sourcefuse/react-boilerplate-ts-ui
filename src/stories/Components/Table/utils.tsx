@@ -3,7 +3,7 @@ import {DataTableType} from './data';
 
 const columnHelper = createColumnHelper<DataTableType>();
 
-export const tableColumns: ColumnDef<DataTableType>[] = [
+export const tableColumns: ColumnDef<Record<string, any>>[] = [
   {
     header: 'Id',
     accessorKey: '_id',

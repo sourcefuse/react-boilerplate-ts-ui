@@ -27,8 +27,8 @@ const FormSlider: React.FC<SliderProps> = ({id, disabled, ...rest}) => {
       valueLabelDisplay="auto"
       getAriaValueText={valuetext}
       disableSwap
-      {...rest}
       onChange={handleOnChangeEvent}
+      {...rest}
     />
   );
 };

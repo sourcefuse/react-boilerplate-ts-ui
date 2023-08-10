@@ -17,8 +17,8 @@ const FormDropdown: React.FC<DropdownProps> = ({id, disabled, ...rest}) => {
       value={values[id]}
       errorMessage={isError ? errors[id] : ''}
       disabled={disabled}
-      {...rest}
       onChange={handleChange}
+      {...rest}
     />
   );
 };

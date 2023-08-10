@@ -22,8 +22,8 @@ const FormToggleButton: React.FC<ToggleButtonProps> = ({id, disabled, ...rest}) 
       value={values[id!]}
       errorMessage={isError ? errors[id!] : ''}
       disabled={disabled}
-      {...rest}
       onChange={handleOnChangeEvent}
+      {...rest}
     />
   );
 };
