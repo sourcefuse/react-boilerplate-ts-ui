@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.0.1...1.1.0) (2023-08-10)
+
+
+### Bug Fixes
+
+* **core:** ARC-615 fixed arc-logo src ([6dc226f](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/6dc226f2845ce7fb8fd281d16ed878039692a5cf))
+
+
+### Features
+
+* **core:** ARC-615 added Storybook for the components ([01588f3](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/01588f318bd28f59ee42395b8b46b15e0be7e8da))
+
+
+
 ## [1.0.1](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.0.0...1.0.1) (2023-07-05)
 
 
@@ -38,15 +52,6 @@
 
 
 # [0.3.0](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/0.2.3...0.3.0) (2023-05-30)
-
-
-### Bug Fixes
-
-* **core:** ARC-939 added cdk dir to dockerignore ([14de78f](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/14de78fe7e336c279b468b82229e8c7df48fff48))
-* **core:** ARC-943 automated the versioning ([55fa350](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/55fa3501e5c8ae3f0b8f715d7304429131a7c5c2))
-* **core:** ARC-944 fixed docker issues ([94ab084](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/94ab084bf711b924902eb13bc72c48bc9ad5940f))
-* **core:** ARC-949 fixed husky issues ([fac3f12](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/fac3f122df84010825fff8b9273d0abec14a9129))
-* **table:** Allow custom props to be passed to the table component ([c6fd57f](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/c6fd57fdeeea4d6cba9a715887bafcc753046847))
 
 
 ### Features
