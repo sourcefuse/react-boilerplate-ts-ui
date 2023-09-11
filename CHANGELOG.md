@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.0...1.1.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* **core:** ARC-62 add cross platform config generator ([#65](https://github.com/sourcefuse/react-boilerplate-ts-ui/issues/65)) ([fac501e](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/fac501ef06b1ee0f82601b9f59a02e56d138e5f0))
+
+
+
 # [1.1.0](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.0.1...1.1.0) (2023-08-10)
 
 
@@ -48,15 +57,6 @@
 * **core:** ARC-946 added RouteGenerator with nested routing ([6c552fc](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/6c552fc8a4a5de120fc6896eff0668950915431e))
 * **core:** ARC-946 fixed issues with routes ([74fe7bc](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/74fe7bc5ee37bf26c9e7128ee379e634af68b427))
 * **core:** ARC-946 fixed sync issue of vite version ([acbaed7](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/acbaed79682f162990cc3f3b7e41a5caca03d59d))
-
-
-
-# [0.3.0](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/0.2.3...0.3.0) (2023-05-30)
-
-
-### Features
-
-* **core:** ARC-943 add automated release and tagging system ([136fd0a](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/136fd0a8013927280a5332649d2dee1733dbbb54))
 
 
 
