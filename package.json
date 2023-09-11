@@ -72,7 +72,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "config": "export $(grep -v '^#' .env) && chmod +x ./env.sh && ./env.sh && cp config.json ./public/",
+    "config": "node configGenerator.js --templateFileName=config.template.json --outConfigPath=./public",
     "start": "npm run config && vite",
     "build": "tsc && vite build",
     "test": "vitest watch",
