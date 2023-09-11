@@ -4,8 +4,8 @@ import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import RadioButton from 'Components/RadioButton/RadioButton';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import {useState} from 'react';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const options = [
   {label: `I'm In`, value: 'yes'},
@@ -17,7 +17,7 @@ const RadioButtonPage = () => {
 
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper title="Radio Button">
           <ComponentViewer
             title="Default Radio Button"
@@ -85,7 +85,7 @@ export default RadioButtonPage;`}
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

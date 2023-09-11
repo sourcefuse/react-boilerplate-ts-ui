@@ -3,14 +3,14 @@ import ComponentViewer from 'Components/ComponentViewer';
 import DatePicker from 'Components/DatePicker/DatePicker';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 import {useState} from 'react';
 
 const DatePickerPage = () => {
   const [value, setValue] = useState<Date | null>(null);
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper title="DatePicker">
           <ComponentViewer
             title="Default DatePicker"
@@ -59,7 +59,7 @@ export default DatePickerPage;`}
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

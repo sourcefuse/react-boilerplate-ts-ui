@@ -2,7 +2,7 @@ import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 import TransferList from 'Components/TransferList/TransferList';
 import {useState} from 'react';
 
@@ -21,7 +21,7 @@ const TransferListPage = () => {
   ]);
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper title="Transfer List">
           <ComponentViewer
             title="Default Transfer List"
@@ -70,7 +70,7 @@ export default TransferListPage;`}
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

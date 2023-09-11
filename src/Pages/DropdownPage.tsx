@@ -3,7 +3,7 @@ import ComponentViewer from 'Components/ComponentViewer';
 import Dropdown, {AutocompleteValueType} from 'Components/Dropdown/Dropdown';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 import {useState} from 'react';
 
 const options = [
@@ -16,7 +16,7 @@ const DropdownPage = () => {
   const [value, setValue] = useState<AutocompleteValueType>(options[0]);
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper title="Dropdown/Autocomplete">
           <ComponentViewer
             title="Default Dropdown"
@@ -75,7 +75,7 @@ export default DropdownPage;
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

@@ -4,12 +4,12 @@ import ComponentViewer from 'Components/ComponentViewer';
 import FAB from 'Components/FloatingActionButton';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const FloatingActionButtonPage = () => {
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper title="Floating Action Button">
           <ComponentViewer
             title="Default Button"
@@ -106,7 +106,7 @@ export default FloatingActionButtonPage;`}
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

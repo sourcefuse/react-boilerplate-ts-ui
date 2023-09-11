@@ -4,7 +4,7 @@ import Form from 'Components/Forms/Form';
 import FormSlider from 'Components/Forms/FormSlider';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const TEMPERATURE_MIN = 30;
 const TEMPERATURE_MAX = 50;
@@ -90,7 +90,7 @@ const FormSliderPage = () => {
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

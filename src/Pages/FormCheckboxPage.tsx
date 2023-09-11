@@ -4,7 +4,7 @@ import Form from 'Components/Forms/Form';
 import FormCheckbox from 'Components/Forms/FormCheckbox';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const submitHandler = () => null;
 
@@ -20,7 +20,7 @@ const FormCheckboxPage = () => {
   ];
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper
           title="FormCheckbox"
           description="FormCheckbox component provides with a hassle free way to manage state of your formik form checkboxes. This component uses Formik internally to manage state for your checkboxes."
@@ -30,14 +30,14 @@ const FormCheckboxPage = () => {
             code={`
             import Form from 'Components/Forms/Form';
             import FormCheckbox from 'Components/Forms/FormCheckbox';
-            
+
             const FormCheckboxDemo = () => {
               const initialValues = {
                 skills: [],
               };
-            
+
               const submitHandler = () => {};
-            
+
               const options = [
                 {label: 'Frontend', value: 'frontend'},
                 {label: 'Backend', value: 'backend'},
@@ -49,7 +49,7 @@ const FormCheckboxPage = () => {
                 </Form>
               );
             };
-            
+
             export default FormCheckboxDemo;
             `}
           >
@@ -62,14 +62,14 @@ const FormCheckboxPage = () => {
             code={`
             import Form from 'Components/Forms/Form';
             import FormCheckbox from 'Components/Forms/FormCheckbox';
-            
+
             const FormCheckboxDemo = () => {
               const initialValues = {
                 skills: [],
               };
-            
+
               const submitHandler = () => {};
-            
+
               const options = [
                 {label: 'Frontend', value: 'frontend'},
                 {label: 'Backend', value: 'backend'},
@@ -81,7 +81,7 @@ const FormCheckboxPage = () => {
                 </Form>
               );
             };
-            
+
             export default FormCheckboxDemo;
             `}
           >
@@ -123,7 +123,7 @@ const FormCheckboxPage = () => {
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

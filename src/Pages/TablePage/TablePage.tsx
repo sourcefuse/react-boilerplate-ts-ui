@@ -3,20 +3,20 @@ import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import {DndTable, Table} from 'Components/Table';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import customTheme from './CustomTheme';
 import {DataTable} from './data';
 import {tableColumns} from './utils';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const ROWS_TO_DISPLAY = 5;
 const TablePage = () => {
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper
           title="Table"
-          description="The table component is a flexible and customizable reusable component that allows you to display data in a structured, tabular format. It supports a variety of features, including column sorting, filtering, and global searching, making it easy for users to find and analyze data. With its simple and intuitive API, you can quickly and easily integrate this table component into your React applications and start displaying your data in a clear and organized way. 
-          Use <Table> component if you don't need your Table to be Drag and Drop. 
+          description="The table component is a flexible and customizable reusable component that allows you to display data in a structured, tabular format. It supports a variety of features, including column sorting, filtering, and global searching, making it easy for users to find and analyze data. With its simple and intuitive API, you can quickly and easily integrate this table component into your React applications and start displaying your data in a clear and organized way.
+          Use <Table> component if you don't need your Table to be Drag and Drop.
           If you want your table to have row or column dnd use <DndTable> Component. The Table components uses '@tanstack/react-table' which is a headless ui for building tables and Mui Tables for ui. For drag and drop features we have used 'react-beautiful-dnd'."
         >
           <ComponentViewer
@@ -1275,7 +1275,7 @@ const tableColumns: ColumnDef<DataTableType>[] = [
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

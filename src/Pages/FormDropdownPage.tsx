@@ -4,7 +4,7 @@ import Form from 'Components/Forms/Form';
 import FormDropdown from 'Components/Forms/FormDropdown';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const submitHandler = () => null;
 
@@ -17,7 +17,7 @@ const options = [
 const FormDropdownPage = () => {
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper
           title="FormDropdown"
           description="FormDropdown component provides with a hassle free way to manage state of your formik sliders. This component uses Formik internally to manage state for your sliders."
@@ -67,7 +67,7 @@ const FormDropdownPage = () => {
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

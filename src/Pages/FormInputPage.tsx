@@ -6,15 +6,15 @@ import Form from 'Components/Forms/Form';
 import FormInput from 'Components/Forms/FormInput';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import * as yup from 'yup';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const submitHandler = () => null;
 
 const FormInputPage = () => {
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper
           title="FormInput"
           description="FormInput component provides with a hassle free way to manage state of your formik form inputs. This component uses Formik internally to manage state for your input fields."
@@ -123,7 +123,7 @@ const FormInputPage = () => {
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

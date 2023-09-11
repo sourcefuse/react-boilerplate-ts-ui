@@ -54,7 +54,7 @@ export default function ComponentViewer({
     <Paper elevation={0}>
       <Grid container>
         <Grid container item xs={12} sx={{my: 2}}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
             <Typography
               id={title}
               className="headings"
@@ -64,7 +64,7 @@ export default function ComponentViewer({
               {title}
             </Typography>
           </Grid>
-          <Grid container item xs={6} justifyContent="end">
+          <Grid container item xs={12} sm={6} justifyContent="end">
             <ButtonGroup sx={{border: '1px solid #D9D9D9'}}>
               <TabButton activeTab={activeTab} setActiveTab={setActiveTab} tabName={Tab.Demo} Icon={RemoveRedEyeIcon} />
               <TabButton activeTab={activeTab} setActiveTab={setActiveTab} tabName={Tab.Code} Icon={CodeIcon} />
