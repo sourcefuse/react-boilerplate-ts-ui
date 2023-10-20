@@ -1,4 +1,3 @@
-import React from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
@@ -6,6 +5,7 @@ import Box from '@mui/material/Box';
 import Rating, {RatingProps as MuiRatingProps} from '@mui/material/Rating';
 import {styled} from '@mui/material/styles';
 import {SxProps} from '@mui/system';
+import React from 'react';
 
 export interface RatingProps extends Omit<MuiRatingProps, 'style'> {
   boxSx?: SxProps;
@@ -56,7 +56,7 @@ const HoverRating: React.FC<RatingProps> = props => {
     return (
       <Box
         sx={
-          boxSx || {
+          boxSx ?? {
             width: 200,
             display: 'flex',
             alignItems: 'center',
@@ -81,7 +81,7 @@ const HoverRating: React.FC<RatingProps> = props => {
   return (
     <Box
       sx={
-        boxSx || {
+        boxSx ?? {
           width: 200,
           display: 'flex',
           alignItems: 'center',

@@ -1,13 +1,17 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {Table} from 'Components/Table';
-import {tableColumns} from './utils';
 import {DataTable} from './data';
+import {tableColumns} from './utils';
 
 const meta = {
   title: 'Components/Table/Table',
   component: Table,
   tags: ['autodocs'],
 } satisfies Meta<typeof Table>;
+
+const ROWS_PER_PAGE_5 = 5;
+const ROWS_PER_PAGE_10 = 10;
+const ROWS_PER_PAGE_25 = 25;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -49,6 +53,6 @@ export const PaginationTable: Story = {
   args: {
     ...DefaultTable.args,
     enablePagination: true,
-    rowsPerPageOptions: [5, 10, 25],
+    rowsPerPageOptions: [ROWS_PER_PAGE_5, ROWS_PER_PAGE_10, ROWS_PER_PAGE_25],
   },
 };

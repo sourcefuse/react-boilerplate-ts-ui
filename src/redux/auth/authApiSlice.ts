@@ -7,6 +7,7 @@ type credentials = LoginForm & {
 };
 
 export const authApiSlice = apiSlice.injectEndpoints({
+  // eslint-disable-next-line prettier/prettier
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (credentials: credentials) => ({

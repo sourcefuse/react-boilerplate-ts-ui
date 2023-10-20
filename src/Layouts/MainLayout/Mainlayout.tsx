@@ -1,15 +1,15 @@
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import {styled, useTheme} from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
+import {styled, useTheme} from '@mui/material/styles';
 import {MUIStyledCommonProps} from '@mui/system';
 import AppBar from 'Components/AppBar';
 import SideNav from 'Components/SideNav/SideNav';
 import NotFound from 'Pages/NotFound';
 import {Suspense, useCallback, useEffect, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
-import mainLayoutRouteConfig from './mainLayoutRouteConfig';
 import {useGetUserQuery} from 'redux/auth/authApiSlice';
+import mainLayoutRouteConfig from './mainLayoutRouteConfig';
 
 const drawerWidth = 270;
 const isAppBarFullWidth = false;

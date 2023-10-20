@@ -14,8 +14,8 @@ type Story = StoryObj<typeof meta>;
 
 const Template = ({steps, orientation, activeStep: initialStep}: StepperTabProps) => {
   const [activeStep, setActiveStep] = useState(initialStep);
-  const nextStep = () => setActiveStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
-  const prevStep = () => setActiveStep((prev) => (prev === 0 ? prev : prev - 1));
+  const nextStep = () => setActiveStep(prev => (prev < steps.length - 1 ? prev + 1 : prev));
+  const prevStep = () => setActiveStep(prev => (prev === 0 ? prev : prev - 1));
 
   return (
     <>

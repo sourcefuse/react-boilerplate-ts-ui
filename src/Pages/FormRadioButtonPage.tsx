@@ -1,14 +1,12 @@
 import {Box, Stack, Typography} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
+import Form from 'Components/Forms/Form';
+import FormRadioButton from 'Components/Forms/FormRadioButton';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
-import Form from 'Components/Forms/Form';
-import FormRadioButton from 'Components/Forms/FormRadioButton';
 
-const submitHandler = () => {
-  return null;
-};
+const submitHandler = () => null;
 
 const FormRadioButtonPage = () => {
   const initialValues = {

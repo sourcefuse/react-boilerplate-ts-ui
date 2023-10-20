@@ -1,11 +1,13 @@
+import BackdropLoader from 'Components/BackdropLoader/BackdropLoader';
+import useAuth from 'Hooks/useAuth';
 import {useState} from 'react';
 import {useIdleTimer} from 'react-idle-timer';
-import useAuth from 'Hooks/useAuth';
 import WarningLogOutDialog from './WarningLogoutDialog';
-import BackdropLoader from 'Components/BackdropLoader/BackdropLoader';
 
-const MINUTE_TO_MS = 60 * 1000;
-
+const SECONDS_PER_MINUTE = 60;
+const MILLISECONDS_PER_SECOND = 1000;
+const MINUTE_TO_MS = SECONDS_PER_MINUTE * MILLISECONDS_PER_SECOND;
+const EXPIRY_TIME_IN_MIN = 15;
 /**
  *
  * @param {number} expiryTimeInMinute - The duration of inactivity (in minutes) after which the user will be logged out.
@@ -24,7 +26,7 @@ export interface SessionTimeoutProps {
  *
  */
 const SessionTimeout: React.FC<SessionTimeoutProps> = ({
-  expiryTimeInMinute = 15,
+  expiryTimeInMinute = EXPIRY_TIME_IN_MIN,
   promptTimeBeforeIdleInMinute = 1,
 }: SessionTimeoutProps) => {
   const {logout, logoutLoading} = useAuth();

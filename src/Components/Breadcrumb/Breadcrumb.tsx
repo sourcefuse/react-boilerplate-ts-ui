@@ -26,7 +26,6 @@ export default function Breadcrumb(): JSX.Element {
         <Grid key={key}>
           {breadcrumbs.length - 1 === index ? (
             <Grid
-              key={match?.pathname}
               sx={{
                 ...styles.breadcrumb,
               }}

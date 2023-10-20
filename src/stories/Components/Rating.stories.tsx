@@ -7,12 +7,12 @@ const meta = {
   component: Rating,
   tags: ['autodocs'],
 } satisfies Meta<typeof Rating>;
-
+const RATING_TWO = 2;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const Template = ({name, label}: RatingProps) => {
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(RATING_TWO);
   const [hover, setHover] = useState(-1);
 
   return (

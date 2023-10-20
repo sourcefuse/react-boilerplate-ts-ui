@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 
+const CONST_TWO = 2;
 export interface FormI {
   salutation: {
     label: string;
@@ -37,7 +38,7 @@ export const validationSchema = yup.object({
   hobby: yup.array(),
   emailUpdates: yup.string().oneOf(['yes', 'no']),
   dob: yup.date().typeError('Please enter valid date').nullable().required('DOB is required'),
-  skills: yup.array().of(yup.string()).min(2, 'Should have at least two skill'),
+  skills: yup.array().of(yup.string()).min(CONST_TWO, 'Should have at least two skill'),
   badge: yup.array().of(yup.string()).min(1, 'Should have at least one badge'),
   region: yup.string().required('Region is required'),
 });

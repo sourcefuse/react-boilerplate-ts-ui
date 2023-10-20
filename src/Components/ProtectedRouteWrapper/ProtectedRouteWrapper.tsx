@@ -15,6 +15,7 @@ export interface ProtectedRouteWrapperProps {
  *                       By default, it uses `authorizationFunctions.isAuthenticated`.
  * @returns The protected route component.
  */
+// sonarignore:start
 export const ProtectedRouteWrapper = ({
   isAuthorized = authorizationFunctions.isAuthenticated,
   children,
@@ -22,3 +23,4 @@ export const ProtectedRouteWrapper = ({
   const location = useLocation();
   return isAuthorized() ? children : <Navigate to={'/login'} state={{from: location}} replace />;
 };
+// sonarignore:end

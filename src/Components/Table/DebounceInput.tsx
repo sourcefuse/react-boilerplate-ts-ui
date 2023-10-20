@@ -1,15 +1,15 @@
-import {useEffect, useState} from 'react';
-import {IconButton, InputAdornment, Stack, TextField, TextFieldProps} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from '@mui/icons-material/Search';
+import {IconButton, InputAdornment, Stack, TextField, TextFieldProps} from '@mui/material';
+import {useEffect, useState} from 'react';
 
 interface Props extends Omit<TextFieldProps, 'onChange'> {
   value: string | number;
   onChange: (val: string | number) => void;
   debounceTime?: number;
 }
-
-export const DebouncedInput = ({value: initialValue, onChange, debounceTime = 300, ...props}: Props) => {
+const DEBOUNCE_TIME = 300;
+export const DebouncedInput = ({value: initialValue, onChange, debounceTime = DEBOUNCE_TIME, ...props}: Props) => {
   const [value, setValue] = useState(initialValue);
 
   // setValue if any initialValue changes
@@ -40,6 +40,7 @@ export const DebouncedInput = ({value: initialValue, onChange, debounceTime = 30
         placeholder="Search Across Table"
         {...props}
         value={value}
+        // eslint-disable-next-line prettier/prettier
         onChange={(e) => setValue(e.target.value)}
         InputProps={{
           endAdornment: (

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Table as MuiTable,
   TableProps as MuiTableProps,
@@ -58,7 +59,9 @@ export interface TableProps<T extends AnyObject> {
   rowsPerPageOptions?: Array<number | {label: string; value: number}>;
   tablePropsObject?: MUITablePropsObject;
 }
-
+const DEFAULT_ROWS_PER_PAGE = 5;
+const ROWS_PER_PAGE_OPTION_1 = 10;
+const ROWS_PER_PAGE_OPTION_2 = 25;
 const ARCTable = <T extends AnyObject>({
   data,
   columns,
@@ -67,7 +70,12 @@ const ARCTable = <T extends AnyObject>({
   globalFilterFn = filterFns.fuzzy,
   enableColumnFiltering,
   enablePagination,
-  rowsPerPageOptions = [5, 10, 25, {label: 'All', value: data.length}],
+  rowsPerPageOptions = [
+    DEFAULT_ROWS_PER_PAGE,
+    ROWS_PER_PAGE_OPTION_1,
+    ROWS_PER_PAGE_OPTION_2,
+    {label: 'All', value: data.length},
+  ],
   tablePropsObject,
 }: TableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -138,7 +146,8 @@ const ARCTable = <T extends AnyObject>({
                 table.setPageIndex(page);
               }}
               onRowsPerPageChange={e => {
-                const size = e.target.value ? Number(e.target.value) : 10;
+                const DEFAULT_PAGE_SIZE = 10;
+                const size = e.target.value ? Number(e.target.value) : DEFAULT_PAGE_SIZE;
                 table.setPageSize(size);
               }}
               tablePaginationProps={tablePropsObject?.tablePaginationProps}

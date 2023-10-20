@@ -6,13 +6,9 @@ import {commonConfig, paletteConfig} from './default';
 export const ThemeContext = createContext({toggleColorMode: () => {}});
 
 const ThemeProvider = ({children}: {children: ReactNode}) => {
-  // const [mode, setMode] = useLocalStorage<PaletteMode>('mode', 'light');
-
   const colorMode = useMemo(
     () => ({
-      toggleColorMode: () => {
-        // setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
+      toggleColorMode: () => {},
     }),
     [],
   );

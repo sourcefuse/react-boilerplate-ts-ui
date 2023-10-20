@@ -1,13 +1,14 @@
 import {Box, Stack, ThemeProvider, Typography} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
-import {tableColumns} from './utils';
-import {DataTable} from './data';
-import {DndTable, Table} from 'Components/Table';
 import PropsTable from 'Components/PropsTable';
+import {DndTable, Table} from 'Components/Table';
+import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import customTheme from './CustomTheme';
+import {DataTable} from './data';
+import {tableColumns} from './utils';
 
+const ROWS_TO_DISPLAY = 5;
 const TablePage = () => {
   return (
     <Stack direction="row">
@@ -226,7 +227,7 @@ const tableColumns: ColumnDef<DataTableType>[] = [
 <Table columns={tableColumns} data={DataTable} enableSorting />
 `}
           >
-            <Table columns={tableColumns} data={DataTable.slice(0, 5)} enableSorting />
+            <Table columns={tableColumns} data={DataTable.slice(0, ROWS_TO_DISPLAY)} enableSorting />
           </ComponentViewer>
           <ComponentViewer
             title="Global Filter"
@@ -331,7 +332,12 @@ const tableColumns: ColumnDef<DataTableType>[] = [
 <Table columns={tableColumns} data={DataTable} enableSorting enableGlobalFiltering />
 `}
           >
-            <Table columns={tableColumns} data={DataTable.slice(0, 5)} enableSorting enableGlobalFiltering />
+            <Table
+              columns={tableColumns}
+              data={DataTable.slice(0, ROWS_TO_DISPLAY)}
+              enableSorting
+              enableGlobalFiltering
+            />
           </ComponentViewer>
           <ComponentViewer
             title="Columns Filtering"
@@ -438,7 +444,7 @@ const tableColumns: ColumnDef<DataTableType>[] = [
           >
             <Table
               columns={tableColumns}
-              data={DataTable.slice(0, 5)}
+              data={DataTable.slice(0, ROWS_TO_DISPLAY)}
               enableSorting
               enableGlobalFiltering
               enableColumnFiltering
@@ -946,7 +952,7 @@ const tableColumns: ColumnDef<DataTableType>[] = [
 <DndTable columns={tableColumns} data={DataTable} enableRowDnd />
 `}
           >
-            <DndTable columns={tableColumns} data={DataTable.slice(0, 5)} enableRowDnd />
+            <DndTable columns={tableColumns} data={DataTable.slice(0, ROWS_TO_DISPLAY)} enableRowDnd />
           </ComponentViewer>
           <ComponentViewer
             title="ColumnDnd Table"
@@ -1056,7 +1062,12 @@ const tableColumns: ColumnDef<DataTableType>[] = [
 <DndTable columns={tableColumns} data={DataTable} enableColumnDnd enableRowDnd={false} />
 `}
           >
-            <DndTable columns={tableColumns} data={DataTable.slice(0, 5)} enableColumnDnd enableRowDnd={false} />
+            <DndTable
+              columns={tableColumns}
+              data={DataTable.slice(0, ROWS_TO_DISPLAY)}
+              enableColumnDnd
+              enableRowDnd={false}
+            />
           </ComponentViewer>
           <ComponentViewer
             title="Advanced Table"
@@ -1168,7 +1179,7 @@ const tableColumns: ColumnDef<DataTableType>[] = [
           >
             <DndTable
               columns={tableColumns}
-              data={DataTable.slice(0, 5)}
+              data={DataTable.slice(0, ROWS_TO_DISPLAY)}
               enableColumnDnd
               enableColumnFiltering
               enableGlobalFiltering

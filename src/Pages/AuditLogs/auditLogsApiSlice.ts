@@ -2,7 +2,7 @@ import {apiSlice} from 'redux/apiSlice';
 import {AuditLog} from './utils';
 
 export const auditLogsApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getLogs: builder.query<AuditLog[], void>({
       query: () => ({url: '/audit-logs'}),
     }),

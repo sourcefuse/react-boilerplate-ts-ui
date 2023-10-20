@@ -14,7 +14,9 @@ interface RoutesProps {
  * @param {RoutesProps} routesConfig - The configuration of routes to render.
  * @returns The rendered Routes component.
  */
-const Routes: React.FC<RoutesProps> = ({routesConfig}: RoutesProps) => {
+const NOT_ONLINE_HEIGHT = 30;
+
+const Routes: React.FC<RoutesProps> = ({routesConfig}) => {
   const isOnline = useOnlineStatus();
   const routes = useRoutes(routesConfig);
   return (
@@ -25,7 +27,7 @@ const Routes: React.FC<RoutesProps> = ({routesConfig}: RoutesProps) => {
           bgcolor: 'error.main',
           transition: 'height 1s',
           overflow: 'hidden',
-          height: isOnline ? 0 : 30,
+          height: isOnline ? 0 : NOT_ONLINE_HEIGHT,
           width: 1,
           zIndex: 1,
         }}

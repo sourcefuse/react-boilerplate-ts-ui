@@ -1,7 +1,7 @@
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import Box from '@mui/material/Box';
-import {useTheme} from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
+import {useTheme} from '@mui/material/styles';
 import {memo} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {PrismLight as ReactSyntaxHighlighter} from 'react-syntax-highlighter';
@@ -12,7 +12,6 @@ import Button from './Button';
 
 ReactSyntaxHighlighter.registerLanguage('jsx', jsx);
 
-// TODO(style): enable horizontal scroll
 const SyntaxHighlighter = ({children}: {children: string}) => {
   const theme = useTheme();
   return (

@@ -2,15 +2,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Copyright (c) HashiCorp, Inc
 // SPDX-License-Identifier: MPL-2.0
-import * as fs from 'fs';
-import * as path from 'path';
-import * as mime from 'mime-types';
-import {config} from 'dotenv';
-import uniqid from 'uniqid';
 import * as aws from '@cdktf/provider-aws';
-import {Construct} from 'constructs';
-import {App, TerraformStack} from 'cdktf';
 import {AwsProvider} from '@cdktf/provider-aws/lib/provider';
+import {App, TerraformStack} from 'cdktf';
+import {Construct} from 'constructs';
+import {config} from 'dotenv';
+import * as fs from 'fs';
+import * as mime from 'mime-types';
+import * as path from 'path';
+import uniqid from 'uniqid';
 import {CreateAcmCertificate} from './helper/utils';
 
 config();
@@ -19,14 +19,14 @@ export class CloudFrontStaticWebsiteStack extends TerraformStack {
   constructor(scope: Construct, name: string) {
     super(scope, name);
 
-    const bucketName = process.env.S3_BUCKET_NAME || '';
-    const customDomain = process.env.CUSTOM_DOMAIN || '';
-    const hostedZoneId = process.env.HOSTED_ZONE_ID || '';
-    const relativePathToBuildDir = process.env.RELATIVE_PATH_TO_BUILD_DIR || '../build';
+    const bucketName = process.env.S3_BUCKET_NAME ?? '';
+    const customDomain = process.env.CUSTOM_DOMAIN ?? '';
+    const hostedZoneId = process.env.HOSTED_ZONE_ID ?? '';
+    const relativePathToBuildDir = process.env.RELATIVE_PATH_TO_BUILD_DIR ?? '../build';
 
     new AwsProvider(this, 'aws', {
-      region: process.env.AWS_REGION || 'us-east-1',
-      profile: process.env.AWS_PROFILE || 'default',
+      region: process.env.AWS_REGION ?? 'us-east-1',
+      profile: process.env.AWS_PROFILE ?? 'default',
     });
 
     const spaBucket = new aws.s3Bucket.S3Bucket(this, 'spaBucket', {
@@ -99,7 +99,6 @@ export class CloudFrontStaticWebsiteStack extends TerraformStack {
       },
       aliases: [customDomain],
     });
-
     new aws.s3BucketPolicy.S3BucketPolicy(this, 'spaBucketPolicy', {
       bucket: spaBucket.id,
       policy: `{
@@ -123,7 +122,6 @@ export class CloudFrontStaticWebsiteStack extends TerraformStack {
         ]
     }`,
     });
-
     new aws.route53Record.Route53Record(this, 'route53Record', {
       name: customDomain,
       zoneId: hostedZoneId,
@@ -140,7 +138,7 @@ export class CloudFrontStaticWebsiteStack extends TerraformStack {
 }
 
 function uploadDirectoryToS3(
-  this: any,
+  this: any, // NOSONAR
   sourcePath: string,
   bucket: aws.s3Bucket.S3Bucket,
   prefix: string,
@@ -158,7 +156,6 @@ function uploadDirectoryToS3(
       uploadDirectoryToS3(filePath, bucket, fileKey, context);
     } else {
       const objectName = `${file}-${uniqid()}`;
-
       new aws.s3Object.S3Object(context, objectName, {
         bucket: bucket.id,
         key: fileKey,

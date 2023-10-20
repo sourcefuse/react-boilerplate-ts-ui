@@ -20,7 +20,7 @@ const FormDatePickerTemplate: Omit<Story, 'args'> = {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Form
           initialValues={{
-            [id!]: new Date('2023-01-27'),
+            [id]: new Date('2023-01-27'),
           }}
           onSubmit={() => {}}
         >

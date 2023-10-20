@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {Box} from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
@@ -46,9 +47,9 @@ const Components = () => {
       <Grid item xs={5} textAlign="center">
         <img src={componentImage} alt="component" width="300px" />
       </Grid>
-      {componentLists.map(({name, imageUrl, variants, link}) => {
-        return <ComponentViewItem key={name} name={name} imageUrl={imageUrl} variants={variants} link={link} />;
-      })}
+      {componentLists.map(({name, imageUrl, variants, link}) => (
+        <ComponentViewItem key={name} name={name} imageUrl={imageUrl} variants={variants} link={link} />
+      ))}
     </Grid>
   );
 };

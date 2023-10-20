@@ -6,9 +6,9 @@ import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 
-const submitHandler = () => {
-  return null;
-};
+const TEMPERATURE_MIN = 30;
+const TEMPERATURE_MAX = 50;
+const submitHandler = () => null;
 
 const FormSliderPage = () => {
   return (
@@ -75,7 +75,7 @@ const FormSliderPage = () => {
 `}
           >
             <Box sx={{width: 500}}>
-              <Form initialValues={{slider: [30, 50]}} onSubmit={submitHandler}>
+              <Form initialValues={{slider: [TEMPERATURE_MIN, TEMPERATURE_MAX]}} onSubmit={submitHandler}>
                 <FormSlider id="slider" label="Temperature" marks min={1} max={100} minDistance={10} />
               </Form>
             </Box>

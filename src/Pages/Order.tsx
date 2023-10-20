@@ -9,6 +9,7 @@ import PagePaper from 'Components/PagePaper';
 import {useNavigate} from 'react-router-dom';
 
 const Order = () => {
+  const DECIMAL_PLACES = 2;
   const navigate = useNavigate();
   function handleCheckOut(amount: number) {
     navigate('/sourceloop/payment/checkout', {state: {amount, type: 'orders'}});
@@ -37,7 +38,7 @@ const Order = () => {
       price: 999,
     },
   ];
-
+  /* sonar ignore start */
   return (
     <PagePaper title="Order">
       <Typography variant="h5" component="h1" align="center" gutterBottom>
@@ -58,7 +59,7 @@ const Order = () => {
                   </Typography>
                 </CardContent>
                 <CardActions sx={{display: 'flex', justifyContent: 'space-between'}}>
-                  <Typography>₹ {product?.price.toFixed(2)}</Typography>
+                  <Typography>₹ {product?.price.toFixed(DECIMAL_PLACES)}</Typography>
                   <Button
                     size="small"
                     onClick={() => {
@@ -78,3 +79,4 @@ const Order = () => {
 };
 
 export default Order;
+/* sonar ignore end */

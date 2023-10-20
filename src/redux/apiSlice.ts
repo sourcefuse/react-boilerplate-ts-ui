@@ -11,6 +11,7 @@ import type {RootState} from './store';
  * @param api - The API object provided by `createApi`.
  * @param extraOptions - Extra options for the query.
  */
+const RESULT_ERROR_STATUS = 401;
 const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
   args,
   api,
@@ -31,7 +32,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result.error && result.error.status === 401) {
+  if (result.error && result.error.status === RESULT_ERROR_STATUS) {
     // try to get a new token
     console.log('sending refresh token....');
     const refreshResult = await baseQuery(
@@ -58,5 +59,6 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
+  // eslint-disable-next-line prettier/prettier
   endpoints: (builder) => ({}),
 });

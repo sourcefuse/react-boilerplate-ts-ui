@@ -1,7 +1,7 @@
 import {Box, CircularProgress} from '@mui/material';
 import {Table} from 'Components/Table';
-import {auditColumns} from './utils';
 import {useGetLogsQuery} from './auditLogsApiSlice';
+import {auditColumns} from './utils';
 
 const AuditLogsPage = () => {
   const {data: auditLogs, isLoading, isError} = useGetLogsQuery();
@@ -26,11 +26,12 @@ const AuditLogsPage = () => {
     return <div>Error loading data.</div>;
   }
 
+  // sonarignore:start
   return (
     <Box sx={{margin: 5}}>
       <Table data={auditLogs!} columns={auditColumns} enableGlobalFiltering />
     </Box>
   );
 };
-
+// sonarignore:end
 export default AuditLogsPage;

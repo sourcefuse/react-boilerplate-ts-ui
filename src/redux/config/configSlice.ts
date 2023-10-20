@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {Configuration, fetchConfigData} from './configThunk';
 import {RootState} from 'redux/store';
+import {Configuration, fetchConfigData} from './configThunk';
 
 const initialState: {
   configData: Configuration | null;
@@ -16,9 +16,9 @@ const configSlice = createSlice({
   name: 'config',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchConfigData.pending, (state) => {
+      .addCase(fetchConfigData.pending, state => {
         state.isLoading = true;
         state.error = null;
       })

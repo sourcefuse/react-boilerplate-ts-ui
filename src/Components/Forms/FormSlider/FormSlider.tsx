@@ -13,7 +13,7 @@ function valuetext(value: number) {
 
 const FormSlider: React.FC<SliderProps> = ({id, disabled, ...rest}) => {
   const {setFieldValue, errors, touched, values} = useFormikContext<Formik>();
-  const isError = !!errors[id!] && touched[id!] && !disabled;
+  const isError = !!errors[id ?? ''] && touched[id ?? ''] && !disabled;
   const handleOnChangeEvent = useCallback(
     // array if rest.minDistance exists
     (val: number | number[]) => {
@@ -23,8 +23,8 @@ const FormSlider: React.FC<SliderProps> = ({id, disabled, ...rest}) => {
   );
   return (
     <Slider
-      value={values[id!]}
-      errorMessage={isError ? errors[id!] : ''}
+      value={values[id ?? '']}
+      errorMessage={isError ? errors[id ?? ''] : ''}
       valueLabelDisplay="auto"
       getAriaValueText={valuetext}
       disableSwap

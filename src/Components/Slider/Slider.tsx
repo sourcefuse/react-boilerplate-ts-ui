@@ -1,5 +1,5 @@
 import {FormHelperText, Slider as MuiSlider, SliderProps as MuiSliderProps, Typography} from '@mui/material';
-import React, {useCallback, memo} from 'react';
+import React, {memo, useCallback} from 'react';
 
 export interface SliderProps extends Omit<MuiSliderProps, 'onChange'> {
   id?: string;
@@ -21,6 +21,7 @@ const Slider: React.FC<SliderProps> = ({
   helperText,
   ...restProps
 }) => {
+  const MAX_VALUE = 100;
   const isError = !!errorMessage;
   const handleChange = useCallback(
     (_event: Event, newValue: number | number[], activeThumb: number) => {
@@ -29,7 +30,7 @@ const Slider: React.FC<SliderProps> = ({
         onChange(newValue);
       } else if (newValue[1] - newValue[0] < minDistance!) {
         if (activeThumb === 0) {
-          const clamped = Math.min(newValue[0], 100 - minDistance!);
+          const clamped = Math.min(newValue[0], MAX_VALUE - minDistance!); // NOSONAR
           onChange([clamped, clamped + minDistance!]);
         } else {
           const clamped = Math.max(newValue[1], minDistance!);

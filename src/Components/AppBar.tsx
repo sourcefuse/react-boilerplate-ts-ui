@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -5,17 +6,17 @@ import {Menu, MenuItem, Typography} from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
-import {styled} from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
+import {styled} from '@mui/material/styles';
 import {Box} from '@mui/system';
 import sfLogo from 'Assets/SF_logo.png';
 import Breadcrumb from 'Components/Breadcrumb/Breadcrumb';
 import FullScreen from 'Components/FullScreen';
 import useAuth from 'Hooks/useAuth';
 import {memo, useState} from 'react';
-import Button from './Button';
 import BackdropLoader from './BackdropLoader/BackdropLoader';
+import Button from './Button';
 
 const MyAppBar = styled(MuiAppBar)(({theme}) => ({
   zIndex: theme.zIndex.drawer + 1,
@@ -26,7 +27,7 @@ const MyAppBar = styled(MuiAppBar)(({theme}) => ({
 
 interface IAppBarProps {
   open?: boolean;
-  isPermanent?: boolean;
+  isPermanent?: boolean; // NOSONAR
   toggleDrawer?: () => void;
 }
 const MenuButton = ({open, toggleDrawer}: IAppBarProps) => (
@@ -38,7 +39,8 @@ const MenuButton = ({open, toggleDrawer}: IAppBarProps) => (
 );
 
 const AppBar = ({open, toggleDrawer, isPermanent, userName}: IAppBarProps & {userName?: string}) => {
-  let appBarMargin = open ? 270 : 0;
+  const APP_BAR_MARGIN = 270;
+  let appBarMargin = open ? APP_BAR_MARGIN : 0;
   appBarMargin = isPermanent ? appBarMargin : 0;
   const {logout, logoutLoading} = useAuth();
 

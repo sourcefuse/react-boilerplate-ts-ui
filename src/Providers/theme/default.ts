@@ -1,10 +1,6 @@
 import tinycolor from 'tinycolor2';
 
 const secondary = '#0469E3';
-// const error = '#DF0101';
-// const warning = '#FF8F1F';
-// const success = '#6EB874';
-// const info = '#CACADB';
 
 const lightenRate = 7.5;
 const darkenRate = 15;

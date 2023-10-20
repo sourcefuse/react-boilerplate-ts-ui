@@ -8,8 +8,9 @@ import Button from 'Components/Button';
 import SyntaxHighlighter from 'Components/SyntaxHighlighter';
 import {ReactNode, useState} from 'react';
 
+const MARGIN_TOP_SPACING = 2;
 const Paper = styled(MuiPaper)(({theme}) => ({
-  marginTop: theme.spacing(2),
+  marginTop: theme.spacing(MARGIN_TOP_SPACING),
 }));
 
 enum Tab {
@@ -43,7 +44,11 @@ const TabButton = ({
   );
 };
 
-export default function ComponentViewer({children, title, code}: {children: ReactNode; title: string; code: string}) {
+export default function ComponentViewer({
+  children,
+  title,
+  code,
+}: Readonly<{children: ReactNode; title: string; code: string}>) {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.Demo);
   return (
     <Paper elevation={0}>
@@ -81,9 +86,7 @@ export default function ComponentViewer({children, title, code}: {children: Reac
               {children}
             </Box>
           ) : (
-            <>
-              <SyntaxHighlighter>{code}</SyntaxHighlighter>
-            </>
+            <SyntaxHighlighter>{code}</SyntaxHighlighter>
           )}
         </Grid>
       </Grid>

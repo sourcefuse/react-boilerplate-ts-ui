@@ -1,6 +1,6 @@
 import {Middleware} from '@reduxjs/toolkit';
 
-const storageMiddleware: Middleware = (store) => (next) => (action) => {
+const storageMiddleware: Middleware = store => next => action => {
   if (action.type === 'auth/setCredentials') {
     const {accessToken, refreshToken, expires} = action.payload;
 

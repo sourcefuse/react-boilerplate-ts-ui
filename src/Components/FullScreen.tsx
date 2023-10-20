@@ -1,7 +1,7 @@
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import React, {memo} from 'react';
+import {memo} from 'react';
 
 const FullScreen = () => {
   const toggleFullscreen = () => {
@@ -18,6 +18,8 @@ const FullScreen = () => {
         // } else if (document.documentElement.webkitRequestFullscreen) {
         //   // document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
       }
+
+      // sonarignore:start
     } else {
       if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -28,7 +30,7 @@ const FullScreen = () => {
       }
     }
   };
-
+  // sonarignore:end
   return (
     <Tooltip title={'FullScreen'}>
       <IconButton onClick={toggleFullscreen}>

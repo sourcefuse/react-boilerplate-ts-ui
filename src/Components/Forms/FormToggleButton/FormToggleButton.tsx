@@ -9,7 +9,7 @@ type Formik = {
 
 const FormToggleButton: React.FC<ToggleButtonProps> = ({id, disabled, ...rest}) => {
   const {setFieldValue, errors, touched, values} = useFormikContext<Formik>();
-  const isError = !!errors[id!] && touched[id!] && !disabled;
+  const isError = !!errors[id ?? ''] && touched[id ?? ''] && !disabled;
   const handleOnChangeEvent = useCallback(
     (val: string | string[]) => {
       setFieldValue(id!, val);
@@ -20,8 +20,8 @@ const FormToggleButton: React.FC<ToggleButtonProps> = ({id, disabled, ...rest}) 
   return (
     <ToggleButton
       id={id}
-      value={values[id!]}
-      errorMessage={isError ? errors[id!] : ''}
+      value={values[id ?? '']}
+      errorMessage={isError ? errors[id ?? ''] : ''}
       disabled={disabled}
       onChange={handleOnChangeEvent}
       {...rest}

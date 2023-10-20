@@ -1,23 +1,25 @@
-import React, {useEffect, useState} from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import React, {useEffect, useState} from 'react';
 
 interface IWarningLogOutDialogProps {
   openDialog: boolean;
   getRemainingTime: () => number;
   broadcastMessage: (data: string | number | object, emitOnSelf?: boolean | undefined) => boolean;
 }
+const MILLISECONDS_PER_SECOND = 1000;
+const HALF_SECOND = 500;
 const WarningLogOutDialog: React.FC<IWarningLogOutDialogProps> = ({openDialog, getRemainingTime, broadcastMessage}) => {
   const [countdown, setCountdown] = useState<number>(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountdown(Math.ceil(getRemainingTime() / 1000));
-    }, 500);
+      setCountdown(Math.ceil(getRemainingTime() / MILLISECONDS_PER_SECOND));
+    }, HALF_SECOND);
 
     return () => {
       clearInterval(interval);

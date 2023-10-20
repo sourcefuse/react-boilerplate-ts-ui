@@ -9,7 +9,6 @@ import iconGraphy from 'Assets/iconography.png';
 import typography from 'Assets/typography.png';
 import widgetImage from 'Assets/widget-img.png';
 const border = '1px solid  #D9D9D9;';
-// const paddinghorizontal = '0 15px';
 
 const Home = () => {
   return (
