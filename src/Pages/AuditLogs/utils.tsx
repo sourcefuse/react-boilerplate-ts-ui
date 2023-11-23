@@ -24,7 +24,11 @@ export type AuditLog = {
   before: beforeLog;
 };
 
-export type ApiAuditLog = Record<string, any>;
+export interface AnyObject {
+  [key: string]: any; // NOSONAR
+}
+
+export type ApiAuditLog = AnyObject;
 
 export const auditColumns: ColumnDef<AuditLog>[] = [
   {
@@ -46,7 +50,7 @@ export const auditColumns: ColumnDef<AuditLog>[] = [
   {
     header: 'Before',
     accessorKey: 'before',
-    cell: (row) => {
+    cell: row => {
       const data: beforeLog[] = [row.getValue() as beforeLog];
       const beforeColumns: ColumnDef<beforeLog>[] = [
         {

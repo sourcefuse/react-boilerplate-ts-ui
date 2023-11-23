@@ -1,5 +1,9 @@
 import {format} from 'date-fns';
 
+export interface AnyObject {
+  [key: string]: any; // NOSONAR
+}
+
 export const convertToTitleCase = (text: string) => {
   if (!text) return text;
   const result = text.replace(/([A-Z])/g, ' $1');

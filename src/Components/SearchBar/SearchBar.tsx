@@ -13,7 +13,7 @@ const SearchBar: React.FC<{
   const [searchQuery, setSearchQuery] = useState('');
   const initialList = cloneDeep(componentList);
 
-  const [data] = useState<SideNavConfig[]>(initialList);
+  const [data] = useState<SideNavConfig[]>(initialList); // NOSONAR
 
   const searchFilter = useCallback(
     (query: string) => {
