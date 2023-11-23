@@ -8,7 +8,7 @@ import React, {memo, useContext} from 'react';
 
 const ThemeSwitch = () => {
   const theme = useTheme();
-  const colorMode: any = useContext(ThemeContext);
+  const colorMode: {toggleColorMode: () => void} = useContext(ThemeContext);
   return (
     <Tooltip title="Theme Switch">
       <IconButton sx={{ml: 1}} onClick={colorMode.toggleColorMode}>

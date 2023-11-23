@@ -13,7 +13,7 @@ interface Props {
   isPermanent: boolean;
   open: boolean;
   drawerWidth: number;
-  toggleDrawer: any;
+  toggleDrawer: React.ReactEventHandler<{}>;
   isAppBarFullWidth: boolean;
 }
 
@@ -53,8 +53,8 @@ const SideNav: React.FC<Props> = ({isPermanent, drawerWidth, toggleDrawer, open,
       </Box>
       <SearchBar componentList={sideNavConfig} updateList={setSideNavList} />
       <List>
-        {sideNavList.map((sideNavConfigItem, index) => (
-          <SideNavLink key={`menu-${index}`} location={location} {...sideNavConfigItem} />
+        {sideNavList.map(sideNavConfigItem => (
+          <SideNavLink key={`${sideNavConfigItem.link}`} location={location} {...sideNavConfigItem} />
         ))}
       </List>
     </SwipeableDrawer>

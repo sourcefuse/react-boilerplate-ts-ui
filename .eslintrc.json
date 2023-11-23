@@ -47,6 +47,7 @@
     "default-param-last": ["error"],
     "no-console": ["warn", {"allow": ["warn", "error"]}],
     "no-unused-vars": "off",
+    "no-restricted-imports": ["error", {"paths": ["import1", "import2"]}],
     "@typescript-eslint/no-unused-vars": "error"
   }
 }

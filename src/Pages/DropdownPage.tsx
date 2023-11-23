@@ -1,6 +1,6 @@
 import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
-import Dropdown from 'Components/Dropdown/Dropdown';
+import Dropdown, {AutocompleteValueType} from 'Components/Dropdown/Dropdown';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
@@ -13,7 +13,7 @@ const options = [
 ];
 
 const DropdownPage = () => {
-  const [value, setValue] = useState(options[0]);
+  const [value, setValue] = useState<AutocompleteValueType>(options[0]);
   return (
     <Stack direction="row">
       <Box sx={{flexGrow: 1}}>

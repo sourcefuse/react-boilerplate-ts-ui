@@ -46,7 +46,7 @@ const Order = () => {
       <Grid container spacing={2}>
         {productList.map((product, index) => {
           return (
-            <Grid item xs={12} sm={6} md={6} lg={4} key={index}>
+            <Grid item xs={12} sm={6} md={6} lg={4} key={product?.imageUrl}>
               <Card>
                 <CardMedia component="img" height="200" image={product?.imageUrl} alt="green iguana" />
                 <CardContent>

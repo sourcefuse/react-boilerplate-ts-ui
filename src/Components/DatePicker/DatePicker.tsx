@@ -18,10 +18,10 @@ export interface DatePickerProps {
 }
 
 interface Props extends DatePickerProps {
-  value?: any;
+  value?: Date | null;
 }
 
-const DatePicker: React.FC<Props & PartialBy<MuiDatePickerProps<any, Date>, 'renderInput'>> = ({
+const DatePicker: React.FC<Props & PartialBy<MuiDatePickerProps<Date | null, Date>, 'renderInput'>> = ({
   id,
   label,
   value,

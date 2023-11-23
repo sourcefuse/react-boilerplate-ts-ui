@@ -9,5 +9,9 @@
     "source.organizeImports": true,
     "source.fixAll.eslint": true
   },
-  "cSpell.words": ["reduxjs", "sfrefarch", "sigv"]
+  "cSpell.words": ["reduxjs", "sfrefarch", "sigv"],
+  "sonarlint.connectedMode.project": {
+    "connectionId": "SourceFuse",
+    "projectKey": "sourcefuse_react-boilerplate-ts-ui"
+  }
 }

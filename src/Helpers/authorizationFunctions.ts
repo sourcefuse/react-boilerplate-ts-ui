@@ -5,6 +5,10 @@ const IsAuthenticated = () => {
   return !!isLoggedIn;
 };
 
-export const authorizationFunctions: Record<string, (...args: any[]) => boolean> = {
+export interface AnyFunctions {
+  [key: string]: (...args: any[]) => boolean; // NOSONAR
+}
+
+export const authorizationFunctions: AnyFunctions = {
   isAuthenticated: IsAuthenticated,
 };

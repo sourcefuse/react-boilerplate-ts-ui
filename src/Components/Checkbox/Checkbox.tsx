@@ -9,19 +9,15 @@ import {
 import InputLabel from 'Components/InputLabel';
 import React, {memo, useCallback} from 'react';
 
-export interface CheckboxOption {
-  label: string;
-  value: any;
-}
-
-export interface CheckboxProps extends MuiCheckboxProps {
+export interface CheckboxProps extends Omit<MuiCheckboxProps, 'onChange'> {
   label?: string;
   helperText?: string;
-  errorMessage?: string | Array<any>;
+  errorMessage?: string;
+  value?: string | string[];
   row?: boolean;
   singleSelect?: boolean;
-  options: CheckboxOption[];
-  onChange?: (val: any) => void;
+  options: Array<{label: string; value: string}>;
+  onChange?: (val: string | string[]) => void;
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -46,7 +42,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         const val = value === e?.target?.name ? '' : e.target.name;
         onChange(val);
       } else if (Array.isArray(value)) {
-        const index = value.findIndex((val) => val === e?.target?.value);
+        const index = value.findIndex(val => val === e?.target?.value);
         const newValue = [...value];
         if (index === -1) {
           newValue.push(e.target.value);
@@ -63,19 +59,19 @@ const Checkbox: React.FC<CheckboxProps> = ({
     <FormControl disabled={disabled} data-testid="checkboxFormControl">
       {label && <InputLabel>{label}</InputLabel>}
       <FormGroup row={row}>
-        {options.map((option: CheckboxOption) => (
+        {options.map((option: {label: string; value: string}) => (
           <FormControlLabel
             key={option.label}
             control={
               <MuiCheckbox
                 checked={
                   singleSelect
-                    ? value?.toString() === option?.value.toString()
-                    : Array.isArray(value) && value.some((val) => val === option.value)
+                    ? value === option?.value
+                    : Array.isArray(value) && value.some(val => val === option.value)
                 }
                 onChange={handleChange}
                 value={option.value}
-                name={singleSelect ? option?.value.toString() : id}
+                name={singleSelect ? option?.value : id}
                 {...rest}
               />
             }

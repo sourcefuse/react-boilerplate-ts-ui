@@ -33,5 +33,6 @@ export const DefaultDatePicker: Story = {
   args: {
     id: 'dob',
     label: 'D.O.B',
+    value: null,
   },
 };

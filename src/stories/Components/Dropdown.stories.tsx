@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import Dropdown, {DropdownProps} from 'Components/Dropdown/Dropdown';
+import Dropdown, {AutocompleteValueType, DropdownProps} from 'Components/Dropdown/Dropdown';
 import {useState} from 'react';
 
 const meta = {
@@ -12,7 +12,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const Template = ({id, label, options}: DropdownProps) => {
-  const [value, setValue]: any = useState(options[0]);
+  const [value, setValue] = useState<AutocompleteValueType>(options[0]);
 
   return <Dropdown id={id} label={label} value={value} options={options} onChange={setValue} />;
 };

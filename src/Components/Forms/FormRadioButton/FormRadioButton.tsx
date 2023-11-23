@@ -6,7 +6,7 @@ const FormRadioButton: React.FC<RadioButtonProps> = ({id, disabled, ...rest}) =>
   const {setFieldValue, errors, touched, values} = useFormikContext<{[key: string]: string}>();
   const isError = !!errors[id] && touched[id] && !disabled;
   const handleOnChangeEvent = useCallback(
-    (val: any) => {
+    (val: string) => {
       setFieldValue(id, val);
     },
     [id, setFieldValue],

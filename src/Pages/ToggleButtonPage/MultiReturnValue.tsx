@@ -2,7 +2,7 @@ import ToggleButton from 'Components/ToggleButton';
 import {useState} from 'react';
 
 export default function MultiReturnValue() {
-  const [value, setValue] = useState<{label: string; value: string}[]>([]);
+  const [value, setValue] = useState<string | string[]>([]);
   return (
     <ToggleButton
       id="multiple"

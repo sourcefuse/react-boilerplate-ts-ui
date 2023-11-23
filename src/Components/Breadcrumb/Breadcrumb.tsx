@@ -22,8 +22,8 @@ export default function Breadcrumb(): JSX.Element {
 
   return (
     <MuiBreadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb" data-testid="breadcrumb">
-      {breadcrumbs.map(({match, breadcrumb}, index) => (
-        <Grid key={index}>
+      {breadcrumbs.map(({match, key, breadcrumb}, index) => (
+        <Grid key={key}>
           {breadcrumbs.length - 1 === index ? (
             <Grid
               key={match?.pathname}

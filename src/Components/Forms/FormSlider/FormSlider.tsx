@@ -1,10 +1,10 @@
 import Slider from 'Components/Slider';
+import {SliderProps} from 'Components/Slider/Slider';
 import {useFormikContext} from 'formik';
 import React, {useCallback} from 'react';
-import {SliderProps} from 'Components/Slider/Slider';
 
 type Formik = {
-  [x: string]: string | number[];
+  [x: string]: number | number[];
 };
 
 function valuetext(value: number) {
@@ -12,11 +12,12 @@ function valuetext(value: number) {
 }
 
 const FormSlider: React.FC<SliderProps> = ({id, disabled, ...rest}) => {
-  const {setFieldValue, errors, touched, values}: any = useFormikContext<Formik>();
+  const {setFieldValue, errors, touched, values} = useFormikContext<Formik>();
   const isError = !!errors[id!] && touched[id!] && !disabled;
   const handleOnChangeEvent = useCallback(
-    (val: any) => {
-      setFieldValue(id, val);
+    // array if rest.minDistance exists
+    (val: number | number[]) => {
+      if (id) setFieldValue(id, val);
     },
     [id, setFieldValue],
   );

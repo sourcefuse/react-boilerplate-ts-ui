@@ -12,8 +12,9 @@ import PropTypes from 'prop-types';
 import {Draggable, DraggableProvided, DraggableStateSnapshot} from 'react-beautiful-dnd';
 import {DebouncedInput} from './DebounceInput';
 import TablePaginationActions from './PaginationActions';
+import {AnyObject} from './Table';
 
-interface ColumnProps<T extends Record<string, any>> {
+interface ColumnProps<T extends AnyObject> {
   header: Header<T, unknown>;
   index: number;
   enableSorting?: boolean;
@@ -21,7 +22,7 @@ interface ColumnProps<T extends Record<string, any>> {
   columnCellProps?: TableCellProps;
 }
 
-export const DraggableColumn = <T extends Record<string, any>>({
+export const DraggableColumn = <T extends AnyObject>({
   header,
   index,
   enableSorting,
@@ -62,7 +63,7 @@ export const DraggableColumn = <T extends Record<string, any>>({
                   }
                   return (filterValue ?? '') as string;
                 })()}
-                onChange={(value) => header.column.setFilterValue(value)}
+                onChange={value => header.column.setFilterValue(value)}
                 placeholder={`Search ${header.column.columnDef.header}`}
                 variant="standard"
                 sx={{width: '150px', height: '32px', marginTop: '5px'}}
@@ -82,19 +83,14 @@ DraggableColumn.propTypes = {
   enableColumnFiltering: PropTypes.bool,
 };
 
-type TableRowProps<T extends Record<string, any>> = {
+type TableRowProps<T extends AnyObject> = {
   row: Row<T>;
   index: number;
   bodyCellProps?: TableCellProps;
   bodyRowProps?: MuiTableRowProps;
 };
 
-export const DraggableTableRow = <T extends Record<string, any>>({
-  row,
-  index,
-  bodyCellProps,
-  bodyRowProps,
-}: TableRowProps<T>) => {
+export const DraggableTableRow = <T extends AnyObject>({row, index, bodyCellProps, bodyRowProps}: TableRowProps<T>) => {
   return (
     <Draggable draggableId={row.id} index={index}>
       {(draggableProvided: DraggableProvided, snapshot: DraggableStateSnapshot) => {
@@ -111,7 +107,7 @@ export const DraggableTableRow = <T extends Record<string, any>>({
             sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: snapshot.isDragging ? 'grabbing' : 'pointer'}}
             {...bodyRowProps}
           >
-            {row.getVisibleCells().map((cell) => (
+            {row.getVisibleCells().map(cell => (
               <TableCell key={cell.id} {...bodyCellProps}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </TableCell>
@@ -123,7 +119,7 @@ export const DraggableTableRow = <T extends Record<string, any>>({
   );
 };
 
-export const DefaultColumn = <T extends Record<string, any>>({
+export const DefaultColumn = <T extends AnyObject>({
   header,
   index,
   enableSorting,
@@ -150,7 +146,7 @@ export const DefaultColumn = <T extends Record<string, any>>({
             }
             return (filterValue ?? '') as string;
           })()}
-          onChange={(value) => header.column.setFilterValue(value)}
+          onChange={value => header.column.setFilterValue(value)}
           placeholder={`Search ${header.column.columnDef.header}`}
           variant="standard"
           sx={{width: '150px', height: '32px', marginTop: '5px'}}
@@ -160,15 +156,10 @@ export const DefaultColumn = <T extends Record<string, any>>({
   );
 };
 
-export const DefaultRow = <T extends Record<string, any>>({
-  row,
-  index,
-  bodyCellProps,
-  bodyRowProps,
-}: TableRowProps<T>) => {
+export const DefaultRow = <T extends AnyObject>({row, index, bodyCellProps, bodyRowProps}: TableRowProps<T>) => {
   return (
     <TableRow key={row.id} sx={{'&:last-child td, &:last-child th': {border: 0}}} {...bodyRowProps}>
-      {row.getVisibleCells().map((cell) => (
+      {row.getVisibleCells().map(cell => (
         <TableCell key={cell.id} {...bodyCellProps}>
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </TableCell>
@@ -188,7 +179,7 @@ export const GlobalFilter: React.FC<GlobalFilterProps> = ({globalFilter, setGlob
       <DebouncedInput
         id="global-search"
         value={globalFilter ?? ''}
-        onChange={(value) => setGlobalFilter(String(value))}
+        onChange={value => setGlobalFilter(String(value))}
         variant="outlined"
       />
     </Box>

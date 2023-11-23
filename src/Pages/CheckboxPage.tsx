@@ -14,7 +14,7 @@ const options = [
 ];
 
 const CheckboxPage = () => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState<string | string[]>([]);
   return (
     <Stack direction="row">
       <Box sx={{flexGrow: 1}}>

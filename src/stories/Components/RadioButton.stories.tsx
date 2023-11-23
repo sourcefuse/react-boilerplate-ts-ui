@@ -17,7 +17,7 @@ const options = [
 ];
 
 const Template = ({id, label, options, ...rest}: RadioButtonProps) => {
-  const [value, setValue] = useState<{label: string; value: string}[]>([]);
+  const [value, setValue] = useState<string>('');
   return <RadioButton {...rest} id={id} value={value} label={label} onChange={setValue} options={options} />;
 };
 

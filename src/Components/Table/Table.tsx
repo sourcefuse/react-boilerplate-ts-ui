@@ -30,6 +30,10 @@ import {memo, useMemo, useState} from 'react';
 import {filterFns} from './FilterFunctions';
 import {DefaultColumn, DefaultRow, DefaultTablePagination, GlobalFilter} from './helper';
 
+export interface AnyObject {
+  [key: string]: any; // NOSONAR
+}
+
 export type MUITablePropsObject = {
   tableContainerProps?: TableContainerProps;
   tableProps?: MuiTableProps;
@@ -43,7 +47,7 @@ export type MUITablePropsObject = {
   columnCellProps?: TableCellProps;
 };
 
-export interface TableProps<T extends Record<string, any>> {
+export interface TableProps<T extends AnyObject> {
   data: T[];
   columns: ColumnDef<T>[];
   enableSorting?: boolean;
@@ -55,7 +59,7 @@ export interface TableProps<T extends Record<string, any>> {
   tablePropsObject?: MUITablePropsObject;
 }
 
-const ARCTable = <T extends Record<string, any>>({
+const ARCTable = <T extends AnyObject>({
   data,
   columns,
   enableSorting,
@@ -97,7 +101,7 @@ const ARCTable = <T extends Record<string, any>>({
       {enableGlobalFiltering && <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />}
       <MuiTable {...tablePropsObject?.tableProps}>
         <TableHead {...tablePropsObject?.tableHeadProps}>
-          {getHeaderGroups().map((headerGroup) => (
+          {getHeaderGroups().map(headerGroup => (
             <TableRow key={headerGroup.id} {...tablePropsObject?.headerRowProps}>
               {headerGroup.headers.map((header, index) => (
                 <DefaultColumn
@@ -133,7 +137,7 @@ const ARCTable = <T extends Record<string, any>>({
               onPageChange={(_, page) => {
                 table.setPageIndex(page);
               }}
-              onRowsPerPageChange={(e) => {
+              onRowsPerPageChange={e => {
                 const size = e.target.value ? Number(e.target.value) : 10;
                 table.setPageSize(size);
               }}
@@ -149,6 +153,6 @@ const ARCTable = <T extends Record<string, any>>({
 // React.memo produced typed error while using generic
 // Made a type to fix it
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/37087 refer this issue
-type TableType = <T extends Record<string, any>>(props: TableProps<T>) => JSX.Element;
+type TableType = <T extends AnyObject>(props: TableProps<T>) => JSX.Element;
 
 export const Table = memo(ARCTable) as TableType;

@@ -9,24 +9,31 @@ import TextField from '@mui/material/TextField';
 import InputLabel from 'Components/InputLabel';
 import React from 'react';
 
+export type AutocompleteValueType =
+  | NonNullable<string | {label: string; value: string}>
+  | (string | {label: string; value: string})[];
+
 export interface DropdownProps
-  extends Omit<AutocompleteProps<{value: any; label: string}, boolean, boolean, boolean>, 'renderInput' | 'options'> {
+  extends Omit<
+    AutocompleteProps<{label: string; value: string}, boolean, boolean, boolean>,
+    'renderInput' | 'options' | 'value' | 'onChange'
+  > {
   id: string;
   label?: string;
   disabled?: boolean;
   enableAutoComplete?: boolean;
   multiple?: boolean;
   helperText?: string;
-  errorMessage?: any;
-  options: Array<{value: any; label: string}>;
-  onChange?: any;
+  errorMessage?: string;
+  options: Array<{value: string; label: string}>;
+  onChange?: (val: AutocompleteValueType) => void;
   width?: number;
   disableBorder?: boolean;
   isLoading?: boolean;
 }
 
 interface Props extends DropdownProps {
-  value?: any;
+  value?: AutocompleteValueType;
 }
 
 const Dropdown: React.FC<Props> = ({
@@ -49,6 +56,29 @@ const Dropdown: React.FC<Props> = ({
   const newId = enableAutoComplete ? id : `${id}-${Date.now()}`;
   if (enableAutoComplete) multiple = false;
 
+  let displayValue = '';
+
+  if (Array.isArray(value)) {
+    displayValue = '';
+  } else if (typeof value === 'string') {
+    displayValue = value;
+  } else {
+    displayValue = value?.label || '';
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (enableAutoComplete && !multiple) {
+      let val: AutocompleteValueType;
+      if (e.target.value && onChange) {
+        val = {
+          label: e.target.value,
+          value: e.target.value,
+        };
+        onChange(val);
+      }
+    }
+  };
+
   return (
     <FormControl sx={{width: width ?? 1}} data-testid="dropdownFormControl" error={isError}>
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
@@ -60,7 +90,7 @@ const Dropdown: React.FC<Props> = ({
         freeSolo={enableAutoComplete}
         disableClearable={!enableAutoComplete}
         isOptionEqualToValue={(option, val) => option?.value === val?.value}
-        getOptionLabel={(option) => {
+        getOptionLabel={option => {
           if (typeof option !== 'string') {
             return option?.label || '';
           }
@@ -97,25 +127,14 @@ const Dropdown: React.FC<Props> = ({
           marginTop: 2,
         }}
         disabled={disabled}
-        onChange={(e, val) => {
-          onChange(val);
+        onChange={(_, val) => {
+          if (onChange && val) onChange(val);
         }}
-        renderInput={(params) => (
+        renderInput={params => (
           <TextField
             error={!!isError}
             {...params}
-            onChange={(e) => {
-              if (enableAutoComplete && !multiple) {
-                let val: any = null;
-                if (e.target.value) {
-                  val = {
-                    label: e.target.value,
-                    value: e.target.value,
-                  };
-                }
-                onChange(val);
-              }
-            }}
+            onChange={handleInputChange}
             inputProps={{
               ...params.inputProps,
               readOnly: !enableAutoComplete,
@@ -123,7 +142,7 @@ const Dropdown: React.FC<Props> = ({
                 caretColor: !enableAutoComplete && 'transparent',
                 cursor: !enableAutoComplete && 'pointer !important',
               },
-              ...(enableAutoComplete && !multiple && {value: value?.label || ''}),
+              ...(enableAutoComplete && !multiple && {value: displayValue}),
             }}
           />
         )}

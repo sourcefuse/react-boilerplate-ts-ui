@@ -1,13 +1,13 @@
 import {FormHelperText, Slider as MuiSlider, SliderProps as MuiSliderProps, Typography} from '@mui/material';
 import React, {useCallback, memo} from 'react';
 
-export interface SliderProps extends MuiSliderProps {
+export interface SliderProps extends Omit<MuiSliderProps, 'onChange'> {
   id?: string;
   label?: string;
   disabled?: boolean;
-  onChange?: (val: any) => void;
+  onChange?: (val: number | number[]) => void;
   minDistance?: number;
-  errorMessage?: string | Array<any>;
+  errorMessage?: string;
   helperText?: string;
 }
 

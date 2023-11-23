@@ -5,11 +5,15 @@ import InputLabel from 'Components/InputLabel';
 import React, {memo, useCallback} from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
+interface AnyErrorObj {
+  [key: string]: any; // NOSONAR
+}
+
 export type InputProps = Omit<OutlinedInputProps, 'onChange'> & {
   id: string;
   label?: string;
   copyEnabled?: boolean;
-  errorMessage?: string;
+  errorMessage?: string | AnyErrorObj;
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
   onChange?: (val: string) => void;
@@ -79,7 +83,7 @@ const Input: React.FC<InputProps> = ({
         endAdornment={getEndAdornment({copyEnabled, value, isError, endAdornment})}
         {...rest}
       />
-      {(isError || helperText) && <FormHelperText>{isError ? errorMessage : helperText}</FormHelperText>}
+      {(isError || helperText) && <FormHelperText>{isError ? <>{errorMessage}</> : helperText}</FormHelperText>}
     </FormControl>
   );
 };
