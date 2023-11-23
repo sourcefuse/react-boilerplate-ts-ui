@@ -1,9 +1,10 @@
 import {ColumnDef, createColumnHelper} from '@tanstack/react-table';
+import {AnyObject} from 'Components/Table/Table';
 import {DataTableType} from './data';
 
 const columnHelper = createColumnHelper<DataTableType>();
 
-export const tableColumns: ColumnDef<Record<string, any>>[] = [
+export const tableColumns: ColumnDef<AnyObject>[] = [
   {
     header: 'Id',
     accessorKey: '_id',
@@ -18,9 +19,7 @@ export const tableColumns: ColumnDef<Record<string, any>>[] = [
   {
     header: 'Active Status',
     id: 'activeStatus',
-    accessorFn: (row) => {
-      return row.isActive === true ? 'Online' : 'Offline';
-    },
+    accessorFn: row => (row.isActive === true ? 'Online' : 'Offline'),
   },
   {
     header: 'Age',
@@ -31,7 +30,7 @@ export const tableColumns: ColumnDef<Record<string, any>>[] = [
     header: 'Gender',
     accessorKey: 'gender',
     id: 'gender',
-    cell: (row) => row.renderValue(),
+    cell: row => row.renderValue(),
   },
 ];
 

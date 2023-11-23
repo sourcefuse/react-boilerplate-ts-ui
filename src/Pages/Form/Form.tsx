@@ -10,6 +10,7 @@ import FormDatePicker from 'Components/Forms/FormDatePicker';
 import FormRadioButton from 'Components/Forms/FormRadioButton';
 import FormCheckbox from 'Components/Forms/FormCheckbox';
 import FormToggleButton from 'Components/Forms/FormToggleButton';
+import {FormikHelpers} from 'formik';
 
 export default function FormPage() {
   return (
@@ -19,7 +20,7 @@ export default function FormPage() {
           <Form
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={async (val: typeof initialValues, actions: any) => {
+            onSubmit={async (val: typeof initialValues, actions: FormikHelpers<typeof initialValues>) => {
               actions.resetForm({
                 values: initialValues,
               });

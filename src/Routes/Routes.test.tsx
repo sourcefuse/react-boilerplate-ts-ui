@@ -7,8 +7,9 @@ import {vi} from 'vitest';
 import {authorizationFunctions} from 'Helpers/authorizationFunctions';
 import {store} from '../redux/store';
 import {Provider} from 'react-redux';
+import PropTypes from 'prop-types';
 
-const TestApp: React.FC<{initialEntries: any[]}> = ({initialEntries}: {initialEntries: any[]}) => {
+const TestApp: React.FC<{initialEntries: string[]}> = ({initialEntries}) => {
   return (
     <Provider store={store}>
       <MemoryRouter initialEntries={initialEntries}>
@@ -18,6 +19,10 @@ const TestApp: React.FC<{initialEntries: any[]}> = ({initialEntries}: {initialEn
       </MemoryRouter>
     </Provider>
   );
+};
+
+TestApp.propTypes = {
+  initialEntries: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 describe('Default AppRoutes', () => {

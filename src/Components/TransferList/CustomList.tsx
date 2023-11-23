@@ -7,16 +7,16 @@ import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Input from 'Components/Input/Input';
-import React, {useEffect, useState} from 'react';
-import {Draggable} from 'react-beautiful-dnd';
+import React, {MouseEventHandler, RefObject, useEffect, useState} from 'react';
+import {Draggable, DroppableProvided} from 'react-beautiful-dnd';
 
 interface Props {
   items: Array<{label: string; value: string}>;
   checked: Array<{label: string; value: string}>;
   title: string;
-  handleToggle: any;
-  columnRef: any;
-  provided: any;
+  handleToggle: (item: {label: string; value: string}) => MouseEventHandler<{}>;
+  columnRef: RefObject<HTMLLIElement>;
+  provided: DroppableProvided;
   height: number;
 }
 
@@ -29,7 +29,7 @@ const CustomList: React.FC<Props> = ({items, title, handleToggle, checked, colum
 
   const onChange = (val: string) => {
     const regex = new RegExp(val, 'gi');
-    setList(items.filter(({label}) => label.toString().match(regex)));
+    setList(items.filter(({label}) => RegExp(regex).exec(label.toString())));
   };
 
   return (
@@ -48,15 +48,14 @@ const CustomList: React.FC<Props> = ({items, title, handleToggle, checked, colum
           overflowY: 'scroll',
         }}
         dense
-        component="div"
-        role="list"
+        role="custom-list"
       >
         {items.map((item, index) => {
           if (list.some(({value}) => value === item.value)) {
             const labelId = `transfer-list-item-${item?.value}-${index}-label`;
             return (
-              <Draggable draggableId={item?.value} key={`${item?.value}-${index}`} index={index}>
-                {(provided) => (
+              <Draggable draggableId={item?.value} key={`${item?.value}-${item?.label}`} index={index}>
+                {provided => (
                   <ListItemButton
                     key={item?.value}
                     onClick={handleToggle(item)}

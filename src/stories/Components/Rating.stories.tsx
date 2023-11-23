@@ -12,8 +12,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const Template = ({name, label}: RatingProps) => {
-  const [value, setValue]: any = useState(2);
-  const [hover, setHover]: any = useState(-1);
+  const [value, setValue] = useState(2);
+  const [hover, setHover] = useState(-1);
 
   return (
     <Rating
@@ -22,7 +22,7 @@ const Template = ({name, label}: RatingProps) => {
         setHover(newHover);
       }}
       onChange={(event, newValue) => {
-        setValue(newValue);
+        if (newValue) setValue(newValue);
       }}
       precision={0.5}
       hover={hover}

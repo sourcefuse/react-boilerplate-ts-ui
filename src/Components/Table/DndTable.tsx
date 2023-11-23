@@ -10,7 +10,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import {filterFns} from './FilterFunctions';
-import {TableProps} from './Table';
+import {AnyObject, TableProps} from './Table';
 import {DragDropContext, DropResult, DroppableProvided} from 'react-beautiful-dnd';
 import {
   Box,
@@ -26,12 +26,12 @@ import {DebouncedInput} from './DebounceInput';
 import {StrictModeDroppable} from './StrictModeDroppable';
 import {DefaultColumn, DefaultRow, DefaultTablePagination, DraggableColumn, DraggableTableRow} from './helper';
 
-export interface DndTableProps<T extends Record<string, any>> extends TableProps<T> {
+export interface DndTableProps<T extends AnyObject> extends TableProps<T> {
   enableRowDnd?: boolean;
   enableColumnDnd?: boolean;
 }
 
-const AdvancedTable = <T extends Record<string, any>>({
+const AdvancedTable = <T extends AnyObject>({
   data,
   columns,
   enableSorting,
@@ -49,7 +49,7 @@ const AdvancedTable = <T extends Record<string, any>>({
   const [globalFilter, setGlobalFilter] = useState('');
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [rows, setRows] = useState(tableData);
-  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(columns.map((column) => column.id as string));
+  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(columns.map(column => column.id as string));
 
   const table = useReactTable({
     data: rows,
@@ -110,7 +110,7 @@ const AdvancedTable = <T extends Record<string, any>>({
           <DebouncedInput
             id="global-search"
             value={globalFilter ?? ''}
-            onChange={(value) => setGlobalFilter(String(value))}
+            onChange={value => setGlobalFilter(String(value))}
             variant="outlined"
           />
         </Box>
@@ -124,7 +124,7 @@ const AdvancedTable = <T extends Record<string, any>>({
                 {...droppableProvided.droppableProps}
                 {...tablePropsObject?.tableHeadProps}
               >
-                {getHeaderGroups().map((headerGroup) => (
+                {getHeaderGroups().map(headerGroup => (
                   <TableRow key={headerGroup.id} {...tablePropsObject?.headerRowProps}>
                     {headerGroup.headers.map((header, index) => {
                       return enableColumnDnd ? (
@@ -187,7 +187,7 @@ const AdvancedTable = <T extends Record<string, any>>({
                 onPageChange={(_, page) => {
                   table.setPageIndex(page);
                 }}
-                onRowsPerPageChange={(e) => {
+                onRowsPerPageChange={e => {
                   const size = e.target.value ? Number(e.target.value) : 10;
                   table.setPageSize(size);
                 }}
@@ -201,6 +201,6 @@ const AdvancedTable = <T extends Record<string, any>>({
   );
 };
 
-type DndTableType = <T extends Record<string, any>>(props: DndTableProps<T>) => JSX.Element;
+type DndTableType = <T extends AnyObject>(props: DndTableProps<T>) => JSX.Element;
 
 export const DndTable = memo(AdvancedTable) as DndTableType;

@@ -4,26 +4,22 @@ import ToggleOffIcon from '@mui/icons-material/ToggleOff';
 import DataObjectOutlinedIcon from '@mui/icons-material/DataObjectOutlined';
 import {ReactNode} from 'react';
 
-export type SideNavDividerType = {
+export interface SideNavDividerType {
   type: 'divider';
   visible: boolean;
-};
+}
 
-export type SideNavTitleType = {
+export interface SideNavTitleType extends Omit<SideNavDividerType, 'type'> {
   label: string;
   type: 'title';
-  visible: boolean;
-};
+}
 
-export type SideNavLinkTitle = {
-  label: string;
-  visible: boolean;
-  link: string;
+export interface SideNavConfig extends Omit<SideNavDividerType, 'type'>, Omit<SideNavTitleType, 'type'> {
+  type?: 'title' | 'divider';
+  link?: string;
   icon?: ReactNode;
-  children?: (SideNavLinkTitle | SideNavTitleType)[];
-};
-
-export type SideNavConfig = SideNavLinkTitle | SideNavDividerType | SideNavTitleType;
+  children?: (SideNavConfig | SideNavTitleType)[];
+}
 
 const sideNavConfig: SideNavConfig[] = [
   {
@@ -144,11 +140,6 @@ const sideNavConfig: SideNavConfig[] = [
             visible: true,
           },
           {
-            label: 'FormCheckbox',
-            link: '/components/form/form-checkbox',
-            visible: true,
-          },
-          {
             label: 'FormSlider',
             link: '/components/form/form-slider',
             visible: true,
@@ -174,18 +165,8 @@ const sideNavConfig: SideNavConfig[] = [
             visible: true,
           },
           {
-            label: 'FormInput',
-            link: '/components/form/form-input',
-            visible: true,
-          },
-          {
             label: 'FormCheckbox',
             link: '/components/form/form-checkbox',
-            visible: true,
-          },
-          {
-            label: 'FormDropdown',
-            link: '/components/form/form-dropdown',
             visible: true,
           },
           {

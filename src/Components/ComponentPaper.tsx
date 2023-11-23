@@ -1,15 +1,15 @@
 import MuiPaper from '@mui/material/Paper';
-import {styled} from '@mui/material/styles';
+import {styled, Theme as MUITheme} from '@mui/material/styles';
 import {memo, ReactNode} from 'react';
 
 const Paper = styled(
   MuiPaper,
   {},
-)(({theme}: any) => ({
+)(({theme}: {theme: MUITheme}) => ({
   padding: theme.spacing(2),
   marginTop: theme.spacing(2),
   border: '1px solid',
-  borderColor: theme?.palette?.border?.main,
+  borderColor: theme?.palette?.secondary?.main,
 }));
 
 const ComponentPaper = ({children}: {children: ReactNode}) => <Paper elevation={0}>{children}</Paper>;

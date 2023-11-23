@@ -3,7 +3,7 @@ import {useFormikContext} from 'formik';
 import React, {useCallback} from 'react';
 
 type Formik = {
-  [x: string]: string;
+  [x: string]: Date | null;
 };
 
 const FormDateTimePicker: React.FC<DateTimePickerProps> = ({id, disabled, ...rest}) => {

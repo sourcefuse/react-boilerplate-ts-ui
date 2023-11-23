@@ -12,7 +12,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const Template = ({id, label, options, ...rest}: CheckboxProps) => {
-  const [value, setValue] = useState<{label: string; value: string}[]>([]);
+  const [value, setValue] = useState<string | string[]>([]);
   return <Checkbox {...rest} id={id} value={value} label={label} onChange={setValue} options={options} />;
 };
 

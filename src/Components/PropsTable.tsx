@@ -8,11 +8,20 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import React, {memo} from 'react';
 import ComponentPaper from './ComponentPaper';
+
+interface PropsData {
+  name: string;
+  type: string | React.ReactNode;
+  defaultVal?: string | boolean | number;
+  desc?: string | React.ReactNode;
+}
+
 interface Props {
   isLoading?: boolean;
-  data: Array<any>;
+  data: Array<PropsData>;
   columns?: Array<{label: string; value: string}>;
 }
+
 const defaultColumns = [
   {value: 'name', label: 'name'},
   {value: 'type', label: 'type'},
@@ -34,19 +43,21 @@ const Table: React.FC<Props> = ({data = [], columns = defaultColumns, isLoading}
       <MuiTable sx={{minWidth: 650}} aria-label="simple table">
         <TableHead>
           <TableRow sx={{textTransform: 'capitalize'}}>
-            {columns.map(({label, value}, index) => (
-              <TableCell key={value} align={index ? 'right' : 'left'}>
-                {label}
-              </TableCell>
-            ))}
+            {columns.map(({label, value}, index) => {
+              return (
+                <TableCell key={`${label}-${value}`} align={index ? 'right' : 'left'}>
+                  {label}
+                </TableCell>
+              );
+            })}
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row, index) => (
-            <TableRow key={index} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-              {columns.map(({value}, index) => (
-                <TableCell key={index} align={index ? 'right' : 'left'}>
-                  {row[value]}
+          {data.map(row => (
+            <TableRow key={`${row.name}-${row.type}`} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+              {columns.map(({label, value}, index) => (
+                <TableCell key={`${label}-${value}`} align={index ? 'right' : 'left'}>
+                  {row[value as keyof PropsData]}
                 </TableCell>
               ))}
             </TableRow>

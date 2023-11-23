@@ -1,5 +1,5 @@
 import {fireEvent, render, screen, within} from '@testing-library/react';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import Checkbox from './Checkbox';
 
 const options = [
@@ -21,7 +21,7 @@ describe('Checkbox', () => {
   describe('should work with useState', () => {
     it('should be multi select by default', () => {
       const MockCheckBox = () => {
-        const [value, setValue]: any = useState([]);
+        const [value, setValue] = useState<string | string[]>([]);
         return <Checkbox id="test" value={value} onChange={setValue} label="test" options={options} />;
       };
       render(<MockCheckBox />);
@@ -42,7 +42,7 @@ describe('Checkbox', () => {
     });
     it('should be single select if singleSelect flag is passed', () => {
       const MockCheckBox = () => {
-        const [value, setValue]: any = useState('');
+        const [value, setValue] = useState<string | string[]>('');
         return <Checkbox id="test" value={value} onChange={setValue} label="test" options={options} singleSelect />;
       };
       render(<MockCheckBox />);

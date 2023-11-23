@@ -3,14 +3,15 @@ import {useFormikContext} from 'formik';
 import React, {useCallback} from 'react';
 
 type Formik = {
-  [x: string]: string;
+  // singleselect | normal
+  [x: string]: string | string[];
 };
 
 const FormCheckbox: React.FC<CheckboxProps> = ({id, disabled, ...rest}) => {
   const {setFieldValue, errors, touched, values} = useFormikContext<Formik>();
   const isError = !!errors[id!] && touched[id!] && !disabled;
   const handleOnChangeEvent = useCallback(
-    (val: any) => {
+    (val: string | string[]) => {
       setFieldValue(id!, val);
     },
     [id, setFieldValue],

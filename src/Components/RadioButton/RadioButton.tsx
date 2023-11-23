@@ -9,14 +9,14 @@ export interface RadioButtonOption {
   value: string;
 }
 
-export interface RadioButtonProps extends RadioGroupProps {
+export interface RadioButtonProps extends Omit<RadioGroupProps, 'onChange'> {
   id: string;
   label?: string;
   children?: ReactNode;
   defaultValue?: string;
-  onChange?: (val: any) => void;
-  value?: any;
-  options: RadioButtonOption[];
+  onChange?: (val: string) => void;
+  value?: string;
+  options: Array<{label: string; value: string}>;
   helperText?: string;
   disabled?: boolean;
 }

@@ -60,7 +60,7 @@ export const OnlineStatusProvider: React.FC<Props> = ({children}) => {
       setOnlineStatus(false);
     });
 
-    let id: any;
+    let id: NodeJS.Timer;
     if (process.env.NODE_ENV !== 'development') {
       // Add polling incase of slow connection
       id = setInterval(() => {

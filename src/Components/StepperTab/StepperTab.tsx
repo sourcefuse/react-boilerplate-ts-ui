@@ -3,7 +3,7 @@ import React, {memo} from 'react';
 
 export interface StepperTabProps {
   activeStep: number;
-  steps: Array<any>;
+  steps: Array<string>;
   orientation?: StepperProps['orientation'];
 }
 const Connector = styled(
@@ -29,7 +29,7 @@ const StepperTab: React.FC<StepperTabProps> = ({steps = [], activeStep, orientat
       sx={{
         marginBottom: 2,
         padding: 2,
-        background: (theme) => (theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[700]),
+        background: theme => (theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[700]),
         borderRadius: 1,
         justifyContent: 'center',
         '& .Mui-completed , .Mui-active': {
@@ -39,9 +39,9 @@ const StepperTab: React.FC<StepperTabProps> = ({steps = [], activeStep, orientat
         },
       }}
     >
-      {steps.map((label, index) => {
+      {steps.map(label => {
         return (
-          <Step key={`${label}-${index}`}>
+          <Step key={`${label}`}>
             <StepLabel
               sx={{
                 '& .MuiStepLabel-iconContainer': {

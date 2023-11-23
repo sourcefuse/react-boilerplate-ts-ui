@@ -14,7 +14,7 @@ interface RoutesProps {
  * @param {RoutesProps} routesConfig - The configuration of routes to render.
  * @returns The rendered Routes component.
  */
-const Routes: React.FC<RoutesProps> = ({routesConfig}) => {
+const Routes: React.FC<RoutesProps> = ({routesConfig}: RoutesProps) => {
   const isOnline = useOnlineStatus();
   const routes = useRoutes(routesConfig);
   return (

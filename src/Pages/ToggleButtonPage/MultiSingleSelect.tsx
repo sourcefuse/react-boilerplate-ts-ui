@@ -1,8 +1,8 @@
 import ToggleButton from 'Components/ToggleButton';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 export default function MultiSingleSelect() {
-  const [value, setValue] = useState<{label: string; value: string}[]>([]);
+  const [value, setValue] = useState<string | string[]>([]);
   return (
     <ToggleButton
       id="single-select"

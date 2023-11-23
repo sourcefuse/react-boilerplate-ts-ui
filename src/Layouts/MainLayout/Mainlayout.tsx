@@ -19,7 +19,7 @@ interface IMainProps extends MUIStyledCommonProps {
   isPermanent: boolean;
 }
 const Main = styled('main', {
-  shouldForwardProp: (prop) => prop !== 'open' && prop !== 'isPermanent',
+  shouldForwardProp: prop => prop !== 'open' && prop !== 'isPermanent',
 })<IMainProps>(({theme, open, isPermanent}) => ({
   flexGrow: 1,
   transition: theme.transitions.create('margin', {
@@ -38,7 +38,7 @@ const Main = styled('main', {
 
 const Mainlayout = () => {
   const [open, setOpen] = useState(true);
-  const toggleDrawer = useCallback(() => setOpen((prev) => !prev), []);
+  const toggleDrawer = useCallback(() => setOpen(prev => !prev), []);
   const [isPermanent, setIsPermanent] = useState(true);
   const theme = useTheme();
 
@@ -90,8 +90,8 @@ const Mainlayout = () => {
         <Toolbar />
         <Suspense fallback={<LinearProgress />}>
           <Routes>
-            {mainLayoutRouteConfig.map(({path, component: Component}, index) => (
-              <Route path={path} element={<Component />} key={`main-${index}`} />
+            {mainLayoutRouteConfig.map(({path, component: Component}) => (
+              <Route path={path} element={<Component />} key={path} />
             ))}
             <Route path="*" element={<NotFound />} />
           </Routes>

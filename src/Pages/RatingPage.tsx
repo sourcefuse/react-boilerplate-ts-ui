@@ -8,8 +8,8 @@ import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import * as React from 'react';
 
 const RatingPage = () => {
-  const [value, setValue]: any = React.useState(2);
-  const [hover, setHover]: any = React.useState(-1);
+  const [value, setValue] = React.useState(2);
+  const [hover, setHover] = React.useState(-1);
   return (
     <Stack direction="row">
       <Box sx={{flexGrow: 1}}>
@@ -50,7 +50,7 @@ export default RatingPage;`}
                 setHover(newHover);
               }}
               onChange={(event, newValue) => {
-                setValue(newValue);
+                if (newValue) setValue(newValue);
               }}
               precision={0.5}
               hover={hover}

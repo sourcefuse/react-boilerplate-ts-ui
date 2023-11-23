@@ -14,8 +14,8 @@ const Headerlayout = () => {
         <Toolbar />
         <Suspense fallback={<LinearProgress />}>
           <Routes>
-            {headerLayoutRouteConfig.map(({path, component: Component}, index) => (
-              <Route path={path} element={<Component />} key={`header-${index}`} />
+            {headerLayoutRouteConfig.map(({path, component: Component}) => (
+              <Route path={path} element={<Component />} key={path} />
             ))}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

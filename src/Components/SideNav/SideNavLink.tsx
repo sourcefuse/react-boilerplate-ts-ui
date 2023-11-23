@@ -11,7 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import {useEffect, useState} from 'react';
 import {Link, Location} from 'react-router-dom';
-import {SideNavConfig, SideNavLinkTitle} from './sideNavConfig';
+import {SideNavConfig} from './sideNavConfig';
 import styles from './styles';
 
 const isChildOf = (child: string, parent: string) => child.indexOf(parent) === 0;
@@ -23,12 +23,12 @@ const NestedNavLink = ({
   icon,
   label,
   location,
-}: SideNavLinkTitle & {location: Location}) => {
+}: SideNavConfig & {location: Location}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleCollapse = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    if (children?.length && isChildOf(location.pathname, link)) {
+    if (link && children?.length && isChildOf(location.pathname, link)) {
       setIsOpen(true);
     }
   }, [children?.length, link, location.pathname]);
@@ -53,8 +53,14 @@ const NestedNavLink = ({
       {children && (
         <Collapse component="li" in={isOpen} timeout="auto" unmountOnExit sx={{paddingLeft: 3}}>
           <List component="ul" disablePadding>
-            {children.map((childrenLink, index) =>
-              !childrenLink.visible ? null : <SideNavLink key={index} location={location} {...childrenLink} />,
+            {children.map(childrenLink =>
+              !childrenLink.visible ? null : (
+                <SideNavLink
+                  key={`${childrenLink.label}-${childrenLink.type}-${childrenLink.visible}`}
+                  location={location}
+                  {...childrenLink}
+                />
+              ),
             )}
           </List>
         </Collapse>

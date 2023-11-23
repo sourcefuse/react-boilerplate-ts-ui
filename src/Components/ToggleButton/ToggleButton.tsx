@@ -6,19 +6,15 @@ import Switch, {SwitchProps} from '@mui/material/Switch';
 import InputLabel from 'Components/InputLabel';
 import React, {useCallback} from 'react';
 
-export interface ToggleButtonOption {
-  label: string;
-  value: any;
-}
-
-export interface ToggleButtonProps extends SwitchProps {
+export interface ToggleButtonProps extends Omit<SwitchProps, 'onChange'> {
   label?: string;
   helperText?: string;
-  errorMessage?: string | Array<any>;
+  errorMessage?: string;
   row?: boolean;
+  value?: string | string[];
   singleSelect?: boolean;
-  options: ToggleButtonOption[];
-  onChange?: (val: any) => void;
+  options: Array<{label: string; value: string}>;
+  onChange?: (val: string | string[]) => void;
 }
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({
@@ -43,7 +39,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
         const val = value === e?.target?.name ? '' : e.target.name;
         onChange(val);
       } else if (Array.isArray(value)) {
-        const index = value.findIndex((val) => val === e?.target?.value);
+        const index = value.findIndex(val => val === e?.target?.value);
         const newValue = [...value];
         if (index === -1) {
           newValue.push(e.target.value);
@@ -60,7 +56,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
     <FormControl disabled={disabled}>
       {label && <InputLabel>{label}</InputLabel>}
       <FormGroup row={row}>
-        {options.map((option) => (
+        {options.map(option => (
           <FormControlLabel
             key={option.label}
             control={
@@ -68,7 +64,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
                 checked={
                   singleSelect
                     ? value?.toString() === option?.value.toString()
-                    : Array.isArray(value) && value.some((val) => val === option.value)
+                    : Array.isArray(value) && value.some(val => val === option.value)
                 }
                 sx={{marginTop: 1}}
                 onChange={handleChange}

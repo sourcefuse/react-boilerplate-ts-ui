@@ -94,7 +94,7 @@ function SplitButton() {
   };
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   const handleClose = (event: Event) => {
@@ -136,7 +136,7 @@ function SplitButton() {
                       key={option}
                       disabled={index === 2}
                       selected={index === selectedIndex}
-                      onClick={(event) => handleMenuItemClick(event, index)}
+                      onClick={event => handleMenuItemClick(event, index)}
                     >
                       {option}
                     </MenuItem>
@@ -205,7 +205,7 @@ export default function VariantButtonGroup() {
                     </Button>
                   </>
                 );
-                
+
                 function HorigontalBtn(params) {
                   return (
                     <Box
@@ -230,7 +230,7 @@ export default function VariantButtonGroup() {
                     </Box>
                   );
                 }
-                
+
                 function disableElevation(params) {
                   return (
                     <Box>
@@ -262,35 +262,35 @@ export default function VariantButtonGroup() {
                     </Box>
                   );
                 }
-                
+
                 function SplitButton() {
                   const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
                   const [open, setOpen] = useState(false);
                   const anchorRef = useRef(null);
                   const [selectedIndex, setSelectedIndex] = useState(1);
-                
+
                   const handleClick = () => {
                     // eslint-disable-next-line no-console
                     console.log('You clicked' +options[selectedIndex]);
                   };
-                
+
                   const handleMenuItemClick = (event, index) => {
                     setSelectedIndex(index);
                     setOpen(false);
                   };
-                
+
                   const handleToggle = () => {
                     setOpen((prevOpen) => !prevOpen);
                   };
-                
+
                   const handleClose = (event) => {
                     if (anchorRef.current && anchorRef.current.contains(event.target)) {
                       return;
                     }
-                
+
                     setOpen(false);
                   };
-                
+
                   return (
                     <>
                       <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
@@ -336,11 +336,11 @@ export default function VariantButtonGroup() {
                     </>
                   );
                 }
-                
+
              export default function VariantButtonGroup() {
              // eslint-disable-next-line no-unused-vars
              // const [ButtonGroupVariant, setButtonGroupVariant] = useState('outline');
-           
+
              return (
                <PagePaper title="Button Group">
                  <ComponentPaper>
@@ -380,12 +380,8 @@ export default function VariantButtonGroup() {
         data={[
           {
             name: 'align',
-            type: (
-              <>
-                <>{` align 'center'| 'inherit'| 'justify'| 'left'| 'right' `}</>
-              </>
-            ),
-            desc: `'inherit'	
+            type: <>{` align 'center'| 'inherit'| 'justify'| 'left'| 'right' `}</>,
+            desc: `'inherit'
             Set the text-align on the table cell content.
             Monetary or generally number fields should be right aligned as that allows you to add them up quickly in your head without having to worry about decimals.`,
           },
@@ -437,6 +433,7 @@ export default function VariantButtonGroup() {
           },
           {
             name: 'CSS Ref',
+            type: 'anchor',
             desc: <a href="https://mui.com/api/button-group/#css">ButtonGroup API</a>,
           },
         ]}

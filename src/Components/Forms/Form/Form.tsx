@@ -1,17 +1,21 @@
 import {Form as FormikForm, Formik} from 'formik';
-import {forwardRef, ReactNode} from 'react';
+import {ForwardedRef, forwardRef, ReactNode} from 'react';
+import * as yup from 'yup';
 
-type Props = {
+interface Props {
   initialValues: any;
   onSubmit: any;
-  validationSchema?: any;
+  validationSchema?: ReturnType<typeof yup.object>;
   id?: string;
   enableReinitialize?: boolean;
   children?: ReactNode;
-};
+}
 
 const Form = forwardRef(
-  ({initialValues, onSubmit, validationSchema, children, id, enableReinitialize = false}: Props, ref: any) => {
+  (
+    {initialValues, onSubmit, validationSchema, children, id, enableReinitialize = false}: Props,
+    ref: ForwardedRef<HTMLFormElement>,
+  ) => {
     return (
       <Formik
         enableReinitialize={enableReinitialize}

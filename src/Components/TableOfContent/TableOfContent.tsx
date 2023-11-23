@@ -28,7 +28,7 @@ const useObserver = (setActiveId: React.Dispatch<React.SetStateAction<string>>) 
           headingsInView.push(value as IntersectionObserverEntry);
       }
 
-      setActiveId(headingsInView[0].target.id);
+      setActiveId(headingsInView[0]?.target.id);
     };
 
     const observer = new IntersectionObserver(handleElementInView, {
@@ -36,7 +36,7 @@ const useObserver = (setActiveId: React.Dispatch<React.SetStateAction<string>>) 
     });
 
     const headingElements = Array.from(document.getElementsByClassName('headings'));
-    headingElements.forEach((heading) => observer.observe(heading));
+    headingElements.forEach(heading => observer.observe(heading));
 
     return () => observer.disconnect();
   }, [setActiveId]);
@@ -49,7 +49,7 @@ const useTitles = () => {
     const headingElements = Array.from(document.getElementsByClassName('headings'));
     const headings: Heading[] = [];
 
-    headingElements.forEach((elem) => {
+    headingElements.forEach(elem => {
       headings.push({
         id: elem.id,
         title: elem.innerHTML,
@@ -102,7 +102,7 @@ const TableOfContent = () => {
 
   return (
     <Box sx={styles.container}>
-      {headings.map((heading) => (
+      {headings.map(heading => (
         <List key={heading.id} sx={{p: 0}}>
           <HeadingItem id={heading.id} title={heading.title} activeId={activeId} />
         </List>

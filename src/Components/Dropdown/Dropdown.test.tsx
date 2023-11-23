@@ -1,6 +1,6 @@
 import {fireEvent, render, screen, within} from '@testing-library/react';
 import {useState} from 'react';
-import Dropdown from './Dropdown';
+import Dropdown, {AutocompleteValueType, DropdownProps} from './Dropdown';
 import userEvent from '@testing-library/user-event';
 
 const options = [
@@ -9,8 +9,8 @@ const options = [
   {label: 'Devops', value: 'devops'},
 ];
 
-const MockDropdown = ({initialValue = [], ...props}: any) => {
-  const [value, setValue] = useState(initialValue);
+const MockDropdown = (props: Omit<DropdownProps, 'id' | 'options'> & {initialValue?: AutocompleteValueType}) => {
+  const [value, setValue] = useState(props.initialValue);
   return <Dropdown id="test" value={value} onChange={setValue} label="test" options={options} {...props} />;
 };
 
