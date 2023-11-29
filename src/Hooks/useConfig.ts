@@ -11,7 +11,7 @@ export interface AppConfiguration {
   expiryTimeInMinute: number;
   promptTimeBeforeIdleInMinute: number;
 }
-
+const DEFAULT_EXPIRY_TIME = 15;
 const useConfig = () => {
   const [config, setConfig] = useState<AppConfiguration>({} as AppConfiguration);
   const configData = useAppSelector(selectConfigData);
@@ -21,7 +21,7 @@ const useConfig = () => {
       const newConfig: AppConfiguration = {
         ...configData,
         enableSessionTimeout: configData.enableSessionTimeout === 'true',
-        expiryTimeInMinute: configData?.expiryTimeInMinute ? +configData.expiryTimeInMinute : 15,
+        expiryTimeInMinute: configData?.expiryTimeInMinute ? +configData.expiryTimeInMinute : DEFAULT_EXPIRY_TIME,
         promptTimeBeforeIdleInMinute: configData?.promptTimeBeforeIdleInMinute
           ? +configData.promptTimeBeforeIdleInMinute
           : 1,

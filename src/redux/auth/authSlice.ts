@@ -29,7 +29,7 @@ const authSlice = createSlice({
       state.expires = expires;
       state.isLoggedIn = true;
     },
-    unsetCredentials: (state) => {
+    unsetCredentials: state => {
       state.accessToken = null;
       state.refreshToken = null;
       state.expires = null;

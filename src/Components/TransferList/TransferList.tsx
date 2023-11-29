@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from 'Components/Button/Button';
 import React, {ReactNode, RefObject, useRef, useState} from 'react';
-import {DragDropContext, Droppable, DropResult} from 'react-beautiful-dnd';
+import {DragDropContext, DropResult, Droppable} from 'react-beautiful-dnd';
 import CustomList from './CustomList';
 
 type ListDispatchActionType = React.Dispatch<
@@ -22,6 +22,7 @@ export interface TransferListProps {
   setRight: ListDispatchActionType;
   height?: number;
 }
+const DEFAULT_HEIGHT = 200;
 
 function not(arr1: {label: string; value: string}[], arr2: {label: string; value: string}[]) {
   return arr1.filter(item1 => arr2.every(item2 => item2.value !== item1.value));
@@ -31,7 +32,13 @@ function intersection(arr1: {label: string; value: string}[], arr2: {label: stri
   return arr1.filter(item1 => arr2.some(item2 => item2.value === item1.value));
 }
 
-const TransferList: React.FC<TransferListProps> = ({left = [], setLeft, right = [], setRight, height = 200}) => {
+const TransferList: React.FC<TransferListProps> = ({
+  left = [],
+  setLeft,
+  right = [],
+  setRight,
+  height = DEFAULT_HEIGHT,
+}) => {
   const leftRef: RefObject<HTMLLIElement> = useRef(null);
   const rightRef: RefObject<HTMLLIElement> = useRef(null);
 

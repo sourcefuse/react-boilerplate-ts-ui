@@ -1,7 +1,7 @@
+import {Stack, Typography} from '@mui/material';
 import {ColumnDef} from '@tanstack/react-table';
 import {Table} from 'Components/Table';
 import {Collapsible} from './Collapsible';
-import {Stack, Typography} from '@mui/material';
 
 type beforeLog = {
   deleted?: string;

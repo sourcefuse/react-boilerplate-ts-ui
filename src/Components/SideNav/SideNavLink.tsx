@@ -14,7 +14,7 @@ import {Link, Location} from 'react-router-dom';
 import {SideNavConfig} from './sideNavConfig';
 import styles from './styles';
 
-const isChildOf = (child: string, parent: string) => child.indexOf(parent) === 0;
+const isChildOf = (child: string, parent: string) => child.startsWith(parent);
 
 const NestedNavLink = ({
   link,

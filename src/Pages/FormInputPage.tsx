@@ -1,3 +1,4 @@
+import SearchIcon from '@mui/icons-material/Search';
 import {Box, IconButton, InputAdornment, Stack, Typography} from '@mui/material';
 import Button from 'Components/Button';
 import ComponentViewer from 'Components/ComponentViewer';
@@ -6,12 +7,9 @@ import FormInput from 'Components/Forms/FormInput';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
-import SearchIcon from '@mui/icons-material/Search';
 import * as yup from 'yup';
 
-const submitHandler = () => {
-  return null;
-};
+const submitHandler = () => null;
 
 const FormInputPage = () => {
   return (

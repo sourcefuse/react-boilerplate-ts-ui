@@ -1,4 +1,13 @@
-import {memo, useMemo, useState} from 'react';
+import {
+  Box,
+  Table as MuiTable,
+  Paper,
+  TableBody,
+  TableContainer,
+  TableFooter,
+  TableHead,
+  TableRow,
+} from '@mui/material';
 import {
   ColumnFiltersState,
   ColumnOrderState,
@@ -9,28 +18,21 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import {filterFns} from './FilterFunctions';
-import {AnyObject, TableProps} from './Table';
+import {memo, useMemo, useState} from 'react';
 import {DragDropContext, DropResult, DroppableProvided} from 'react-beautiful-dnd';
-import {
-  Box,
-  Paper,
-  TableContainer,
-  Table as MuiTable,
-  TableHead,
-  TableRow,
-  TableBody,
-  TableFooter,
-} from '@mui/material';
 import {DebouncedInput} from './DebounceInput';
+import {filterFns} from './FilterFunctions';
 import {StrictModeDroppable} from './StrictModeDroppable';
+import {AnyObject, TableProps} from './Table';
 import {DefaultColumn, DefaultRow, DefaultTablePagination, DraggableColumn, DraggableTableRow} from './helper';
 
 export interface DndTableProps<T extends AnyObject> extends TableProps<T> {
   enableRowDnd?: boolean;
   enableColumnDnd?: boolean;
 }
-
+const DEFAULT_ROWS_PER_PAGE = 5;
+const ROWS_PER_PAGE_OPTION_1 = 10;
+const ROWS_PER_PAGE_OPTION_2 = 25;
 const AdvancedTable = <T extends AnyObject>({
   data,
   columns,
@@ -39,7 +41,12 @@ const AdvancedTable = <T extends AnyObject>({
   globalFilterFn = filterFns.fuzzy,
   enableColumnFiltering,
   enablePagination,
-  rowsPerPageOptions = [5, 10, 25, {label: 'All', value: data.length}],
+  rowsPerPageOptions = [
+    DEFAULT_ROWS_PER_PAGE,
+    ROWS_PER_PAGE_OPTION_1,
+    ROWS_PER_PAGE_OPTION_2,
+    {label: 'All', value: data.length},
+  ],
   enableColumnDnd,
   enableRowDnd = true,
   tablePropsObject,
@@ -79,7 +86,7 @@ const AdvancedTable = <T extends AnyObject>({
     targetColumnIdx: number,
     columnOrder: string[],
   ): ColumnOrderState => {
-    columnOrder.splice(targetColumnIdx, 0, columnOrder.splice(draggedColumnIdx, 1)[0] as string);
+    columnOrder.splice(targetColumnIdx, 0, columnOrder.splice(draggedColumnIdx, 1)[0]);
     return [...columnOrder];
   };
 
@@ -188,7 +195,8 @@ const AdvancedTable = <T extends AnyObject>({
                   table.setPageIndex(page);
                 }}
                 onRowsPerPageChange={e => {
-                  const size = e.target.value ? Number(e.target.value) : 10;
+                  const DEFAULT_PAGE_SIZE = 10;
+                  const size = e.target.value ? Number(e.target.value) : DEFAULT_PAGE_SIZE;
                   table.setPageSize(size);
                 }}
                 tablePaginationProps={tablePropsObject?.tablePaginationProps}

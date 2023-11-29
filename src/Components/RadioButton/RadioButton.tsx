@@ -1,8 +1,8 @@
-import {FormControl, FormControlLabel, RadioGroupProps, FormHelperText, RadioGroup} from '@mui/material';
+import {FormControl, FormControlLabel, FormHelperText, RadioGroup, RadioGroupProps} from '@mui/material';
 import Radio from '@mui/material/Radio';
 import Typography from '@mui/material/Typography';
 import InputLabel from 'Components/InputLabel';
-import React, {memo, ReactNode, useCallback} from 'react';
+import React, {ReactNode, memo, useCallback} from 'react';
 
 export interface RadioButtonOption {
   label: string;
@@ -33,7 +33,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 }) => {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange!(e.target.value);
+      onChange!(e.target.value); // NOSONAR
     },
     [onChange],
   );

@@ -1,6 +1,6 @@
 import {AuthRedirectWrapper} from 'Components/AuthRedirectWrapper';
 import {ProtectedRouteWrapper} from 'Components/ProtectedRouteWrapper';
-import React, {lazy} from 'react';
+import {lazy} from 'react';
 import {Navigate, RouteObject} from 'react-router';
 const Login = lazy(() => import('../Pages/Login'));
 const Mainlayout = lazy(() => import('Layouts/MainLayout/Mainlayout'));

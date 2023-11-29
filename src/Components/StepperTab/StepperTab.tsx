@@ -19,7 +19,8 @@ const Connector = styled(
 }));
 
 const activeColor = 'primary.main';
-
+const GREY_LIGHT = 200;
+const GREY_DARK = 700;
 const StepperTab: React.FC<StepperTabProps> = ({steps = [], activeStep, orientation = 'horizontal'}) => {
   return (
     <Stepper
@@ -29,7 +30,8 @@ const StepperTab: React.FC<StepperTabProps> = ({steps = [], activeStep, orientat
       sx={{
         marginBottom: 2,
         padding: 2,
-        background: theme => (theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[700]),
+        background: theme =>
+          theme.palette.mode === 'light' ? theme.palette.grey[GREY_LIGHT] : theme.palette.grey[GREY_DARK],
         borderRadius: 1,
         justifyContent: 'center',
         '& .Mui-completed , .Mui-active': {

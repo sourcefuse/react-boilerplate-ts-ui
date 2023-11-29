@@ -1,12 +1,14 @@
-import React from 'react';
 import {render, screen} from '@testing-library/react';
+import React from 'react';
 import {MemoryRouter, RouteObject, useRoutes} from 'react-router-dom';
 import {ProtectedRouteWrapper} from './ProtectedRouteWrapper';
 
 interface TestAppProps {
   isAuthorized: (...args: any[]) => boolean;
 }
+// sonarignore:start
 const TestApp: React.FC<TestAppProps> = ({isAuthorized}) => {
+  // sonarignore:end
   const routesConfig: RouteObject[] = [
     {
       path: '/login',
@@ -28,11 +30,7 @@ describe('ProtectedRouteWrapper', () => {
   it('should redirect to login page for unauthorized user', () => {
     render(
       <MemoryRouter>
-        <TestApp
-          isAuthorized={() => {
-            return false; // Unauthorized User
-          }}
-        />
+        <TestApp isAuthorized={() => false} />
       </MemoryRouter>,
     );
     expect(screen.getByText(/login page/i)).toBeInTheDocument();
@@ -40,11 +38,7 @@ describe('ProtectedRouteWrapper', () => {
   it('should not render component for unauthorized user', () => {
     render(
       <MemoryRouter>
-        <TestApp
-          isAuthorized={() => {
-            return false; // Unauthorized User
-          }}
-        />
+        <TestApp isAuthorized={() => false} />
       </MemoryRouter>,
     );
     expect(screen.queryByText(/test component /i)).not.toBeInTheDocument();
@@ -52,11 +46,7 @@ describe('ProtectedRouteWrapper', () => {
   it('should render component for authorized user', () => {
     render(
       <MemoryRouter>
-        <TestApp
-          isAuthorized={() => {
-            return true; // Authorized User
-          }}
-        />
+        <TestApp isAuthorized={() => true} />
       </MemoryRouter>,
     );
     expect(screen.getByText(/test component/i)).toBeInTheDocument();

@@ -77,8 +77,6 @@ export const OnlineStatusProvider: React.FC<Props> = ({children}) => {
   }, []);
   return <OnlineStatusContext.Provider value={onlineStatus}>{children}</OnlineStatusContext.Provider>;
 };
-export const useOnlineStatus = () => {
-  return useContext(OnlineStatusContext);
-};
+export const useOnlineStatus = () => useContext(OnlineStatusContext);
 
 export default useOnlineStatus;

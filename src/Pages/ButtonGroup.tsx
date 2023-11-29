@@ -9,6 +9,7 @@ import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import React from 'react';
 
+const CONSTANT_TWO = 2;
 const Btn = (
   <>
     <Button isLoading={false} type="submit">
@@ -86,7 +87,9 @@ function SplitButton() {
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    // this is intetnional
+  };
 
   const handleMenuItemClick = (event: React.MouseEvent<HTMLLIElement, MouseEvent>, index: number) => {
     setSelectedIndex(index);
@@ -98,7 +101,7 @@ function SplitButton() {
   };
 
   const handleClose = (event: Event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+    if (anchorRef.current?.contains(event.target as HTMLElement)) {
       return;
     }
 
@@ -134,7 +137,7 @@ function SplitButton() {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 2}
+                      disabled={index === CONSTANT_TWO}
                       selected={index === selectedIndex}
                       onClick={event => handleMenuItemClick(event, index)}
                     >

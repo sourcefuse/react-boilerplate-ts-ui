@@ -1,13 +1,13 @@
-import {MemoryRouter, Outlet, RouteObject} from 'react-router-dom';
-import Routes from './Routes';
 import {render, screen} from '@testing-library/react';
-import NotificationProvider from 'Providers/NotificationProvider';
-import {getRouteConfig} from './layoutRouteConfig';
-import {vi} from 'vitest';
 import {authorizationFunctions} from 'Helpers/authorizationFunctions';
-import {store} from '../redux/store';
-import {Provider} from 'react-redux';
+import NotificationProvider from 'Providers/NotificationProvider';
 import PropTypes from 'prop-types';
+import {Provider} from 'react-redux';
+import {MemoryRouter, Outlet, RouteObject} from 'react-router-dom';
+import {vi} from 'vitest';
+import {store} from '../redux/store';
+import Routes from './Routes';
+import {getRouteConfig} from './layoutRouteConfig';
 
 const TestApp: React.FC<{initialEntries: string[]}> = ({initialEntries}) => {
   return (
@@ -70,9 +70,7 @@ describe('Route Component', () => {
         ],
       },
     ];
-    const ExampleApp = () => {
-      return <Routes routesConfig={nestedRoutes} />;
-    };
+    const ExampleApp = () => <Routes routesConfig={nestedRoutes} />;
 
     render(
       <MemoryRouter initialEntries={['/home/test']}>

@@ -6,9 +6,8 @@ import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 
-const submitHandler = () => {
-  return null;
-};
+const submitHandler = () => null;
+
 const options = [
   {label: 'Mr', value: 'mr'},
   {label: 'Mrs', value: 'mrs'},

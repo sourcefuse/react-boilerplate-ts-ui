@@ -17,7 +17,7 @@ const FormToggleButtonTemplate: Omit<Story, 'args'> = {
     return (
       <Form
         initialValues={{
-          [id!]: [],
+          [id ?? '']: [],
         }}
         onSubmit={() => {}}
       >

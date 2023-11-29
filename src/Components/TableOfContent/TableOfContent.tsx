@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {TimelineDot} from '@mui/lab';
 import {Box, List, ListItemButton, ListItemText, Stack} from '@mui/material';
 import {useCallback, useEffect, useRef, useState} from 'react';
@@ -64,13 +65,14 @@ const useTitles = () => {
 
 const HeadingItem = ({title, id, activeId}: {title: string; id: string; activeId: string}) => {
   const handleClick = useCallback(() => {
+    const SCROLL_TIMEOUT = 100;
     const ref = document.getElementById(id)!;
     setTimeout(function () {
       ref.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
-    }, 100);
+    }, SCROLL_TIMEOUT);
   }, [id]);
 
   return (

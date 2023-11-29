@@ -1,13 +1,15 @@
 import MuiPaper from '@mui/material/Paper';
-import {styled, Theme as MUITheme} from '@mui/material/styles';
-import {memo, ReactNode} from 'react';
+import {Theme as MUITheme, styled} from '@mui/material/styles';
+import {ReactNode, memo} from 'react';
 
+const PADDING_SPACING = 2;
+const MARGIN_SPACING = 2;
 const Paper = styled(
   MuiPaper,
   {},
 )(({theme}: {theme: MUITheme}) => ({
-  padding: theme.spacing(2),
-  marginTop: theme.spacing(2),
+  padding: theme.spacing(PADDING_SPACING),
+  marginTop: theme.spacing(MARGIN_SPACING),
   border: '1px solid',
   borderColor: theme?.palette?.secondary?.main,
 }));

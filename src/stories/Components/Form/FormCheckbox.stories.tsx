@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
+import {CheckboxProps} from 'Components/Checkbox/Checkbox';
 import Form from 'Components/Forms/Form';
 import FormCheckbox from 'Components/Forms/FormCheckbox/FormCheckbox';
-import {CheckboxProps} from 'Components/Checkbox/Checkbox';
 
 const meta = {
   title: 'Components/Form/FormCheckbox',
@@ -17,7 +17,7 @@ const FormCheckboxTemplate: Omit<Story, 'args'> = {
     return (
       <Form
         initialValues={{
-          [id!]: [],
+          [id ?? '']: [],
         }}
         onSubmit={() => {}}
       >

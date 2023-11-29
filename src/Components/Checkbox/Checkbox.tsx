@@ -1,10 +1,11 @@
+/* eslint-disable prettier/prettier */
 import {
-  Checkbox as MuiCheckbox,
-  CheckboxProps as MuiCheckboxProps,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormHelperText,
+  Checkbox as MuiCheckbox,
+  CheckboxProps as MuiCheckboxProps,
 } from '@mui/material';
 import InputLabel from 'Components/InputLabel';
 import React, {memo, useCallback} from 'react';
@@ -42,6 +43,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         const val = value === e?.target?.name ? '' : e.target.name;
         onChange(val);
       } else if (Array.isArray(value)) {
+        // eslint-disable-next-line prettier/prettier
         const index = value.findIndex(val => val === e?.target?.value);
         const newValue = [...value];
         if (index === -1) {
@@ -50,6 +52,8 @@ const Checkbox: React.FC<CheckboxProps> = ({
           newValue.splice(index, 1);
         }
         onChange(newValue);
+      } else {
+        // this is intentional
       }
     },
     [onChange, singleSelect, value],

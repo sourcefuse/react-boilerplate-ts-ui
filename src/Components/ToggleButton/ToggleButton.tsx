@@ -47,6 +47,8 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
           newValue.splice(index, 1);
         }
         onChange(newValue);
+      } else {
+        // this is intentional
       }
     },
     [onChange, singleSelect, value],

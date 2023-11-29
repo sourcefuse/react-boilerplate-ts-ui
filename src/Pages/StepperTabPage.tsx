@@ -4,16 +4,16 @@ import Grid from '@mui/material/Grid';
 import Button from 'Components/Button/Button';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
-import StepperTab from 'Components/StepperTab/StepperTab';
 import PropsTable from 'Components/PropsTable';
+import StepperTab from 'Components/StepperTab/StepperTab';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import {useState} from 'react';
 
 const steps = ['Step 1', 'Step 2', 'Step 3'];
 const StepperTabPage = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const nextStep = () => setActiveStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
-  const prevStep = () => setActiveStep((prev) => (prev === 0 ? prev : prev - 1));
+  const nextStep = () => setActiveStep(prev => (prev < steps.length - 1 ? prev + 1 : prev));
+  const prevStep = () => setActiveStep(prev => (prev === 0 ? prev : prev - 1));
 
   return (
     <Stack direction="row">

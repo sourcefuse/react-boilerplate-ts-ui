@@ -21,8 +21,8 @@ export class CreateAcmCertificate extends Construct {
         createBeforeDestroy: true,
       },
     });
-
-    ttl = ttl ?? 300;
+    const DEFAULT_TTL = 300;
+    ttl = ttl ?? DEFAULT_TTL;
 
     const awsRoute53Record = new aws.route53Record.Route53Record(this, 'route53Record', {
       allowOverwrite: true,

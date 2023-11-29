@@ -6,9 +6,7 @@ import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import TableOfContent from 'Components/TableOfContent/TableOfContent';
 
-const submitHandler = () => {
-  return null;
-};
+const submitHandler = () => null;
 
 const FormCheckboxPage = () => {
   const initialValues = {

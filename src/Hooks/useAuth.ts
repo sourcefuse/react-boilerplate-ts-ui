@@ -1,7 +1,6 @@
 import {useSnackbar} from 'notistack';
-import useConfig from './useConfig';
-import {useLoginMutation, useLogoutMutation} from 'redux/auth/authApiSlice';
 import type {LoginForm} from 'redux/auth/authApiSlice';
+import {useLoginMutation, useLogoutMutation} from 'redux/auth/authApiSlice';
 import {
   selectCurrentAuthState,
   selectCurrentLoginStatus,
@@ -10,6 +9,7 @@ import {
   unsetCredentials,
 } from 'redux/auth/authSlice';
 import {useAppDispatch, useAppSelector} from 'redux/hooks';
+import useConfig from './useConfig';
 
 /**
  * Custom hook for handling authentication-related functionality.

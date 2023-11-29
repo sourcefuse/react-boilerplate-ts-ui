@@ -1,4 +1,4 @@
-import {render, screen, fireEvent} from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import {vi} from 'vitest';
 import ToggleButton from './ToggleButton';
 
@@ -12,7 +12,7 @@ describe('ToggleButton', () => {
   it('renders ToggleButton component with options', () => {
     render(<ToggleButton options={options} />);
 
-    options.forEach((option) => {
+    options.forEach(option => {
       const checkbox = screen.getByLabelText(option.label) as HTMLInputElement;
       expect(checkbox).toBeInTheDocument();
       expect(checkbox.checked).toBeFalsy();
@@ -40,9 +40,9 @@ describe('ToggleButton', () => {
 
   it('marks the selected options as checked', () => {
     const selectedOptions = [options[1], options[0]];
-    render(<ToggleButton options={options} value={selectedOptions.map((option) => option.value)} />);
+    render(<ToggleButton options={options} value={selectedOptions.map(option => option.value)} />);
 
-    selectedOptions.forEach((selectedOption) => {
+    selectedOptions.forEach(selectedOption => {
       const selectedCheckbox = screen.getByLabelText(selectedOption.label) as HTMLInputElement;
       expect(selectedCheckbox.checked).toBeTruthy();
     });
