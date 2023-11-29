@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.1...1.1.2) (2023-11-29)
+
+
+### Bug Fixes
+
+* **core:** ARC-69 fix sonar smells ([2a5f689](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/2a5f68976f234ad64200343f91da71a2a8cf4161))
+
+
+
 ## [1.1.1](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.0...1.1.1) (2023-09-11)
 
 
@@ -46,17 +55,6 @@
 ### BREAKING CHANGES
 
 * **core:** Added redux for state management, rtk query for api calls
-
-
-
-## [0.3.1](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/0.3.0...0.3.1) (2023-06-09)
-
-
-### Bug Fixes
-
-* **core:** ARC-946 added RouteGenerator with nested routing ([6c552fc](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/6c552fc8a4a5de120fc6896eff0668950915431e))
-* **core:** ARC-946 fixed issues with routes ([74fe7bc](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/74fe7bc5ee37bf26c9e7128ee379e634af68b427))
-* **core:** ARC-946 fixed sync issue of vite version ([acbaed7](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/acbaed79682f162990cc3f3b7e41a5caca03d59d))
 
 
 
