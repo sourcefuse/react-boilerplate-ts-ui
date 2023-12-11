@@ -4,7 +4,7 @@ import Form from 'Components/Forms/Form';
 import FormToggleButton from 'Components/Forms/FormToggleButton';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const submitHandler = () => null;
 
@@ -20,7 +20,7 @@ const FormToggleButtonPage = () => {
   ];
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper
           title="FormToggleButton"
           description="FormToggleButton component provides with a hassle free way to manage state of your formik form toggle buttons. This component uses Formik internally to manage state for your toggle buttons."
@@ -29,12 +29,12 @@ const FormToggleButtonPage = () => {
             title="Default FormToggleButton"
             code={`import Form from 'Components/Forms/Form';
 import FormCheckbox from 'Components/Forms/FormToggleButton';
-            
+
 const FormToggleButtonDemo = () => {
   const initialValues = {
     skills: [],
 };
-            
+
 const options = [
     {label: 'Frontend', value: 'frontend'},
     {label: 'Backend', value: 'backend'},
@@ -46,7 +46,7 @@ return (
     </Form>
         );
 };
-            
+
 export default FormToggleButtonDemo;
             `}
           >
@@ -58,12 +58,12 @@ export default FormToggleButtonDemo;
             title="Single Select FormToggleButton"
             code={`import Form from 'Components/Forms/Form';
 import FormCheckbox from 'Components/Forms/FormToggleButton';
-            
+
 const FormToggleButtonDemo = () => {
   const initialValues = {
     skills: [],
 };
-            
+
 const options = [
     {label: 'Frontend', value: 'frontend'},
     {label: 'Backend', value: 'backend'},
@@ -75,7 +75,7 @@ return (
     </Form>
         );
 };
-            
+
 export default FormToggleButtonDemo;
             `}
           >
@@ -117,7 +117,7 @@ export default FormToggleButtonDemo;
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

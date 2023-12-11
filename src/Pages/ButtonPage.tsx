@@ -3,15 +3,15 @@ import Button from 'Components/Button/Button';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const ButtonPage = () => {
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper
           title="Button"
-          description="Buttons are one of the most common UI elements. They make it possible for users to interact with a system and take action by making selections. 
+          description="Buttons are one of the most common UI elements. They make it possible for users to interact with a system and take action by making selections.
       Buttons are used on forms, website homepages, dialog boxes, and toolbars. It is important to differentiate between buttons and links."
         >
           <ComponentViewer
@@ -230,7 +230,7 @@ export default ButtonPage;`}
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

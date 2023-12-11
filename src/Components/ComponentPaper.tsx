@@ -12,6 +12,8 @@ const Paper = styled(
   marginTop: theme.spacing(MARGIN_SPACING),
   border: '1px solid',
   borderColor: theme?.palette?.secondary?.main,
+  width: '100%',
+  overflowX: 'auto',
 }));
 
 const ComponentPaper = ({children}: {children: ReactNode}) => <Paper elevation={0}>{children}</Paper>;

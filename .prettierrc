@@ -2,6 +2,7 @@
   "arrowParens": "avoid",
   "bracketSpacing": false,
   "singleQuote": true,
+  "jsxSingleQuote": false,
   "printWidth": 120,
   "trailingComma": "all",
   "endOfLine": "auto"

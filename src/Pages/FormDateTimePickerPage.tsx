@@ -4,14 +4,14 @@ import Form from 'Components/Forms/Form';
 import FormDateTimePicker from 'Components/Forms/FormDateTimePicker';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const submitHandler = () => null;
 
 const FormDateTimePickerPage = () => {
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper
           title="FormDatePicker"
           description="FormDatePicker component provides with a hassle free way to manage state of your date pickers. This component uses Formik internally to manage state for your date pickers."
@@ -59,7 +59,7 @@ const FormDateTimePickerPage = () => {
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

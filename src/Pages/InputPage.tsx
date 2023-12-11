@@ -4,14 +4,14 @@ import ComponentViewer from 'Components/ComponentViewer';
 import Input from 'Components/Input/Input';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 import {useState} from 'react';
 
 const InputPage = () => {
   const [value, setValue] = useState('');
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper
           title="Input"
           description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos esse voluptate quos alias magni, excepturi at veniam dolore, error eaque cupiditate aperiam. Cumque nulla necessitatibus cum perferendis illo distinctio eos."
@@ -80,7 +80,7 @@ export default InputPage;`}
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

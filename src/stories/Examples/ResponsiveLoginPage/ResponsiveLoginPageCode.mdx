@@ -1,0 +1,117 @@
+import {Meta, Source} from '@storybook/blocks';
+
+<Meta title="Examples/ResponsiveLoginPage/Code" />
+
+<Source code={`
+import {Box, Grid, Theme, Typography, useMediaQuery} from '@mui/material';
+import arcLogo from 'Assets/ARC_logo.png';
+import heroLogo from 'Assets/hero.jpg';
+import Button from 'Components/Button';
+import Form from 'Components/Forms/Form';
+import FormInput from 'Components/Forms/FormInput';
+import FormPasswordInput from 'Components/Forms/FormPasswordInput';
+import {FormikHelpers} from 'formik';
+import {useState} from 'react';
+import * as yup from 'yup';
+
+type LoginForm = {
+username: string;
+password: string;
+};
+
+const initialValues = {
+username: '',
+password: '',
+};
+
+const validationSchema = yup.object({
+username: yup.string().required().label('UserName'),
+password: yup.string().required().label('Password'),
+});
+
+export const ResponsiveLoginPage = () => {
+  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+
+const [isLoading, setIsLoading] = useState<boolean>(false);
+
+const handleSubmit = async (values: LoginForm, {setSubmitting}: FormikHelpers<LoginForm>) => {
+setIsLoading(true);
+setTimeout(() => {
+setIsLoading(false);
+alert(JSON.stringify(values));
+setSubmitting(false);
+}, 2000);
+};
+
+return (
+
+<>
+  <Grid container>
+    <Grid item xs={12} md={8}>
+      <Box
+        component="img"
+        sx={{
+          height: isSmallScreen ? 'auto' : '93vh',
+          width: '100%',
+          maxWidth: '100%',
+        }}
+        src={heroLogo}
+        alt="hero"
+      />
+    </Grid>
+    <Grid item xs={12} md={4}>
+      <Box
+        component="div"
+        sx={{
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Grid container maxWidth="25em">
+          <Box
+            component="img"
+            sx={{
+              width: 'auto',
+            }}
+            src={arcLogo}
+            alt="hero"
+          />
+          <Grid item xs={12}>
+            <Typography variant="h4" sx={{mt: 13}}>
+              <b> Welcome to ARC </b>
+            </Typography>
+            <Typography variant="h4" sx={{mb: 1}}>
+              <b> by SourceFuse </b>
+            </Typography>
+            <Typography variant="subtitle2" component="div" sx={{mt: 2, mb: 3, color: '#525252'}}>
+              <i>Cut down your application development process to 60%,</i> with a huge amount of components & APIs.
+              Create your account now!
+            </Typography>
+          </Grid>
+          <Form initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
+            <Grid item xs={12}>
+              <FormInput id="username" label="UserName" />
+            </Grid>
+            <Grid item xs={12} sx={{mt: 1}}>
+              <FormPasswordInput id="password" label="Password" />
+            </Grid>
+            <Grid container item xs={12}>
+              <Button
+                variant="contained"
+                sx={{mt: 2, mb: 4, borderRadius: 6}}
+                isLoading={isLoading}
+                color="secondary"
+                type="submit"
+              >
+                SUBMIT
+              </Button>
+            </Grid>
+          </Form>
+        </Grid>
+      </Box>
+    </Grid>
+  </Grid>
+</>
+); }; `} />

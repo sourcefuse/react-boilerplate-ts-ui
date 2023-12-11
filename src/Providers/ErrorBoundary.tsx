@@ -1,3 +1,4 @@
+import {Typography} from '@mui/material';
 import React, {ErrorInfo, ReactNode} from 'react';
 
 interface Props {
@@ -28,7 +29,7 @@ class ErrorBoundary extends React.Component<Props, State> {
   render(): ReactNode {
     if (this.state.hasError) {
       // no we only use these boundaries on top level, we can return the 404
-      return <h1>Something went wrong</h1>;
+      return <Typography variant="h1">Something went wrong</Typography>;
     }
 
     return <>{this.props.children}</>;

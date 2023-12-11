@@ -4,15 +4,15 @@ import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import Rating from 'Components/Rating';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
-import * as React from 'react';
+import React from 'react';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const RatingPage = () => {
   const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper title="Rating">
           <ComponentViewer
             title="Default Button"
@@ -221,7 +221,7 @@ export default RatingPage;`}
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

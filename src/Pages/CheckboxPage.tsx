@@ -4,7 +4,7 @@ import Checkbox from 'Components/Checkbox/Checkbox';
 import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 import {useState} from 'react';
 
 const options = [
@@ -17,7 +17,7 @@ const CheckboxPage = () => {
   const [value, setValue] = useState<string | string[]>([]);
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper title="Checkbox">
           <ComponentViewer
             title="Default Input"
@@ -81,7 +81,7 @@ export default CheckboxPage;`}
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

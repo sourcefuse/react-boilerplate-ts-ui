@@ -1,4 +1,4 @@
-import {Stack} from '@mui/material';
+import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from 'Components/Button/Button';
@@ -6,10 +6,10 @@ import ComponentViewer from 'Components/ComponentViewer';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import StepperTab from 'Components/StepperTab/StepperTab';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
 import {useState} from 'react';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
-const steps = ['Step 1', 'Step 2', 'Step 3'];
+const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4'];
 const StepperTabPage = () => {
   const [activeStep, setActiveStep] = useState(0);
   const nextStep = () => setActiveStep(prev => (prev < steps.length - 1 ? prev + 1 : prev));
@@ -17,7 +17,7 @@ const StepperTabPage = () => {
 
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper title="StepperTab">
           <ComponentViewer
             title="Default Stepper"
@@ -81,7 +81,7 @@ export default StepperTabPage;`}
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };

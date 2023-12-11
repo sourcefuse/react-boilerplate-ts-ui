@@ -1,15 +1,18 @@
-import {Box, Grid, Typography} from '@mui/material';
+import {Alert as MuiAlert, AlertProps, Box, Grid, Snackbar, Typography} from '@mui/material';
 import arcLogo from 'Assets/ARC_logo.png';
 import heroLogo from 'Assets/hero.jpg';
 import Button from 'Components/Button';
 import Form from 'Components/Forms/Form';
 import FormInput from 'Components/Forms/FormInput';
 import FormPasswordInput from 'Components/Forms/FormPasswordInput';
-import useAuth from 'Hooks/useAuth';
 import {FormikHelpers} from 'formik';
-import {useLocation, useNavigate} from 'react-router-dom';
-import type {LoginForm} from 'redux/auth/authApiSlice';
+import React, {useState} from 'react';
 import * as yup from 'yup';
+
+type LoginForm = {
+  username: string;
+  password: string;
+};
 
 const initialValues = {
   username: '',
@@ -21,25 +24,40 @@ const validationSchema = yup.object({
   password: yup.string().required().label('Password'),
 });
 
-const Login = () => {
-  const {login, loginLoading} = useAuth();
+interface ResponsiveLoginPageProps {}
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
-  const handleNavigation = () => {
-    navigate(from, {replace: true});
+export const ResponsiveLoginPage: React.FC<ResponsiveLoginPageProps> = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (_: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
-
-  const handleSubmit = async (values: LoginForm, {setSubmitting}: FormikHelpers<LoginForm>) => {
-    await login(values);
-    handleNavigation();
-    setSubmitting(false);
+  const handleSubmit = async (_: LoginForm, {setSubmitting}: FormikHelpers<LoginForm>) => {
+    const FAKE_DELAY = 2000;
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setOpen(true);
+      setSubmitting(false);
+    }, FAKE_DELAY);
   };
 
   return (
     <>
+      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{width: '100%'}}>
+          Login Successful ✅
+        </Alert>
+      </Snackbar>
       <Grid container data-testid="LoginPage" sx={{height: '100vh'}}>
         <Grid
           item
@@ -94,7 +112,7 @@ const Login = () => {
                   <Button
                     variant="contained"
                     sx={{mt: 2, mb: 4, borderRadius: 6, fontWeight: 'bold'}}
-                    isLoading={loginLoading}
+                    isLoading={isLoading}
                     color="secondary"
                     type="submit"
                   >
@@ -109,5 +127,3 @@ const Login = () => {
     </>
   );
 };
-
-export default Login;

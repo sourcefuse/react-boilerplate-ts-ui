@@ -4,7 +4,7 @@ import Form from 'Components/Forms/Form';
 import FormRadioButton from 'Components/Forms/FormRadioButton';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
-import TableOfContent from 'Components/TableOfContent/TableOfContent';
+import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
 const submitHandler = () => null;
 
@@ -20,24 +20,24 @@ const FormRadioButtonPage = () => {
   ];
   return (
     <Stack direction="row">
-      <Box sx={{flexGrow: 1}}>
+      <Box sx={{flexGrow: 1, maxWidth: '99vw'}}>
         <PagePaper
           title="FormRadioButton"
           description="FormRadioButton component provides with a hassle free way to manage state of your formik form radio button group. This component uses Formik internally to manage state for your radio groups."
         >
           <ComponentViewer
             title="Default Radio Button Group"
-            code={` 
+            code={`
             import Form from 'Components/Forms/Form';
             import FormRadioButton from 'Components/Forms/FormRadioButton';
-            
+
             const FormRadioButtonDemo = () => {
               const initialValues = {
                 skills: [],
               };
-            
+
               const submitHandler = () => {};
-            
+
               const options = [
                 {label: 'Frontend', value: 'frontend'},
                 {label: 'Backend', value: 'backend'},
@@ -49,7 +49,7 @@ const FormRadioButtonPage = () => {
                 </Form>
               );
             };
-            
+
             export default FormRadioButtonDemo;
             `}
           >
@@ -62,14 +62,14 @@ const FormRadioButtonPage = () => {
             code={`
             import Form from 'Components/Forms/Form';
             import FormRadioButton from 'Components/Forms/FormRadioButton';
-            
+
             const FormRadioButtonDemo = () => {
               const initialValues = {
                 skills: [],
               };
-            
+
               const submitHandler = () => {};
-            
+
               const options = [
                 {label: 'Frontend', value: 'frontend'},
                 {label: 'Backend', value: 'backend'},
@@ -81,7 +81,7 @@ const FormRadioButtonPage = () => {
                 </Form>
               );
             };
-            
+
             export default FormRadioButtonDemo;
             `}
           >
@@ -130,7 +130,7 @@ const FormRadioButtonPage = () => {
           />
         </PagePaper>
       </Box>
-      <TableOfContent />
+      <ScreenAwareTOC />
     </Stack>
   );
 };
