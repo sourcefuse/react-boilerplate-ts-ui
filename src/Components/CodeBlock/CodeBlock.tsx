@@ -13,8 +13,7 @@ interface Props {
 
 const CodeBlock: React.FC<Props> = ({initial, fullCode}) => {
   const [isExpanded, setIsExpanded] = useState(!initial);
-  // eslint-disable-next-line prettier/prettier
-  const toggleExpand = () => setIsExpanded((prev) => !prev);
+  const toggleExpand = () => setIsExpanded(prev => !prev);
   return (
     <Box sx={{marginTop: 4}} data-testid="code-block">
       <ButtonGroup

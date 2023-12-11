@@ -28,13 +28,13 @@ const Slider: React.FC<SliderProps> = ({
       if (!onChange) return;
       if (!Array.isArray(newValue)) {
         onChange(newValue);
-      } else if (newValue[1] - newValue[0] < minDistance!) {
+      } else if (minDistance && newValue[1] - newValue[0] < minDistance) {
         if (activeThumb === 0) {
-          const clamped = Math.min(newValue[0], MAX_VALUE - minDistance!); // NOSONAR
-          onChange([clamped, clamped + minDistance!]);
+          const clamped = Math.min(newValue[0], MAX_VALUE - minDistance);
+          onChange([clamped, clamped + minDistance]);
         } else {
-          const clamped = Math.max(newValue[1], minDistance!);
-          onChange([clamped - minDistance!, clamped]);
+          const clamped = Math.max(newValue[1], minDistance);
+          onChange([clamped - minDistance, clamped]);
         }
       } else {
         onChange(newValue);

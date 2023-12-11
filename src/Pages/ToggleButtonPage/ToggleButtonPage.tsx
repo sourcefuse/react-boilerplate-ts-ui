@@ -100,11 +100,7 @@ export default function MultiReturnValue() {
             data={[
               {
                 name: 'align',
-                type: (
-                  <>
-                    <>{` align 'center'| 'inherit'| 'justify'| 'left'| 'right' `}</>
-                  </>
-                ),
+                type: <>{`align 'center'| 'inherit'| 'justify'| 'left'| 'right'`}</>,
                 desc: `'inherit'
             Set the text-align on the table cell content.
             Monetary or generally number fields should be right aligned as that allows you to add them up quickly in your head without having to worry about decimals.`,

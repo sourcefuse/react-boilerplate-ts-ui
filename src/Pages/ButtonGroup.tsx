@@ -155,9 +155,6 @@ function SplitButton() {
 }
 
 export default function VariantButtonGroup() {
-  // eslint-disable-next-line no-unused-vars
-  // const [ButtonGroupVariant, setButtonGroupVariant] = useState('outline');
-
   return (
     <PagePaper title="Button Group">
       <ComponentPaper>
@@ -273,7 +270,6 @@ export default function VariantButtonGroup() {
                   const [selectedIndex, setSelectedIndex] = useState(1);
 
                   const handleClick = () => {
-                    // eslint-disable-next-line no-console
                     console.log('You clicked' +options[selectedIndex]);
                   };
 
@@ -341,8 +337,6 @@ export default function VariantButtonGroup() {
                 }
 
              export default function VariantButtonGroup() {
-             // eslint-disable-next-line no-unused-vars
-             // const [ButtonGroupVariant, setButtonGroupVariant] = useState('outline');
 
              return (
                <PagePaper title="Button Group">

@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {Table} from 'Components/Table';
-import {DataTable} from './data';
+import {DataTable} from 'Pages/TablePage/data';
 import {tableColumns} from './utils';
 
 const meta = {

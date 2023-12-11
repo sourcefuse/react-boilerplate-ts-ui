@@ -6,9 +6,7 @@ import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import ScreenAwareTOC from 'Components/ScreenAwareTOC';
 
-const submitHandler = () => {
-  return null;
-};
+const submitHandler = () => null;
 
 const FormDatePickerPage = () => {
   return (

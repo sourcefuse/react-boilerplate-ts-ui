@@ -59,6 +59,5 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
-  // eslint-disable-next-line prettier/prettier
-  endpoints: (builder) => ({}),
+  endpoints: builder => ({}),
 });

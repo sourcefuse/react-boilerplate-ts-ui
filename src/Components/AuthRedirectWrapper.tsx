@@ -17,5 +17,5 @@ interface AuthRedirectWrapperProps {
 export const AuthRedirectWrapper: React.FC<AuthRedirectWrapperProps> = ({children}) => {
   // sonarignore:end
   const {isLoggedIn} = useAuth();
-  return isLoggedIn ? <Navigate to={'/home'} replace /> : children;
+  return <>{isLoggedIn ? <Navigate to={'/home'} replace /> : children}</>;
 };

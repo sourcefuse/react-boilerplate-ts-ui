@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import StarIcon from '@mui/icons-material/StarBorder';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';

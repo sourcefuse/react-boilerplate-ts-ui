@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {
   FormControl,
   FormControlLabel,
@@ -43,7 +42,6 @@ const Checkbox: React.FC<CheckboxProps> = ({
         const val = value === e?.target?.name ? '' : e.target.name;
         onChange(val);
       } else if (Array.isArray(value)) {
-        // eslint-disable-next-line prettier/prettier
         const index = value.findIndex(val => val === e?.target?.value);
         const newValue = [...value];
         if (index === -1) {

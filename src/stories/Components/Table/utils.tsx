@@ -1,6 +1,6 @@
 import {ColumnDef, createColumnHelper} from '@tanstack/react-table';
 import {AnyObject} from 'Components/Table/Table';
-import {DataTableType} from './data';
+import {DataTableType} from 'Pages/TablePage/data';
 
 const columnHelper = createColumnHelper<DataTableType>();
 

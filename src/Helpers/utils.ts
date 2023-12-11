@@ -15,7 +15,7 @@ export const convertToDate = (input: string | number | Date, inputFormat = 'dd.M
   return format(new Date(input), inputFormat);
 };
 
-export const getValue = (obj: AnyObject, key: string): any => {
+export const getValue = (obj: AnyObject, key: string) => {
   /*
    * \[([^\]]{1,5})] ==> This regex is capturing the text inbetween [] in a capturing group
    * .$1 ==> This regex is putting .<capturedGroup>

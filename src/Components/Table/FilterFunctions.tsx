@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {rankItem, rankings} from '@tanstack/match-sorter-utils';
 import type {RankingInfo} from '@tanstack/match-sorter-utils';
 import type {Row} from '@tanstack/react-table';
@@ -20,7 +19,7 @@ const fuzzy = <TData extends AnyObject = {}>(
 
 //  if the value is falsy, then the columnFilters state entry for that filter will removed from that array.
 // https://github.com/KevinVandy/material-react-table/discussions/223#discussioncomment-4249221
-fuzzy.autoRemove = (val: any) => !val;
+fuzzy.autoRemove = (val: unknown) => !val;
 
 const contains = <TData extends AnyObject = {}>(row: Row<TData>, id: string, filterValue: string | number) =>
   row
@@ -30,7 +29,7 @@ const contains = <TData extends AnyObject = {}>(row: Row<TData>, id: string, fil
     .trim()
     .includes(filterValue.toString().toLowerCase().trim());
 
-contains.autoRemove = (val: any) => !val;
+contains.autoRemove = (val: unknown) => !val;
 
 const startsWith = <TData extends AnyObject = {}>(row: Row<TData>, id: string, filterValue: string | number) =>
   row
@@ -40,7 +39,7 @@ const startsWith = <TData extends AnyObject = {}>(row: Row<TData>, id: string, f
     .trim()
     .startsWith(filterValue.toString().toLowerCase().trim());
 
-startsWith.autoRemove = (val: any) => !val;
+startsWith.autoRemove = (val: unknown) => !val;
 
 export const filterFns = {
   fuzzy,
