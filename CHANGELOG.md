@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.2...1.1.3) (2023-12-11)
+
+
+### Bug Fixes
+
+* **core:** ARC-63 responsive design issue ([7850091](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/7850091a450ad82b7135d4fd4a669e4e399b0d50)), closes [PR#67](https://github.com/PR/issues/67)
+
+
+
 ## [1.1.2](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.1...1.1.2) (2023-11-29)
 
 
@@ -36,25 +45,6 @@
 ### Bug Fixes
 
 * **core:** ARC-983 fixed session timeout component ([115ff72](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/115ff7268f75a19c95f611f7bdb48ec8c315931c))
-
-
-
-# [1.0.0](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/0.3.1...1.0.0) (2023-06-27)
-
-
-### Bug Fixes
-
-* **core:** ARC-984 fixed referencing of config variables ([5a82a32](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/5a82a32e763bef6c1c19f34d9de4f17558dc4543))
-
-
-### Features
-
-* **core:** ARC-379 added redux for state management ([cd80852](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/cd80852af817262ecd87e789ee8cccac42f737e7))
-
-
-### BREAKING CHANGES
-
-* **core:** Added redux for state management, rtk query for api calls
 
 
 
