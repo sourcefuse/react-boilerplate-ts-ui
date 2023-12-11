@@ -1,7 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import {Box, Stack} from '@mui/material';
 import ComponentViewer from 'Components/ComponentViewer';
-import FAB from 'Components/FloatingActionButton';
+import Fab from 'Components/FloatingActionButton';
 import PagePaper from 'Components/PagePaper';
 import PropsTable from 'Components/PropsTable';
 import ScreenAwareTOC from 'Components/ScreenAwareTOC';
@@ -14,25 +14,25 @@ const FloatingActionButtonPage = () => {
           <ComponentViewer
             title="Default Button"
             code={`import AddIcon from "@mui/icons-material/Add";
-import FAB from "Components/FloatingActionButton";
+import Fab from "Components/FloatingActionButton";
 import PagePaper from "Components/PagePaper";
 import React from "react";
 
 const FloatingActionButtonPage = () => {
   return (
     <PagePaper title="Floating Action Button">
-      <FAB color="primary" aria-label="add">
+      <Fab color="primary" aria-label="add">
         <AddIcon />
-      </FAB>
+      </Fab>
     </PagePaper>
   );
 };
 
 export default FloatingActionButtonPage;`}
           >
-            <FAB color="primary" aria-label="add">
+            <Fab color="primary" aria-label="add">
               <AddIcon />
-            </FAB>
+            </Fab>
           </ComponentViewer>
           <PropsTable
             data={[

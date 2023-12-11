@@ -6,9 +6,8 @@ import {ProtectedRouteWrapper} from './ProtectedRouteWrapper';
 interface TestAppProps {
   isAuthorized: (...args: any[]) => boolean;
 }
-// sonarignore:start
+
 const TestApp: React.FC<TestAppProps> = ({isAuthorized}) => {
-  // sonarignore:end
   const routesConfig: RouteObject[] = [
     {
       path: '/login',

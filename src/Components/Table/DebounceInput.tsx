@@ -40,8 +40,7 @@ export const DebouncedInput = ({value: initialValue, onChange, debounceTime = DE
         placeholder="Search Across Table"
         {...props}
         value={value}
-        // eslint-disable-next-line prettier/prettier
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

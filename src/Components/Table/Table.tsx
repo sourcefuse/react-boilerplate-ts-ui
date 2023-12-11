@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {
   Table as MuiTable,
   TableProps as MuiTableProps,

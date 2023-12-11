@@ -79,7 +79,7 @@ describe('AutoComplete', () => {
   it('should be able to type', async () => {
     render(<MockDropdown enableAutoComplete />);
     const textbox = screen.getByRole('combobox');
-    await userEvent.type(textbox!, 'abc');
+    await userEvent.type(textbox, 'abc');
     expect(textbox).toHaveValue('abc');
   });
 

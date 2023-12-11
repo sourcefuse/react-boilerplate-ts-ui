@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 export type DataTableType = {
   _id: string;
   isActive: boolean;
@@ -15,6 +14,8 @@ export type DataTableType = {
   }[];
 };
 
+export const TableDataPictureURL = 'https://via.placeholder.com/32x32';
+
 export const DataTable = [
   {
     _id: '644f76e1c8f95a550729db88',
@@ -22,7 +23,7 @@ export const DataTable = [
     guid: 'b75b6dc6-9ed3-4627-9eda-644e4b513456',
     isActive: true,
     balance: '$2,166.05',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 38,
     eyeColor: 'blue',
     name: 'Tabatha Warner',
@@ -60,7 +61,7 @@ export const DataTable = [
     guid: 'c4187ade-701e-44f3-9bb9-3ad6e0e27652',
     isActive: true,
     balance: '$1,955.12',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 27,
     eyeColor: 'brown',
     name: 'Santana Mcgowan',
@@ -98,7 +99,7 @@ export const DataTable = [
     guid: 'aa96868c-2200-47b8-b018-e9e10db7eb62',
     isActive: false,
     balance: '$3,326.96',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 22,
     eyeColor: 'brown',
     name: 'Travis Nguyen',
@@ -136,7 +137,7 @@ export const DataTable = [
     guid: '173e9311-175e-4d1d-8c03-2107b271b599',
     isActive: true,
     balance: '$1,392.08',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 39,
     eyeColor: 'green',
     name: 'Muriel Barlow',
@@ -174,7 +175,7 @@ export const DataTable = [
     guid: 'cd738ecf-b812-44d8-82bc-6fedc38cafbc',
     isActive: false,
     balance: '$1,253.31',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 32,
     eyeColor: 'green',
     name: 'Liliana Wilson',
@@ -212,7 +213,7 @@ export const DataTable = [
     guid: '3340c6bb-17d3-469e-8ce5-6eb37184df10',
     isActive: true,
     balance: '$3,217.13',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 38,
     eyeColor: 'brown',
     name: 'Poole Jennings',
@@ -250,7 +251,7 @@ export const DataTable = [
     guid: 'b122555e-c11f-4919-86de-f570963050c1',
     isActive: true,
     balance: '$3,237.49',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 33,
     eyeColor: 'brown',
     name: 'Lydia Thompson',
@@ -288,7 +289,7 @@ export const DataTable = [
     guid: '4108581a-7910-4a99-9d6e-a9c6a41ceddb',
     isActive: false,
     balance: '$3,119.01',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 32,
     eyeColor: 'brown',
     name: 'Alexander Whitfield',
@@ -326,7 +327,7 @@ export const DataTable = [
     guid: 'a6266966-ae7e-4e81-ab69-d2a8daa4e41c',
     isActive: false,
     balance: '$2,683.73',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 38,
     eyeColor: 'brown',
     name: 'Erika Davenport',
@@ -364,7 +365,7 @@ export const DataTable = [
     guid: 'b3014dd5-5262-49fe-a417-eaaaf60f91f6',
     isActive: false,
     balance: '$3,835.16',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 26,
     eyeColor: 'brown',
     name: 'Palmer Hood',
@@ -402,7 +403,7 @@ export const DataTable = [
     guid: 'fd859b46-2c05-4650-8547-9951d20fbe79',
     isActive: true,
     balance: '$3,114.74',
-    picture: 'http://placehold.it/32x32',
+    picture: TableDataPictureURL,
     age: 39,
     eyeColor: 'brown',
     name: 'Ladonna Hansen',
@@ -433,5 +434,154 @@ export const DataTable = [
     ],
     greeting: 'Hello, Ladonna Hansen! You have 10 unread messages.',
     favoriteFruit: 'apple',
+  },
+];
+
+export const commonComponentViewerCode = `
+type DataTableType = {
+  _id: string;
+  isActive: boolean;
+  picture?: string;
+  age: number;
+  name: string;
+  gender: string;
+  email: string;
+  phone: string;
+};
+
+const TableDataPictureURL = 'https://via.placeholder.com/32x32';
+
+const DataTable = [
+  {
+    _id: '644f76e1c8f95a550729db88',
+    isActive: true,
+    balance: '$2,166.05',
+    picture: TableDataPictureURL,
+    age: 38,
+    name: 'Tabatha Warner',
+    gender: 'female',
+    email: 'tabathawarner@frosnex.com',
+    phone: '+1 (958) 426-2797',
+  },
+  {
+    _id: '644f76e123eb64cff53a3e0e',
+    isActive: true,
+    balance: '$1,955.12',
+    picture: TableDataPictureURL,
+    age: 27,
+    name: 'Santana Mcgowan',
+    gender: 'male',
+    email: 'santanamcgowan@bezal.com',
+    phone: '+1 (810) 482-2801',
+  },
+  {
+    _id: '644f76e18aab42f76ea75178',
+    isActive: false,
+    balance: '$3,326.96',
+    picture: TableDataPictureURL,
+    age: 22,
+    name: 'Travis Nguyen',
+    gender: 'male',
+    email: 'travisnguyen@plasmosis.com',
+    phone: '+1 (937) 435-2785',
+  },
+  {
+    _id: '644f76e145923784c648f6df',
+    isActive: true,
+    balance: '$1,392.08',
+    picture: TableDataPictureURL,
+    age: 39,
+    name: 'Muriel Barlow',
+    gender: 'female',
+    email: 'murielbarlow@autograte.com',
+    phone: '+1 (853) 571-2037',
+  },
+  {
+    _id: '644f76e16311fb7abee4aead',
+    isActive: false,
+    balance: '$1,253.31',
+    picture: TableDataPictureURL,
+    age: 32,
+    name: 'Liliana Wilson',
+    gender: 'female',
+    email: 'lilianawilson@snowpoke.com',
+    phone: '+1 (926) 573-2808',
+  },
+];
+`;
+
+export const propsData = [
+  {
+    name: 'data',
+    type: 'T[]',
+    desc: 'An array of objects representing the dataset to be displayed in the table. Each object corresponds to a row in the table, with its properties containing the data for each column. The data prop populates the table with the provided data.',
+  },
+  {
+    name: 'columns',
+    type: 'ColumnDef<T>[]',
+    desc: 'An array of column configurations defining the structure and behavior of each column in the table. Each object in the columns array represents a column and specifies properties such as the column header, sorting options, filtering options, and data accessor. By providing the columns prop, you can customize the appearance and functionality of the columns in the table.',
+  },
+  {
+    name: 'enableSorting',
+    type: 'boolean',
+    defaultVal: 'false',
+    desc: 'A boolean value indicating whether sorting should be enabled in the table. When set to true, users can click on column headers to sort the table data based on that column.',
+  },
+  {
+    name: 'enableGlobalFiltering',
+    type: 'boolean',
+    defaultVal: 'false',
+    desc: 'A boolean value indicating whether global filtering should be enabled in the table. Global filtering allows users to search for specific data across all columns in the table.',
+  },
+  {
+    name: 'globalFilterFn',
+    type: 'FilterFn<T>',
+    defaultVal: 'filterFns.fuzzy',
+    desc: 'A custom filter function used for global filtering. This function is responsible for determining if a row should be included in the search results based on the provided search query. It takes the row data as input and returns a boolean value indicating whether the row matches the search query.',
+  },
+  {
+    name: 'enableColumnFiltering',
+    type: 'boolean',
+    defaultVal: 'false',
+    desc: 'A boolean value indicating whether column-level filtering should be enabled in the table. When set to true, users can filter the data within each individual column.',
+  },
+  {
+    name: 'enablePagination',
+    type: 'boolean',
+    defaultVal: 'false',
+    desc: 'A boolean value indicating whether pagination should be enabled in the table. When set to true, the table will display a pagination control that allows users to navigate through multiple pages of data.',
+  },
+  {
+    name: 'rowsPerPageOptions',
+    type: 'Array<number | {label: string; value: number}>',
+    defaultVal: '[5, 10, 25, {label: "All", value: data.length}]',
+    desc: 'An array of numbers or objects representing the options for the number of rows per page in the table. Each number represents the number of rows to be displayed per page, while each object can contain a label and value pair, allowing for custom labels to be displayed for each option. This prop provides flexibility in choosing the available rows per page options for the user.',
+  },
+  {
+    name: 'enableRowDnd',
+    type: 'boolean',
+    defaultVal: 'true',
+    desc: 'A boolean value indicating whether row dragging and dropping should be enabled in the table. When set to true, users can interactively rearrange the rows of the table by dragging and dropping them to new positions. ',
+  },
+  {
+    name: 'enableColumnDnd',
+    type: 'boolean',
+    defaultVal: 'false',
+    desc: 'A boolean value indicating whether column dragging and dropping should be enabled in the table. When set to true, users can interactively rearrange the columns of the table by dragging and dropping them to new positions.',
+  },
+  {
+    name: 'MUITablePropsObject',
+    type: 'MUITablePropsObject',
+    desc: `The MUITablePropsObject is a prop type that represents a set of properties used to configure a Material-UI table component. It includes the following properties:
+                - tableContainerProps: Props for the table container component.
+                - tableProps: Props for the main table component.
+                - tableHeadProps: Props for the table head component.
+                - headerRowProps: Props for the table header row component.
+                - tableBodyProps: Props for the table body component.
+                - tableFooterProps: Props for the table footer component.
+                - tablePaginationProps: Props for the table pagination component.
+                - bodyRowProps: Props for the table body row component.
+                - bodyCellProps: Props for the table body cell component.
+                - columnCellProps: Props for the table column cell component.`,
   },
 ];

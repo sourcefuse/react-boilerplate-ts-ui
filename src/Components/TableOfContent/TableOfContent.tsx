@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {TimelineDot} from '@mui/lab';
 import {Box, List, ListItemButton, ListItemText, Stack} from '@mui/material';
 import {useCallback, useEffect, useRef, useState} from 'react';

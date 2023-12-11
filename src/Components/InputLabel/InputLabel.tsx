@@ -1,9 +1,14 @@
-import MuiInputLabel from '@mui/material/InputLabel';
+import MuiInputLabel, {InputLabelProps as MuiInputLabelProps} from '@mui/material/InputLabel';
 
-export default function InputLabel({children, htmlFor}: {children: string; htmlFor?: string}) {
-  return (
-    <MuiInputLabel shrink variant="standard" htmlFor={htmlFor}>
-      {children}
-    </MuiInputLabel>
-  );
+interface InputLabelProps extends MuiInputLabelProps {
+  children: string;
+  htmlFor?: string;
 }
+
+const InputLabel: React.FC<InputLabelProps> = ({children, htmlFor}) => (
+  <MuiInputLabel shrink variant="standard" htmlFor={htmlFor}>
+    {children}
+  </MuiInputLabel>
+);
+
+export default InputLabel;

@@ -55,11 +55,13 @@ describe('TransferList', () => {
     expect(moveRightButton).toBeEnabled();
     fireEvent.click(moveRightButton);
     const leftListItems = within(leftSideList).getAllByRole('button');
-    expect(leftListItems.length).toBe(3);
+    const EXPECTED_LEFT_LIST_ITEMS = 3;
+    expect(leftListItems.length).toBe(EXPECTED_LEFT_LIST_ITEMS);
     const rightCustomList = screen.getByTestId('right');
     const rightSideList = within(rightCustomList).getByRole('list');
     const rightListItems = within(rightSideList).getAllByRole('button');
-    expect(rightListItems.length).toBe(5);
+    const EXPECTED_RIGHT_LIST_ITEMS = 5;
+    expect(rightListItems.length).toBe(EXPECTED_RIGHT_LIST_ITEMS);
   });
 
   it('should be able to move the item from right to left', () => {
@@ -73,11 +75,13 @@ describe('TransferList', () => {
     expect(moveLeftButton).toBeEnabled();
     fireEvent.click(moveLeftButton);
     const rightListItems = within(rightSideList).getAllByRole('button');
-    expect(rightListItems.length).toBe(3);
+    const EXPECTED_RIGHT_LIST_ITEMS = 3;
+    expect(rightListItems.length).toBe(EXPECTED_RIGHT_LIST_ITEMS);
     const leftCustomList = screen.getByTestId('left');
     const leftSideList = within(leftCustomList).getByRole('list');
     const leftListItems = within(leftSideList).getAllByRole('button');
-    expect(leftListItems.length).toBe(5);
+    const EXPECTED_LEFT_LIST_ITEMS = 3;
+    expect(leftListItems.length).toBe(EXPECTED_LEFT_LIST_ITEMS);
   });
 
   it('should be able to move all items from left to right', () => {

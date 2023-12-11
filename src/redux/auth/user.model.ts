@@ -12,7 +12,7 @@ export type User = {
   defaultTenantId: string;
   permissions: string[];
   role: string;
-  userPreferences: any;
+  userPreferences: string[];
   tenantId: string;
   userTenantId?: string;
   status: number;

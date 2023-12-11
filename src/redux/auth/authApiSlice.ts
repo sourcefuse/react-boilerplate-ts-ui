@@ -1,16 +1,19 @@
 import {apiSlice} from '../apiSlice';
 import {User} from './user.model';
 
-export type LoginForm = {email: string; password: string};
-type credentials = LoginForm & {
+export interface ILoginForm {
+  email: string;
+  password: string;
+}
+
+export interface ICredentials extends ILoginForm {
   client_id: string;
-};
+}
 
 export const authApiSlice = apiSlice.injectEndpoints({
-  // eslint-disable-next-line prettier/prettier
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     login: builder.mutation({
-      query: (credentials: credentials) => ({
+      query: (credentials: ICredentials) => ({
         url: '/auth/login-token',
         method: 'POST',
         body: {...credentials},

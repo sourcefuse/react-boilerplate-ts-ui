@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {DndTable} from 'Components/Table';
+import {DataTable} from 'Pages/TablePage/data';
 import {tableColumns} from './utils';
-import {DataTable} from './data';
 
 const meta = {
   title: 'Components/Table/DragAndDropTable',

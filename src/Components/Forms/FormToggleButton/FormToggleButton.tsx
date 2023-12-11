@@ -12,7 +12,7 @@ const FormToggleButton: React.FC<ToggleButtonProps> = ({id, disabled, ...rest}) 
   const isError = !!errors[id ?? ''] && touched[id ?? ''] && !disabled;
   const handleOnChangeEvent = useCallback(
     (val: string | string[]) => {
-      setFieldValue(id!, val);
+      if (id) setFieldValue(id, val);
     },
     [id, setFieldValue],
   );

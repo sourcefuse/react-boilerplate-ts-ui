@@ -6,8 +6,7 @@ import FormInput from 'Components/Forms/FormInput';
 import {InputProps} from 'Components/Input/Input';
 import React, {useCallback, useState} from 'react';
 
-// eslint-disable-next-line prettier/prettier
-const FormPasswordInput: React.FC<InputProps> = (props) => {
+const FormPasswordInput: React.FC<InputProps> = props => {
   const [showPassword, setShowPassword] = useState(false);
   const handleOnClickEvent = useCallback(() => {
     setShowPassword(!showPassword);

@@ -5,32 +5,37 @@ import {memo} from 'react';
 
 const FullScreen = () => {
   const toggleFullscreen = () => {
-    if (
-      !document.fullscreenElement
-      // /* alternative standard method */ !document.mozFullScreenElement &&
-      // !document.webkitFullscreenElement
-    ) {
-      // current working methods
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-        // } else if (document.documentElement.mozRequestFullScreen) {
-        //   document.documentElement.mozRequestFullScreen();
-        // } else if (document.documentElement.webkitRequestFullscreen) {
-        //   // document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-      }
+    // Get the root element of the document
+    const element = document.documentElement;
 
-      // sonarignore:start
+    // if document is not in fullscreen mode
+    if (!document.fullscreenElement) {
+      const requestFullscreen = element.requestFullscreen;
+
+      /* Vender Prefix methods for requesting fullscreen
+       * for firefox <= 64 and webkit based browser safari
+       * || element.mozRequestFullScreen
+       * || element.webkitRequestFullscreen;
+       */
+      if (requestFullscreen) {
+        requestFullscreen.call(element);
+      }
     } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-        // } else if (document.mozCancelFullScreen) {
-        //   document.mozCancelFullScreen();
-        // } else if (document.webkitCancelFullScreen) {
-        //   document.webkitCancelFullScreen();
+      //
+      // if document is already in fullscreen mode
+      const exitFullscreen = document.exitFullscreen;
+
+      /* Vender Prefix methods for exiting fullscreen
+       * for firefox <= 64 and webkit based browser safari
+       * || element.mozRequestFullScreen
+       * || element.webkitRequestFullscreen;
+       */
+      if (exitFullscreen) {
+        exitFullscreen.call(document);
       }
     }
   };
-  // sonarignore:end
+
   return (
     <Tooltip title={'FullScreen'}>
       <IconButton onClick={toggleFullscreen}>

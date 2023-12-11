@@ -26,12 +26,11 @@ const AuditLogsPage = () => {
     return <div>Error loading data.</div>;
   }
 
-  // sonarignore:start
   return (
     <Box sx={{margin: 5}}>
-      <Table data={auditLogs!} columns={auditColumns} enableGlobalFiltering />
+      <Table data={auditLogs ?? []} columns={auditColumns} enableGlobalFiltering />
     </Box>
   );
 };
-// sonarignore:end
+
 export default AuditLogsPage;
