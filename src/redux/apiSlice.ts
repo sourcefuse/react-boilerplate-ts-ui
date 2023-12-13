@@ -34,7 +34,6 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 
   if (result.error && result.error.status === RESULT_ERROR_STATUS) {
     // try to get a new token
-    console.log('sending refresh token....');
     const refreshResult = await baseQuery(
       {
         url: '/auth/token-refresh',

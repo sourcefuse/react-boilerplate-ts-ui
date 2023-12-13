@@ -2,9 +2,11 @@ import {Form as FormikForm, Formik} from 'formik';
 import {ForwardedRef, forwardRef, ReactNode} from 'react';
 import * as yup from 'yup';
 
+type AnyObject = Record<string, any>; // NOSONAR
+
 interface Props {
-  initialValues: any;
-  onSubmit: any;
+  initialValues: AnyObject;
+  onSubmit: (...args: any) => void; // NOSONAR
   validationSchema?: ReturnType<typeof yup.object>;
   id?: string;
   enableReinitialize?: boolean;

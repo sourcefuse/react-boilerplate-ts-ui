@@ -1,9 +1,9 @@
 /* eslint-env node */
+import dotenv from 'dotenv';
 import fs from 'fs';
 import path, {dirname} from 'path';
-import yargs from 'yargs';
-import dotenv from 'dotenv';
 import {fileURLToPath} from 'url';
+import yargs from 'yargs';
 
 // Get the directory name and filename
 const currentDir = dirname(fileURLToPath(import.meta.url));
@@ -51,12 +51,14 @@ try {
   // Write the substituted data to config.json
   try {
     fs.writeFileSync(currentConfigFilePath, substitutedData, 'utf-8');
-    console.log('Configuration file written in current directory.');
+    // eslint-disable-next-line no-console
+    console.log('Configuration file written in current directory.'); // NOSONAR
 
     // Copy config.json to the public directory
     try {
       fs.copyFileSync(currentConfigFilePath, outConfigFilePath);
-      console.log('Configuration file copied to public directory.');
+      // eslint-disable-next-line no-console
+      console.log('Configuration file copied to public directory.'); // NOSONAR
     } catch (copyError) {
       handleError(`Error copying config file: ${copyError.message}`);
     }
@@ -68,6 +70,6 @@ try {
 }
 
 function handleError(message) {
-  console.error(message);
+  console.error(message); // NOSONAR
   process.exit(1);
 }

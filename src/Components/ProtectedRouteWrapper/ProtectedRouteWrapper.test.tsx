@@ -4,7 +4,7 @@ import {MemoryRouter, RouteObject, useRoutes} from 'react-router-dom';
 import {ProtectedRouteWrapper} from './ProtectedRouteWrapper';
 
 interface TestAppProps {
-  isAuthorized: (...args: any[]) => boolean;
+  isAuthorized: (...args: any[]) => boolean; // NOSONAR
 }
 
 const TestApp: React.FC<TestAppProps> = ({isAuthorized}) => {
@@ -22,7 +22,8 @@ const TestApp: React.FC<TestAppProps> = ({isAuthorized}) => {
       ),
     },
   ];
-  return useRoutes(routesConfig);
+  const routes = useRoutes(routesConfig);
+  return <>{routes}</>;
 };
 
 describe('ProtectedRouteWrapper', () => {

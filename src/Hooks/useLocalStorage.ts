@@ -9,7 +9,7 @@ const useLocalStorage = <T>(key: string, initialValue: T): [T, (value: T | ((pre
       const item = window.localStorage.getItem(key);
       return item ? (JSON.parse(item) as T) : initialValue;
     } catch (error) {
-      console.error('error while setting useLocalStorage initial value = ', error);
+      console.error('error while setting useLocalStorage initial value = ', error); // NOSONAR
       return initialValue;
     }
   });
@@ -21,7 +21,7 @@ const useLocalStorage = <T>(key: string, initialValue: T): [T, (value: T | ((pre
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
     } catch (error) {
-      console.error('error while setting useLocalStorage value = ', error);
+      console.error('error while setting useLocalStorage value = ', error); // NOSONAR
     }
   };
   return [storedValue, setValue];
