@@ -73,7 +73,7 @@ export default function useAuth() {
       await logoutApi(refreshToken).unwrap();
       dispatch(unsetCredentials());
     } catch (err) {
-      console.error(err);
+      console.error(err); // NOSONAR
     }
   };
 

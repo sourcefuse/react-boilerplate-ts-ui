@@ -3,7 +3,7 @@ import {Navigate, useLocation} from 'react-router-dom';
 
 export interface ProtectedRouteWrapperProps {
   children: JSX.Element;
-  isAuthorized?: (...args: any[]) => boolean;
+  isAuthorized?: (...args: any[]) => boolean; // NOSONAR
 }
 
 /**
@@ -20,5 +20,5 @@ export const ProtectedRouteWrapper = ({
   children,
 }: ProtectedRouteWrapperProps) => {
   const location = useLocation();
-  return isAuthorized() ? children : <Navigate to={'/login'} state={{from: location}} replace />;
+  return <>{isAuthorized() ? children : <Navigate to={'/login'} state={{from: location}} replace />}</>;
 };

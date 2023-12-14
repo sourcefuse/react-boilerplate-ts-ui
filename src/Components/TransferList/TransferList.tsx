@@ -32,6 +32,14 @@ function intersection(arr1: {label: string; value: string}[], arr2: {label: stri
   return arr1.filter(item1 => arr2.some(item2 => item2.value === item1.value));
 }
 
+const IconButton = ({text, ...rest}: {text: ReactNode; onClick: () => void; disabled: boolean}) => (
+  <Button {...rest}>
+    <Box component="span" sx={{transform: {md: 'rotate(0deg)', xs: 'rotate(90deg)'}}}>
+      {text}
+    </Box>
+  </Button>
+);
+
 const TransferList: React.FC<TransferListProps> = ({
   left = [],
   setLeft,
@@ -86,14 +94,6 @@ const TransferList: React.FC<TransferListProps> = ({
     setRight([]);
     setChecked([]);
   };
-
-  const IconButton = ({text, ...rest}: {text: ReactNode; onClick: () => void; disabled: boolean}) => (
-    <Button {...rest}>
-      <Box component="span" sx={{transform: {md: 'rotate(0deg)', xs: 'rotate(90deg)'}}}>
-        {text}
-      </Box>
-    </Button>
-  );
 
   const customList = ({
     items,
