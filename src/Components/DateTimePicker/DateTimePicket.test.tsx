@@ -1,7 +1,7 @@
-import {render, screen, within} from '@testing-library/react';
-import React, {useState} from 'react';
 import {LocalizationProvider} from '@mui/x-date-pickers';
-import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
+import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFnsV3';
+import {render, screen, within} from '@testing-library/react';
+import {useState} from 'react';
 import DateTimePicker from './DateTimePicker';
 
 function TestComponent() {

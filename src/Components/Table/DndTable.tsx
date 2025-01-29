@@ -1,13 +1,4 @@
-import {
-  Box,
-  Table as MuiTable,
-  Paper,
-  TableBody,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TableRow,
-} from '@mui/material';
+import {Box, Table as MuiTable, Paper, TableContainer, TableFooter} from '@mui/material';
 import {
   ColumnFiltersState,
   ColumnOrderState,
@@ -18,13 +9,12 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import {memo, useMemo, useState} from 'react';
-import {DragDropContext, DropResult, DroppableProvided} from 'react-beautiful-dnd';
+import {JSX, memo, useMemo, useState} from 'react';
+// import {DragDropContext, DropResult, DroppableProvided} from 'react-beautiful-dnd';
 import {DebouncedInput} from './DebounceInput';
 import {filterFns} from './FilterFunctions';
-import {StrictModeDroppable} from './StrictModeDroppable';
 import {AnyObject, TableProps} from './Table';
-import {DefaultColumn, DefaultRow, DefaultTablePagination, DraggableColumn, DraggableTableRow} from './helper';
+import {DefaultTablePagination} from './helper';
 
 export interface DndTableProps<T extends AnyObject> extends TableProps<T> {
   enableRowDnd?: boolean;
@@ -90,25 +80,25 @@ const AdvancedTable = <T extends AnyObject>({
     return [...columnOrder];
   };
 
-  const handleDragEnd = (result: DropResult) => {
-    if (!result.destination) {
-      return;
-    }
+  // const handleDragEnd = result => {
+  //   if (!result.destination) {
+  //     return;
+  //   }
 
-    const sourceIndex = result.source.index;
-    const destinationIndex = result.destination.index;
+  //   const sourceIndex = result.source.index;
+  //   const destinationIndex = result.destination.index;
 
-    if (result.type === 'row') {
-      const newData = [...rows];
-      const draggedRow = newData.splice(sourceIndex, 1)[0];
-      newData.splice(destinationIndex, 0, draggedRow);
-      setRows(newData);
-    }
-    if (result.type === 'columns') {
-      const newColumnOrder = reorderColumn(result.source.index, result.destination.index, table.getState().columnOrder);
-      setColumnOrder(newColumnOrder);
-    }
-  };
+  //   if (result.type === 'row') {
+  //     const newData = [...rows];
+  //     const draggedRow = newData.splice(sourceIndex, 1)[0];
+  //     newData.splice(destinationIndex, 0, draggedRow);
+  //     setRows(newData);
+  //   }
+  //   if (result.type === 'columns') {
+  //     const newColumnOrder = reorderColumn(result.source.index, result.destination.index, table.getState().columnOrder);
+  //     setColumnOrder(newColumnOrder);
+  //   }
+  // };
 
   return (
     <TableContainer component={Paper} {...tablePropsObject?.tableContainerProps}>
@@ -123,87 +113,87 @@ const AdvancedTable = <T extends AnyObject>({
         </Box>
       )}
       <MuiTable {...tablePropsObject?.tableProps}>
-        <DragDropContext onDragEnd={handleDragEnd}>
-          <StrictModeDroppable droppableId="columns" type="columns" direction="horizontal">
-            {(droppableProvided: DroppableProvided) => (
-              <TableHead
-                ref={droppableProvided.innerRef}
-                {...droppableProvided.droppableProps}
-                {...tablePropsObject?.tableHeadProps}
-              >
-                {getHeaderGroups().map(headerGroup => (
-                  <TableRow key={headerGroup.id} {...tablePropsObject?.headerRowProps}>
-                    {headerGroup.headers.map((header, index) => {
-                      return enableColumnDnd ? (
-                        <DraggableColumn
-                          key={header.id}
-                          header={header}
-                          index={index}
-                          enableSorting={enableSorting}
-                          enableColumnFiltering={enableColumnFiltering}
-                          columnCellProps={tablePropsObject?.columnCellProps}
-                        />
-                      ) : (
-                        <DefaultColumn
-                          key={header.id}
-                          header={header}
-                          index={index}
-                          enableSorting={enableSorting}
-                          enableColumnFiltering={enableColumnFiltering}
-                          columnCellProps={tablePropsObject?.columnCellProps}
-                        />
-                      );
-                    })}
-                    {droppableProvided.placeholder}
-                  </TableRow>
-                ))}
-              </TableHead>
-            )}
-          </StrictModeDroppable>
-          <StrictModeDroppable droppableId="row" direction="vertical" type="row">
-            {(droppableProvided: DroppableProvided) => (
-              <TableBody
-                ref={droppableProvided.innerRef}
-                {...droppableProvided.droppableProps}
-                {...tablePropsObject?.tableBodyProps}
-              >
-                {getRowModel().rows.map((row, index) => {
-                  return enableRowDnd ? (
-                    <DraggableTableRow key={row.id} row={row} index={index} />
-                  ) : (
-                    <DefaultRow
-                      key={row.id}
-                      row={row}
-                      index={index}
-                      bodyRowProps={tablePropsObject?.bodyRowProps}
-                      bodyCellProps={tablePropsObject?.bodyCellProps}
-                    />
-                  );
-                })}
-                {droppableProvided.placeholder}
-              </TableBody>
-            )}
-          </StrictModeDroppable>
-          {enablePagination && (
-            <TableFooter {...tablePropsObject?.tableFooterProps}>
-              <DefaultTablePagination
-                rowsPerPageOptions={rowsPerPageOptions}
-                count={table.getFilteredRowModel().rows.length}
-                pageSize={pageSize}
-                pageIndex={pageIndex}
-                onPageChange={(_, page) => {
-                  table.setPageIndex(page);
-                }}
-                onRowsPerPageChange={e => {
-                  const DEFAULT_PAGE_SIZE = 10;
-                  const size = e.target.value ? Number(e.target.value) : DEFAULT_PAGE_SIZE;
-                  table.setPageSize(size);
-                }}
-                tablePaginationProps={tablePropsObject?.tablePaginationProps}
-              />
-            </TableFooter>
+        {/* <DragDropContext onDragEnd={handleDragEnd}> */}
+        {/* <StrictModeDroppable droppableId="columns" type="columns" direction="horizontal">
+          {droppableProvided => (
+            <TableHead
+              ref={droppableProvided.innerRef}
+              {...droppableProvided.droppableProps}
+              {...tablePropsObject?.tableHeadProps}
+            >
+              {getHeaderGroups().map(headerGroup => (
+                <TableRow key={headerGroup.id} {...tablePropsObject?.headerRowProps}>
+                  {headerGroup.headers.map((header, index) => {
+                    return enableColumnDnd ? (
+                      <DraggableColumn
+                        key={header.id}
+                        header={header}
+                        index={index}
+                        enableSorting={enableSorting}
+                        enableColumnFiltering={enableColumnFiltering}
+                        columnCellProps={tablePropsObject?.columnCellProps}
+                      />
+                    ) : (
+                      <DefaultColumn
+                        key={header.id}
+                        header={header}
+                        index={index}
+                        enableSorting={enableSorting}
+                        enableColumnFiltering={enableColumnFiltering}
+                        columnCellProps={tablePropsObject?.columnCellProps}
+                      />
+                    );
+                  })}
+                  {droppableProvided.placeholder}
+                </TableRow>
+              ))}
+            </TableHead>
           )}
-        </DragDropContext>
+        </StrictModeDroppable>
+        <StrictModeDroppable droppableId="row" direction="vertical" type="row">
+          {droppableProvided => (
+            <TableBody
+              ref={droppableProvided.innerRef}
+              {...droppableProvided.droppableProps}
+              {...tablePropsObject?.tableBodyProps}
+            >
+              {getRowModel().rows.map((row, index) => {
+                return enableRowDnd ? (
+                  <DraggableTableRow key={row.id} row={row} index={index} />
+                ) : (
+                  <DefaultRow
+                    key={row.id}
+                    row={row}
+                    index={index}
+                    bodyRowProps={tablePropsObject?.bodyRowProps}
+                    bodyCellProps={tablePropsObject?.bodyCellProps}
+                  />
+                );
+              })}
+              {droppableProvided.placeholder}
+            </TableBody>
+          )}
+        </StrictModeDroppable> */}
+        {enablePagination && (
+          <TableFooter {...tablePropsObject?.tableFooterProps}>
+            <DefaultTablePagination
+              rowsPerPageOptions={rowsPerPageOptions}
+              count={table.getFilteredRowModel().rows.length}
+              pageSize={pageSize}
+              pageIndex={pageIndex}
+              onPageChange={(_, page) => {
+                table.setPageIndex(page);
+              }}
+              onRowsPerPageChange={e => {
+                const DEFAULT_PAGE_SIZE = 10;
+                const size = e.target.value ? Number(e.target.value) : DEFAULT_PAGE_SIZE;
+                table.setPageSize(size);
+              }}
+              tablePaginationProps={tablePropsObject?.tablePaginationProps}
+            />
+          </TableFooter>
+        )}
+        {/* </DragDropContext> */}
       </MuiTable>
     </TableContainer>
   );

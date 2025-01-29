@@ -21,7 +21,7 @@ interface Props extends DatePickerProps {
   value?: Date | null;
 }
 
-const DatePicker: React.FC<Props & PartialBy<MuiDatePickerProps<Date | null, Date>, 'renderInput'>> = ({
+const DatePicker: React.FC<Props & Omit<MuiDatePickerProps<Date>, 'renderInput'>> = ({
   id,
   label,
   value,
@@ -45,7 +45,7 @@ const DatePicker: React.FC<Props & PartialBy<MuiDatePickerProps<Date | null, Dat
       return (
         <>
           {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
-          <TextField sx={{marginTop: 2}} {...params} />
+          <TextField sx={{marginTop: 2, p:1}} {...params} />
         </>
       );
     },
@@ -55,20 +55,13 @@ const DatePicker: React.FC<Props & PartialBy<MuiDatePickerProps<Date | null, Dat
   return (
     <FormControl sx={{width: 1, ...sx}} data-testid="datePickerFormControl" disabled={disabled} error={isError}>
       <MuiDatePicker
-        InputAdornmentProps={{
-          position: 'start',
-        }}
-        InputProps={{
-          sx: {
-            '.MuiInputBase-input': {
-              padding: 1,
-            },
-          },
+        slotProps={{
+          inputAdornment: {position: 'start'},
+          textField: handleRenderInput
         }}
         disabled={disabled}
         value={value}
         onChange={handleChange}
-        renderInput={handleRenderInput}
         {...rest}
       />
       {(isError || helperText) && <FormHelperText>{isError ? errorMessage : helperText}</FormHelperText>}
