@@ -9,7 +9,8 @@ import TableCell, {TableCellProps} from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import {Header, Row, flexRender} from '@tanstack/react-table';
 import PropTypes from 'prop-types';
-import {Draggable, DraggableProvided, DraggableStateSnapshot} from 'react-beautiful-dnd';
+// import {Draggable, DraggableProvided, DraggableStateSnapshot} from 'react-beautiful-dnd';
+import {JSX} from 'react';
 import {DebouncedInput} from './DebounceInput';
 import TablePaginationActions from './PaginationActions';
 import {AnyObject} from './Table';
@@ -30,49 +31,52 @@ export const DraggableColumn = <T extends AnyObject>({
   columnCellProps,
 }: ColumnProps<T>): JSX.Element => {
   return (
-    <Draggable draggableId={header.id} index={index}>
-      {(draggableProvided: DraggableProvided, snapshot: DraggableStateSnapshot) => {
-        return (
-          <TableCell
-            key={header.id}
-            sx={{fontWeight: 'bold', cursor: snapshot.isDragging ? 'grabbing' : 'pointer'}}
-            ref={draggableProvided.innerRef}
-            {...draggableProvided.draggableProps}
-            {...draggableProvided.dragHandleProps}
-            style={{
-              ...draggableProvided.draggableProps.style,
-              background: snapshot.isDragging ? 'rgba(245,245,245, 0.75)' : 'none',
-            }}
-            {...columnCellProps}
-          >
-            {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-            {enableSorting && (
-              <TableSortLabel
-                active={!!header.column.getIsSorted()}
-                onClick={header.column.getToggleSortingHandler()}
-                direction={header.column.getIsSorted() && header.column.getIsSorted() === 'asc' ? 'asc' : 'desc'}
-              />
-            )}
-            {enableColumnFiltering && header.column.getCanFilter() ? (
-              <DebouncedInput
-                id={`${header.column.columnDef.header}-search`}
-                value={(() => {
-                  const filterValue = header.column.getFilterValue();
-                  if (typeof filterValue === 'number') {
-                    return filterValue;
-                  }
-                  return (filterValue ?? '') as string;
-                })()}
-                onChange={value => header.column.setFilterValue(value)}
-                placeholder={`Search ${header.column.columnDef.header}`}
-                variant="standard"
-                sx={{width: '150px', height: '32px', marginTop: '5px'}}
-              />
-            ) : null}
-          </TableCell>
-        );
-      }}
-    </Draggable>
+    <></>
+    // <Draggable draggableId={header.id} index={index}>
+
+    //   {(draggableProvided, snapshot) => {
+    //     return (
+    //       <TableCell
+    //         key={header.id}
+    //         sx={{fontWeight: 'bold', cursor: snapshot.isDragging ? 'grabbing' : 'pointer'}}
+    //         ref={draggableProvided.innerRef}
+    //         {...draggableProvided.draggableProps}
+    //         {...draggableProvided.dragHandleProps}
+    //         style={{
+    //           ...draggableProvided.draggableProps.style,
+    //           background: snapshot.isDragging ? 'rgba(245,245,245, 0.75)' : 'none',
+    //         }}
+    //         {...columnCellProps}
+    //       >
+    //         {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+    //         {enableSorting && (
+    //           <TableSortLabel
+    //             active={!!header.column.getIsSorted()}
+    //             onClick={header.column.getToggleSortingHandler()}
+    //             direction={header.column.getIsSorted() && header.column.getIsSorted() === 'asc' ? 'asc' : 'desc'}
+    //           />
+    //         )}
+    //         {enableColumnFiltering && header.column.getCanFilter() ? (
+    //           <DebouncedInput
+    //             id={`${header.column.columnDef.header}-search`}
+    //             value={(() => {
+    //               const filterValue = header.column.getFilterValue();
+    //               if (typeof filterValue === 'number') {
+    //                 return filterValue;
+    //               }
+    //               return (filterValue ?? '') as string;
+    //             })()}
+    //             onChange={value => header.column.setFilterValue(value)}
+    //             placeholder={`Search ${header.column.columnDef.header}`}
+    //             variant="standard"
+    //             sx={{width: '150px', height: '32px', marginTop: '5px'}}
+    //           />
+    //         ) : null}
+    //       </TableCell>
+    //     );
+    //   }}
+
+    // </Draggable>
   );
 };
 
@@ -92,30 +96,33 @@ type TableRowProps<T extends AnyObject> = {
 
 export const DraggableTableRow = <T extends AnyObject>({row, index, bodyCellProps, bodyRowProps}: TableRowProps<T>) => {
   return (
-    <Draggable draggableId={row.id} index={index}>
-      {(draggableProvided: DraggableProvided, snapshot: DraggableStateSnapshot) => {
-        return (
-          <TableRow
-            key={row.id}
-            ref={draggableProvided.innerRef}
-            {...draggableProvided.draggableProps}
-            {...draggableProvided.dragHandleProps}
-            style={{
-              ...draggableProvided.draggableProps.style,
-              background: snapshot.isDragging ? 'rgba(245,245,245, 0.75)' : 'none',
-            }}
-            sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: snapshot.isDragging ? 'grabbing' : 'pointer'}}
-            {...bodyRowProps}
-          >
-            {row.getVisibleCells().map(cell => (
-              <TableCell key={cell.id} {...bodyCellProps}>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </TableCell>
-            ))}
-          </TableRow>
-        );
-      }}
-    </Draggable>
+    <></>
+    // <Draggable draggableId={row.id} index={index}>
+
+    //   {(draggableProvided, snapshot) => {
+    //     return (
+    //       <TableRow
+    //         key={row.id}
+    //         ref={draggableProvided.innerRef}
+    //         {...draggableProvided.draggableProps}
+    //         {...draggableProvided.dragHandleProps}
+    //         style={{
+    //           ...draggableProvided.draggableProps.style,
+    //           background: snapshot.isDragging ? 'rgba(245,245,245, 0.75)' : 'none',
+    //         }}
+    //         sx={{'&:last-child td, &:last-child th': {border: 0}, cursor: snapshot.isDragging ? 'grabbing' : 'pointer'}}
+    //         {...bodyRowProps}
+    //       >
+    //         {row.getVisibleCells().map(cell => (
+    //           <TableCell key={cell.id} {...bodyCellProps}>
+    //             {flexRender(cell.column.columnDef.cell, cell.getContext())}
+    //           </TableCell>
+    //         ))}
+    //       </TableRow>
+    //     );
+    //   }}
+
+    //  </Draggable>
   );
 };
 

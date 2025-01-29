@@ -1,5 +1,5 @@
 import {LocalizationProvider} from '@mui/x-date-pickers';
-import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
+import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFnsV3';
 import type {Meta, StoryObj} from '@storybook/react';
 import {DateTimePickerProps} from 'Components/DateTimePicker/DateTimePicker';
 import Form from 'Components/Forms/Form';

@@ -1,6 +1,7 @@
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 import Grid from '@mui/material/Grid';
+import {JSX} from 'react';
 import {Link} from 'react-router-dom';
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import routes from './breadcrumbConfig';

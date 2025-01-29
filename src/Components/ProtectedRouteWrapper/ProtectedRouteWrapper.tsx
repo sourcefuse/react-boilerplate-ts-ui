@@ -1,4 +1,5 @@
 import {authorizationFunctions} from 'Helpers/authorizationFunctions';
+import {JSX} from 'react';
 import {Navigate, useLocation} from 'react-router-dom';
 
 export interface ProtectedRouteWrapperProps {

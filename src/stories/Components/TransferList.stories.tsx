@@ -38,5 +38,7 @@ export const DefaultTransferList: Story = {
       {value: 'ri3', label: 'Right item 3'},
       {value: 'ri4', label: 'Right item 4'},
     ],
+    setLeft: () => {},
+    setRight: () => {},
   },
 };

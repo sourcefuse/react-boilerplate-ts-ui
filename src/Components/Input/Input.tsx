@@ -3,7 +3,7 @@ import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined
 import {FormControl, FormHelperText, IconButton, OutlinedInput, OutlinedInputProps, Tooltip} from '@mui/material';
 import InputLabel from 'Components/InputLabel';
 import React, {memo, useCallback} from 'react';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+// import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 interface AnyErrorObj {
   [key: string]: any; // NOSONAR
@@ -38,9 +38,9 @@ const getEndAdornment = ({
     return (
       <Tooltip title="Copy to clipboard">
         <IconButton sx={{cursor: 'pointer'}}>
-          <CopyToClipboard text={value?.toString() || ''}>
-            <FileCopyIcon />
-          </CopyToClipboard>
+          {/* <CopyToClipboard text={value?.toString() || ''}> */}
+          <FileCopyIcon />
+          {/* </CopyToClipboard> */}
         </IconButton>
       </Tooltip>
     );

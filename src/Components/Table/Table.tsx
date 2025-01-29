@@ -26,7 +26,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import {memo, useMemo, useState} from 'react';
+import {JSX, memo, useMemo, useState} from 'react';
 import {filterFns} from './FilterFunctions';
 import {DefaultColumn, DefaultRow, DefaultTablePagination, GlobalFilter} from './helper';
 

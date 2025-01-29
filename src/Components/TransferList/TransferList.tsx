@@ -3,8 +3,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from 'Components/Button/Button';
 import React, {ReactNode, RefObject, useRef, useState} from 'react';
-import {DragDropContext, DropResult, Droppable} from 'react-beautiful-dnd';
-import CustomList from './CustomList';
+// import {DragDropContext, DropResult, Droppable} from 'react-beautiful-dnd';
 
 type ListDispatchActionType = React.Dispatch<
   React.SetStateAction<
@@ -112,7 +111,7 @@ const TransferList: React.FC<TransferListProps> = ({
   }) => {
     return (
       <Grid item sx={{padding: '0px !important'}} xs={12} sm={12} md={5} lg={5} data-testid={droppableId}>
-        <Droppable droppableId={droppableId}>
+        {/* <Droppable>
           {provided => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               <CustomList
@@ -126,117 +125,119 @@ const TransferList: React.FC<TransferListProps> = ({
               />
             </div>
           )}
-        </Droppable>
+        </Droppable> */}
       </Grid>
     );
   };
 
-  const onDragEnd = (dropResult: DropResult) => {
-    const {source, destination} = dropResult;
-    // Make sure we have a valid destination
-    if (destination === undefined || destination === null) return null;
+  // const onDragEnd = dropResult => {
+  //   const {source, destination} = dropResult;
+  //   // Make sure we have a valid destination
+  //   if (destination === undefined || destination === null) return null;
 
-    // Make sure we're actually moving the item
-    if (source.droppableId === destination.droppableId && destination.index === source.index) return null;
+  //   // Make sure we're actually moving the item
+  //   if (source.droppableId === destination.droppableId && destination.index === source.index) return null;
 
-    // Set start and end variables
-    let start;
-    let end;
+  //   // Set start and end variables
+  //   let start;
+  //   let end;
 
-    // If start is the same as end, we're in the same column
-    if (source.droppableId === destination.droppableId) {
-      start = source.droppableId === 'left' ? [...left] : [...right];
+  //   // If start is the same as end, we're in the same column
+  //   if (source.droppableId === destination.droppableId) {
+  //     start = source.droppableId === 'left' ? [...left] : [...right];
 
-      // Move the item within the list
-      // Start by making a new list without the dragged item
-      const newList = start.filter((_, idx) => idx !== source.index);
+  //     // Move the item within the list
+  //     // Start by making a new list without the dragged item
+  //     const newList = start.filter((_, idx) => idx !== source.index);
 
-      // Then insert the item at the right location
-      newList.splice(destination.index, 0, start[source.index]);
+  //     // Then insert the item at the right location
+  //     newList.splice(destination.index, 0, start[source.index]);
 
-      // Update the state
-      if (source.droppableId === 'left') {
-        setLeft(newList);
-      } else {
-        setRight(newList);
-      }
-      return null;
-    }
+  //     // Update the state
+  //     if (source.droppableId === 'left') {
+  //       setLeft(newList);
+  //     } else {
+  //       setRight(newList);
+  //     }
+  //     return null;
+  //   }
 
-    if (source.droppableId === 'left' && destination.droppableId === 'right') {
-      start = [...left];
-      end = [...right];
-    } else {
-      start = [...right];
-      end = [...left];
-    }
-    // If start is different from end, we need to update multiple columns
-    // Filter the start list like before
-    const newStartList = start.filter((_, idx) => idx !== source.index);
+  //   if (source.droppableId === 'left' && destination.droppableId === 'right') {
+  //     start = [...left];
+  //     end = [...right];
+  //   } else {
+  //     start = [...right];
+  //     end = [...left];
+  //   }
+  //   // If start is different from end, we need to update multiple columns
+  //   // Filter the start list like before
+  //   const newStartList = start.filter((_, idx) => idx !== source.index);
 
-    // Insert the item into the end list
-    end.splice(destination.index, 0, start[source.index]);
+  //   // Insert the item into the end list
+  //   end.splice(destination.index, 0, start[source.index]);
 
-    // Update the state
-    if (source.droppableId === 'left') {
-      setLeft(newStartList);
-      setRight(end);
-    } else {
-      setLeft(end);
-      setRight(newStartList);
-    }
-  };
+  //   // Update the state
+  //   if (source.droppableId === 'left') {
+  //     setLeft(newStartList);
+  //     setRight(end);
+  //   } else {
+  //     setLeft(end);
+  //     setRight(newStartList);
+  //   }
+  // };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Grid container justifyContent="space-around" alignItems="end" spacing={3} sx={{margin: 0, width: 1, padding: 1}}>
-        {customList({
-          items: left,
-          title: 'Available Fields',
-          droppableId: 'left',
-          checked: leftChecked,
-          columnRef: leftRef,
-        })}
+    // <DragDropContext onDragEnd={onDragEnd}>
 
-        <Grid item sx={{padding: 2}} data-testid="transferListActions">
-          <Stack direction={{sm: 'row', md: 'column'}} spacing={{sm: 1, md: 2}}>
-            <IconButton
-              text={<>&gt;</>}
-              onClick={handleCheckedRight}
-              disabled={leftChecked.length === 0}
-              aria-label="move selected right"
-            />
-            <IconButton
-              text={<>&lt;</>}
-              onClick={handleCheckedLeft}
-              disabled={rightChecked.length === 0}
-              aria-label="move selected left"
-            />
-            <IconButton
-              text={<>&lt;&lt;</>}
-              onClick={handleAllLeft}
-              disabled={right.length === 0}
-              aria-label="move all left"
-            />
-            <IconButton
-              text={<>&gt;&gt;</>}
-              onClick={handleAllRight}
-              disabled={left.length === 0}
-              aria-label="move all right"
-            />
-          </Stack>
-        </Grid>
+    <Grid container justifyContent="space-around" alignItems="end" spacing={3} sx={{margin: 0, width: 1, padding: 1}}>
+      {customList({
+        items: left,
+        title: 'Available Fields',
+        droppableId: 'left',
+        checked: leftChecked,
+        columnRef: leftRef,
+      })}
 
-        {customList({
-          items: right,
-          title: 'Selected Fields',
-          includeIcon: true,
-          droppableId: 'right',
-          checked: rightChecked,
-          columnRef: rightRef,
-        })}
+      <Grid item sx={{padding: 2}} data-testid="transferListActions">
+        <Stack direction={{sm: 'row', md: 'column'}} spacing={{sm: 1, md: 2}}>
+          <IconButton
+            text={<>&gt;</>}
+            onClick={handleCheckedRight}
+            disabled={leftChecked.length === 0}
+            aria-label="move selected right"
+          />
+          <IconButton
+            text={<>&lt;</>}
+            onClick={handleCheckedLeft}
+            disabled={rightChecked.length === 0}
+            aria-label="move selected left"
+          />
+          <IconButton
+            text={<>&lt;&lt;</>}
+            onClick={handleAllLeft}
+            disabled={right.length === 0}
+            aria-label="move all left"
+          />
+          <IconButton
+            text={<>&gt;&gt;</>}
+            onClick={handleAllRight}
+            disabled={left.length === 0}
+            aria-label="move all right"
+          />
+        </Stack>
       </Grid>
-    </DragDropContext>
+
+      {customList({
+        items: right,
+        title: 'Selected Fields',
+        includeIcon: true,
+        droppableId: 'right',
+        checked: rightChecked,
+        columnRef: rightRef,
+      })}
+    </Grid>
+
+    // </DragDropContext>
   );
 };
 

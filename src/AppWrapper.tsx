@@ -1,5 +1,5 @@
 import {LocalizationProvider} from '@mui/x-date-pickers';
-import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
+import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFnsV3';
 import App from 'App';
 import ErrorBoundary from 'Providers/ErrorBoundary';
 import NotificationProvider from 'Providers/NotificationProvider';

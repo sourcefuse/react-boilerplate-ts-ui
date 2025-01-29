@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import {useTheme} from '@mui/material/styles';
 import {memo} from 'react';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+// import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {PrismLight as ReactSyntaxHighlighter} from 'react-syntax-highlighter';
 import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
 import vs from 'react-syntax-highlighter/dist/cjs/styles/prism/vs';
@@ -16,13 +16,13 @@ const SyntaxHighlighter = ({children}: {children: string}) => {
   const theme = useTheme();
   return (
     <Box sx={{position: 'relative'}} data-testid="syntax-highlighter">
-      <CopyToClipboard text={children}>
-        <Button aria-label="copy code button" sx={{position: 'absolute', right: 5, top: 5}}>
-          <Tooltip title="Copy to clipboard">
-            <FileCopyIcon />
-          </Tooltip>
-        </Button>
-      </CopyToClipboard>
+      {/* <CopyToClipboard text={children}> */}
+      <Button aria-label="copy code button" sx={{position: 'absolute', right: 5, top: 5}}>
+        <Tooltip title="Copy to clipboard">
+          <FileCopyIcon />
+        </Tooltip>
+      </Button>
+      {/* </CopyToClipboard> */}
       <Box
         component={ReactSyntaxHighlighter}
         language="jsx"

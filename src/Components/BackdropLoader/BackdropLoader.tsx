@@ -1,5 +1,6 @@
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import {JSX} from 'react';
 
 const BackdropLoader = (): JSX.Element => {
   return (
