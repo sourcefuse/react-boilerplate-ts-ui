@@ -1,10 +1,10 @@
-import buttonImg from './button.svg';
-import inputImg from './input.svg';
-import dropdownImg from './dropdown.svg';
-import checkboxImg from './checkbox.svg';
-import modalImg from './modal.svg';
-import navigationImg from './navigation.svg';
-import radioButtonImg from './radiobutton.svg';
-import toggleImg from './toggle.svg';
+import buttonImg from './button.svg?url';
+import checkboxImg from './checkbox.svg?url';
+import dropdownImg from './dropdown.svg?url';
+import inputImg from './input.svg?url';
+import modalImg from './modal.svg?url';
+import navigationImg from './navigation.svg?url';
+import radioButtonImg from './radiobutton.svg?url';
+import toggleImg from './toggle.svg?url';
 
-export {buttonImg, inputImg, dropdownImg, checkboxImg, modalImg, navigationImg, radioButtonImg, toggleImg};
+export {buttonImg, checkboxImg, dropdownImg, inputImg, modalImg, navigationImg, radioButtonImg, toggleImg};
