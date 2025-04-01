@@ -26,7 +26,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@farmfe/js-plugin-svgr": "^1.10.0",
     "@mui/icons-material": "^5.10.15",
     "@mui/lab": "^5.0.0-alpha.109",
     "@mui/material": "^5.10.15",
