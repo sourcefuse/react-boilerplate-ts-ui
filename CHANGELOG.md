@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.3...1.1.4) (2025-04-07)
+
+
+### Performance Improvements
+
+* **core:** ARC-76 replace vite with farm ([#77](https://github.com/sourcefuse/react-boilerplate-ts-ui/issues/77)) ([ef5705d](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/ef5705ddbf1f7d0bb6c63d2268ae9177986740b0))
+
+
+
 ## [1.1.3](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.2...1.1.3) (2023-12-11)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * **core:** ARC-615 added Storybook for the components ([01588f3](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/01588f318bd28f59ee42395b8b46b15e0be7e8da))
-
-
-
-## [1.0.1](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.0.0...1.0.1) (2023-07-05)
-
-
-### Bug Fixes
-
-* **core:** ARC-983 fixed session timeout component ([115ff72](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/115ff7268f75a19c95f611f7bdb48ec8c315931c))
 
 
 
