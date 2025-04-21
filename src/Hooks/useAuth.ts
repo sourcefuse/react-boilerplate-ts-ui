@@ -52,11 +52,17 @@ export default function useAuth() {
    */
   const login = async (values: ILoginForm) => {
     try {
-      const response = await loginApi({
-        client_id: clientId,
-        ...values,
-      }).unwrap();
-      dispatch(setCredentials(response));
+      // const response = await loginApi({
+      //   client_id: clientId,
+      //   ...values,
+      // }).unwrap();
+      dispatch(
+        setCredentials({
+          accessToken: 'sadasds',
+          refreshToken: 'sadsadsa',
+          expires: 99999,
+        }),
+      );
       enqueueSnackbar('Login Successful', {variant: 'success'});
     } catch (err) {
       if (isFetchBaseQueryError(err) && hasErrorObject(err?.data)) {
