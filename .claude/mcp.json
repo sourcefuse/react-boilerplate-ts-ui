@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "sourceloop": {
+      "command": "npx",
+      "args": [
+        "@sourceloop/cli",
+        "mcp"
+      ],
+      "timeout": 300
+    }
+  }
+}
