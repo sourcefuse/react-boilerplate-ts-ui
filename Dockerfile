@@ -2,7 +2,8 @@
 FROM node:24-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm i --package-lock-only --ignore-scripts
+RUN npm ci --omit=dev --ignore-scripts
 COPY . .
 RUN npm run build
 
