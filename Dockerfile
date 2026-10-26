@@ -1,8 +1,8 @@
 # build environment
-FROM node:16-alpine AS build
+FROM node:24.22.1-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm ci --omit=dev --ignore-scripts
 COPY . .
 RUN npm run build
 
