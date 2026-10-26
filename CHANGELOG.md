@@ -1,3 +1,12 @@
+## [1.1.5](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.4...1.1.5) (2026-10-26)
+
+
+### Bug Fixes
+
+* **deps:** gh-83 resolve high and critical trivy vulnerabilities ([#84](https://github.com/sourcefuse/react-boilerplate-ts-ui/issues/84)) ([6b69a2b](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/6b69a2bebd3b9bac1eb9a1aad1b4f42b6bf7f071)), closes [#83](https://github.com/sourcefuse/react-boilerplate-ts-ui/issues/83)
+
+
+
 ## [1.1.4](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.3...1.1.4) (2025-04-07)
 
 
@@ -31,20 +40,6 @@
 ### Bug Fixes
 
 * **core:** ARC-62 add cross platform config generator ([#65](https://github.com/sourcefuse/react-boilerplate-ts-ui/issues/65)) ([fac501e](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/fac501ef06b1ee0f82601b9f59a02e56d138e5f0))
-
-
-
-# [1.1.0](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.0.1...1.1.0) (2023-08-10)
-
-
-### Bug Fixes
-
-* **core:** ARC-615 fixed arc-logo src ([6dc226f](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/6dc226f2845ce7fb8fd281d16ed878039692a5cf))
-
-
-### Features
-
-* **core:** ARC-615 added Storybook for the components ([01588f3](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/01588f318bd28f59ee42395b8b46b15e0be7e8da))
 
 
 
