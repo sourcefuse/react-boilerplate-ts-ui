@@ -1,3 +1,12 @@
+## [1.1.6](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.5...1.1.6) (2026-11-16)
+
+
+### Bug Fixes
+
+* **deps:** bump node to 24.22.3 for november 2026 security release ([#86](https://github.com/sourcefuse/react-boilerplate-ts-ui/issues/86)) ([f897260](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/f89726020347523835fb2690ec233f4b07e5c9a6))
+
+
+
 ## [1.1.5](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.4...1.1.5) (2026-10-26)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **core:** ARC-69 fix sonar smells ([2a5f689](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/2a5f68976f234ad64200343f91da71a2a8cf4161))
-
-
-
-## [1.1.1](https://github.com/sourcefuse/react-boilerplate-ts-ui/compare/1.1.0...1.1.1) (2023-09-11)
-
-
-### Bug Fixes
-
-* **core:** ARC-62 add cross platform config generator ([#65](https://github.com/sourcefuse/react-boilerplate-ts-ui/issues/65)) ([fac501e](https://github.com/sourcefuse/react-boilerplate-ts-ui/commit/fac501ef06b1ee0f82601b9f59a02e56d138e5f0))
 
 
 
